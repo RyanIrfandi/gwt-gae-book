@@ -1,0 +1,10 @@
+#summary Visualizing your application in action
+
+You have clear product backlog. Coding time, right? Let's do an imagination exercise first. Pretend all those user stories are already implemented. How would your application functionality look? Will it actually satisfy your personae's needs?
+
+= GUI prototyping =
+[http://pencil.evolus.vn/en-US/Home.aspx Evolus Pencil]
+
+
+= Get feedback =
+You can usually find target personae among your friends, if you don't have access to direct customers yet. Get them to look over the diagrams above and provide you feedback both about your ideas and [http://en.wikipedia.org/wiki/Usability usability].
