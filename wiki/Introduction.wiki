@@ -15,3 +15,6 @@ I personally avoid printed technical books as
  * most of the contents which make up a technical book already exist online, in the form of blog posts, code samples, documentation, group discussions. If you want to make a full book about a technology, you'll usually duplicate existing content (remember the days with books having printed API reference as appendices?)
  * authors usually get less than 10% from book sales. If you found this useful, feel free to [https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZYVQ36QASGH2W&lc=RO&item_name=GWT%20GAE%20online%20book&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted make a donation]
 
+= Acknowledgements =
+These materials are not by far built from scratch. Most of them are usually adapted from or referencing existing online materials. Many thanks to the countless people which produced them. In particular, I'd like to thank for their contributions to GWT/GAE, guidance and help to Philippe Beaudoin, Christian Goudreau, Zack Grossbart.
+
