@@ -1,15 +1,14 @@
-#summary Introduction to developing web applications using GWT and GAE
 #labels Featured
-#sidebar TableOfContents
 
 = Introduction =
 
 Add your content here.
 
 
-= Details =
+== Why a free, online book? ==
+I'm an idealist :) I believe the world (both people and technology) is better through collaboration, sharing of knowledge and [http://www.gnu.org/philosophy/right-to-read.html right to read].
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+I personally avoid printed technical books as
+* technology moves fast. A well prepared, printed material will usually be partially outdated by the time you purchase it.
+* most of the contents which make up a technical book already exist online, in the form of blog posts, code samples, documentation, group discussions. If you want to make a full book about a technology, you'll usually duplicate existing content (remember the days with books having printed API reference as appendices?)
+* authors usually get less than 10% from book sales. If you found this useful, feel free to make a donation.
