@@ -1,0 +1,20 @@
+#summary How to clarify your ideas before writing code
+
+<wiki:toc max_depth="2" />
+
+= Putting ideas in writing =
+
+
+persona, use cases
+
+
+= Seeing your app in action =
+
+mocks wireframes
+
+ideas & usability validation - validate with target persona among your friends
+
+
+= Sizing and prioritizing features =
+
+scrum, user stories, zise, priority
