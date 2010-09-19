@@ -1,0 +1,5 @@
+#summary Are you using the right tool for the job?
+
+Before settling on GWT and GAE, ask yourself if they are the best fit for your project. What are the alternatives you have? How do they compare?
+
+= Introduction =
