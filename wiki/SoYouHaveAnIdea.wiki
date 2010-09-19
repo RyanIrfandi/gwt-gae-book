@@ -5,24 +5,38 @@
 So you have a great idea about a new web application? Cool! Sometimes it might be best to simply jump and code it. Some other times you might want to flesh it out before you start implementing it.
 
 = Putting ideas in writing =
-Let's consider this idea: there is a small theater company in your city which has great shows. They also have a website which presents the group to the public and has the shows schedule. You'd like to enable somebody in the theater company to easily update the shows schedule on the website. Once you implement this functionality, you'd like to make it available to other theater companies across the world.
+Let's consider this idea: there is a small theater company in your city which has great shows. They also have a website which presents the group to the public and has the shows schedule. You'd like to enable somebody in the theater company to easily update the shows schedule on the website. Once you implement this functionality, you'd like to make it available to other theater companies across the world. Let's call this application Culture Shows.
 
-You've just identified somebody's need that you could solve. "Somebody" it's usually a human, which is software design is referred to as [http://en.wikipedia.org/wiki/Persona_(marketing) persona].
+You've just identified somebody's need that you could solve. "Somebody" it's usually a human, which in software design is referred to as [http://en.wikipedia.org/wiki/Persona_(marketing) persona].
+
+= Personae =
+Who are the Culture Shows personae?
+
+== Violeta ==
+Violeta is the theater company manager. She works with the group to schedule shows, according the the availability of actors and theater hall. Violeta would like the world to know about upcoming shows, so they can come to them. Violeta couldn't care less about technology, but she is already using email and surfs the web to keep up to date with what happens around.
+
+== Stefan ==
+Stefan is an actor in the theater company. He also has a job and knows how to use computers not only for email, but also to send newsletters to publications, to publish show photos on Facebook and to discuss with theater website designers for making updates such as shows schedule, description and photos.
+
+==  Claus ==
+Claus loves to go to theater shows. She would like to see what shows are scheduled in her city for the next two weeks, so she can make plans with her friends.
+
+= Expressing personae needs = 
+With this application, we want to satisfy the needs of Violeta, Stefan and Claus. It helps if we  clearly identify their needs: we can then estimate and prioritize their order of implementation. 
+
+One form of expressing personae needs is  [http://en.wikipedia.org/wiki/User_story user stories]. See [http://www.examiner.com/business-technology-in-kansas-city/how-to-write-effective-user-stories-a-agile-scrum-environment how to write effective user stories] and [http://www.stellman-greene.com/2009/05/03/requirements-101-user-stories-vs-use-cases/ how do they compare with use cases].
+
+So what would be some of our user stories?
+
+== User stories ==
+
+As Violeta or Stefan, I want to easily update the shows schedule on our website myself, so that I don't waste time asking somebody else to do it for me.
+
+As Claus, I want to have up to date shows schedule so that I can make plans with my friends about going to them.
 
 
+= Backlog grooming =
+In [http://en.wikipedia.org/wiki/Scrum_(development) Scrum methodology], the above user stories constitute a product backlog. We can estimate each story in [http://en.wikipedia.org/wiki/Planning_poker Story points] and prioritize it. The first story is kinda large to estimate, so let's break it into smaller ones.
 
-cult shows
-
-persona, use cases
-
-
-= Seeing your app in action =
-
-mocks wireframes
-
-ideas & usability validation - validate with target persona among your friends
-
-
-= Sizing and prioritizing features =
-
-scrum, user stories, zise, priority
+= Exercise =
+After reading all about scrum, user stories and story points, take a stab at developing the Culture Shows product backlog before going further.
