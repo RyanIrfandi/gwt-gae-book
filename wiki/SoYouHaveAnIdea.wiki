@@ -1,4 +1,5 @@
 #summary How to clarify your ideas before writing code
+#sidebar TableOfContents
 
 <wiki:toc max_depth="2" />
 
