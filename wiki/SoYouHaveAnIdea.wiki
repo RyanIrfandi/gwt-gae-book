@@ -39,4 +39,23 @@ As Claus, I want to have up to date shows schedule so that I can make plans with
 In [http://en.wikipedia.org/wiki/Scrum_(development) Scrum methodology], the above user stories constitute a product backlog. We can estimate each story in [http://en.wikipedia.org/wiki/Planning_poker Story points] and prioritize it. The first story is kinda large to estimate, so let's break it into smaller ones.
 
 = Exercise =
-After reading all about scrum, user stories and story points, take a stab at developing the Culture Shows product backlog before going further.
+After reading all about scrum, user stories and story points, take a stab at developing the Culture Shows product backlog by yourself and estimating each story before going further. 
+
+= Culture Shows product backlog =
+You did actually try to do this by yourself first, right? Go on, this chapter will just wait for you here until you have your own draft. You should decompose the two stories above into at least ten stories, each sized at most 13 story points.
+
+= Culture Shows product backlog (for real) =
+|| *User story* || *Estimate* (story points) ||
+|| As Violeta, I want to add/edit/delete the list of shows so that I can schedule them || 8 ||
+|| As Violeta, I want to add shows to the schedule so that world is aware about them || 8 ||
+|| As Violeta, I want to edit existing scheduled shows so that I can correct any mistakes I might have done || 5 ||
+|| As Violeta, I want to delete existing scheduled shows so that it reflects cancellations || 5 ||
+|| As Violeta, I want to restrict access to scheduling shows so that only authorized persons manage it|| 13 ||
+|| As Violeta, I want to use Culture Shows in my own language so that I don't have to learn English || 5 ||
+|| As Violeta, I want to display shows schedule on theater website as soon as I define it so that I don't waste time asking somebody else to edit it|| 13 ||
+|| As Stefan, I want to enable various websites to display my company's shows schedule so that more people find out about it|| 13 ||
+|| As Stefan, I want to our Facebook group to display each show information two weeks in advance so that more people find out about it|| 13 ||
+|| As Stefan, I want to our Twitter account to display each show information two weeks in advance so that more people find out about it|| 13 ||
+|| As Claus, I want to make a reservation so that I know for sure I'll have a place to see the show when I go to theater || 40 ||
+|| As Violeta, I want to notify existing reservation owners about changes in schedule so that they find out about it and adjust their plans || 8 ||
+|| As Violeta, I want to remind existing reservation owners about shows two days in advance so that I'm sure they didn't forget and minimize the chances of them being late || 8 ||
