@@ -12,7 +12,7 @@ To keep it light, doing an
 On a piece of paper, draft the Culture Shows entity relationship model before going further.
 
 = Entity relationship model =
-[http://gwt-gae-book.googlecode.com/svn/wiki/CultureShowsER.png]
+[http://gwt-gae-book.googlecode.com/svn/wiki/CultureShowsERM.png]
 
 == Notes ==
 A member is part of a theater and with a role (administrator, actor, assistant). 
