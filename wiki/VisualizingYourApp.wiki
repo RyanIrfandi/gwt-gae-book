@@ -14,7 +14,9 @@ Make a few drafts of the UI by yourself before going further. Consider
 == Landing page ==
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/landing.png" border="2" style="border: 2;" />
 
-After a first draft you're happy with, brainstorm about it. For example:
+As we target this application to Violeta, note that we let her enter directly some shows without even signing in, so she will be thrilled of how easy she can get results and be motivated to continue using it.
+
+After a first draft of mockup you're happy with, brainstorm about it. For example:
  * fields in grid should be editable, so we avoid edit buttons? 
   * unintuitive to use and harder to implement
   * how about clicking on a row will fill the fields at top and "Schedule" button is replaced with "Update", "Delete from schedule" buttons?
