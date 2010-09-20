@@ -12,7 +12,7 @@ Make a few drafts of the UI by yourself before going further. Consider
  * usability
 
 == Landing page ==
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/landing.png" border="2" />
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/landing.png" border="2" style="border: 2;" />
 
 = Get feedback =
 You can usually find target personae among your friends, if you don't have access to direct customers yet. Get them to look over the diagrams above and provide you feedback both about your ideas and [http://en.wikipedia.org/wiki/Usability usability].
