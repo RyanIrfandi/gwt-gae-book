@@ -2,8 +2,8 @@
 
 You have clear product backlog. Coding time, right? Let's do an imagination exercise first. Pretend all those user stories are already implemented. How would your application functionality look? Will it actually satisfy your personae's needs?
 
-= GUI prototyping =
-[http://pencil.evolus.vn/en-US/Home.aspx Evolus Pencil]
+= Mockups =
+Let's try to illustrate how our UI would look like using [http://pencil.evolus.vn/en-US/Home.aspx Evolus Pencil], the best completely free mockup building tool I've found.
 
 
 = Get feedback =
