@@ -12,4 +12,11 @@ To keep it light, doing an
 On a piece of paper, draft the Culture Shows entity relationship model before going further.
 
 = Entity relationship model =
-TODO
+[http://gwt-gae-book.googlecode.com/svn/wiki/CultureShowsER.png]
+
+== Notes ==
+A member is part of a theater and with a role (administrator, actor, assistant). 
+
+A theater has shows and locations. A show is held in a location at a date and time.
+
+Try to avoid generic entities such as "User". Besides Member, here we might also have Viewer (Claus).
