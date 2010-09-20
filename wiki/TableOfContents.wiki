@@ -1,7 +1,7 @@
  * [Introduction Introduction] 
  * [SoYouHaveAnIdea So You Have An Idea]
- * [VisualizingYourApp Visualizing your application]
  * [DataModeling Data Modeling]
+ * [VisualizingYourApp Visualizing your application]
  * [TheRightToolForTheJob The right tool for the job]
  * [GWTReview GWT Review]
  * [GettingStartedGWT Getting Started with GWT]
