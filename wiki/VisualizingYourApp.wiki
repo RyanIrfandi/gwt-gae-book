@@ -9,10 +9,19 @@ Let's try to illustrate how our UI would look like using [http://pencil.evolus.v
 Make a few drafts of the UI by yourself before going further. Consider
  * [SoYouHaveAnIdea user stories]
  * user acquisition
- * usability
+ * [http://en.wikipedia.org/wiki/Usability usability]
 
 == Landing page ==
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/landing.png" border="2" style="border: 2;" />
 
+After a first draft you're happy with, brainstorm about it. For example:
+ * show/location in grid should be editable, so we avoid edit buttons? 
+  *  unintuitive to use and harder to implement
+  * how about clicking on a row will fill the entries and "Schedule" button is replaced with "Update", "Delete from schedule" buttons?
+ * how to delete entries?
+ * show and location: text entry with auto-completion or combo boxes? 
+ * need to edit shows to specify more details (summary, link to show homepage, actors)
+
+
 = Get feedback =
-You can usually find target personae among your friends, if you don't have access to direct customers yet. Get them to look over the diagrams above and provide you feedback both about your ideas and [http://en.wikipedia.org/wiki/Usability usability].
+You can usually find target personae among your friends, if you don't have access to direct customers yet. Get them to look over the diagrams above and provide you feedback both about your ideas and usability.
