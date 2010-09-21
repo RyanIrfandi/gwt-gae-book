@@ -1,6 +1,4 @@
-#summary Introduction, motivation
 #labels Featured
-
 Rather than writing a full book, gwt-gae-book complements existing online materials in a logical, structured, easy to follow way. With the help of community, this set of guides and samples intends to 
  * introduce engineers to GWT and GAE
  * show by example best practices and how to best achieve a desired functionality
@@ -8,7 +6,7 @@ Rather than writing a full book, gwt-gae-book complements existing online materi
 
 
 = Why a free, online book? =
-I believe the world (both people and technology) is better through collaboration, sharing of knowledge and [http://www.gnu.org/philosophy/right-to-read.html having the right to read].
+I believe the world (both people and technology) is better through collaboration, sharing of knowledge and [http://www.gnu.org/philosophy/right-to-read.html having the right to read]. By free education (even in the form of this small book), anybody who wants has the choice of learning and getting better, rather than just the ones who afford it. With free programming languages, libraries, tools and documentation, we'll see better applications, more and better collaborative ideas on improving them, and a better hiring market for software development companies. Will documentation writers die of hunger? No, they'll just have to consider developing applications for profit rather than writing books all life (which they probably already do). Hopefully donations will also help a little. Will publishing houses go bankrupt? Well, if they don't add any real value, maybe.
 
 I personally avoid printed technical books as
  * technology moves fast. A well prepared, printed material will usually be partially outdated by the time you purchase it
