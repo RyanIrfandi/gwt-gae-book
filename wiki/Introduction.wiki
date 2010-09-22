@@ -15,3 +15,6 @@ I personally avoid printed technical books as
 
 = Acknowledgements =
 These materials are not by far built from scratch. Most of them are usually adapted from or referencing existing online materials. Many thanks to the countless people which produced them. In particular, I'd like to thank for their contributions to GWT/GAE, guidance and help to Philippe Beaudoin, Christian Goudreau, Zack Grossbart.
+
+
+_Marius Andreiana_
