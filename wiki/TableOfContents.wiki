@@ -3,7 +3,7 @@
  * [DataModeling Data Modeling]
  * [VisualizingYourApp Visualizing your application]
  * [TheRightToolForTheJob The right tool for the job]
-  * [GWTReview GWT Review]
+ * [EnvironmentSetUp Environment Setup]
  * [GettingStartedGWT Getting Started with GWT]
   * [Layout]
  * [GettingStartedGAE Getting Started with GAE]
