@@ -1,0 +1,18 @@
+= Setup =
+
+Setup [http://java.sun.com/javase/downloads/ Java]
+
+Setup [http://code.google.com/webtoolkit/usingeclipse.html Eclipse]
+
+
+= Useful Eclipse plugins =
+http://eclipse-cs.sourceforge.net/
+
+=  Useful Eclipse preferences =
+Window > Preferences > Java > Editor > Save actions > Format source code
+
+=  Appendix: Fedora Linux setup ==
+Setup all of these (except google plugin) with 
+{{{
+yum -y install java-1.6.0-openjdk-devel eclipse-anyedit eclipse-checkstyle eclipse-dtp eclipse-emf eclipse-jdt eclipse-mylyn eclipse-mylyn-java eclipse-platform eclipse-pydev eclipse-pydev-mylyn eclipse-subclipse eclipse-svnkit git mercurial
+}}}
