@@ -235,3 +235,5 @@ so that the UI can be served from frontend.com and other domains, but still acce
 User navigates to frontend.com. The UI gets username & password, passes it to api.backend.com, then it will store authToken and use it on all further requests (same as a cookie stores session id on other systems).
 
 This setup should be fully secure for production too, but we cannot use it as Internet Explorer doesn’t support properly Access-Control-Allow-Origin with XHR (has a separate proprietary object, XDomainRequest, for this use case).
+
+[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
