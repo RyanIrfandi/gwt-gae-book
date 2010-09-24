@@ -20,3 +20,5 @@ A member is part of a theater and with a role (administrator, actor, assistant).
 A theater has shows and locations. A show is held in a location at a date and time.
 
 Try to avoid generic entities such as "User". Besides Member, here we might also have Viewer (Claus).
+
+[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
