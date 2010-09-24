@@ -5,6 +5,37 @@ Before settling on GWT and GAE, ask yourself if they are the best fit for your p
 = Introduction =
 
 
+== More info on GWT ==
+
+[http://fredsa.allen-sauer.com/2009/10/sf-jug-gwt-can-help-you-create-amazing.html GWT Can Help You Create Amazing Web Apps]
+
+[http://www.scribd.com/doc/44602/Google-Web-Toolkit GWT Intro]
+
+[http://code.google.com/events/io/2010/sessions/architecting-production-gwt.html Architecting GWT applications for production at Google]
+
+[http://code.google.com/events/io/2010/sessions/gwt-continuous-build-testing.html GWT testing best practices]
+
+[http://code.google.com/events/io/2009/sessions/GoogleWebToolkitBestPractices.html Best Practices For Architecting Your GWT App]
+
+[http://code.google.com/webtoolkit/articles/mvp-architecture.html MVP architecture for GWT]
+
+
+== Recommendation ==
+
+Besides GWT, we looked at various other frameworks, including Sproutcore, Capuccino, ASP.NET with MVC and ASP.NET AJAX (documented these internally).
+GWT has many advantages and fits our needs. 
+
+Next step: deep dive on ASP.NET with MVC.
+
+GWT specific next steps: test deployment, research how easy is using CSS and external JS, research overwriting generated markup for some widgets or building more complex widgets from scratch if needed, review top open bugs to see how stable/maintained GWT is (we cannot do the same with ASP :)
+
+For feedback on this document, please contact Marius.Andreiana @ gmail.com. Thanks to the GWT discussion group and other folks, who already provided valuable feedback.
+
+
+= Appendix: Evaluating GWT 3rd party libraries =
+
+GWT has many 3rd party libraries, covering areas such as widgets, validation, logging, charts and even equation editors. A few of the widget libraries chose to heavily use Javascript and their own widget model to implement various widgets (e.g. SmartGWT), leading to various issues: [http://forums.smartclient.com/showthread.php?p=15141 layout], performance, some incompatibility with native GWT widgets. I recommend not using this kind of libraries and stick to widgets built on the GWT model, including [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html UiBinder].
+
 
 = Appendix: GWT apps at Google =
 http://adwords.google.com/
@@ -49,3 +80,34 @@ http://www.appbrain.com/
 http://jboss.org/drools/drools-guvnor.html
 
 [http://james.apache.org/hupa/screenshots.html Apache Hupa IMAP mail client]
+
+= Appendix: Deployment Setup =
+
+We have api.backend.com, which offers REST APIs over SSL such as:
+{{{
+POST /login
+Body: data username, password
+Response: authToken
+
+GET /tweets
+Authorization: authToken (Custom HTTP Header)
+Body: none
+Response: tweets
+}}}
+
+*Production*
+
+Deploy app.html on api.backend.com which loads compiled JS from CDN. app.html is loaded in an iframe from wherever is needed to avoid SOP restrictions on all browsers.
+
+*Development environment for folks doing client-only development*
+
+api.backend.com will return on all requests the header
+{{{
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Authorization
+}}}
+so that the UI can be served from frontend.com and other domains, but still access the APIs
+(same origin policy). There won't be anything else on api.site.com besides stateless APIs (no cookies, no html files).
+User navigates to frontend.com. The UI gets username & password, passes it to api.backend.com, then it will store authToken and use it on all further requests (same as a cookie stores session id on other systems).
+
+This setup should be fully secure for production too, but we cannot use it as Internet Explorer doesn’t support properly Access-Control-Allow-Origin with XHR (has a separate proprietary object, XDomainRequest, for this use case).
