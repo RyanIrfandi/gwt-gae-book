@@ -2,7 +2,9 @@
 
 <wiki:toc max_depth="2" />
 
-Before settling on GWT and GAE, ask yourself if they are the best fit for your project. What are your needs? What are the alternatives you have? How do they compare?
+Before settling on GWT and GAE, ask yourself if they are the best fit for your project. 
+ * what are your needs? 
+ * what are the alternatives you have? how do they compare?
 
 
 = Analysis of using GWT for a large UI project =
@@ -71,9 +73,9 @@ Good:
  * powerful i18n support (including automatic extraction of strings)
  * native HTML5 support almost ready (e.g. [http://code.google.com/p/gwt-mobile-webkit/ storage, offline web apps])
  * mobile/iDevice friendly (e.g. [http://clay.lenharts.net/blog/2009/05/25/gwt-is-flexible-iphone-demo/ iPhone], [http://development.lombardi.com/?p=1346 multi-touch demo], [http://m.geotako.com/ sample app])
-can be easily integrated with AJAX frameworks such as jQuery, YUI (there’s even a [http://code.google.com/events/io/2009/sessions/ProgressivelyEnhanceAjaxApps.html jQuery port to GWT])
+ * can be easily integrated with AJAX frameworks such as jQuery, YUI (there’s even a [http://code.google.com/events/io/2009/sessions/ProgressivelyEnhanceAjaxApps.html jQuery port to GWT])
  * easy to develop new custom widgets
- * UiBinder model (separate display from behavior)
+ * !UiBinder model (separate display from behavior)
  * native MVP support 
  * REST support
  * [http://code.google.com/webtoolkit/doc/latest/DevGuideA11y.html accessibility support]
@@ -101,10 +103,8 @@ A large web app it’s built by a large cross-functional team. We have blackbox 
 We use Scrum with 4 week sprints and apply Scrum best practices such as splitting large stories in small ones. While we try to work on stories in order of priority, we still reach the last sprint week with most stories not done as we cannot fully parallelize effort to work on one story at a time.
 
  * multiple developers will be able to work on the same story (one or two back-end, one front-end using mock data models, which have to be built anyway for unit testing)
-early, rapid development of front-end with mock data models. Black box QEs will be able to do early QA on user workflows and usability, rather then at the sprint end when it’s usually too late to do major changes. Specific example: we had a large feature developed and released, which is working mostly ok from functionality point of view, but had large usability issues raised by customers.
-
+ * early development of functional front-end with mock data models. Black box QEs will be able to do early QA on user workflows and usability, rather then at the sprint end when it’s usually too late to do major changes. Specific example: we had a large feature developed and released, which is working mostly ok from functionality point of view, but had large usability issues raised by customers.
  * white box QAs can write API tests as soon as the data model is agreed, and can review and contribute to front-end unit testing (both with mock Views, which tests the Presenter logic, and with real Views, which tests browser functionality).
-
  * rapid development on integrating separate workflows. If we already fully developed two separate workflows, to integrate them we need to change only the client. Example: If you have a front-end to post a Wordpress blog entry which includes images, and you also have a separate photo gallery management section in the same application, you only need to update the client to enable drag and dropping photos from your photo galleries into a blog post.
 
 
