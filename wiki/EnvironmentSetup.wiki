@@ -6,7 +6,8 @@ Setup [http://code.google.com/webtoolkit/usingeclipse.html Eclipse]
 
 
 = Useful Eclipse plugins =
-http://eclipse-cs.sourceforge.net/
+[http://m2eclipse.sonatype.org/ Maven integration]
+[Checkstyle http://eclipse-cs.sourceforge.net/]
 
 =  Useful Eclipse preferences =
 Window > Preferences > Java > Editor > Save actions > Format source code
