@@ -1,5 +1,23 @@
+org.gwt-gae-book.template
+
+with roo
+libs
+gwt.xml settings (logging, ...)
+default P, View
+
+.sh to dupe
+
+
 
 Analytics
 
+selenium
+
+P unit tests / mockito
+
+mobile ui
+
+
+http://code.google.com/p/google-web-toolkit/wiki/CodeSplitting
 
 [http://www.google.com/notebook/public/17393756076936429562/BDUsxIgoQmJbCk7ch Getting the Most from Eclipse]
