@@ -4,7 +4,6 @@ Setup [http://java.sun.com/javase/downloads/ Java]
 
 Setup [http://code.google.com/webtoolkit/usingeclipse.html Eclipse]
 
-
 == Useful Eclipse plugins ==
 [http://m2eclipse.sonatype.org/ Maven integration]
 
@@ -13,14 +12,24 @@ Setup [http://code.google.com/webtoolkit/usingeclipse.html Eclipse]
 ==  Useful Eclipse preferences ==
 Window > Preferences > Java > Editor > Save actions > Format source code
 
-==  Appendix: Fedora Linux setup ==
-Setup all of these (except google plugin) with 
-{{{
-yum -y install java-1.6.0-openjdk-devel eclipse-anyedit eclipse-checkstyle eclipse-dtp eclipse-emf eclipse-jdt eclipse-mylyn eclipse-mylyn-java eclipse-platform eclipse-pydev eclipse-pydev-mylyn eclipse-subclipse eclipse-svnkit git maven2-plugin-eclipse mercurial
-}}}
 
 = Getting Started =
 
-[http://code.google.com/webtoolkit/doc/latest/tutorial/gettingstarted.html Getting Started]
+Go through [http://code.google.com/webtoolkit/doc/latest/tutorial/gettingstarted.html GWT Getting Started tutorial]
+
+[http://code.google.com/p/gwt-gae-book/source/checkout Checkout the source code] for this book. You will find 
+ * environmentSetup.sh - bash script to setup your development environment on Fedora Linux OS. After running it you just need to install Google plugin in Eclipse. 
+ * template.tgz - archive of a template project which contains the most common libraries you'll use
+ * createProject.sh - bash script to create a new project from the above template. Usage:
+{{{
+createProject.sh com.your.projectname
+}}}
+ When done, use File > Import > Existing Projects from Eclipse.
+ * createProject.bat - MS windows script to create a new project from the above template. TODO somebody please build this and send it to be included. Until then just unpack the archive and use it as it is.
+
+
+
+
+
 
 [http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
