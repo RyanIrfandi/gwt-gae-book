@@ -3,7 +3,7 @@
  * [DataModeling Data modeling]
  * [VisualizingYourApp Visualizing your application]
  * [TheRightToolForTheJob The right tool for the job]
- * [EnvironmentSetup Environment setup]
+ * [GettingStarted Getting started]
  * [BuildingLandingPage Building the landing page]
  * [gae]
   * [AuthOpenID Authenticating with OpenID]
