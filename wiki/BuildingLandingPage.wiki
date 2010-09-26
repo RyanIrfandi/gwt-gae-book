@@ -1,0 +1,6 @@
+= Page Layout =
+[http://www.noobcube.com/tutorials/html-css/fixed-header-footer-layout-a-beginners-guide-/ Having a fixed header using just HTML and CSS]
+
+While you can do the same in GWT using [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#BasicPanels RootPanel], we're aiming for a "full page" app, so let's use [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#LayoutPanels LayoutPanels]. 
+
+= Widgets =
