@@ -1,6 +1,13 @@
 = Page Layout =
-[http://www.noobcube.com/tutorials/html-css/fixed-header-footer-layout-a-beginners-guide-/ Having a fixed header using just HTML and CSS]
+You can have a [http://www.noobcube.com/tutorials/html-css/fixed-header-footer-layout-a-beginners-guide-/ fixed header using just HTML and CSS] in GWT using [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#BasicPanels RootPanel]. As we're aiming for a "full page" app, let's use [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#LayoutPanels LayoutPanels]. 
 
-While you can do the same in GWT using [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#BasicPanels RootPanel], we're aiming for a "full page" app, so let's use [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#LayoutPanels LayoutPanels]. 
+[GettingStarted Download the template project] and run
+{{{
+createProject.sh org.gwtgaebook.CultureShows
+}}}
+then do File > Import > Existing Projects from Eclipse. Run it to make sure it's working.
+
+= Exercise =
+Open !LandingView.ui.xml in client.landing package and try to implement the [VisualizingYourApp mocked up UI]. No need to implement View java logic yet, just focus on widgets and styling.
 
 = Widgets =
