@@ -15,7 +15,13 @@ Window > Preferences > Java > Editor > Save actions > Format source code
 
 = Getting Started =
 
-Go through [http://code.google.com/webtoolkit/doc/latest/tutorial/gettingstarted.html GWT Getting Started tutorial]
+Go through 
+ * [http://code.google.com/webtoolkit/doc/latest/tutorial/gettingstarted.html GWT Getting Started tutorial]
+ * [http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html Organizing projects]
+ * [http://code.google.com/webtoolkit/doc/latest/DevGuideCompilingAndDebugging.html Compiling and debugging]
+ * [http://code.google.com/webtoolkit/doc/latest/DevGuideUi.html Building User Interfaces]
+
+See you in a few days :)
 
 = Book source code =
 [http://code.google.com/p/gwt-gae-book/source/checkout Checkout the source code] for this book. You will find 
