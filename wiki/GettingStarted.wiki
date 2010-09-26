@@ -40,6 +40,8 @@ You can use the template project every time you start a new application. It cont
  * [http://code.google.com/p/google-gin/ gin]
  * [http://code.google.com/p/gwt-platform/ gwt-platform]
  * [http://code.google.com/p/gwt-log/ gwt-log]
+ * [http://code.google.com/p/gwt-dnd/ gwt-dnd]
+ * [http://code.google.com/p/gwtquery/ gwtquery]
  * [http://code.google.com/p/piriti/ piriti]
  * [http://code.google.com/p/twig-persist/ twig-persist]
 
