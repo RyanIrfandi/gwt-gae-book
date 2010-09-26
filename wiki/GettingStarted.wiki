@@ -17,6 +17,7 @@ Window > Preferences > Java > Editor > Save actions > Format source code
 
 Go through [http://code.google.com/webtoolkit/doc/latest/tutorial/gettingstarted.html GWT Getting Started tutorial]
 
+= Book source code =
 [http://code.google.com/p/gwt-gae-book/source/checkout Checkout the source code] for this book. You will find 
  * environmentSetup.sh - bash script to setup your development environment on Fedora Linux OS. After running it you just need to install Google plugin in Eclipse. 
  * template.tgz - archive of a template project which contains the most common libraries you'll use
@@ -27,8 +28,16 @@ createProject.sh com.your.projectname
  When done, use File > Import > Existing Projects from Eclipse.
  * createProject.bat - MS windows script to create a new project from the above template. TODO somebody please build this and send it to be included. Until then just unpack the archive and use it as it is.
 
+= What's inside the template project =
+You can use the template project every time you start a new application. It contains a few libraries already setup, such as
+ * [http://code.google.com/p/google-guice/ guice] 
+ * [http://code.google.com/p/google-gin/ gin]
+ * [http://code.google.com/p/gwt-platform/ gwt-platform]
+ * [http://code.google.com/p/gwt-log/ gwt-log]
+ * [http://code.google.com/p/piriti/ piriti]
+ * [http://code.google.com/p/twig-persist/ twig-persist]
 
-
+Visit these project sites to find out more about them. Come back to their documentation whenever needed as we progress with our application.
 
 
 
