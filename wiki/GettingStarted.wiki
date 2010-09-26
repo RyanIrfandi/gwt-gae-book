@@ -1,23 +1,26 @@
-= Setup =
+= Environment Setup =
 
 Setup [http://java.sun.com/javase/downloads/ Java]
 
 Setup [http://code.google.com/webtoolkit/usingeclipse.html Eclipse]
 
 
-= Useful Eclipse plugins =
+== Useful Eclipse plugins ==
 [http://m2eclipse.sonatype.org/ Maven integration]
 
 [http://eclipse-cs.sourceforge.net/ Checkstyle]
 
-=  Useful Eclipse preferences =
+==  Useful Eclipse preferences ==
 Window > Preferences > Java > Editor > Save actions > Format source code
 
-=  Appendix: Fedora Linux setup ==
+==  Appendix: Fedora Linux setup ==
 Setup all of these (except google plugin) with 
 {{{
-yum -y install java-1.6.0-openjdk-devel eclipse-anyedit eclipse-checkstyle eclipse-dtp eclipse-emf eclipse-jdt eclipse-mylyn eclipse-mylyn-java eclipse-platform eclipse-pydev eclipse-pydev-mylyn eclipse-subclipse eclipse-svnkit git mercurial
+yum -y install java-1.6.0-openjdk-devel eclipse-anyedit eclipse-checkstyle eclipse-dtp eclipse-emf eclipse-jdt eclipse-mylyn eclipse-mylyn-java eclipse-platform eclipse-pydev eclipse-pydev-mylyn eclipse-subclipse eclipse-svnkit git maven2-plugin-eclipse mercurial
 }}}
 
+= Getting Started =
+
+[http://code.google.com/webtoolkit/doc/latest/tutorial/gettingstarted.html Getting Started]
 
 [http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
