@@ -8,7 +8,7 @@ We'll go with the first, standards-based approach. You will use your existing CS
 
 [GettingStarted Download the template project] and run
 {{{
-createProject.sh org.gwtgaebook.CultureShows
+./createProject.sh org.gwtgaebook.CultureShows
 }}}
 then do File > Import > Existing Projects from Eclipse. Run it to make sure it's working.
 
