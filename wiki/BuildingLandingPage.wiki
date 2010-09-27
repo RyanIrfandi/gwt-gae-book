@@ -1,5 +1,10 @@
 = Page Layout =
-You can have a [http://www.noobcube.com/tutorials/html-css/fixed-header-footer-layout-a-beginners-guide-/ fixed header using just HTML and CSS] in GWT using [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#BasicPanels RootPanel]. As we're aiming for a "full page" app, let's use [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#LayoutPanels LayoutPanels]. 
+There are two approaches to setup a page layout in GWT:
+ * [http://www.noobcube.com/tutorials/html-css/fixed-header-footer-layout-a-beginners-guide-/ using just HTML and CSS], with [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#BasicPanels RootPanel]. 
+ * [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#LayoutPanels using GWT LayoutPanels], with !RootLayoutPanel. This approach introduces additional div tags, which contribute to tag soup and [http://www.devcomments.com/RootPanel-vs-RootLayoutPanel-at197454.htm sometimes] prevent [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/c8cfc4d2dba16862# proper firing of events] on some elements
+
+We'll go with the first, standards-based approach. You will use your existing CSS knowledge, or learn it now if needed. CSS will benefit you when developing any web application, not just GWT-based ones.
+
 
 [GettingStarted Download the template project] and run
 {{{
@@ -8,6 +13,6 @@ createProject.sh org.gwtgaebook.CultureShows
 then do File > Import > Existing Projects from Eclipse. Run it to make sure it's working.
 
 = Exercise =
-Open !LandingView.ui.xml in client.landing package and try to implement the [VisualizingYourApp mocked up UI]. No need to implement View java logic yet, just focus on widgets and styling.
+Open !LandingView.ui.xml in client.landing package and try to implement the [VisualizingYourApp mocked up UI]. No need to implement any Java logic yet, just focus on widgets and styling.
 
 = Widgets =
