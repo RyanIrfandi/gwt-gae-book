@@ -13,6 +13,6 @@ createProject.sh org.gwtgaebook.CultureShows
 then do File > Import > Existing Projects from Eclipse. Run it to make sure it's working.
 
 = Exercise =
-Open !LandingView.ui.xml in client.landing package and try to implement the [VisualizingYourApp mocked up UI]. No need to implement any Java logic yet, just focus on widgets and styling.
+Open !LandingView.ui.xml in client.landing package and try to implement the [VisualizingYourApp mocked up UI]. No need to implement any Java logic yet, just focus on widgets and styling. [http://gwt.google.com/samples/Showcase/Showcase.html Check out GWT showcase] to learn about available widgets.
 
 = Widgets =
