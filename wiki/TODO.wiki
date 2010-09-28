@@ -1,6 +1,5 @@
 
 
-
 Analytics
 
 selenium
@@ -14,3 +13,5 @@ mobile ui
 = Advanced topics = 
 [http://groups.google.com/group/gwt-platform/browse_thread/thread/ba03018b92c53c69/a786c1494ac7fafe#a786c1494ac7fafe Using Maven]
 http://code.google.com/p/google-web-toolkit/wiki/CodeSplitting
+
+[http://code.google.com/p/browsersec/ Browser Security Handbook]
