@@ -1,11 +1,3 @@
-org.gwt-gae-book.template
-
-with roo
-libs
-gwt.xml settings (logging, ...)
-default P, View
-
-.sh to dupe
 
 
 
@@ -13,11 +5,12 @@ Analytics
 
 selenium
 
-P unit tests / mockito
+unit tests / mockito
 
 mobile ui
 
-
-http://code.google.com/p/google-web-toolkit/wiki/CodeSplitting
-
 [http://www.google.com/notebook/public/17393756076936429562/BDUsxIgoQmJbCk7ch Getting the Most from Eclipse]
+
+= Advanced topics = 
+[http://groups.google.com/group/gwt-platform/browse_thread/thread/ba03018b92c53c69/a786c1494ac7fafe#a786c1494ac7fafe Using Maven]
+http://code.google.com/p/google-web-toolkit/wiki/CodeSplitting
