@@ -1,3 +1,5 @@
+<wiki:toc max_depth="2" />
+
 = Page Layout =
 There are two approaches to setup a page layout in GWT:
  * [http://www.noobcube.com/tutorials/html-css/fixed-header-footer-layout-a-beginners-guide-/ using just HTML and CSS], with [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#BasicPanels RootPanel]. 
@@ -12,7 +14,16 @@ We'll go with the first, standards-based approach. You will use your existing CS
 }}}
 then do File > Import > Existing Projects from Eclipse. Run it to make sure it's working.
 
+
+
 = Exercise =
-Open !LandingView.ui.xml in client.landing package and try to implement the [VisualizingYourApp mocked up UI]. No need to implement any Java logic yet, just focus on widgets and styling. [http://gwt.google.com/samples/Showcase/Showcase.html Check out GWT showcase] to learn about available widgets.
+Open !LandingView.ui.xml in client.landing package and try to implement the [VisualizingYourApp mocked up UI]. No need to implement any Java logic yet, just focus on widgets and styling. Go through [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html Declarative Layout with UiBinder] and check out [http://gwt.google.com/samples/Showcase/Showcase.html GWT showcase] to learn about available widgets.
 
 = Widgets =
+
+= Resources =
+http://www.openclipart.org/
+
+http://www.colorcombos.com/combolibrary.html
+
+[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
