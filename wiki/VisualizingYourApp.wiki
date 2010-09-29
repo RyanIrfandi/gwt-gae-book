@@ -21,6 +21,8 @@ Looking at the top user stories, could we cover these in the landing page?
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing.png" border="2" style="border: 2;" />
 
+[http://gwt-gae-book.googlecode.com/svn/wiki/assets/CultureShowsMocks.ep Mockups source]
+
 As we target this application to Violeta, note that we let her enter directly some shows without even signing in, so she will be thrilled of how easy she can get results and be motivated to continue using it.
 
 After a first draft of mockup you're happy with, brainstorm about it. For example:
