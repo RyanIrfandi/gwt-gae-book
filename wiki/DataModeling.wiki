@@ -14,7 +14,7 @@ On a piece of paper, draft the Culture Shows entity relationship model before go
 = Entity relationship model =
 [http://gwt-gae-book.googlecode.com/svn/wiki/assets/CultureShowsERM.png]
 
-Google Drawings was used to build this.
+Google Docs (Drawing) was used to build this.
 == Notes ==
 A member is part of a theater and with a role (administrator, actor, assistant). 
 
