@@ -14,12 +14,124 @@ We'll go with the first, standards-based approach. You will use your existing CS
 }}}
 then do File > Import > Existing Projects from Eclipse. Run it to make sure it's working.
 
+For now we'll focus on building the landing page only, feel free to ignore the rest of the files in template app. We'll cover them later.
+
+*Pre-requisites*
+ * [http://code.google.com/webtoolkit/doc/latest/DevGuideUi.html Build User Interfaces], including [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html Declarative Layout with UiBinder] 
+ * [http://code.google.com/webtoolkit/doc/latest/RefWidgetGallery.html Widget List]
+ * [http://gwt.google.com/samples/Showcase/Showcase.html GWT showcase] to see some widgets in action
+ * [http://code.google.com/webtoolkit/doc/latest/RefGWTClassAPI.html GWT API Reference] bookmark this and keep it handy
+
+TODO link to img 
+First, let's add [TODO an image] in Resources.java
+{{{
+	@Source("Theatre_Masks.png")
+	ImageResource logo();
+}}}
 
 
 = Exercise =
-Open !LandingView.ui.xml in client.landing package and try to implement the [VisualizingYourApp mocked up UI]. No need to implement any Java logic yet, just focus on widgets and styling. Go through [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html Declarative Layout with UiBinder] and check out [http://gwt.google.com/samples/Showcase/Showcase.html GWT showcase] to learn about available widgets.
+Open !LandingView.ui.xml in client.landing package and try to implement the [VisualizingYourApp mocked up UI]. No need to implement any Java logic yet, just focus on widgets and styling. 
 
 = Widgets =
+
+
+Here's the updated !LandingView.ui.xml
+{{{
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:gdp="urn:import:com.google.gwt.user.datepicker.client"
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
+	ui:generateLocales="default"
+	>
+
+	<ui:with type="org.gwtgaebook.CultureShows.client.NameTokens" field="nameTokens" />
+	<ui:with field='resources' type='org.gwtgaebook.CultureShows.client.resources.Resources' />
+
+	<ui:style>
+
+	.header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 3em;
+		font-size: 0.8em;
+		background-color: #619a00;
+	}
+
+	.content {
+		padding-top: 3em;
+		margin: 0 auto;
+		max-width: 50em;
+	}
+
+	</ui:style>
+
+	<g:HTMLPanel ui:field="container">
+    	<g:HTMLPanel addStyleNames="{style.header}">
+    		<g:HTMLPanel>
+    			<g:Image resource='{resources.logo}'/>
+    		</g:HTMLPanel>
+    		<g:HTMLPanel>
+    			<g:Hyperlink>Sign In</g:Hyperlink>
+    		</g:HTMLPanel>
+    	</g:HTMLPanel>
+
+
+	    <g:HTMLPanel addStyleNames="{style.content}">
+			<p>Lorem ipsum dolor sit amet, yacht doctoral private gentlemen, expensive
+blissfull a noble cultered, career affluent. Becoming delegate pedigree
+elegant philanthropic silk portfolio gem. </p>
+
+
+		    <g:HTMLPanel>
+				<gdp:DateBox></gdp:DateBox>
+			    <g:TextBox></g:TextBox>
+			    <g:TextBox></g:TextBox>
+			    <g:Button>Schedule show</g:Button>
+		    </g:HTMLPanel>
+
+		    <g:HTMLPanel>
+				<g:Hyperlink>Sign In</g:Hyperlink>
+				to permanently save shows,
+				locations, schedule and more
+		    </g:HTMLPanel>
+
+		    <g:HTMLPanel>
+				TODO Shows list goes here
+
+		    </g:HTMLPanel>
+
+			<g:Hyperlink>Learn how to list show schedule directly on your theater website</g:Hyperlink>
+
+	    </g:HTMLPanel>
+
+
+	</g:HTMLPanel>
+
+</ui:UiBinder>
+}}}
+
+and the result :)
+
+[http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing_widgets.png]
+
+As with any other section, make sure you understand what's happening before going further. Use the provided links to docs and Google to search for something else. 
+
+= Styling =
+
+
+== Mobile, tablets, TV and other devices ==
+
+
+=  Internationalization =
+
+See [http://code.google.com/webtoolkit/doc/latest/DevGuideI18n.html Developer's Guide - Internationalization].
+
+
 
 = Resources =
 http://www.openclipart.org/
