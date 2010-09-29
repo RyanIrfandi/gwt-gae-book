@@ -123,6 +123,10 @@ As with any other section, make sure you understand what's happening before goin
 
 = Styling =
 
+*Pre-requisites*
+ * [http://www.w3schools.com/css/default.asp CSS Tutorial]
+ * []
+
 
 == Mobile, tablets, TV and other devices ==
 
