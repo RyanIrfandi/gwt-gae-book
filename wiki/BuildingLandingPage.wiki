@@ -121,14 +121,18 @@ and the result :)
 
 As with any other section, make sure you understand what's happening before going further. Use the provided links to docs and Google to search for something else. 
 
+Next let's make this look good!
+
 = Styling =
 
 *Pre-requisites*
  * [http://www.w3schools.com/css/default.asp CSS Tutorial]
- * []
+ * [csstipsandtricks.com CSS tips&tricks]
+
 
 
 == Mobile, tablets, TV and other devices ==
+http://www.webdesignerwall.com/tutorials/css3-media-queries/
 
 
 =  Internationalization =
