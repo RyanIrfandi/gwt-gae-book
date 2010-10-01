@@ -5,6 +5,6 @@
  * [TheRightToolForTheJob The right tool for the job]
  * [GettingStarted Getting started]
  * [BuildingLandingPage Building the landing page]
- * [StoringData Storing Data] 
+ * [StoringData Storing data] 
  * [AuthOpenID Authenticating with OpenID]
  * [TODO]
