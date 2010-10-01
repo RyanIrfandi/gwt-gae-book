@@ -6,7 +6,7 @@ By now we have a pretty good idea about what our application should do and how i
 Almost all applications are usually working with data, even if they don't actually store it and just pass it around as a [http://en.wikipedia.org/wiki/Mashup_(web_application_hybrid) mashup]. Thinking about [http://en.wikipedia.org/wiki/Data_modeling data modeling] gets us started on [http://en.wikipedia.org/wiki/Software_design software design].
 
 To keep it light, doing an 
-[http://en.wikipedia.org/wiki/Entity_relationship_model entity relationship model] will be enough for a small application. After all, we'd like to get to launch it instead of writing docs all week, right?
+[http://en.wikipedia.org/wiki/Entity_relationship_model entity relationship model] will be enough for a small application. After all, we'd like to get to launch it sometime soon instead of writing docs all week, right?
 
 == Exercise ==
 On a piece of paper, draft the Culture Shows entity relationship model before going further.
