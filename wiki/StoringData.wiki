@@ -1,4 +1,3 @@
-
 <wiki:toc max_depth="2" />
 
 Time to add some functionality! There is some reading you have to do in advance, but it's worth it.
@@ -17,7 +16,6 @@ Remember [DataModeling our data modeling] ? Let's put it in code.
 
 
 = Resources =
-* [http://borglin.net/gwt-project/?page_id=604 A comparison of persistence 
-frameworks for App Engine], [http://code.google.com/p/twig-persist/wiki/Comparison another comparison]
+ * [http://borglin.net/gwt-project/?page_id=604  A comparison of persistence frameworks for App Engine], [http://code.google.com/p/twig-persist/wiki/Comparison another comparison]
 
 [http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
