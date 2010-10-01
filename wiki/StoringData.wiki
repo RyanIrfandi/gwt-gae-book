@@ -1,7 +1,7 @@
-Time to add some functionality! There is some reading you have to do in advance, but it's worth it.
 
 <wiki:toc max_depth="2" />
 
+Time to add some functionality! There is some reading you have to do in advance, but it's worth it.
 
 *Pre-requisites*
  * [http://code.google.com/webtoolkit/articles/mvp-architecture.html MVP architecture]
