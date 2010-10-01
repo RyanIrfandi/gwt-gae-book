@@ -149,7 +149,7 @@ Sometimes, you might want to have different views for different screen sizes. Th
 
 =  Internationalization =
 
-See [http://code.google.com/webtoolkit/doc/latest/DevGuideI18n.html Developer's Guide - Internationalization].
+See [http://code.google.com/webtoolkit/doc/latest/DevGuideI18n.html Developer's Guide - Internationalization] and [http://code.google.com/p/gwt-platform/wiki/MergeLocale using the provided MergeLocale script].
 
 
 
