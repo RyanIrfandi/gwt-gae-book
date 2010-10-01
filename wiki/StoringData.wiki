@@ -7,7 +7,6 @@ Time to add some functionality! There is some reading you have to do in advance,
  * [http://code.google.com/p/gwt-platform/wiki/GettingStarted Getting started with gwt-platform]
  * [http://code.google.com/p/gwt-platform/wiki/ComparisonWithGwtMVP Comparison of gwt-platform with GWT MVP]
   * Now review all files which came from the template project. Do they make full sense? 
- * [http://code.google.com/appengine/docs/java/datastore/ App Engine Datastore Java API]
  * [http://code.google.com/p/twig-persist/wiki/Quickstart Quickstart with twig-persist], an Object Datastore for Google App Engine
  * [http://code.google.com/p/twig-persist/wiki/Configuration Creating a Data Model]
 
@@ -18,6 +17,7 @@ Remember [DataModeling our data modeling] ? Let's code it!
 
 
 = Resources =
+ * [http://code.google.com/appengine/docs/java/datastore/ App Engine Datastore Java API]
  * [http://borglin.net/gwt-project/?page_id=604  A comparison of persistence frameworks]  for App Engine, [http://code.google.com/p/twig-persist/wiki/Comparison another comparison]
 
 [http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
