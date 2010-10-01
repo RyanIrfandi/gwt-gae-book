@@ -128,6 +128,7 @@ Next, let's do some styling!
 *Pre-requisites*
  * [http://www.w3schools.com/css/default.asp CSS Tutorial]
  * [http://csstipsandtricks.com CSS Tips & Tricks]
+ * [http://www.mezzoblue.com/zengarden/resources/ csszengarden resources]
 
 *Styled landing page*
 [http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing_style.png]
