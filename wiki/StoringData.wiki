@@ -1,0 +1,23 @@
+Time to add some functionality! There is some reading you have to do in advance, but it's worth it.
+
+<wiki:toc max_depth="2" />
+
+
+*Pre-requisites*
+ * [http://code.google.com/webtoolkit/articles/mvp-architecture.html MVP architecture]
+ * [http://code.google.com/p/gwt-platform/wiki/GettingStarted Getting started with gwt-platform]
+  * Now review all files which came from the template project. Do they make full sense? 
+ * [http://code.google.com/p/twig-persist/wiki/Quickstart Quickstart with twig-persist], an Object Datastore for Google App Engine
+ * [http://code.google.com/p/twig-persist/wiki/Configuration Creating a Data Model]
+
+
+
+= Data model =
+Remember [DataModeling our data modeling] ? Let's put it in code.
+
+
+= Resources =
+* [http://borglin.net/gwt-project/?page_id=604 A comparison of persistence 
+frameworks for App Engine], [http://code.google.com/p/twig-persist/wiki/Comparison another comparison]
+
+[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
