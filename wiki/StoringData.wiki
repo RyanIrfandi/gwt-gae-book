@@ -12,10 +12,10 @@ Time to add some functionality! There is some reading you have to do in advance,
 
 
 = Data model =
-Remember [DataModeling our data modeling] ? Let's put it in code.
+Remember [DataModeling our data modeling] ? Let's code it!
 
 
 = Resources =
- * [http://borglin.net/gwt-project/?page_id=604  A comparison of persistence frameworks for App Engine], [http://code.google.com/p/twig-persist/wiki/Comparison another comparison]
+ * [http://borglin.net/gwt-project/?page_id=604  A comparison of persistence frameworks]  for App Engine, [http://code.google.com/p/twig-persist/wiki/Comparison another comparison]
 
 [http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
