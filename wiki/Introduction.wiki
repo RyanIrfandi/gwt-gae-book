@@ -13,6 +13,13 @@ I personally avoid printed technical books as
  * most of the contents which make up a technical book already exist online, in the form of blog posts, code samples, documentation, group discussions. If you want to make a full book about a technology, you'll usually duplicate existing content (remember the days with books having printed API reference as appendices?)
  * authors usually get less than 10% from book sales. If you found this book useful, feel free to [https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZYVQ36QASGH2W&lc=RO&item_name=GWT%20GAE%20online%20book&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted make a donation]
 
+= How to read this book =
+Most of the sections have links to additional materials. Read the pre-requisites before going further and go through other references as you encounter them. 
+
+There are also some exercises. Give your best shot at solving them rather than just reading the solution, it really helps. Who knows, you might even discover better ways of doing things. 
+
+[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback] using the link at the bottom of every page any time you have an addition to make or if something doesn't make sense. This book is a living material and you can help improve it.
+
 = Acknowledgements =
 These materials are not by far built from scratch. Most of them are usually adapted from or referencing existing online materials. Many thanks to the countless people which produced them. In particular, I'd like to thank for their contributions to GWT/GAE, guidance and help to Philippe Beaudoin, Christian Goudreau, Zack Grossbart.
 
