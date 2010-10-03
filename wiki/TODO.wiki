@@ -4,10 +4,10 @@ GWT client-server communication is handled using [http://code.google.com/webtool
 = How it works =
 A server call is initiated with 
 {{{
-dispatcher.execute(Action action, !AsyncCallback callback);
+dispatcher.execute(Action action, AsyncCallback callback);
 }}}
 
-An Action represents a command sent to server ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServer.java?repo=samples sample]). You also need to define how the Result looks like  ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServerResult.java?repo=samples sample]). These can be auto-generated.
+An Action represents a command sent to server, usually including data ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServer.java?repo=samples sample]). You also need to define how the Result looks like  ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServerResult.java?repo=samples sample]). These can be auto-generated.
 
 The ActionHandler defines all the logic regarding how this action should be handled  ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/server/SendTextToServerHandler.java?repo=samples sample]).
 
