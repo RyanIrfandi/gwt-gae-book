@@ -1,23 +1,4 @@
-= Introduction =
-GWT client-server communication is handled using [http://code.google.com/webtoolkit/doc/latest/DevGuideServerCommunication.html#DevGuideGettingUsedToAsyncCalls Asynchronous Calls]. On larger applications, this can quickly get messy. GWTP introduces a Dispatch framework, which complements GWT `AsyncCallback`. Dispatch centralizes all client-server communication, making possible to implement features such as caching, batching, centralized failure handling, undo/redo and XSRF protection. For more details, see [http://code.google.com/events/io/2009/sessions/GoogleWebToolkitBestPractices.html Best Practices For Architecting Your GWT App] and [http://en.wikipedia.org/wiki/Command_pattern Command pattern]
 
-= How it works =
-A server call is initiated with 
-{{{
-dispatcher.execute(Action action, AsyncCallback callback);
-}}}
-
-When you want to perform a command, the `Action` ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServer.java?repo=samples sample]) and `Result` ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServerResult.java?repo=samples sample]) objects define what the input and output will be. They do not define _how_ the action will take place.
-
-In the Command Pattern these would usually be called the Command and Response, but both terms are quite overloaded in common Java APIs, particularly in GWT, so Action and Result are being used in this API instead.
-
-An `Action` will always have on specific `Result` type. A `Result` may be returned by more than one `Action` type, however. Both could be [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration auto-generated].
-
-The `ActionHandler` defines all the logic regarding how this action should be handled  ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/server/SendTextToServerHandler.java?repo=samples sample]).
-
-
-
-= END OF GWTP DOC =
 
 
 
