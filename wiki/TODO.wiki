@@ -1,4 +1,17 @@
-Client-server communication
+= Introduction =
+GWT client-server communication is handled using [http://code.google.com/webtoolkit/doc/latest/DevGuideServerCommunication.html#DevGuideGettingUsedToAsyncCalls Asynchronous Calls]. On larger applications, this can quickly get messy. GWTP introduces a Dispatch framework, which complements GWT !AsyncCallback. It centralizes all client-server communication, making possible to implement features such as caching, batching, centralized failure handling, undo/redo. For more details, see [http://code.google.com/events/io/2009/sessions/GoogleWebToolkitBestPractices.html Best Practices For Architecting Your GWT App] and [http://en.wikipedia.org/wiki/Command_pattern Command pattern]
+
+= How it works =
+A server call is initiated with 
+{{{
+dispatch.exec(action, callback);
+}}}
+
+
+
+
+
+
 
 Pre-
 Eclipse default project
@@ -6,8 +19,6 @@ Eclipse default project
 [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/user/client/rpc/AsyncCallback.html AsyncCallback]
 
 http://code.google.com/events/io/2009/sessions/GoogleWebToolkitBestPractices.html
-
-http://en.wikipedia.org/wiki/Command_pattern
 
 http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch
 
