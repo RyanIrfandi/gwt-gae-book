@@ -1,15 +1,19 @@
 = Introduction =
-GWT client-server communication is handled using [http://code.google.com/webtoolkit/doc/latest/DevGuideServerCommunication.html#DevGuideGettingUsedToAsyncCalls Asynchronous Calls]. On larger applications, this can quickly get messy. GWTP introduces a Dispatch framework, which complements GWT !AsyncCallback. It centralizes all client-server communication, making possible to implement features such as caching, batching, centralized failure handling, undo/redo. For more details, see [http://code.google.com/events/io/2009/sessions/GoogleWebToolkitBestPractices.html Best Practices For Architecting Your GWT App] and [http://en.wikipedia.org/wiki/Command_pattern Command pattern]
+GWT client-server communication is handled using [http://code.google.com/webtoolkit/doc/latest/DevGuideServerCommunication.html#DevGuideGettingUsedToAsyncCalls Asynchronous Calls]. On larger applications, this can quickly get messy. GWTP introduces a Dispatch framework, which complements GWT !AsyncCallback. Dispatch centralizes all client-server communication, making possible to implement features such as caching, batching, centralized failure handling, undo/redo and XSRF protection. For more details, see [http://code.google.com/events/io/2009/sessions/GoogleWebToolkitBestPractices.html Best Practices For Architecting Your GWT App] and [http://en.wikipedia.org/wiki/Command_pattern Command pattern]
 
 = How it works =
 A server call is initiated with 
 {{{
-dispatch.exec(action, callback);
+dispatcher.execute(Action action, !AsyncCallback callback);
 }}}
 
+An Action represents a command sent to server ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServer.java?repo=samples sample]). You also need to define how the Result looks like  ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServerResult.java?repo=samples sample]). These can be auto-generated.
+
+The ActionHandler defines all the logic regarding how this action should be handled  ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/server/SendTextToServerHandler.java?repo=samples sample]).
 
 
 
+= END OF GWTP DOC =
 
 
 
