@@ -1,18 +1,15 @@
 
 
 
-
 Pre-
 Eclipse default project
 
-[http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/user/client/rpc/AsyncCallback.html AsyncCallback]
-
-http://code.google.com/events/io/2009/sessions/GoogleWebToolkitBestPractices.html
-
 http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch
 
+
+
 Resources
-http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration
+
 
 auth
 
