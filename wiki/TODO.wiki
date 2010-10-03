@@ -7,7 +7,11 @@ A server call is initiated with
 dispatcher.execute(Action action, AsyncCallback callback);
 }}}
 
-An Action represents a command sent to server, usually including data ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServer.java?repo=samples sample]). You also need to define how the Result looks like  ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServerResult.java?repo=samples sample]). These can be [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration auto-generated].
+When you want to perform a command, the Action ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServer.java?repo=samples sample]) and Result ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/shared/SendTextToServerResult.java?repo=samples sample]) objects define what the input and output will be. They do not define _how_ the action will take place.
+
+In the Command Pattern these would usually be called the Command and Response, but both terms are quite overloaded in common Java APIs, particularly in GWT, so Action and Result are being used in this API instead.
+
+An `Action` will always have on specific `Result` type. A `Result` may be returned by more than one `Action` type, however. Both could be [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration auto-generated].
 
 The !ActionHandler defines all the logic regarding how this action should be handled  ([http://code.google.com/p/gwt-platform/source/browse/basicsample/src/com/gwtplatform/samples/basic/server/SendTextToServerHandler.java?repo=samples sample]).
 
