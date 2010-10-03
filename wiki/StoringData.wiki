@@ -7,6 +7,7 @@ Time to add some functionality! There is some reading you have to do in advance,
  * [http://code.google.com/p/gwt-platform/wiki/GettingStarted Getting started with gwt-platform]
  * [http://code.google.com/p/gwt-platform/wiki/ComparisonWithGwtMVP Comparison of gwt-platform with GWT MVP]
   * Now review all files which came from the template project. Do they make full sense? 
+ * [http://code.google.com/appengine/docs/whatisgoogleappengine.html Google App Engine introduction]
  * [http://code.google.com/p/twig-persist/wiki/Quickstart Quickstart with twig-persist], an Object Datastore for Google App Engine
  * [http://code.google.com/p/twig-persist/wiki/Configuration Creating a Data Model]
 
