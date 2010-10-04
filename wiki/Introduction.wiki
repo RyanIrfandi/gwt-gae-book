@@ -14,6 +14,8 @@ I personally avoid printed technical books as
  * authors usually get less than 10% from book sales. If you found this book useful, feel free to [https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZYVQ36QASGH2W&lc=RO&item_name=GWT%20GAE%20online%20book&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted make a donation]
 
 = How to read this book =
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/study_1.jpg" border="0"  align="right" />
+
 Most of the sections have links to additional materials. Read the pre-requisites before going further and go through other references as you encounter them. 
 
 There are also some exercises. Give your best shot at solving them rather than just reading the solution, it really helps. Who knows, you might even discover better ways of doing things. 
