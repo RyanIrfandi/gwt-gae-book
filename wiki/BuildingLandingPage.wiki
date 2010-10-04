@@ -122,7 +122,7 @@ and the result :)
 
 As with any other section, make sure you understand what's happening before going further. Use the provided links to docs and Google to search for something else. 
 
-Now, any color blind, long-time, terminal only Unix administrator can tell something about the above page: it's damn ugly!
+Now, any color blind, long-time, terminal-only Unix administrator can tell something about the above page: it's damn ugly!
 
 = Styling =
 
