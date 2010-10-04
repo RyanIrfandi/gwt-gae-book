@@ -1,11 +1,12 @@
-Pre-
-Eclipse default project
-
-http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch
 
 
 
-Resources
+
+
+
+
+Custom widgets
+
 
 
 auth
@@ -14,7 +15,7 @@ members mgmt
 
 list shows jsonp
 
-widget
+js widget
 
 
 Analytics
@@ -29,6 +30,7 @@ mobile ui
 
 = Advanced topics = 
 [http://groups.google.com/group/gwt-platform/browse_thread/thread/ba03018b92c53c69/a786c1494ac7fafe#a786c1494ac7fafe Using Maven]
+
 http://code.google.com/p/google-web-toolkit/wiki/CodeSplitting
 
 [http://code.google.com/p/browsersec/ Browser Security Handbook]
