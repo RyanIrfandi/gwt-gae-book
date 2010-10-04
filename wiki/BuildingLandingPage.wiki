@@ -156,7 +156,7 @@ See [http://code.google.com/webtoolkit/doc/latest/DevGuideI18n.html Developer's 
 = Resources =
 http://www.openclipart.org/
 
-http://www.freedigitalphotos.net/
+[http://www.sxc.hu/ Free stock photos]
 
 http://www.colorcombos.com/combolibrary.html
 
