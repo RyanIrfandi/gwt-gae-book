@@ -189,7 +189,7 @@ Mobile Maps and Latitude for iPhone
 
 
 == Appendix: Cool GWT apps ==
-
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/old_boat.jpg" border="0"  align="right" />
 
 [http://smist08.wordpress.com/2009/12/03/the-sage-erp-accpac-6-0a-portal/ Sage ERP Portal]
 
@@ -212,7 +212,7 @@ http://jboss.org/drools/drools-guvnor.html
 
 [http://james.apache.org/hupa/screenshots.html Apache Hupa IMAP mail client]
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/old_boat.jpg" border="0"  align="right" />
+
 
 == Appendix: Deployment Setup ==
 
