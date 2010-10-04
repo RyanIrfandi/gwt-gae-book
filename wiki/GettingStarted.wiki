@@ -24,6 +24,7 @@ Go through
 See you in a few days :)
 
 = Book source code =
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/digital_dreams.jpg" border="0"  align="right" />
 [http://code.google.com/p/gwt-gae-book/source/checkout Checkout the source code] for this book. You will find 
  * environmentSetup.sh - bash script to setup your development environment on Fedora Linux OS. After running it you just need to install Google plugin in Eclipse. 
  * template.tgz - archive of a template project which contains the most common libraries you'll use
@@ -48,5 +49,4 @@ You can use the template project every time you start a new application. It cont
 Visit these project sites to find out more about them. Come back to their documentation whenever needed as we progress with our application.
 
 
-
-[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
