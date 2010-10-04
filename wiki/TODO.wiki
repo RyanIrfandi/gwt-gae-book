@@ -1,6 +1,4 @@
 
-
-
 Pre-
 Eclipse default project
 
@@ -35,3 +33,7 @@ mobile ui
 http://code.google.com/p/google-web-toolkit/wiki/CodeSplitting
 
 [http://code.google.com/p/browsersec/ Browser Security Handbook]
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><font size="-2">[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]</font> 
+
+http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png <font size="-2">[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]</font> 
