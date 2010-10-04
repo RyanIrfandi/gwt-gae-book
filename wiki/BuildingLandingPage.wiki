@@ -142,10 +142,6 @@ Here's how it was done:
  * !LandingView.ui.xml - updated markup, added style names
  * !LandingView.java - added HTML5 placeholder, required attributes and activated jQuery plugin via [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JSNI]
 
-*Resources*
- * [http://www.webdesignerwall.com/tutorials/css3-gradient-buttons/ gradient buttons]
- * [http://www.mezzoblue.com/zengarden/resources/ csszengarden resources]
-
 == Mobile, tablets, TV and other devices ==
 Sometimes, you might want to have different views for different screen sizes. The styling above is liquid (resize browser window to try it out) and it works for now. We could have used [http://www.webdesignerwall.com/tutorials/css3-media-queries/ CSS3 media queries] to hide completely the signup sidebar on a small screen. See [http://www.smashingmagazine.com/2010/07/19/how-to-use-css3-media-queries-to-create-a-mobile-version-of-your-website/ another tutorial]. Media queries support [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/86047ca5c364679f/2871b1e5e35be0d1 is still missing] from GWT.
 
@@ -169,10 +165,16 @@ Now review all files in the template project. Do they make full sense?
 
 
 = Resources =
-http://www.openclipart.org/
+[http://www.alistapart.com/articles/fluidgrids/ Fluid grids] 
+
+[http://www.webdesignerwall.com/tutorials/css3-gradient-buttons/ Gradient buttons]
+
+[http://www.mezzoblue.com/zengarden/resources/ CSS Zen Garden resources]
+
+[http://www.openclipart.org/ Open Clipart]
 
 [http://www.sxc.hu/ Free stock photos]
 
-http://www.colorcombos.com/combolibrary.html
+[http://www.colorcombos.com/combolibrary.html Color combos]
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
