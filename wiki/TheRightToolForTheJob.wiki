@@ -11,6 +11,7 @@ Before settling on GWT and GAE, ask yourself if they are the best fit for your p
 
 This is an analysis done in 2010 for a large project which has a .NET back-end, with REST APIs (transport: XML and JSON). We control the back-end. We're looking for a framework to replace the current UI. 
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/journey.jpg" border="0"  align="right" />
 
 == Goals ==
 
@@ -32,6 +33,7 @@ When developing web applications, you can choose to expose the front end functio
  * heavily coupled with back-end (e.g. Java/PHP/ASP back-end will generate the required HTML/JS/CSS). In this case it’s strongly recommended to use architectures such as MVC and template libraries, in order to reduce coupling.
  * over web service APIs (REST or RPC), and have the front-end communicate with back-end via APIs.
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/father_and_child.jpg" border="0"  align="right" />
 
 The latter approach has a few interesting advantages
  * clean architecture (separation of UI from back-end is forced). You might have additional MVP architecture layers on front-end (front-end Model is different than back-end Model, e.g. you might have fields stored in multiple tables and expose all under a single entity in API)
@@ -57,6 +59,7 @@ GWT has quite a few good points, and some areas where it could do better. Let’
 
 === Engineering ===
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/alone.jpg" border="0"  align="right" />
 
 Good:
  * [http://code.google.com/webtoolkit/makinggwtbetter.html#introduction has Google behind it], and Google knows how to build web apps
@@ -80,7 +83,7 @@ Good:
  * REST support
  * [http://code.google.com/webtoolkit/doc/latest/DevGuideA11y.html accessibility support]
 
-
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/lemon.jpg" border="0"  align="right" />
 A particular advantage over ASP.NET is availability of many mature tools & libraries which are free and open source (from unit testing and mocks builder frameworks, to static code analysis). Even if cost is not an issue, for engineering this translates to
  * immediate availability (specific example - we needed a memory profiler during a sprint, had to involve a program manager and find a license from another developer which wasn’t using it at that time)
  * support (community vs paid). For larger open source projects, there is free support provided by users and developers for that tool/library. This is offered by community for pleasure of learning and helping others, and is much better compared to many commercial products. [http://groups.google.com/group/gwt-platform/browse_thread/thread/6eee2e443cd408c9# Here’s one support example while learning GWT], [http://groups.google.com/group/piriti/browse_thread/thread/7d0c276e8cfcfcf8 one more example]
@@ -99,6 +102,8 @@ Not so good:
 
 A large web app it’s built by a large cross-functional team. We have blackbox and whitebox QEs, user experience designers, graphic designers, product managers and support. How does GWT benefit them?
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/horse-drawn.jpg" border="0"  align="right" />
+
 ==== Scrum teams ====
 We use Scrum with 4 week sprints and apply Scrum best practices such as splitting large stories in small ones. While we try to work on stories in order of priority, we still reach the last sprint week with most stories not done as we cannot fully parallelize effort to work on one story at a time.
 
@@ -108,6 +113,7 @@ We use Scrum with 4 week sprints and apply Scrum best practices such as splittin
  * rapid development on integrating separate workflows. If we already fully developed two separate workflows, to integrate them we need to change only the client. Example: If you have a front-end to post a Wordpress blog entry which includes images, and you also have a separate photo gallery management section in the same application, you only need to update the client to enable drag and dropping photos from your photo galleries into a blog post.
 
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/stone_tower.jpg" border="0"  align="left" />
 
 ==== User experience designers and graphic designers ====
 
@@ -116,7 +122,7 @@ With the current process, UX designers develop wireframes and some high resoluti
 Using GWT will allow the team to rapidly develop early UIs, with mock data models. UX team will be able to see their proposed workflows in action during the actual feature development. As GWT separates not only logic from presentation with MVP, but also [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html HTML/CSS markup from Java code], UX folks are able to make changes themselves to markup, CSS and widgets, and submit their final changes directly into the version control system, again during the feature development (we are using Continuous Integration). Front-end unit tests developed by engineering team make sure they don’t break anything.
 
 ==== Product managers and support ==== 
-
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/against_light.jpg" border="0"  align="right" />
 Product managers and support get to see the features developed by the team late in the sprint, sometimes even at the sprint demo for the first time. These groups always have valuable feedback from the customer and integration with larger system point of views. By *enabling them to deliver the feedback early during the sprint*, we enable the team to integrate it until the story is done.
 
 On several releases we also had important issues raised by customers right after release, forcing us sometimes to do painful rollbacks while affecting users. Using GWT for front-end allows us to have multiple, simultaneous front-end versions in production. After doing a back-end release with newer versioned APIs added, we can *roll out front-end gradually to users* and get feedback before enabling the updated functionality for all. In case of issues (and nobody is perfect), this lowers the support costs and keeps up the company brand image. If there are issues with new back-end API versions, we keep them again under control by fast switching to an earlier front-end release, which uses older APIs.
@@ -127,7 +133,7 @@ An interesting benefit of having multiple, simultaneous front-end versions in pr
 A GWT front-end is just a set of cachable HTML/JS/CSS/images static files, which transfer data using JSON REST requests. Compared to ASP.NET, this results in *significantly reduced datacenter costs (bandwidth, CPU, memory)*. 
 *Deployment is easier*, and rolling back to a different front-end release is just flipping a switch.
 
-
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/leaves.jpg" border="0"  align="right" />
 
 == More info on GWT ==
 
@@ -155,6 +161,8 @@ GWT specific next steps: test deployment, research how easy is using CSS and ext
 
 For feedback on this document, please contact Marius.Andreiana @ gmail.com. Thanks to the GWT discussion group and other folks, who already provided valuable feedback.
 
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/learning_with_pencil.jpg" border="0"  align="left" />
 
 == Appendix: Evaluating GWT 3rd party libraries ==
 
@@ -205,6 +213,8 @@ http://jboss.org/drools/drools-guvnor.html
 
 [http://james.apache.org/hupa/screenshots.html Apache Hupa IMAP mail client]
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/old_boat.jpg" border="0"  align="right" />
+
 == Appendix: Deployment Setup ==
 
 We have api.backend.com, which offers REST APIs over SSL such as:
@@ -236,4 +246,4 @@ User navigates to frontend.com. The UI gets username & password, passes it to ap
 
 This setup should be fully secure for production too, but we cannot use it as Internet Explorer doesn’t support properly Access-Control-Allow-Origin with XHR (has a separate proprietary object, XDomainRequest, for this use case).
 
-[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
