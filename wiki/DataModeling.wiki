@@ -1,8 +1,13 @@
 #summary Data modeling
 
+<wiki:toc max_depth="2" />
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/statue_series_1.jpg" border="0"  align="left" />
+
 By now we have a pretty good idea about what our application should do and how it would look. We can start thinking about how to implement it.
 
 = Data modeling =
+
 Almost all applications are usually working with data, even if they don't actually store it and just pass it around as a [http://en.wikipedia.org/wiki/Mashup_(web_application_hybrid) mashup]. Thinking about [http://en.wikipedia.org/wiki/Data_modeling data modeling] gets us started on [http://en.wikipedia.org/wiki/Software_design software design].
 
 To keep it light, doing an 
@@ -22,4 +27,4 @@ A theater has shows and locations. A show is held in a location at a date and ti
 
 Try to avoid generic entities such as "User". Besides Member, here we might also have Viewer (Claus).
 
-[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
