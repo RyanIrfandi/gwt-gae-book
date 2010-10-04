@@ -153,6 +153,19 @@ Sometimes, you might want to have different views for different screen sizes. Th
 
 See [http://code.google.com/webtoolkit/doc/latest/DevGuideI18n.html Developer's Guide - Internationalization] and [http://code.google.com/p/gwt-platform/wiki/MergeLocale using the provided MergeLocale script].
 
+= Model-View-Presenter (MVP) =
+
+Besides the few files we worked with so far, the template project contains several more. Let's learn about
+
+ * [http://code.google.com/webtoolkit/articles/mvp-architecture.html MVP architecture]
+ * [http://code.google.com/p/gwt-platform/wiki/GettingStarted Getting started with gwt-platform]
+ * [http://code.google.com/p/gwt-platform/wiki/ComparisonWithGwtMVP Comparison of gwt-platform with GWT MVP]
+ * [http://martinfowler.com/eaaDev/uiArchs.html GUI Architectures]
+ * [http://code.google.com/p/google-guice/ Guice dependency injection framework]
+ * [http://code.google.com/p/google-gin/wiki/GinTutorial Gin dependency injection for GWT]
+
+Now review all files in the template project. Do they make full sense? 
+
 
 
 = Resources =
