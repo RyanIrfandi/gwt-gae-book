@@ -7,10 +7,12 @@ then
 fi
 
 hierarchy=($(echo $package | tr '.' ' '))
+project=${hierarchy[2]}
 #TODO only 3 levels are supported now, e.g. can't handle com.your.package.goes.here 
 tar xfz template.tgz
-mv template ${hierarchy[2]}
+mv template $project
 cd ${hierarchy[2]}
+top_folder=$(pwd)
 
 cd src
 find . -type f -exec sed -i "s/org.gwtgaebook.template/$package/g" {} \;
@@ -21,4 +23,11 @@ cd ${hierarchy[0]}
 mv gwtgaebook ${hierarchy[1]}
 cd ${hierarchy[1]}
 mv template ${hierarchy[2]}
+
+#additional package replaces
+cd ${hierarchy[2]}
+sed -i "s/\/template\//\/$project\//g" server/DispatchServletModule.java
+
+
+cd $top_folder
 
