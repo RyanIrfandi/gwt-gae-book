@@ -131,6 +131,7 @@ Now, any color blind, long-time, terminal only Unix administrator can tell somet
  * [http://csstipsandtricks.com CSS Tips & Tricks]
 
 *Styled landing page*
+
 [http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing_style.png]
 
 
