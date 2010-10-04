@@ -156,6 +156,8 @@ See [http://code.google.com/webtoolkit/doc/latest/DevGuideI18n.html Developer's 
 = Resources =
 http://www.openclipart.org/
 
+http://www.freedigitalphotos.net/
+
 http://www.colorcombos.com/combolibrary.html
 
 [http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
