@@ -33,4 +33,4 @@ http://code.google.com/p/google-web-toolkit/wiki/CodeSplitting
 
 [http://code.google.com/p/browsersec/ Browser Security Handbook]
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry"><font size=-2>Send feedback</font></a>
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
