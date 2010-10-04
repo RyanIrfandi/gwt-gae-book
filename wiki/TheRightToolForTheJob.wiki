@@ -159,10 +159,9 @@ Next step: deep dive on ASP.NET with MVC.
 
 GWT specific next steps: test deployment, research how easy is using CSS and external JS, research overwriting generated markup for some widgets or building more complex widgets from scratch if needed, review top open bugs to see how stable/maintained GWT is (we cannot do the same with ASP :)
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/learning_with_pencil.jpg" border="0"  align="left" />
 For feedback on this document, please contact Marius.Andreiana @ gmail.com. Thanks to the GWT discussion group and other folks, who already provided valuable feedback.
 
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/learning_with_pencil.jpg" border="0"  align="left" />
 
 == Appendix: Evaluating GWT 3rd party libraries ==
 
