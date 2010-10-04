@@ -1,16 +1,21 @@
 <wiki:toc max_depth="2" />
 
-Time to add some functionality! There is some reading you have to do in advance, but it's worth it.
+Time to add some functionality! There is some reading you have to do in advance for each section, but it's worth it.
+
+= Client-server communication =
 
 *Pre-requisites*
- * [http://code.google.com/appengine/docs/whatisgoogleappengine.html Google App Engine introduction]
- * [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch Client-server communication]
- * [http://code.google.com/p/twig-persist/wiki/Quickstart Quickstart with twig-persist], an Object Datastore for Google App Engine
- * [http://code.google.com/p/twig-persist/wiki/Configuration Creating a Data Model]
+ * [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch Client-server communication with gwt-platform]
 
+First let's get the show name from client to server and just log it.
 
 
 = Data model =
+*Pre-requisites*
+ * [http://code.google.com/appengine/docs/whatisgoogleappengine.html Google App Engine introduction]
+ * [http://code.google.com/p/twig-persist/wiki/Quickstart Quickstart with twig-persist], an Object Datastore for Google App Engine
+ * [http://code.google.com/p/twig-persist/wiki/Configuration Creating a Data Model]
+
 Remember [DataModeling our data modeling] ? Let's code it!
 
 
