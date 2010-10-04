@@ -10,6 +10,7 @@ Let's consider this idea: there is a small theater company in your city which ha
 You've just identified somebody's need that you could solve. "Somebody" it's usually a human, which in software design is referred to as [http://en.wikipedia.org/wiki/Persona_(marketing) persona].
 
 = Personae =
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/actor_red.jpg" border="0"  align="left" />
 Who are the Culture Shows personae?
 
 == Violeta ==
@@ -38,10 +39,14 @@ As Claus, I want to have up to date shows schedule so that I can make plans with
 = Backlog grooming =
 In [http://en.wikipedia.org/wiki/Scrum_(development) Scrum methodology], the above user stories constitute a product backlog. We can estimate each story in [http://en.wikipedia.org/wiki/Planning_poker Story points] and prioritize it. The first story is kinda large to estimate, so let's break it into smaller ones.
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/actor_white.jpg" border="0"  align="right" />
+
 = Exercise =
+
 After reading all about scrum, user stories and story points, take a stab at developing the Culture Shows product backlog by yourself and estimating each story before going further. 
 
 = Culture Shows product backlog =
+
 You did actually try to do this by yourself first, right? Go on, this chapter will just wait for you here until you have your own draft. You should decompose the two stories above into at least ten stories, each sized at most 13 story points. Then you should also sort them by priority.
 
 = Culture Shows product backlog (for real) =
@@ -61,4 +66,4 @@ You did actually try to do this by yourself first, right? Go on, this chapter wi
 || As Violeta, I want to notify existing reservation owners about changes in schedule so that they find out about it and adjust their plans || 8 ||
 || As Violeta, I want to remind existing reservation owners about shows two days in advance so that I'm sure they didn't forget and minimize the chances of them being late || 8 ||
 
-[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
