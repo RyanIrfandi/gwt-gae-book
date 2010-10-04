@@ -116,13 +116,13 @@ elegant philanthropic silk portfolio gem. </p>
 </ui:UiBinder>
 }}}
 
-and the (ugly) result :)
+and the result :)
 
 [http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing_widgets.png]
 
 As with any other section, make sure you understand what's happening before going further. Use the provided links to docs and Google to search for something else. 
 
-Next, let's do some styling!
+Now, any color blind, long-time, terminal only Unix administrator can tell something about the above page: it's damn ugly!
 
 = Styling =
 
