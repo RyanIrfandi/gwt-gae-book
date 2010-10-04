@@ -1,6 +1,7 @@
 <wiki:toc max_depth="2" />
 
 = Page Layout =
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/grunge.jpg" border="0"  align="right" />
 There are two approaches to setup a page layout in GWT:
  * [http://www.noobcube.com/tutorials/html-css/fixed-header-footer-layout-a-beginners-guide-/ using just HTML and CSS], with [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#BasicPanels RootPanel]. 
  * [http://code.google.com/webtoolkit/doc/latest/DevGuideUiPanels.html#LayoutPanels using GWT LayoutPanels], with !RootLayoutPanel. This approach introduces additional div tags, which contribute to tag soup and [http://www.devcomments.com/RootPanel-vs-RootLayoutPanel-at197454.htm sometimes] prevent [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/c8cfc4d2dba16862# proper firing of events] on some elements. See also [http://www.zackgrossbart.com/hackito/antiptrn-gwt2/ using GWT for layout] (controversial).
@@ -160,4 +161,4 @@ http://www.openclipart.org/
 
 http://www.colorcombos.com/combolibrary.html
 
-[http://code.google.com/p/gwt-gae-book/issues/entry Send feedback]
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
