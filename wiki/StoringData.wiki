@@ -176,6 +176,7 @@ import org.gwtgaebook.CultureShows.shared.dispatch.*;
 It works, but it's a lot of code to write just to get a string from client to server, isn't it?
 
 == Exercise solution - auto-generated Action and Result ==
+*Pre-requisites*
  * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Configuring_your_build_environment Configure your build environment] for annotation processing. This is already setup in the template project.
  * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Generate_Action_and_Result Generating Action and Result]
 
