@@ -162,7 +162,7 @@ Besides the few files we worked with so far, the template project contains sever
  * [http://arcbees.wordpress.com/2010/09/03/reversing-the-mvp-pattern-and-using-uihandler/ Reversing the MVP pattern and using @UiHandler]
  * [http://arcbees.wordpress.com/2010/09/18/uihandlers-and-supervising-controlers/ UiHandlers and supervising controller]
 
-Think of UiHandlers as a contract signed by Presenter: this is what Presenter has to offer to be usable by others (Views). The Presenter also requires Views to offer something:
+Think of !UiHandlers as a contract signed by Presenter: this is what Presenter has to offer, usable by others (usually Views). The Presenter also requires Views to offer something:
 {{{
 	public interface MyView extends View, HasUiHandlers<LandingUiHandlers> {
 		void resetAndFocus();
@@ -173,12 +173,58 @@ You can switch different Presenter and View implementations without any worries 
 Now review all files in the template project. Do they make full sense? 
 
 == Exercise ==
-Using what you learned above, make the "Schedule show" button display in an alert the show name when clicked.
+Using what you learned above, start implementing saving a show when "Schedule show" button is clicked. For now, it should just log a message in Presenter with the date, location and show name.
 
 == Exercise solution ==
 
-Notes there are no widgets or other UI elements from View exposed in Presenter. The Presenter should not care about UI elements, only about data that they expose. You can have different Views for different devices, or mocked Views for unit tests.
+In !LandingUiHandlers, the Presenter commits to offer some functionality:
+{{{
+public interface LandingUiHandlers extends UiHandlers {
+	void scheduleShow(Date date, String showName, String locationName);
+}
+}}}
 
+After you save this, notice there is an error on LandingPresenter:
+{{{
+The type LandingPresenter must implement the inherited abstract method LandingUiHandlers.scheduleShow(Date, String, String)
+}}}
+
+Let's actually keep our commitment and implement this:
+{{{
+	@Override
+	public void scheduleShow(Date date, String showName, String locationName) {
+		Log.info("Presenter scheduling on " + date.toString() + " the show "
+				+ showName + " at location " + locationName);
+	}
+}}}
+
+Here's how it's used by the View
+{{{
+	@UiField
+	TextBox show;
+	@UiField
+	TextBox location;
+	@UiField
+	DateBox dateTime;
+
+	@UiField
+	Button scheduleShow;
+
+	@UiHandler("scheduleShow")
+	void onScheduleShowClicked(ClickEvent event) {
+		getUiHandlers().scheduleShow(dateTime.getValue(), show.getValue(),
+				location.getValue());
+	}
+}}}
+
+Run and test this functionality. In Development Mode Eclipse tab you'll see
+{{{
+... [INFO] [main] (LandingPresenter.java:51) ... [INFO ] Presenter scheduling on Fri Oct 22 12:00:00 EEST 2010 the show Dream at location Rapsodia
+}}}
+
+Note there are no widgets or other UI elements from View exposed in Presenter. The Presenter should not care about UI elements, only about data the View exposes. You can have different Views for different devices, or mocked Views for unit tests.
+
+[http://code.google.com/p/gwt-gae-book/source/browse/#svn/trunk/CultureShows Browse the full source code]
 
 = Resources =
 [http://www.alistapart.com/articles/fluidgrids/ Fluid grids] 
