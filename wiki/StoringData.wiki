@@ -10,9 +10,171 @@ Time to add some functionality! There is some reading you have to do in advance 
  * [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch Client-server communication with gwt-platform]
 
 == Exercise ==
-Using what you learned above, start implementing saving schedule. Pass the data from client to server and write an `ActionHandler` which just logs a message with the date, location and show name.
+Using what you learned above, start implementing saving schedule. Pass the data from client to server and write an `ActionHandler` which just logs a message with the show name.
 
-== Exercise solution ==
+== Exercise solution - initial version ==
+
+`shared/ScheduleShowAction.java`
+{{{
+package org.gwtgaebook.CultureShows.shared;
+
+import com.gwtplatform.dispatch.shared.*;
+
+public class ScheduleShowAction extends UnsecuredActionImpl<ScheduleShowResult> {
+
+	private static final long serialVersionUID = 4621412923270714515L;
+
+	private String showName;
+
+	public ScheduleShowAction(final String showName) {
+		this.showName = showName;
+	}
+
+	/**
+	 * For serialization only.
+	 */
+	@SuppressWarnings("unused")
+	private ScheduleShowAction() {
+	}
+
+	public String getShowName() {
+		return showName;
+	}
+
+}
+}}}
+
+`shared/ScheduleShowResult.java`
+{{{
+package org.gwtgaebook.CultureShows.shared;
+
+import com.gwtplatform.dispatch.shared.*;
+
+public class ScheduleShowResult implements Result {
+
+	private static final long serialVersionUID = 4621412923270714515L;
+
+	private String response;
+
+	public ScheduleShowResult(final String response) {
+		this.response = response;
+	}
+
+	/**
+	 * For serialization only.
+	 */
+	@SuppressWarnings("unused")
+	private ScheduleShowResult() {
+	}
+
+	public String getResponse() {
+		return response;
+	}
+
+}
+}}}
+
+`server/handler/ScheduleShowHandler.java` 
+{{{
+package org.gwtgaebook.CultureShows.server.handler;
+
+import com.google.inject.*;
+
+import com.gwtplatform.dispatch.server.*;
+import com.gwtplatform.dispatch.server.actionhandler.*;
+import com.gwtplatform.dispatch.shared.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+import org.gwtgaebook.CultureShows.shared.*;
+
+public class ScheduleShowHandler implements
+		ActionHandler<ScheduleShowAction, ScheduleShowResult> {
+
+	private Provider<HttpServletRequest> requestProvider;
+	private ServletContext servletContext;
+
+	@Inject
+	ScheduleShowHandler(ServletContext servletContext,
+			Provider<HttpServletRequest> requestProvider) {
+		this.servletContext = servletContext;
+		this.requestProvider = requestProvider;
+	}
+
+	@Override
+	public ScheduleShowResult execute(ScheduleShowAction action,
+			ExecutionContext context) throws ActionException {
+
+		System.out.println("Handler scheduling show " + action.getShowName());
+
+		return new ScheduleShowResult("");
+	}
+
+	@Override
+	public Class<ScheduleShowAction> getActionType() {
+		return ScheduleShowAction.class;
+	}
+
+	@Override
+	public void undo(ScheduleShowAction action, ScheduleShowResult result,
+			ExecutionContext context) throws ActionException {
+		// Not undoable
+	}
+
+}
+}}}
+
+`server/MainHandlerModule.java`
+{{{
+		// bind Actions to ActionHandlers and ActionValidators
+		bindHandler(ScheduleShowAction.class, ScheduleShowHandler.class);
+}}}
+
+`LandingPresenter.java`
+{{{
+...
+import com.google.gwt.user.client.rpc.*;
+import com.gwtplatform.dispatch.client.*;
+import org.gwtgaebook.CultureShows.shared.*;
+...
+       private final DispatchAsync dispatcher;
+
+	@Inject
+	public LandingPresenter(EventBus eventBus, MyView view, MyProxy proxy,
+			PlaceManager placeManager, DispatchAsync dispatcher) {
+		super(eventBus, view, proxy);
+		this.placeManager = placeManager;
+		this.dispatcher = dispatcher;
+		getView().setUiHandlers(this);
+
+	}
+
+	@Override
+	public void scheduleShow(Date date, String showName, String locationName) {
+		Log.info("Presenter scheduling on " + date.toString() + " the show "
+				+ showName + " at location " + locationName);
+		dispatcher.execute(new ScheduleShowAction(showName),
+				new AsyncCallback<ScheduleShowResult>() {
+					@Override
+					public void onFailure(Throwable caught) {
+						Log.error("Scheduleing show failed "
+								+ caught.getMessage());
+					}
+
+					@Override
+					public void onSuccess(ScheduleShowResult result) {
+						Log.info("Scheduled show");
+					}
+				});
+	}
+
+}}}
+
+It works, but it's a lot of code to write just to get a string from client to server, isn't it?
+
+== Exercise solution - auto-generated Action and Result ==
+ * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Configuring_your_build_environment Configure your build environment] for annotation processing. This is already setup in the template project.
+ * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Generate_Action_and_Result Generating Action and Result]
 
 
 = Data model =
