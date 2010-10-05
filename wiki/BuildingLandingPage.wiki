@@ -219,7 +219,7 @@ Here's how it's used by the View
 
 Run and test this functionality. In Development Mode Eclipse tab you'll see
 {{{
-... [INFO] [main] (LandingPresenter.java:51) ... [INFO ] Presenter scheduling on Fri Oct 22 12:00:00 EEST 2010 the show Dream at location Rapsodia
+... [INFO ] Presenter scheduling on Fri Oct 22 12:00:00 EEST 2010 the show Dream at location Rapsodia
 }}}
 
 Note there are no widgets or other UI elements from View exposed in Presenter. The Presenter should not care about UI elements, only about data the View exposes. You can have different Views for different devices, or mocked Views for unit tests.
