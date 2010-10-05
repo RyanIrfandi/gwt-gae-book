@@ -10,7 +10,7 @@ import com.gwtplatform.mvp.client.proxy.*;
 import org.gwtgaebook.CultureShows.client.resources.*;
 import org.gwtgaebook.CultureShows.client.landing.*;
 
-@GinModules( { MainModule.class, LandingModule.class })
+@GinModules( { DispatchAsyncModule.class, MainModule.class, LandingModule.class })
 public interface MainGinjector extends Ginjector {
 	EventBus getEventBus();
 
