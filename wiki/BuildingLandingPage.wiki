@@ -159,9 +159,25 @@ Besides the few files we worked with so far, the template project contains sever
  * [http://martinfowler.com/eaaDev/uiArchs.html GUI Architectures]
  * [http://code.google.com/p/google-guice/ Guice dependency injection framework]
  * [http://code.google.com/p/google-gin/wiki/GinTutorial Gin dependency injection for GWT]
+ * [http://arcbees.wordpress.com/2010/09/03/reversing-the-mvp-pattern-and-using-uihandler/ Reversing the MVP pattern and using @UiHandler]
+ * [http://arcbees.wordpress.com/2010/09/18/uihandlers-and-supervising-controlers/ UiHandlers and supervising controller]
+
+Think of UiHandlers as a contract signed by Presenter: this is what Presenter has to offer to be usable by others (Views). The Presenter also requires Views to offer something:
+{{{
+	public interface MyView extends View, HasUiHandlers<LandingUiHandlers> {
+		void resetAndFocus();
+	}
+}}}
+You can switch different Presenter and View implementations without any worries as long as they respect these contracts.
 
 Now review all files in the template project. Do they make full sense? 
 
+== Exercise ==
+Using what you learned above, make the "Schedule show" button display in an alert the show name when clicked.
+
+== Exercise solution ==
+
+Notes there are no widgets or other UI elements from View exposed in Presenter. The Presenter should not care about UI elements, only about data that they expose. You can have different Views for different devices, or mocked Views for unit tests.
 
 
 = Resources =
