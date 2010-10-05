@@ -8,7 +8,10 @@ Time to add some functionality! There is some reading you have to do in advance 
  * [http://code.google.com/appengine/docs/whatisgoogleappengine.html Google App Engine introduction]
  * [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch Client-server communication with gwt-platform]
 
-First let's get the show name from client to server and just log it.
+== Exercise ==
+Using what you learned above, start implementing saving schedule. Pass the data from client to server and write an `ActionHandler` which just logs a message with the date, location and show name.
+
+== Exercise solution ==
 
 
 = Data model =
