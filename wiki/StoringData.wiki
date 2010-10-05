@@ -12,7 +12,7 @@ Time to add some functionality! There is some reading you have to do in advance 
 == Exercise ==
 Using what you learned above, start implementing saving schedule. Pass the data from client to server and write an `ActionHandler` which just logs a message with the show name.
 
-== Exercise solution - initial version ==
+== Exercise solution ==
 
 `shared/dispatch/ScheduleShowAction.java`
 {{{
@@ -175,7 +175,7 @@ import org.gwtgaebook.CultureShows.shared.dispatch.*;
 
 It works, but it's a lot of code to write just to get a string from client to server, isn't it?
 
-== Exercise solution - auto-generated Action and Result ==
+== Auto-generated Action and Result ==
 *Pre-requisites*
  * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Configuring_your_build_environment Configure your build environment] for annotation processing. This is already setup in the template project.
  * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Generate_Action_and_Result Generating Action and Result]
@@ -194,6 +194,20 @@ public class ScheduleShow {
 	@Out(1)
 	String response;
 }
+}}}
+
+== More code cleanup ==
+To further reduce the code written for each specific request, we can have an !AsyncCallback wrapper in the form of [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/DispatchCallback.java DispatchCallback]. For now, it can just provide error handling, so we don't have to do that for every call.
+
+Here's the updated !LandingPresenter:
+{{{
+		dispatcher.execute(new ScheduleShowAction(showName),
+				new DispatchCallback<ScheduleShowResult>() {
+					@Override
+					public void onSuccess(ScheduleShowResult result) {
+						Log.info("Scheduled show");
+					}
+				});
 }}}
 
 
