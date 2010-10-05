@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Web Application Template Project</title>
+    <script type="text/javascript" language="javascript" src="main/main.nocache.js"></script>
+
+	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+
+     <script type="text/javascript" language="javascript">
+    (function($) {
+$.fn.placeholder = function(options) {
+	var defaults = {css_class: "placeholder"};
+	var options = $.extend(defaults, options);
+	this.each(function() {
+		if ($(this).attr('placeholder') !== undefined) {
+			var phvalue = $(this).attr("placeholder");
+			var currvalue = $(this).attr("value");
+			if (phvalue == currvalue) {
+				$(this).addClass(options.css_class);
+			}
+			if (currvalue == "") {
+				$(this).addClass(options.css_class);
+				$(this).val(phvalue);
+			}
+			$(this).focusin(function(){
+				var ph = $(this).attr("placeholder");
+				if (ph == $(this).val()) {
+					$(this).val("").removeClass(options.css_class);
+				}
+			});
+
+			$(this).focusout(function(){
+				var ph = $(this).attr("placeholder");
+				if ($(this).val() == "") {
+					$(this).val(ph).addClass(options.css_class);
+				}
+			});
+		}
+	});
+	return this;
+	};
+})(jQuery);
+</script>
+
+<style type="text/css">
+.placeholder {
+	color: #888888;
+	font-style: italic;
+}
+</style>
+
+	<link rel="icon" type="image/png" href="favicon.ico">
+  </head>
+  <body>
+  	Loading...
+    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
+  </body>
+</html>
