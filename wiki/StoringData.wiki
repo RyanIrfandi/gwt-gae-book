@@ -14,9 +14,9 @@ Using what you learned above, start implementing saving schedule. Pass the data 
 
 == Exercise solution - initial version ==
 
-`shared/ScheduleShowAction.java`
+`shared/dispatch/ScheduleShowAction.java`
 {{{
-package org.gwtgaebook.CultureShows.shared;
+package org.gwtgaebook.CultureShows.shared.dispatch;
 
 import com.gwtplatform.dispatch.shared.*;
 
@@ -44,9 +44,9 @@ public class ScheduleShowAction extends UnsecuredActionImpl<ScheduleShowResult> 
 }
 }}}
 
-`shared/ScheduleShowResult.java`
+`shared/dispatch/ScheduleShowResult.java`
 {{{
-package org.gwtgaebook.CultureShows.shared;
+package org.gwtgaebook.CultureShows.shared.dispatch;
 
 import com.gwtplatform.dispatch.shared.*;
 
@@ -74,9 +74,9 @@ public class ScheduleShowResult implements Result {
 }
 }}}
 
-`server/handler/ScheduleShowHandler.java` 
+`server/dispatch/ScheduleShowHandler.java` 
 {{{
-package org.gwtgaebook.CultureShows.server.handler;
+package org.gwtgaebook.CultureShows.server.dispatch;
 
 import com.google.inject.*;
 
@@ -86,7 +86,7 @@ import com.gwtplatform.dispatch.shared.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import org.gwtgaebook.CultureShows.shared.*;
+import org.gwtgaebook.CultureShows.shared.dispatch.*;
 
 public class ScheduleShowHandler implements
 		ActionHandler<ScheduleShowAction, ScheduleShowResult> {
@@ -126,6 +126,9 @@ public class ScheduleShowHandler implements
 
 `server/MainHandlerModule.java`
 {{{
+import org.gwtgaebook.CultureShows.shared.dispatch.*;
+import org.gwtgaebook.CultureShows.server.dispatch.*;
+...
 		// bind Actions to ActionHandlers and ActionValidators
 		bindHandler(ScheduleShowAction.class, ScheduleShowHandler.class);
 }}}
@@ -135,7 +138,7 @@ public class ScheduleShowHandler implements
 ...
 import com.google.gwt.user.client.rpc.*;
 import com.gwtplatform.dispatch.client.*;
-import org.gwtgaebook.CultureShows.shared.*;
+import org.gwtgaebook.CultureShows.shared.dispatch.*;
 ...
        private final DispatchAsync dispatcher;
 
@@ -176,9 +179,9 @@ It works, but it's a lot of code to write just to get a string from client to se
  * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Configuring_your_build_environment Configure your build environment] for annotation processing. This is already setup in the template project.
  * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Generate_Action_and_Result Generating Action and Result]
 
-Instead of Action and Result, we can have only `shared/ScheduleShow.java`
+Instead of Action and Result, we can have only `shared/dispatch/ScheduleShow.java`
 {{{
-package org.gwtgaebook.CultureShows.shared;
+package org.gwtgaebook.CultureShows.shared.dispatch;
 
 import com.gwtplatform.annotation.*;
 
