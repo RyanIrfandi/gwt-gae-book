@@ -6,6 +6,7 @@ Time to add some functionality! There is some reading you have to do in advance 
 
 *Pre-requisites*
  * [http://code.google.com/appengine/docs/whatisgoogleappengine.html Google App Engine introduction]
+ * [http://code.google.com/webtoolkit/doc/latest/DevGuideServerCommunication.html Client-server communication]
  * [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch Client-server communication with gwt-platform]
 
 == Exercise ==
