@@ -83,23 +83,12 @@ import com.google.inject.*;
 import com.gwtplatform.dispatch.server.*;
 import com.gwtplatform.dispatch.server.actionhandler.*;
 import com.gwtplatform.dispatch.shared.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
 
 import org.gwtgaebook.CultureShows.shared.dispatch.*;
 
 public class ScheduleShowHandler implements
 		ActionHandler<ScheduleShowAction, ScheduleShowResult> {
 
-	private Provider<HttpServletRequest> requestProvider;
-	private ServletContext servletContext;
-
-	@Inject
-	ScheduleShowHandler(ServletContext servletContext,
-			Provider<HttpServletRequest> requestProvider) {
-		this.servletContext = servletContext;
-		this.requestProvider = requestProvider;
-	}
 
 	@Override
 	public ScheduleShowResult execute(ScheduleShowAction action,
