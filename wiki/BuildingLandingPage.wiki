@@ -184,9 +184,10 @@ public interface LandingUiHandlers extends UiHandlers {
 }
 }}}
 
-After you save this, notice there is an error on LandingPresenter:
+After you save this, notice there is an error on !LandingPresenter:
 {{{
-The type LandingPresenter must implement the inherited abstract method LandingUiHandlers.scheduleShow(Date, String, String)
+The type LandingPresenter must implement the inherited abstract method
+LandingUiHandlers.scheduleShow(Date, String, String)
 }}}
 
 Let's actually keep our commitment and implement this:
