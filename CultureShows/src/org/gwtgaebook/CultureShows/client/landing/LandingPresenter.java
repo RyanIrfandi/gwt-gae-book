@@ -56,13 +56,7 @@ public class LandingPresenter extends
 		Log.info("Presenter scheduling on " + date.toString() + " the show "
 				+ showName + " at location " + locationName);
 		dispatcher.execute(new ScheduleShowAction(showName),
-				new AsyncCallback<ScheduleShowResult>() {
-					@Override
-					public void onFailure(Throwable caught) {
-						Log.error("Scheduleing show failed "
-								+ caught.getMessage());
-					}
-
+				new DispatchCallback<ScheduleShowResult>() {
 					@Override
 					public void onSuccess(ScheduleShowResult result) {
 						Log.info("Scheduled show");
