@@ -28,6 +28,6 @@ mv template ${hierarchy[2]}
 cd ${hierarchy[2]}
 sed -i "s/\/template\//\/$project\//g" server/DispatchServletModule.java
 
-
 cd $top_folder
+sed -i "s/org.gwtgaebook.template/$package/g" war/WEB-INF/web.xml
 
