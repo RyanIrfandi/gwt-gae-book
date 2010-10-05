@@ -184,7 +184,7 @@ http://www.orkut.com/
 Mobile Maps and Latitude for iPhone
 
 
-"We use Google Web Toolkit for all our Java-based internal apps," said Google CIO Ben Fried. "It's a great tool for Enterprise-class Java GUI development, and we build our most sensitive and critical corporate systems with it. In addition to the big benefits in developer productivity GWT offers, the future-proofing and browser independence you get out of the box mean that we're protected from the problems caused by browser-specific bugs and exploits."
+"We use Google Web Toolkit for all our Java-based internal apps," [http://www.infoworld.com/d/developer-world/google-upgrades-web-toolkit-browser-apps-516 said Google CIO Ben Fried]. "It's a great tool for Enterprise-class Java GUI development, and we build our most sensitive and critical corporate systems with it. In addition to the big benefits in developer productivity GWT offers, the future-proofing and browser independence you get out of the box mean that we're protected from the problems caused by browser-specific bugs and exploits."
 
 
 
