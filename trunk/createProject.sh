@@ -30,4 +30,5 @@ sed -i "s/\/template\//\/$project\//g" server/DispatchServletModule.java
 
 cd $top_folder
 sed -i "s/org.gwtgaebook.template/$package/g" war/WEB-INF/web.xml
+sed -i "s/<name>template<\/name>/<name>$project<\/name>/g" .project
 
