@@ -25,10 +25,8 @@ cd ${hierarchy[1]}
 mv template ${hierarchy[2]}
 
 #additional package replaces
-cd ${hierarchy[2]}
-sed -i "s/\/template\//\/$project\//g" server/DispatchServletModule.java
-
 cd $top_folder
 sed -i "s/org.gwtgaebook.template/$package/g" war/WEB-INF/web.xml
 sed -i "s/<name>template<\/name>/<name>$project<\/name>/g" .project
+sed -i "s/\/template/\/$project/g" .factorypath
 
