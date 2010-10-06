@@ -5,23 +5,11 @@ import com.google.inject.*;
 import com.gwtplatform.dispatch.server.*;
 import com.gwtplatform.dispatch.server.actionhandler.*;
 import com.gwtplatform.dispatch.shared.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
 
 import org.gwtgaebook.CultureShows.shared.dispatch.*;
 
-public class ScheduleShowHandler implements
-		ActionHandler<ScheduleShowAction, ScheduleShowResult> {
-
-	private Provider<HttpServletRequest> requestProvider;
-	private ServletContext servletContext;
-
-	@Inject
-	ScheduleShowHandler(ServletContext servletContext,
-			Provider<HttpServletRequest> requestProvider) {
-		this.servletContext = servletContext;
-		this.requestProvider = requestProvider;
-	}
+public class ScheduleShowHandler extends
+		DispatchActionHandler<ScheduleShowAction, ScheduleShowResult> {
 
 	@Override
 	public ScheduleShowResult execute(ScheduleShowAction action,
@@ -38,17 +26,6 @@ public class ScheduleShowHandler implements
 		System.out.println("Handler scheduling show " + action.getShowName());
 
 		return new ScheduleShowResult("");
-	}
-
-	@Override
-	public Class<ScheduleShowAction> getActionType() {
-		return ScheduleShowAction.class;
-	}
-
-	@Override
-	public void undo(ScheduleShowAction action, ScheduleShowResult result,
-			ExecutionContext context) throws ActionException {
-		// Not undoable
 	}
 
 }
