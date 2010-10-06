@@ -89,7 +89,6 @@ import org.gwtgaebook.CultureShows.shared.dispatch.*;
 public class ScheduleShowHandler implements
 		ActionHandler<ScheduleShowAction, ScheduleShowResult> {
 
-
 	@Override
 	public ScheduleShowResult execute(ScheduleShowAction action,
 			ExecutionContext context) throws ActionException {
@@ -197,6 +196,24 @@ Here's the updated !LandingPresenter:
 						Log.info("Scheduled show");
 					}
 				});
+}}}
+
+
+We can also have a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/DispatchActionHandler.java wrapper for ActionHandler]. Using it, `ScheduleShowHandler` becomes
+{{{
+public class ScheduleShowHandler extends
+		DispatchActionHandler<ScheduleShowAction, ScheduleShowResult> {
+
+	@Override
+	public ScheduleShowResult execute(ScheduleShowAction action,
+			ExecutionContext context) throws ActionException {
+
+		System.out.println("Handler scheduling show " + action.getShowName());
+
+		return new ScheduleShowResult("");
+	}
+
+}
 }}}
 
 
