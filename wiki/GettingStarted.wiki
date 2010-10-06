@@ -1,3 +1,5 @@
+<wiki:toc max_depth="2" />
+
 = Environment Setup =
 
 Setup [http://java.sun.com/javase/downloads/ Java]
