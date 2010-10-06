@@ -224,6 +224,20 @@ public class ScheduleShowHandler extends
 
 Remember [DataModeling our data modeling] ? Let's code it!
 
+== Show ==
+TODO
+
+
+
+= Storing data =
+
+
+= Exercise =
+Enhance show scheduling to actually store not only shows, but also locations and schedule. Here are [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/ all data models].
+
+
+= Exercise solution =
+...
 
 = Resources =
  * [http://code.google.com/appengine/docs/java/datastore/ App Engine Datastore Java API]
