@@ -7,8 +7,9 @@
  * [BuildingLandingPage Building the landing page]
   * widgets, styling, multi-device, i18n, MVP
  * [StoringData Saving schedule in datastore] 
+ * [x Listing schedule]
  * [AuthOpenID Authenticating with OpenID]
- * [x Storing user data]
+ * [x Storing data associated to users]
  * [x Data validation]
  * [x Automated Testing]
   * client unit testing, UI testing, server testing, performance
