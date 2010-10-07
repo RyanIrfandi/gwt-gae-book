@@ -4,35 +4,14 @@
 
 
 
-
 Custom widgets
 
+Custom events
 
-
-auth
-
-members mgmt
-
-list shows jsonp
+jsonp/REST
 
 js widget
 
-
-Analytics
-
-selenium
-
-unit tests / mockito
-
-mobile ui
-
-[http://www.google.com/notebook/public/17393756076936429562/BDUsxIgoQmJbCk7ch Getting the Most from Eclipse]
-
-= Advanced topics = 
-[http://groups.google.com/group/gwt-platform/browse_thread/thread/ba03018b92c53c69/a786c1494ac7fafe#a786c1494ac7fafe Using Maven]
-
-http://code.google.com/p/google-web-toolkit/wiki/CodeSplitting
-
-[http://code.google.com/p/browsersec/ Browser Security Handbook]
+What else would you like to have covered?
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
