@@ -21,8 +21,9 @@
  * [x Client-server communication enhancements]
   * error handling, loading indicator, caching
  * [x Social networking]
- * [x Opening up to members]
+ * [x Opening up to more theater members]
  * [x Analytics]
+ * [x Enabling offline usage]
  * [x Making reservations]
  * [x Charging money]
   * Google checkout
