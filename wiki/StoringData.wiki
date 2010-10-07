@@ -243,19 +243,61 @@ To make a call from client to server, you need these parts
 *Pre-requisites*
  * [http://code.google.com/p/twig-persist/wiki/Quickstart Quickstart with twig-persist], an Object Datastore for Google App Engine
  * [http://code.google.com/p/twig-persist/wiki/Configuration Creating a Data Model]
+ * [http://code.google.com/p/twig-persist/source/browse/src/test/java/com/google/code/twig/festival/MusicFestivalTestCase.java twig unit tests] to see more usage examples
 
 Remember [DataModeling our data modeling] ? Let's code it!
 
-== Show ==
-TODO
+*Theater.java*
+{{{
+package org.gwtgaebook.CultureShows.shared.model;
 
+import java.util.*;
 
+import com.google.code.twig.annotation.*;
+
+public class Theater {
+	public String name;
+	public String URL;
+	public String language;
+
+	public Set<Show> shows;
+}
+}}}
+
+*Show.java* 
+{{{
+package org.gwtgaebook.CultureShows.shared.model;
+
+public class Show {
+	public String name;
+	public String URL;
+
+}
+}}}
+
+Here are [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/ complete data models].
 
 = Storing data =
+In our server handler, we'll do
+{{{
+import com.google.appengine.api.datastore.Key;
+import com.google.code.twig.*;
+import com.google.code.twig.annotation.*;
+...
+		Show show = new Show();
+		show.name = action.getShowName();
+
+		ObjectDatastore ds = new AnnotationObjectDatastore();
+		Key showKey = ds.store(show);
+}}}
+
+After scheduling a show, go to [http://127.0.0.1:8888/_ah/admin your local datastore viewer] and check that it has been saved. Besides our data model fields (name, URL), you'll see two more fields, [http://code.google.com/appengine/docs/python/datastore/keysandentitygroups.html Key and ID/Name].
+
+= Linking shows to a theater =
 
 
 = Exercise =
-Enhance show scheduling to actually store not only shows, but also locations and schedule. Here are [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/ all data models].
+Enhance show scheduling to actually store not only shows, but also locations and schedule. 
 
 
 = Exercise solution =
