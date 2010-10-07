@@ -291,9 +291,26 @@ import com.google.code.twig.annotation.*;
 		Key showKey = ds.store(show);
 }}}
 
-After scheduling a show, go to [http://127.0.0.1:8888/_ah/admin your local datastore viewer] and check that it has been saved. Besides our data model fields (name, URL), you'll see two more fields, [http://code.google.com/appengine/docs/python/datastore/keysandentitygroups.html Key and ID/Name].
+After scheduling a show, go to [http://127.0.0.1:8888/_ah/admin your local datastore viewer] and check that it has been saved. Besides data model fields (name, URL), you'll see two more fields, [http://code.google.com/appengine/docs/python/datastore/keysandentitygroups.html Key and ID/Name].
 
 = Linking shows to a theater =
+Shows belong to theaters. In a regular app, we would have asked Violeta to perform the following steps:
+ * sign up
+ * create a theater and specify theater details such as name, website URL
+ * define shows and locations assigned to the theater defined above
+ * and at last, schedule a show
+
+We can do better! We're simply asking Violeta to schedule a show. If she decides to sign in, we'll preserve the data for her. We'll take care of the details behind the scenes (pun intended :-), even though that's more work for us, the engineers.
+
+== Exercise ==
+Think for 5 minutes how we can make this work.
+
+= Exercise solution =
+Here are two possible solutions:
+ # store all data on the client until Violeta signs in. One way to store it would be directly in GWT, but we'd lose it all on a page refresh. Another way to store it would be using [http://php-html.net/tutorials/html5-local-storage-guide/ HTML5 web storage] or even cookies since the data amount is small.
+ # store data on server by creating entities as soon as they are needed and use a cookie to link them to current anonymous user session. On sign in, assign these entities to the authenticated user.
+
+We'll go with the server solution, as we need to write that code anyway. It will also work on older browsers. We need to be careful to have a script ran periodically which cleans up data which is not assigned to users.
 
 
 = Exercise =
