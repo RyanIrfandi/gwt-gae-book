@@ -25,4 +25,5 @@
  * [x Making reservations]
  * [x Charging money]
   * Google checkout
+ * [MoreResources More resources] 
  * [TODO]
