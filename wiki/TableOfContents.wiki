@@ -5,6 +5,24 @@
  * [TheRightToolForTheJob The right tool for the job]
  * [GettingStarted Getting started]
  * [BuildingLandingPage Building the landing page]
+  * widgets, styling, multi-device, i18n, MVP
  * [StoringData Saving schedule in datastore] 
  * [AuthOpenID Authenticating with OpenID]
+ * [x Storing user data]
+ * [x Data validation]
+ * [x Automated Testing]
+  * client unit testing, UI testing, server testing, performance
+ * [x Managing shows, locations, schedule]
+ * [x Fields auto-completion]
+ * [x UI enhancements]
+ * [x Exposing data via APIs for 3rd parties]
+ * [x Displaying schedule on theater website]
+ * [x Client-server communication enhancements]
+  * error handling, loading indicator, caching
+ * [x Social networking]
+ * [x Opening up to members]
+ * [x Analytics]
+ * [x Making reservations]
+ * [x Charging money]
+  * Google checkout
  * [TODO]
