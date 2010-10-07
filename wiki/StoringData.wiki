@@ -310,7 +310,42 @@ Here are two possible solutions:
  # store all data on the client until Violeta signs in. One way to store it would be directly in GWT, but we'd lose it all on a page refresh. Another way to store it would be using [http://php-html.net/tutorials/html5-local-storage-guide/ HTML5 web storage] or even cookies since the data amount is small.
  # store data on server by creating entities as soon as they are needed and use a cookie to link them to current anonymous user session. On sign in, assign these entities to the authenticated user.
 
-We'll go with the server solution, as we need to write that code anyway. It will also work on older browsers. We need to be careful to have a script ran periodically which cleans up data which is not assigned to users.
+We'll go with the server solution, as we need to write that code anyway. It will also work on older browsers. We need to be careful to have a script ran periodically which cleans up saved data not assigned to users.
+
+Let us write down some [http://en.wikipedia.org/wiki/Pseudocode pseudocode] of how `ScheduleShowHandler` would work when we'll have full functionality:
+{{{
+//data received from client: userToken, theaterKey, showName, locationName and date
+
+anonymous = (user is not signed in)
+
+if (anonymous) {
+	check userToken to be in form of "anonymous_RandomNumber", exception if not.
+	//prefix prevents client setting valid user IDs and overwriting their data
+	userId = userToken
+} else {
+	userId = AppEngineUser.getId()
+}
+
+if (theaterKey is empty) {
+	create theater instance with name "anonymous-YYYY-MM-DD-{random}"
+	theaterKey = store(theater)
+	create member(userId)
+	assign member to theater with role administrator
+}
+
+verify that userId has access to theaterKey, exception if not
+
+showKey = find(showName assigned to theaterKey)
+if (showKey is empty) {
+	create and store show 
+}
+
+//same with location
+
+create schedule entry (showKey, locationKey, date) assigned to theaterKey
+
+return theaterKey, showKey, locationKey
+}}}
 
 
 = Exercise =
