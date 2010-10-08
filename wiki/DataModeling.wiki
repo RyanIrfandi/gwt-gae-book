@@ -19,7 +19,7 @@ On a piece of paper, draft the Culture Shows entity relationship model before go
 
 Google Docs (Drawing) was used to build this.
 == Notes ==
-A member is part of a theater with a role (administrator, actor, assistant). 
+A member is part of a theater with a role (administrator, artist, assistant). 
 
 A theater has shows and locations. A show is held in a location at a date and time.
 
