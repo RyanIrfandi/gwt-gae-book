@@ -319,8 +319,9 @@ Let us write down some [http://en.wikipedia.org/wiki/Pseudocode pseudocode] of h
 anonymous = (user is not signed in)
 
 if (anonymous) {
-	check userToken to be in form of "anonymous_RandomNumber", exception if not.
+	check userToken to be in form of "anonymous-RandomToken", exception if not.
 	//prefix prevents client setting valid user IDs and overwriting their data
+	//issue: client can overwrite any anonymous user data by setting a matching RandomToken. That's ok. 
 	userId = userToken
 } else {
 	userId = AppEngineUser.getId()
