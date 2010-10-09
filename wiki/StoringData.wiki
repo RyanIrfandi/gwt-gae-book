@@ -327,14 +327,21 @@ if (anonymous) {
 	userId = AppEngineUser.getId()
 }
 
+if (theaterKey is not empty) {
+	load theater //might not exist, key may be invalid
+	if (theater loaded) {
+		verify userId has access to theater, exception if not
+	} else {
+		theaterKey = null	
+	}
+}
+
 if (theaterKey is empty) {
 	create theater instance with name "anonymous-YYYY-MM-DD-{random}"
 	theaterKey = store(theater)
 	create member(userId)
 	assign member to theater with role administrator
 }
-
-verify that userId has access to theaterKey, exception if not
 
 showKey = find(showName assigned to theaterKey)
 if (showKey is empty) {
