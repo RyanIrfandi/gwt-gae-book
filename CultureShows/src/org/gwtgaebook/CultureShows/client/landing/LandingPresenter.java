@@ -55,7 +55,7 @@ public class LandingPresenter extends
 	public void scheduleShow(Date date, String showName, String locationName) {
 		Log.info("Presenter scheduling on " + date.toString() + " the show "
 				+ showName + " at location " + locationName);
-		dispatcher.execute(new ScheduleShowAction(showName),
+		dispatcher.execute(new ScheduleShowAction(showName, ""),
 				new DispatchCallback<ScheduleShowResult>() {
 					@Override
 					public void onSuccess(ScheduleShowResult result) {
