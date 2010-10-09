@@ -1,7 +1,13 @@
 package org.gwtgaebook.CultureShows.shared.model;
 
 public class Member {
-	String name;
-	String email;
-	String role; // administrator, actor, assistant
+	public enum Role {
+		ADMINISTRATOR, ARTIST, ASSISTANT
+	};
+
+	public String userId;
+	public String name;
+	public String email;
+
+	public Member.Role role;
 }

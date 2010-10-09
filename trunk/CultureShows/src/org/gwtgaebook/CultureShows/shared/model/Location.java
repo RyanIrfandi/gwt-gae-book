@@ -1,12 +1,12 @@
 package org.gwtgaebook.CultureShows.shared.model;
 
 public class Location {
-	String name;
+	public String name;
 	// http://microformats.org/wiki/adr
-	String streetAddress;
-	String extendedAddress;
-	String locality;
-	String region;
-	String postalCode;
-	String countryName;
+	public String streetAddress;
+	public String extendedAddress;
+	public String locality;
+	public String region;
+	public String postalCode;
+	public String countryName;
 }
