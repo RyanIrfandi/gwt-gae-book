@@ -50,5 +50,8 @@ You can use the template project every time you start a new application. It cont
 
 Visit these project sites to find out more about them. Come back to their documentation whenever needed as we progress with our application.
 
+= Useful tools =
+ * [http://getfirebug.com/ Firebug] and [http://www.softwareishard.com/blog/firecookie/ Firecookie]
+
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
