@@ -5,18 +5,18 @@ import java.util.*;
 import com.google.code.twig.annotation.*;
 
 public class Theater {
-	String name;
-	String URL;
+	public String name;
+	public String URL;
 	// String email;
-	String language;
+	public String language;
 
 	// TODO what about @Child Member[] members ?
 	@Embedded
-	Set<Member> members; // store as fields rather than entities
+	public Set<Member> members; // store as fields rather than entities
 
-	Set<Show> shows;
+	public Set<Show> shows;
 
-	Set<Location> locations;
+	public Set<Location> locations;
 
-	Schedule schedule;
+	public Schedule schedule;
 }
