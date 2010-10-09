@@ -31,12 +31,12 @@ First, let's add [http://code.google.com/p/gwt-gae-book/source/browse/#svn/trunk
 
 
 = Exercise =
-Open !LandingView.ui.xml in client.landing package and try to implement the [VisualizingYourApp mocked up UI]. No need to implement any Java logic yet, just focus on widgets and styling. 
+Open `LandingView.ui.xml` and try to implement the [VisualizingYourApp mocked up UI]. No need to implement any Java logic yet, just focus on widgets and styling. 
 
 = Widgets =
 
 
-Here's the updated !LandingView.ui.xml
+Here's the updated `LandingView.ui.xml`
 {{{
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
@@ -139,7 +139,7 @@ Here's how it was done:
  * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/resources/Resources.java Resources.java] - listed style names
  * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/war/main.html main.html] - added a jQuery plugin as fallback for HTML5 placeholder attribute and .placeholder class
  * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml LandingView.ui.xml] - updated markup, added style names
- * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView.java] - added HTML5 placeholder, required attributes and activated jQuery plugin via [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JSNI]
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java?r=184 LandingView.java] - added HTML5 placeholder, required attributes and activated jQuery plugin via [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JSNI]
 
 = Mobile, tablets, TV and other devices =
 Sometimes, you might want to have different views for different screen sizes. The styling above is liquid (resize browser window to try it out) and it works for now. We could have used [http://www.webdesignerwall.com/tutorials/css3-media-queries/ CSS3 media queries] to hide completely the signup sidebar on a small screen. See [http://www.smashingmagazine.com/2010/07/19/how-to-use-css3-media-queries-to-create-a-mobile-version-of-your-website/ another tutorial]. Media queries support [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/86047ca5c364679f/2871b1e5e35be0d1 is still missing] from GWT.
