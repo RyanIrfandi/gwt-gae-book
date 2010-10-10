@@ -10,7 +10,7 @@ Time to add some functionality! There is some reading you have to do in advance 
  * [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch Client-server communication with gwt-platform]
 
 == Exercise ==
-Using what you learned above, start implementing saving schedule. Pass the data from client to server and write an `ActionHandler` which just logs a message with the show name.
+Using what you learned above, start implementing saving performances. Pass the data from client to server and write an `ActionHandler` which just logs a message with the show name.
 
 == Exercise solution ==
 
@@ -298,12 +298,14 @@ Shows belong to theaters. In a regular app, we would have asked Violeta to perfo
  * sign up
  * create a theater and specify theater details such as name, website URL
  * define shows and locations assigned to the theater defined above
- * and at last, schedule a show
+ * and at last, schedule a show performance
 
 We can do better! We're simply asking Violeta to schedule a show. If she decides to sign in, we'll preserve the data for her. We'll take care of the details behind the scenes (pun intended :-), even though that's more work for us, the engineers.
 
 *Exercise*
+
 Think for 5 minutes how we can make this work.
+
 
 Here are two possible solutions:
  # store all data on the client until Violeta signs in. One way to store it would be directly in GWT, but we'd lose it all on a page refresh. Another way to store it would be using [http://php-html.net/tutorials/html5-local-storage-guide/ HTML5 web storage] or even cookies since the data amount is small.
@@ -313,13 +315,15 @@ We'll go with the server solution, as we need to write that code anyway. It will
 
 Let us write down some [http://en.wikipedia.org/wiki/Pseudocode pseudocode] of how `ScheduleShowHandler` would work when we'll have full functionality:
 
+
 {{{
 //data received from client: userToken, theaterKey, showName, locationName and date
+//userToken - random token set by client for users not signed it
 
-anonymous = (user is not signed in)
+anonymous = (AppEngineUser is not signed in)
 
 if (anonymous) {
-	check userToken to be in form of "anonymous-RandomToken", exception if not.
+	userToken = "anonymous-" + userToken
 	//prefix prevents client setting valid user IDs and overwriting their data
 	//issue: client can overwrite any anonymous user data by setting a matching RandomToken. That's ok. 
 	userId = userToken
@@ -350,7 +354,7 @@ if (showKey is empty) {
 
 //same with location
 
-create schedule entry (showKey, locationKey, date) assigned to theaterKey
+create perfomance entry (showKey, locationKey, date) assigned to theaterKey
 
 return theaterKey, showKey, locationKey
 }}}
@@ -372,7 +376,7 @@ TODO
 
 
 = Exercise =
-Enhance show scheduling to actually store not only shows, but also locations and schedule. 
+Enhance performances to store not only shows, but also locations and date. 
 
 
 = Exercise solution =
