@@ -21,8 +21,8 @@ Google Docs (Drawing) was used to build this.
 == Notes ==
 A member is part of a theater with a role (administrator, artist, assistant). 
 
-A theater has shows and locations. A show is held in a location at a date and time.
+A theater has shows, locations and performances. A performance consists of a show held in a location at a date and time.
 
-Try to avoid generic entities such as "User". Besides Member, here we might also have Viewer (Claus).
+Try to avoid generic entities such as "User". Besides Member, here we might also have Spectator (Claus).
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
