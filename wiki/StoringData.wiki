@@ -296,7 +296,7 @@ import com.google.code.twig.annotation.*;
 		show.name = action.getShowName();
 
 		ObjectDatastore ds = new AnnotationObjectDatastore();
-		Key showKey = ds.store(show);
+		Key showKey = datastore.store(show);
 }}}
 
 After scheduling a show, go to [http://127.0.0.1:8888/_ah/admin your local datastore viewer] and check that it has been saved. Besides data model fields (name, URL), you'll see two more fields, [http://code.google.com/appengine/docs/python/datastore/keysandentitygroups.html Key and ID/Name].
@@ -331,10 +331,9 @@ Let us write down some [http://en.wikipedia.org/wiki/Pseudocode pseudocode] of h
 anonymous = (AppEngineUser is not signed in)
 
 if (anonymous) {
-	userToken = "anonymous-" + userToken
+	userId = "anonymous-" + userToken
 	//prefix prevents client setting valid user IDs and overwriting their data
 	//issue: client can overwrite any anonymous user data by setting a matching RandomToken. That's ok. 
-	userId = userToken
 } else {
 	userId = AppEngineUser.getId()
 }
