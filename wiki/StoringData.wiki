@@ -163,7 +163,7 @@ import org.gwtgaebook.CultureShows.shared.dispatch.*;
 
 It works, but it's a lot of code to write just to get a string from client to server, isn't it?
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/margaree_scenery.jpg" border="0"  align="right" />
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/elements_2.jpg" border="0"  align="right" />
 
 == Auto-generated Action and Result ==
 *Pre-requisites*
@@ -247,6 +247,8 @@ To make a call from client to server, you need these parts
  * [http://code.google.com/p/twig-persist/wiki/Configuration Creating a Data Model]
  * [http://code.google.com/p/twig-persist/source/browse/src/test/java/com/google/code/twig/festival/MusicFestivalTestCase.java twig unit tests] to see more usage examples
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/bale_of_hay.jpg" border="0"  align="right" />
+
 Remember [DataModeling our data modeling] ? Let's code it!
 
 *Theater.java*
@@ -255,14 +257,18 @@ package org.gwtgaebook.CultureShows.shared.model;
 
 import java.util.*;
 
-import com.google.code.twig.annotation.*;
-
 public class Theater {
 	public String name;
 	public String URL;
 	public String language;
 
-	public Set<Show> shows;
+	public List<Member> members = new ArrayList<Member>();
+
+	public List<Show> shows = new ArrayList<Show>();
+
+	public List<Location> locations = new ArrayList<Location>();
+
+	public List<Performance> performances = new ArrayList<Performance>();
 }
 }}}
 
@@ -273,7 +279,7 @@ package org.gwtgaebook.CultureShows.shared.model;
 public class Show {
 	public String name;
 	public String URL;
-
+	public int minuteDuration;
 }
 }}}
 
