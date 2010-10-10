@@ -7,16 +7,13 @@ import com.google.code.twig.annotation.*;
 public class Theater {
 	public String name;
 	public String URL;
-	// String email;
 	public String language;
 
-	// TODO what about @Child Member[] members ?
-	@Embedded
-	public Set<Member> members; // store as fields rather than entities
+	public List<Member> members = new ArrayList<Member>();
 
-	public Set<Show> shows;
+	public List<Show> shows = new ArrayList<Show>();
 
-	public Set<Location> locations;
+	public List<Location> locations = new ArrayList<Location>();
 
-	public Schedule schedule;
+	public List<Performance> performances = new ArrayList<Performance>();
 }

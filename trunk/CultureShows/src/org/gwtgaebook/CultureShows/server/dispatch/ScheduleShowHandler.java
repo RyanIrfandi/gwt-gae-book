@@ -38,21 +38,35 @@ public class ScheduleShowHandler extends
 
 		String userId = "anonymous-asdf";
 
-		Theater theater;
-		Key theaterKey;
-		if (null == action.getTheaterKey() || action.getTheaterKey().isEmpty()) {
+		Theater theater = null;
+		Key theaterKey = null;
+
+		if (!(null == action.getTheaterKey() || action.getTheaterKey()
+				.isEmpty())) {
+			// theaterKey sent by client is not empty
+			try {
+				theaterKey = KeyFactory.stringToKey(action.getTheaterKey());
+			} catch (Exception e) {
+				// invalid key, ignore it
+			}
+		}
+
+		if (null != theaterKey) {
+			theater = ds.load(theaterKey);
+			if (null == theater) {
+				theaterKey = null;
+			} else {
+				// verify userId has access to theater
+				// TODO
+			}
+		}
+
+		if (null == theaterKey) {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
-			// String random = new BigInteger(130, new SecureRandom())
-			// .toString(32);
 			String random = UUID.randomUUID().toString();
 
 			theater = new Theater();
-			// TODO constructor
-			theater.members = new HashSet<Member>();
-			theater.shows = new HashSet<Show>();
-			theater.locations = new HashSet<Location>();
-			theater.schedule = new Schedule();
 
 			theater.name = "anonymous-" + dateFormat.format(date) + "-"
 					+ random;
@@ -63,55 +77,29 @@ public class ScheduleShowHandler extends
 			theater.members.add(member);
 
 			theaterKey = ds.store(theater);
-			// theater = ds.load(Theater.class, theaterKey);
-			// theater = ds
-			// .load(Theater.class, KeyFactory.keyToString(theaterKey));
+			// store creates a Key in the datastore and keeps it in the
+			// ObjectDatastore associated with this theater instance. Basically,
+			// every OD has a Map<Object, Key> which is used to look up the Key
+			// for every operation.
 
-			ds.associate(theater, theaterKey);
-			System.out.println("STORED theater " + theaterKey.toString());
-		} else {
-			// TODO try/catch invalid key
-			theaterKey = KeyFactory.stringToKey(action.getTheaterKey());
-			theater = ds.load(Theater.class, theaterKey);
-
+			System.out.println("STORED theatetr "
+					+ KeyFactory.keyToString(theaterKey));
 		}
 
-		System.out.println("Theater: " + theater.toString());
-		// verify that userId has access to theaterKey
+		System.out.println("Current theater "
+				+ KeyFactory.keyToString(theaterKey));
 
 		Show show = new Show();
 		show.name = action.getShowName();
 
 		theater.shows.add(show);
-		// ds.update(theater);
-		ds.store().instance(show).parent(theater).now();
+		ds.update(theater);
 
-		//
-		//
-		// showKey = find(showName assigned to theaterKey)
-		// if (showKey is empty) {
-		// create and store show
-		// }
-		//
-		// //same with location
-		//
-		// create schedule entry (showKey, locationKey, date) assigned to
-		// theaterKey
-		//
-		// return theaterKey, showKey, locationKey
-		//
-		// Key showKey = ds.store(show, KeyFactory.keyToString(theaterKey));
-
-		// System.out.println("showKey " + KeyFactory.keyToString(showKey));
-
-		// TODO check if theater already exists; if not, create one first
 		// TODO check if show already exists for this theater; if not, create
 		// one first
 		// TODO to improve performance, can we pass keys directly from client?
 		// Need to check user has right to access that data first
 		// TODO don't allow storing shows which aren't part of a theater?
-
-		// TODO check if user has right to given theater first
 
 		// TODO return Schedule model and key
 		return new ScheduleShowResult(KeyFactory.keyToString(theaterKey));
