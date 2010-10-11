@@ -1,9 +1,9 @@
  * [Introduction Introduction] 
  * [SoYouHaveAnIdea So you have an idea]
- * [DataModeling Data modeling]
  * [VisualizingYourApp Visualizing your application]
  * [TheRightToolForTheJob The right tool for the job]
  * [GettingStarted Getting started]
+ * [DataModeling Data modeling]
  * [BuildingLandingPage Building the landing page]
   * widgets, styling, multi-device, i18n, MVP
  * [StoringData Saving schedule in datastore] 
