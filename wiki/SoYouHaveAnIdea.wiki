@@ -65,5 +65,6 @@ You did actually try to do this by yourself first, right? Go on, this chapter wi
 || As Claus, I want to make a reservation so that I know for sure I'll have a place to see the show when I go to theater || 40 ||
 || As Violeta, I want to notify existing reservation owners about changes in schedule so that they find out about it and adjust their plans || 8 ||
 || As Violeta, I want to remind existing reservation owners about shows two days in advance so that I'm sure they didn't forget and minimize the chances of them being late || 8 ||
+|| As Violeta, I want to display all shows on theater website with links to details so that I can have a portfolio || 5 ||
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
