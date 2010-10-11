@@ -23,6 +23,7 @@
  * [x Social networking]
  * [x Opening up to more theater members]
  * [x Analytics]
+ * [x AdSense]
  * [x Enabling offline usage]
  * [x Making reservations]
  * [x Charging money]
