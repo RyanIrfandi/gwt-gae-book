@@ -84,7 +84,7 @@ Here are two possible solutions:
  # store all data on the client until Violeta signs in. One way to store it would be directly in GWT, but we'd lose it all on a page refresh. Another way to store it would be using [http://php-html.net/tutorials/html5-local-storage-guide/ HTML5 web storage] or even cookies since the data amount is small.
  # store data on server by creating entities as soon as they are needed and use a cookie to link them to current anonymous user session. On sign in, assign these entities to the authenticated user.
 
-We'll go with the server solution, as we need to write that code anyway. It will also work on older browsers. We need to be careful to have a script ran periodically which cleans up saved data not assigned to users.
+We'll go with the server solution, as we need to write that code anyway. It will also work on older browsers. We need to be careful to have a script ran periodically which cleans up saved data assigned to anonymous users.
 
 Let us write down some [http://en.wikipedia.org/wiki/Pseudocode pseudocode] of how `ScheduleShowHandler` would work when we'll have full functionality:
 
@@ -132,9 +132,46 @@ return theaterKey, showKey, locationKey
 }}}
 
 
+Before going to actual code, let's talk about...
+
+= Datastore setup =
+By default, twig creates indexes for every entity property, which makes it very usable with no configuration. We'll follow the [http://code.google.com/p/twig-persist/wiki/Performance twig performance advice] and [x set properties to be un-indexed by default]. Our updated data model looks like this
+
+`Show.java`
+{{{
+public class Show {
+	public String name;
+
+	@Index
+	public String nameQuery;
+	// used in queries. It's always trim and lowercase
+
+	public String URL;
+	public int minuteDuration;
+	public String posterURL;
+
+	...
+}
+}}}
+
+We'll also [x shorten kind names], which means less stored data and increases readability in datastore viewer.
+
+Since we'll use the show name in case-insensitive queries, we're storing a copy of name property which is always trimmed and lowercased. 
+
+= One-to-Many relationships =
+(Datastore relationships, that is :)
+
 TODO
 
-Adding shows works now, but a new theater is created for every show. We need the client to remember the current theater and send it with each request. The theater will either be sent from server when it's created, or chosen by Violeta to work on, if she will have multiple theaters.
+= Many-to-Many relationships =
+TODO
+
+= Implementation =
+TODO
+
+= Hey client, remember me? =
+
+Adding shows works now, but a new theater is created for every show. We need the GWT client to remember the current theater and send it with each request. The theater will either be sent from server when it's created, or chosen by Violeta to work on, if she will have multiple theaters.
 
 There are a few possibilities to store data in GWT client as a session:
  * [http://stackoverflow.com/questions/1382088/session-id-cookie-in-gwt-rpc use server sessions], and persist sessions among requests. [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/268ec2887bec95d2/ full sample]
@@ -142,9 +179,44 @@ There are a few possibilities to store data in GWT client as a session:
  * use HTML5 web storage
  * use cookies
 
-For remembering the current theater, we'll go with simplest solution: a cookie.
+For remembering the current theater, we'll go with simplest solution: a cookie. We'll use the same solution to remember the anonymous users between server calls.
 
-TODO
+`ScheduleShow.java` Action and Result generator
+{{{
+public class ScheduleShow {
+	@In(1)
+	String userToken;
+
+	@In(2)
+	String theaterKey;
+
+	@In(3)
+	String showName;
+
+	@Out(1)
+	String errorText; // empty if success
+
+	@Out(2)
+	String theaterKeyOut;
+
+}
+}}}
+
+`LandingPresenter.java`
+{{{
+		dispatcher.execute(new ScheduleShowAction(Cookies
+				.getCookie(Constants.userTokenCookieName), Cookies
+				.getCookie(Constants.theaterCookieName), showName),
+				new DispatchCallback<ScheduleShowResult>() {
+					@Override
+					public void onSuccess(ScheduleShowResult result) {
+						...
+						Cookies.setCookie(Constants.theaterCookieName, result
+								.getTheaterKeyOut());
+					}
+				});
+
+}}}
 
 
 = Exercise =
