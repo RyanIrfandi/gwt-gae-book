@@ -1,4 +1,4 @@
-#Summary Client-server communication
+#summary Client-server communication
 
 <wiki:toc max_depth="2" />
 
