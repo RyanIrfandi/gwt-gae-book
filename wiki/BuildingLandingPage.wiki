@@ -141,11 +141,11 @@ Here's how it was done:
  * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml LandingView.ui.xml] - updated markup, added style names
  * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java?r=184 LandingView.java] - added HTML5 placeholder, required attributes and activated jQuery plugin via [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JSNI]
 
-= Using native JavaScript =
+= Using native !JavaScript =
 
-There are cases when you might want to use native JavaScript rather than pure GWT, such as the one above. See [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JavaScript Native Interface] about how to do that. Here's another example of  [http://www.zackgrossbart.com/hackito/antiptrn-gwt2/ building custom widgets which include native JavaScript]. JSNI is a good choice when you want to reuse existing larger JavaScript functionality (e.g. !jQuery plugins) with easy upgrades to new versions, or sharing your code with other pure JavaScript users.
+There are cases when you might want to use native !JavaScript rather than pure GWT, such as the one above. See [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JavaScript Native Interface] about how to do that. Here's another example of  [http://www.zackgrossbart.com/hackito/antiptrn-gwt2/ building custom GWT widgets which include native JavaScript]. JSNI is a good choice when you want to reuse existing larger JavaScript functionality (e.g. jQuery plugins) with easy upgrades to new versions, or sharing your code with other pure !JavaScript users.
 
-If you are looking for jQuery-like functionality in GWT, there's [http://code.google.com/p/gwtquery/ gwtQuery] ([http://www.youtube.com/watch?v=sl5em1UPuoI video introduction]). !gwtQuery is a better choice when you're writing functionality from scratch as it gives you all GWT advantages over native JavaScript. 
+If you are looking for jQuery-like functionality in GWT, there's [http://code.google.com/p/gwtquery/ gwtQuery] ([http://www.youtube.com/watch?v=sl5em1UPuoI video introduction]). gwtQuery is a better choice when you're writing functionality from scratch as it gives you all GWT advantages over native !JavaScript. 
 
 Again, use the best tool for the job. Therefore an important criteria selection for your tool set should be allowing easy inter-operating with other tools.
 
