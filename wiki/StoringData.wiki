@@ -135,7 +135,7 @@ return theaterKey, showKey, locationKey
 Before going to actual code, let's talk about...
 
 = Datastore setup =
-By default, twig creates indexes for every entity property, which makes it very usable with no configuration. We'll follow the [http://code.google.com/p/twig-persist/wiki/Performance twig performance advice] and [x set properties to be un-indexed by default]. Our updated data model looks like this
+By default, twig creates indexes for every entity property, which makes it very usable with no configuration. We'll follow the [http://code.google.com/p/twig-persist/wiki/Performance twig performance advice] and [x set properties to be un-indexed by default], specifically annotating each desired property to be indexed. Our updated data model looks like this
 
 `Show.java`
 {{{
@@ -154,6 +154,7 @@ public class Show {
 }
 }}}
 
+
 We'll also [x shorten kind names], which means less stored data and increases readability in datastore viewer.
 
 Since we'll use the show name in case-insensitive queries, we're storing a copy of name property which is always trimmed and lowercased. 
@@ -161,6 +162,17 @@ Since we'll use the show name in case-insensitive queries, we're storing a copy 
 = One-to-Many relationships =
 (Datastore relationships, that is :)
 
+There are several alternatives to implement One-to-Many [http://code.google.com/appengine/docs/java/datastore/relationships.html relationships in AppEngine] and [http://code.google.com/p/twig-persist/wiki/Configuration#Parent-Child_Relationships twig].
+
+We'll use
+	parent embedded in Key
+
+
+which is equivalent with http://code.google.com/appengine/docs/java/datastore/relationships.html#Unowned_Relationships
+
+	alternative: add theaterKey to Show, manage yourself instead of using ancestor(). 
+
+???
 TODO
 
 = Many-to-Many relationships =
