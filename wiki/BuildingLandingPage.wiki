@@ -141,6 +141,14 @@ Here's how it was done:
  * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml LandingView.ui.xml] - updated markup, added style names
  * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java?r=184 LandingView.java] - added HTML5 placeholder, required attributes and activated jQuery plugin via [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JSNI]
 
+= Using native JavaScript =
+
+There are cases when you might want to use native JavaScript rather than pure GWT, such as the one above. See [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JavaScript Native Interface] about how to do that. Here's another example of  [http://www.zackgrossbart.com/hackito/antiptrn-gwt2/ building custom widgets which include native JavaScript]. JSNI is a good choice when you want to reuse existing larger JavaScript functionality (e.g. !jQuery plugins) with easy upgrades to new versions, or sharing your code with other pure JavaScript users.
+
+If you are looking for jQuery-like functionality in GWT, there's [http://code.google.com/p/gwtquery/ gwtQuery] ([http://www.youtube.com/watch?v=sl5em1UPuoI video introduction]). !gwtQuery is a better choice when you're writing functionality from scratch as it gives you all GWT advantages over native JavaScript. 
+
+Again, use the best tool for the job. Therefore an important criteria selection for your tool set should be allowing easy inter-operating with other tools.
+
 = Mobile, tablets, TV and other devices =
 Sometimes, you might want to have different views for different screen sizes. The styling above is liquid (resize browser window to try it out) and it works for now. We could have used [http://www.webdesignerwall.com/tutorials/css3-media-queries/ CSS3 media queries] to hide completely the signup sidebar on a small screen. See [http://www.smashingmagazine.com/2010/07/19/how-to-use-css3-media-queries-to-create-a-mobile-version-of-your-website/ another tutorial]. Media queries support [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/86047ca5c364679f/2871b1e5e35be0d1 is still missing] from GWT.
 
