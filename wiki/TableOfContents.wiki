@@ -5,13 +5,13 @@
  * [GettingStarted Getting started]
  * [DataModeling Data modeling]
  * [BuildingLandingPage Building the landing page]
-  * widgets, styling, multi-device, i18n, MVP
+ * [ClientServer Client-server communication]
  * [StoringData Saving schedule in datastore] 
  * [x Listing schedule]
  * [AuthOpenID Authenticating with OpenID]
  * [x Storing data associated to users]
  * [x Data validation]
- * [x Automated Testing]
+ * [x Quality Assurance]
   * client unit testing, UI testing, server testing, performance
  * [x Managing shows, locations, schedule]
  * [x Fields auto-completion]
