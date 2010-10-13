@@ -1,0 +1,242 @@
+#title Client-server communication
+
+<wiki:toc max_depth="2" />
+
+Time to add some functionality! There is some reading you have to do in advance for each section, but it's worth it.
+
+= Pre-requisites =
+
+ * [http://code.google.com/appengine/docs/whatisgoogleappengine.html Google App Engine introduction]
+ * [http://code.google.com/webtoolkit/doc/latest/DevGuideServerCommunication.html Client-server communication]
+ * [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch Client-server communication with gwt-platform]
+
+= Exercise =
+Using what you learned above, start implementing saving performances. Pass the data from client to server and write an `ActionHandler` which just logs a message with the show name.
+
+= Exercise solution =
+
+`shared/dispatch/ScheduleShowAction.java`
+{{{
+package org.gwtgaebook.CultureShows.shared.dispatch;
+
+import com.gwtplatform.dispatch.shared.*;
+
+public class ScheduleShowAction extends UnsecuredActionImpl<ScheduleShowResult> {
+
+	private static final long serialVersionUID = 4621412923270714515L;
+
+	private String showName;
+
+	public ScheduleShowAction(final String showName) {
+		this.showName = showName;
+	}
+
+	/**
+	 * For serialization only.
+	 */
+	@SuppressWarnings("unused")
+	private ScheduleShowAction() {
+	}
+
+	public String getShowName() {
+		return showName;
+	}
+
+}
+}}}
+
+`shared/dispatch/ScheduleShowResult.java`
+{{{
+package org.gwtgaebook.CultureShows.shared.dispatch;
+
+import com.gwtplatform.dispatch.shared.*;
+
+public class ScheduleShowResult implements Result {
+
+	private static final long serialVersionUID = 4621412923270714515L;
+
+	private String response;
+
+	public ScheduleShowResult(final String response) {
+		this.response = response;
+	}
+
+	/**
+	 * For serialization only.
+	 */
+	@SuppressWarnings("unused")
+	private ScheduleShowResult() {
+	}
+
+	public String getResponse() {
+		return response;
+	}
+
+}
+}}}
+
+`server/dispatch/ScheduleShowHandler.java` 
+{{{
+package org.gwtgaebook.CultureShows.server.dispatch;
+
+import com.google.inject.*;
+
+import com.gwtplatform.dispatch.server.*;
+import com.gwtplatform.dispatch.server.actionhandler.*;
+import com.gwtplatform.dispatch.shared.*;
+
+import org.gwtgaebook.CultureShows.shared.dispatch.*;
+
+public class ScheduleShowHandler implements
+		ActionHandler<ScheduleShowAction, ScheduleShowResult> {
+
+	@Override
+	public ScheduleShowResult execute(ScheduleShowAction action,
+			ExecutionContext context) throws ActionException {
+
+		System.out.println("Handler scheduling show " + action.getShowName());
+
+		return new ScheduleShowResult("");
+	}
+
+	@Override
+	public Class<ScheduleShowAction> getActionType() {
+		return ScheduleShowAction.class;
+	}
+
+	@Override
+	public void undo(ScheduleShowAction action, ScheduleShowResult result,
+			ExecutionContext context) throws ActionException {
+		// Not undoable
+	}
+
+}
+}}}
+
+`server/MainHandlerModule.java`
+{{{
+import org.gwtgaebook.CultureShows.shared.dispatch.*;
+import org.gwtgaebook.CultureShows.server.dispatch.*;
+...
+		// bind Actions to ActionHandlers and ActionValidators
+		bindHandler(ScheduleShowAction.class, ScheduleShowHandler.class);
+}}}
+
+`LandingPresenter.java`
+{{{
+...
+import com.google.gwt.user.client.rpc.*;
+import com.gwtplatform.dispatch.client.*;
+import org.gwtgaebook.CultureShows.shared.dispatch.*;
+...
+       private final DispatchAsync dispatcher;
+
+	@Inject
+	public LandingPresenter(EventBus eventBus, MyView view, MyProxy proxy,
+			PlaceManager placeManager, DispatchAsync dispatcher) {
+		super(eventBus, view, proxy);
+		this.placeManager = placeManager;
+		this.dispatcher = dispatcher;
+		getView().setUiHandlers(this);
+
+	}
+
+	@Override
+	public void scheduleShow(Date date, String showName, String locationName) {
+		Log.info("Presenter scheduling on " + date.toString() + " the show "
+				+ showName + " at location " + locationName);
+		dispatcher.execute(new ScheduleShowAction(showName),
+				new AsyncCallback<ScheduleShowResult>() {
+					@Override
+					public void onFailure(Throwable caught) {
+						Log.error("Scheduleing show failed "
+								+ caught.getMessage());
+					}
+
+					@Override
+					public void onSuccess(ScheduleShowResult result) {
+						Log.info("Scheduled show");
+					}
+				});
+	}
+
+}}}
+
+It works, but it's a lot of code to write just to get a string from client to server, isn't it?
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/elements_2.jpg" border="0"  align="right" />
+
+= Auto-generated Action and Result =
+*Pre-requisites*
+ * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Configuring_your_build_environment Configure your build environment] for annotation processing. This is already setup in the template project.
+ * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Generate_Action_and_Result Generating Action and Result]
+
+Instead of Action and Result, we can have only `shared/dispatch/ScheduleShow.java`
+{{{
+package org.gwtgaebook.CultureShows.shared.dispatch;
+
+import com.gwtplatform.annotation.*;
+
+@GenDispatch(isSecure = false)
+public class ScheduleShow {
+	@In(1)
+	String showName;
+
+	@Out(1)
+	String response;
+}
+}}}
+
+= More code cleanup =
+To further reduce the code written for each specific request, we can have an !AsyncCallback wrapper in the form of [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/DispatchCallback.java DispatchCallback]. For now, it can just provide error handling, so we don't have to do that for every call.
+
+Here's the updated !LandingPresenter:
+{{{
+		dispatcher.execute(new ScheduleShowAction(showName),
+				new DispatchCallback<ScheduleShowResult>() {
+					@Override
+					public void onSuccess(ScheduleShowResult result) {
+						Log.info("Scheduled show");
+					}
+				});
+}}}
+
+
+We can also have a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/DispatchActionHandler.java wrapper for ActionHandler]. Using it, `ScheduleShowHandler` becomes
+{{{
+public class ScheduleShowHandler extends
+		DispatchActionHandler<ScheduleShowAction, ScheduleShowResult> {
+
+	@Override
+	public ScheduleShowResult execute(ScheduleShowAction action,
+			ExecutionContext context) throws ActionException {
+
+		System.out.println("Handler scheduling show " + action.getShowName());
+
+		return new ScheduleShowResult("");
+	}
+
+}
+}}}
+
+= Protecting against cross-site request forgeries (XSRF) =
+
+[http://en.wikipedia.org/wiki/Cross-site_request_forgery Cross-site request forgery]
+
+What's the problem we're trying to solve? If Violeta is signed in, and she navigates to badsite.com, then badsite.com can make some actions in our application on behalf of Violeta. Although [http://en.wikipedia.org/wiki/Same_origin_policy same origin policy] prevents badsite.com making !JavaScript calls, badsite.com can still load URLs such as
+{{{
+<img src="http://cultureshows.appspot.com/logout/" />
+}}}
+and log out Violeta for example. Other sites might even perform other actions on GET, such as `delete_contact.php?id=14`. 
+
+One way to protect agains XSRF is to allow only requests which have your site as referral. A more effective way is to issue a token on user login, which can be stored by our application client in a cookie and cannot be accessed by badsite.com, then pass this token on each request and have the server check the token validity.
+
+TODO
+
+= Summary =
+To make a call from client to server, you need these parts
+
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java?r=182 generator for Action and Result data]
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java?r=184 server handler]
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/MainHandlerModule.java binding of Action to ActionHandler and ActionValidator]
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=184 the call itself], using `dispatcher.execute()`
