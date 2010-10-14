@@ -1,3 +1,5 @@
+#summary Saving schedule in datastore
+
 <wiki:toc max_depth="2" />
 
 Time to add some functionality! There is some reading you have to do in advance for each section, but it's worth it.
