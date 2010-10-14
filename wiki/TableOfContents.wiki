@@ -1,6 +1,6 @@
-[Introduction Introduction]
+ [Introduction Introduction]
 
-[SoYouHaveAnIdea So you have an idea]
+ [SoYouHaveAnIdea So you have an idea]
 
  * [VisualizingYourApp Visualizing your application]
  * [TheRightToolForTheJob The right tool for the job]
