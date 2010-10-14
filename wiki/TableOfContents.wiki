@@ -10,7 +10,7 @@
 
 <b>[SoYouHaveAnIdea Clarifying your ideas before writing code]</b>
 
- [SoYouHaveAnIdea#Putting_ideas_in_writing Putting ideas in writing]
+== [SoYouHaveAnIdea#Putting_ideas_in_writing Putting ideas in writing] ==
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /> [SoYouHaveAnIdea#Personae Personae]
 
