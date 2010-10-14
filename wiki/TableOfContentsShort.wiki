@@ -1,4 +1,5 @@
 [TableOfContents Table of contents]
+
 [Introduction Introduction]
 [SoYouHaveAnIdea Clarifying your ideas before writing code]
 [VisualizingYourApp Visualizing your application in action]
