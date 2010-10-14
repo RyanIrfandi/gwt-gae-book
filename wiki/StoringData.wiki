@@ -23,14 +23,6 @@ public class Theater {
 	public String name;
 	public String URL;
 	public String language;
-
-	public List<Member> members = new ArrayList<Member>();
-
-	public List<Show> shows = new ArrayList<Show>();
-
-	public List<Location> locations = new ArrayList<Location>();
-
-	public List<Performance> performances = new ArrayList<Performance>();
 }
 }}}
 
@@ -42,10 +34,11 @@ public class Show {
 	public String name;
 	public String URL;
 	public int minuteDuration;
+	...
 }
 }}}
 
-Here are [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/ complete data models].
+Here are [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/ complete data models], explained in more detail below.
 
 = Storing data =
 In our server handler, we'll do
