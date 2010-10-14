@@ -1,6 +1,10 @@
+#summary Data Modeling
+
 <wiki:toc max_depth="2" />
 
+
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/statue_series_1.jpg" border="0"  align="left" />
+
 
 By now we have a pretty good idea about what our application should do and how it would look. We can start thinking about how to implement it.
 
