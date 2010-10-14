@@ -165,14 +165,14 @@ Since we'll use the show name in case-insensitive queries, we're storing a copy 
 In a relational database, we would do it like this:
 {{{
 CREATE TABLE theater (
-key INTEGER PRIMARY KEY,
-name VARCHAR(128)
+	key INTEGER PRIMARY KEY,
+	name VARCHAR(128)
 );
 
 CREATE TABLE show (
-key INTEGER PRIMARY KEY,
-theaterKey REFERENCES theater (key),
-name VARCHAR(128)
+	key INTEGER PRIMARY KEY,
+	theaterKey REFERENCES theater (key),
+	name VARCHAR(128)
 );
 }}}
 
@@ -187,7 +187,7 @@ showKey = datastore.store().instance(show).parent(theater).now();
 List<Show> shows = datastore.find().type(Show.class).ancestor(theater).returnAll().now();
 }}}
 
-Coming back to the relational database analogy, Show key embeds the theaterKey property. !AppEngine keys are always indexed, even if we disabled indexing for class properties (TODO: is this correct?)
+Coming back to the relational database analogy, Show key embeds the theaterKey reference in its `parentKey` property. !AppEngine keys are always indexed, even if we disabled indexing for class properties (TODO: is this correct?)
 
 
 = Many-to-Many relationships =
