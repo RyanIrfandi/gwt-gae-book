@@ -12,11 +12,11 @@
 
  [SoYouHaveAnIdea#Putting_ideas_in_writing Putting ideas in writing]
 
- * [SoYouHaveAnIdea#Personae Personae]
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /> [SoYouHaveAnIdea#Personae Personae]
 
- * [SoYouHaveAnIdea#Violeta Violeta]
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /> [SoYouHaveAnIdea#Violeta Violeta]
 
-  * [SoYouHaveAnIdea#Stefan Stefan]
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /> [SoYouHaveAnIdea#Stefan Stefan]
 
                [SoYouHaveAnIdea#Claus Claus]
 
