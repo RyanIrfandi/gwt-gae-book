@@ -2,9 +2,9 @@
 
 <b>[Introduction Introduction]</b>
 
-   [Introduction#Why_a_free,_online_book? Why a free, online book?]
+ [Introduction#Why_a_free,_online_book? Why a free, online book?]
 
-   [Introduction#How_to_read_this_book How to read this book]
+  [Introduction#How_to_read_this_book How to read this book]
 
    [Introduction#Acknowledgements Acknowledgements]
 
