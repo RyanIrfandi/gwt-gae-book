@@ -168,7 +168,7 @@ CREATE TABLE theater (
 
 CREATE TABLE show (
 	key INTEGER PRIMARY KEY,
-	theaterKey REFERENCES theater (key),
+	theaterKey INTEGER REFERENCES theater (key),
 	name VARCHAR(128)
 );
 }}}
@@ -188,6 +188,22 @@ Coming back to the relational database analogy, Show key embeds the theaterKey r
 
 
 = Many-to-Many relationships =
+
+In a relational database, we would do it like this:
+{{{
+CREATE TABLE member (
+	key INTEGER PRIMARY KEY,
+	email VARCHAR(128)
+);
+
+CREATE TABLE theaterMember (
+	theaterKey INTEGER REFERENCES theater (key),
+	memberKey INTEGER REFERENCES member (key),
+	role INTEGER NOT NULL,
+	PRIMARY KEY (theaterKey, memberKey)
+);
+}}}
+
 TODO
 
 = Implementation =
