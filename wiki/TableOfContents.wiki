@@ -1,5 +1,7 @@
- * [Introduction Introduction] 
- * [SoYouHaveAnIdea So you have an idea]
+[Introduction Introduction]
+
+[SoYouHaveAnIdea So you have an idea]
+
  * [VisualizingYourApp Visualizing your application]
  * [TheRightToolForTheJob The right tool for the job]
  * [GettingStarted Getting started]
