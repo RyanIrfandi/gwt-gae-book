@@ -214,7 +214,7 @@ http://jboss.org/drools/drools-guvnor.html
 
 
 
-== Appendix: Deployment Setup ==
+== Appendix: Deployment setup ==
 
 We have api.backend.com, which offers REST APIs over SSL such as:
 {{{
