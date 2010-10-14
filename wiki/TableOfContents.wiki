@@ -1,4 +1,6 @@
-= Table of contents =<b>[Introduction Introduction]</b>
+= Table of contents =
+
+<b>[Introduction Introduction]</b>
 
    [Introduction#Why_a_free,_online_book? Why a free, online book?]
 
@@ -177,4 +179,3 @@
    [MoreResources#Miscellaneous Miscellaneous]
 
 <b>[TODO Planned upcoming sections]</b>
-
