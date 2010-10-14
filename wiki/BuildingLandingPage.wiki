@@ -152,7 +152,7 @@ Again, use the best tool for the job. Therefore an important criteria selection 
 = Mobile, tablets, TV and other devices =
 Sometimes, you might want to have different views for different screen sizes. The styling above is liquid (resize browser window to try it out) and it works for now. We could have used [http://www.webdesignerwall.com/tutorials/css3-media-queries/ CSS3 media queries] to hide completely the signup sidebar on a small screen. See [http://www.smashingmagazine.com/2010/07/19/how-to-use-css3-media-queries-to-create-a-mobile-version-of-your-website/ another tutorial]. Media queries support [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/86047ca5c364679f/2871b1e5e35be0d1 is still missing] from GWT.
 
-=  Internationalization =
+= Internationalization =
 
 *Pre-requisites*
  * [http://code.google.com/webtoolkit/doc/latest/DevGuideI18n.html Developer's Guide - Internationalization] 
