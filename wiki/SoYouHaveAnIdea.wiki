@@ -1,4 +1,4 @@
-#summary Clarify your ideas before writing code
+#summary Clarifying your ideas before writing code
 
 <wiki:toc max_depth="2" />
 
