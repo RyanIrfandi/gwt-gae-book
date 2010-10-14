@@ -162,18 +162,33 @@ Since we'll use the show name in case-insensitive queries, we're storing a copy 
 = One-to-Many relationships =
 (Datastore relationships, that is :)
 
+In a relational database, we would do it like this:
+{{{
+CREATE TABLE theater (
+key INTEGER PRIMARY KEY,
+name VARCHAR(128)
+);
+
+CREATE TABLE show (
+key INTEGER PRIMARY KEY,
+theaterKey REFERENCES theater (key),
+name VARCHAR(128)
+);
+}}}
+
 There are several alternatives to implement One-to-Many [http://code.google.com/appengine/docs/java/datastore/relationships.html relationships in AppEngine] and [http://code.google.com/p/twig-persist/wiki/Configuration#Parent-Child_Relationships twig].
 
-We'll use
-	parent embedded in Key
+We'll take advantage of [http://code.google.com/appengine/docs/java/javadoc/com/google/appengine/api/datastore/Key.html Keys] being able to [http://code.google.com/appengine/docs/java/datastore/creatinggettinganddeletingdata.html#Keys contain a reference to parent entity] and that [http://code.google.com/appengine/docs/java/datastore/queriesandindexes.html#Queries_on_Keys Keys can be queried]. We can leave our data models as they are, and use them like this
+{{{
+//store shows belonging to a theater
+showKey = datastore.store().instance(show).parent(theater).now();
 
+//query for shows belonging to a theater instance
+List<Show> shows = datastore.find().type(Show.class).ancestor(theater).returnAll().now();
+}}}
 
-which is equivalent with http://code.google.com/appengine/docs/java/datastore/relationships.html#Unowned_Relationships
+Coming back to the relational database analogy, Show key embeds the theaterKey property. !AppEngine keys are always indexed, even if we disabled indexing for class properties (TODO: is this correct?)
 
-	alternative: add theaterKey to Show, manage yourself instead of using ancestor(). 
-
-???
-TODO
 
 = Many-to-Many relationships =
 TODO
