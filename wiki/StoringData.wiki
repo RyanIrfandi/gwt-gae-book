@@ -128,6 +128,8 @@ return theaterKey, showKey, locationKey
 Before going to actual code, let's talk about...
 
 = Datastore setup =
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/road_home.jpg" border="0"  align="right" />
+
 By default, twig creates indexes for every entity property, which makes it very usable with no configuration. We'll follow the [http://code.google.com/p/twig-persist/wiki/Performance twig performance advice] and [x set properties to be un-indexed by default], specifically annotating each desired property to be indexed. Our updated data model looks like this
 
 `Show.java`
