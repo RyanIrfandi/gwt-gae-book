@@ -1,12 +1,12 @@
 = Table of contents =
 
-<b>[Introduction Introduction]</b>
+== [Introduction Introduction] ==
 
-&nbsp;[Introduction#Why_a_free,_online_book? Why a free, online book?]
+ === [Introduction#Why_a_free,_online_book? Why a free, online book?] ===
 
-&nbsp;&nbsp;&nbsp;[Introduction#How_to_read_this_book How to read this book]
 
-<pre>   </pre>[Introduction#Acknowledgements Acknowledgements]
+ === [Introduction#How_to_read_this_book How to read this book] ===
+  === [Introduction#Acknowledgements Acknowledgements] ===
 
 <b>[SoYouHaveAnIdea Clarifying your ideas before writing code]</b>
 
