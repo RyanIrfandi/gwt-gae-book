@@ -19,7 +19,7 @@ Violeta is the theater company manager. She works with the group to schedule sho
 == Stefan ==
 Stefan is an actor in the theater company. He also has a job and knows how to use computers not only for email, but also to send newsletters to publications, to publish show photos on Facebook and to discuss with theater website designers for making updates such as shows schedule, description and photos.
 
-==  Claus ==
+== Claus ==
 Claus loves to go to theater shows. She would like to see what shows are scheduled in her city for the next two weeks, so she can make plans with her friends.
 
 = Expressing personae needs = 
