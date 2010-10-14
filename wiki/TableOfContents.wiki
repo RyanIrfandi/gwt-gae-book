@@ -10,11 +10,11 @@
 
 <b>[SoYouHaveAnIdea Clarifying your ideas before writing code]</b>
 
-               [SoYouHaveAnIdea#Putting_ideas_in_writing Putting ideas in writing]
+[SoYouHaveAnIdea#Putting_ideas_in_writing Putting ideas in writing]
 
-               [SoYouHaveAnIdea#Personae Personae]
+ * [SoYouHaveAnIdea#Personae Personae]
 
-               [SoYouHaveAnIdea#Violeta Violeta]
+ * [SoYouHaveAnIdea#Violeta Violeta]
 
                [SoYouHaveAnIdea#Stefan Stefan]
 
