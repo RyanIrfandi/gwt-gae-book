@@ -1,3 +1,5 @@
+#summary Getting started
+
 <wiki:toc max_depth="2" />
 
 = Environment Setup =
