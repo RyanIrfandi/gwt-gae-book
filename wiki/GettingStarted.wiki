@@ -11,7 +11,7 @@ Setup [http://code.google.com/webtoolkit/usingeclipse.html Eclipse]
 
 [http://eclipse-cs.sourceforge.net/ Checkstyle]
 
-==  Useful Eclipse preferences ==
+== Useful Eclipse preferences ==
 Window > Preferences > Java > Editor > Save actions > Format source code
 
 
