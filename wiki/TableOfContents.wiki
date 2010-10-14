@@ -63,7 +63,7 @@
  ==== [BuildingLandingPage#Exercise Exercise] ====
  ==== [BuildingLandingPage#Widgets Widgets] ====
  ==== [BuildingLandingPage#Styling Styling] ====
- ==== [BuildingLandingPage#Using_native_!JavaScript Using native !JavaScript] ====
+ ==== [BuildingLandingPage#Using_native_JavaScript Using native JavaScript] ====
  ==== [BuildingLandingPage#Mobile,_tablets,_TV_and_other_devices Mobile, tablets, TV and other devices] ====
  ==== [BuildingLandingPage#Internationalization Internationalization] ====
  ==== [BuildingLandingPage#Model-View-Presenter_(MVP) Model-View-Presenter (MVP)] ====
