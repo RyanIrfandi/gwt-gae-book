@@ -1,13 +1,24 @@
 [TableOfContents Table of contents]
 
 [Introduction Introduction]
+
 [SoYouHaveAnIdea Clarifying your ideas before writing code]
+
 [VisualizingYourApp Visualizing your application in action]
+
 [TheRightToolForTheJob Are you using the right tool for the job?]
+
 [GettingStarted Getting started]
+
 [DataModeling Data Modeling]
+
 [BuildingLandingPage Building the landing page]
+
 [ClientServer Client-server communication]
+
 [StoringData Saving schedule in datastore]
+
 [MoreResources More resources]
+
 [TODO Planned upcoming sections]
+
