@@ -1,12 +1,12 @@
 = Table of contents =
 
 
-== [Introduction Introduction] ==
+=== [Introduction Introduction] ===
  * [Introduction#Why_a_free,_online_book? Why a free, online book?] <br/>
  * [Introduction#How_to_read_this_book How to read this book] <br/>
  * [Introduction#Acknowledgements Acknowledgements] <br/>
 
-== [SoYouHaveAnIdea Clarifying your ideas before writing code] ==
+=== [SoYouHaveAnIdea Clarifying your ideas before writing code] ===
  * [SoYouHaveAnIdea#Putting_ideas_in_writing Putting ideas in writing] <br/>
  * [SoYouHaveAnIdea#Personae Personae] <br/>
   * [SoYouHaveAnIdea#Violeta Violeta] <br/>
