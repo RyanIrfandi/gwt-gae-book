@@ -98,32 +98,40 @@ if (anonymous) {
 	userId = AppEngineUser.getId()
 }
 
+// setup member
+if there are existing members with userId {
+	load member
+} else {
+	store new member
+}
+
+// setup theater
 if (theaterKey is not empty) {
 	load theater //might not exist, key may be invalid
-	if (theater loaded) {
-		verify userId has access to theater, exception if not
-	} else {
+	if (null == theater) {
 		theaterKey = null	
+	} else {
+		verify memberKey has access to theater, exception if not
 	}
 }
 
 if (theaterKey is empty) {
 	create theater instance with name "anonymous-YYYY-MM-DD-{random}"
 	theaterKey = store(theater)
-	create member(userId)
 	assign member to theater with role administrator
 }
 
+// setup show
 showKey = find(showName assigned to theaterKey)
 if (showKey is empty) {
-	create and store show 
+	create and store show with parent=theater 
 }
 
 //same with location
 
-create perfomance entry (showKey, locationKey, date) assigned to theaterKey
+store(performance)
 
-return theaterKey, showKey, locationKey
+return theaterKey, ...
 }}}
 
 
@@ -206,10 +214,193 @@ CREATE TABLE theaterMember (
 );
 }}}
 
-TODO
+
+We'll go with the same approach as in relational databases and then optimize it for AppEngine by [http://en.wikipedia.org/wiki/Database_normalization denormalizing].
+ 
+`TheaterMemberJoin` model
+{{{
+public class TheaterMemberJoin {
+	public enum Role {
+		ADMINISTRATOR, ARTIST, ASSISTANT
+	};
+
+	@Index
+	public Key theaterKey;
+	@Index
+	public Key memberKey;
+	@Index
+	public Role role;
+}
+}}}
+
+
+To add a Member to a Theater, we need just one query on `TheaterMemberJoin`.
+
+This enables us to answer the two basic questions
+* what Members does a Theater have and with what roles?
+* what Theaters is a Member part of?
+
+However, to display a list of Members for a Theater, we need to
+* run a query to get all member keys and roles
+* for each member, run a query to get its details
+
+If we consider that we actually don't need ALL Member information in thist list, and storage is cheap, we can optimize reading by denormalizing our model and storing a part of Member data in the Join model. We need email and name to get a Member listing, so let's add them
+{{{
+public class TheaterMemberJoin {
+	...
+	// denormalized
+	public String theaterName;
+
+	public String memberName;
+	public String memberEmail;
+}
+}}}
+
+Now getting a list of Members for a Theater is one query, adding a Member to a Theater is still one write, but changing a Member email requires two writes. We don't do that often, so we're good.
+
+When thinking how to implement your models, consider if you are doings reads often than writes and make the choices that are best for your project. If you are doing way many more readings than updates, consider storing a list of Members needed data embedded inside the Theater model. You will need two writes for an update in this case.
+
+Hopefully we'll have lots of read requests for Performances, so there too we'll keep copies of Show and Location properties.
+
+*Resources*
+ * [http://blog.arbingersys.com/2008/04/google-app-engine-better-many-to-many.html article about many to many], with [http://groups.google.com/group/google-appengine/browse_thread/thread/e9464ceb131c726f group discussion]
+ * [http://stackoverflow.com/questions/1376814/listproperty-of-keys-vs-many-to-many-in-app-engine other approaches]
+
 
 = Implementation =
-TODO
+
+Here are the relevant parts from `ScheduleShowHandler`, see code repository for [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java full latest source].
+{{{
+		// authentication
+		// TODO anonymous = (AppEngineUser is not signed in)
+
+		if (anonymous) {
+			userId = "anonymous-" + action.getUserToken();
+			// prefix prevents client setting valid user IDs and overwriting
+			// their data
+			// issue: client can overwrite any anonymous user data by setting a
+			// matching RandomToken. That's ok.
+		} else {
+			// TODO set userId
+		}
+
+		// setup member
+		// does this member already exist?
+		List<Member> members = datastore.find().type(Member.class).addFilter(
+				"userId", FilterOperator.EQUAL, userId).returnAll().now();
+		if (members.size() > 0) {
+			// TODO log error if size != 1
+			member = members.get(0);
+			memberKey = datastore.associatedKey(member);
+		} else {
+			// store member
+			// TODO if signed in, fill email, language...
+			member = new Member();
+			member.userId = userId;
+			memberKey = datastore.store(member);
+
+		}
+
+		// setup theater
+		if (!(null == action.getTheaterKey() || action.getTheaterKey()
+				.isEmpty())) {
+			// theaterKey sent by client is not empty
+			try {
+				theaterKey = KeyFactory.stringToKey(action.getTheaterKey());
+			} catch (Exception e) {
+				// invalid key, ignore it
+			}
+		}
+
+		if (null != theaterKey) {
+			theater = datastore.load(theaterKey);
+			if (null == theater) {
+				theaterKey = null;
+			} else {
+				// verify member has access to theater with role allowing
+				// performance scheduling
+				List<TheaterMemberJoin> tmjs = datastore.find().type(
+						TheaterMemberJoin.class).addFilter("theaterKey",
+						FilterOperator.EQUAL, theaterKey).addFilter(
+						"memberKey", FilterOperator.EQUAL, memberKey)
+						.returnAll().now();
+				if (tmjs.size() > 0) {
+					// has access
+				} else {
+					return new ScheduleShowResult(
+							"You don't have access to this theater", "");
+				}
+
+			}
+		}
+
+		if (null == theaterKey) {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = new Date();
+			String random = UUID.randomUUID().toString();
+
+			theater = new Theater();
+
+			theater.name = "anonymous-" + dateFormat.format(date) + "-"
+					+ random;
+			// store creates a Key in the datastore and keeps it in the
+			// ObjectDatastore associated with this theater instance. Basically,
+			// every OD has a Map<Object, Key> which is used to look up the Key
+			// for every operation.
+			theaterKey = datastore.store(theater);
+
+			// assign member to theater
+			tmj = new TheaterMemberJoin();
+			tmj.theaterKey = theaterKey;
+			tmj.memberKey = memberKey;
+			tmj.role = Role.ADMINISTRATOR;
+
+			tmj.theaterName = theater.name;
+			tmj.memberEmail = member.email;
+			tmj.memberName = member.name;
+
+			datastore.store(tmj);
+		}
+
+		// setup show
+		// does show already exist?
+		show = new Show();
+		show.setName(action.getShowName());
+
+		// query for shows belonging to a theater instance
+		List<Show> shows = datastore.find().type(Show.class).ancestor(theater)
+				.addFilter("nameQuery", FilterOperator.EQUAL, show.nameQuery)
+				.returnAll().now();
+		if (shows.size() > 0) {
+			// TODO log error if size != 1
+			show = shows.get(0);
+			showKey = datastore.associatedKey(show);
+		} else {
+			// store show belonging to a theater
+			showKey = datastore.store().instance(show).parent(theater).now();
+		}
+
+		// TODO setup location
+
+		// setup performance
+		performance = new Performance();
+		performance.showKey = showKey;
+		// performance.locationKey = locationKey;
+
+		performance.theaterKey = theaterKey;
+		performance.showName = show.getName();
+		performance.showWebsiteURL = show.websiteURL;
+		performanceKey = datastore.store(performance);
+
+}}}
+
+
+= Exercise =
+Enhance performances to store not only shows, but also locations and date. 
+
+= Exercise solution =
+See [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java ScheduleShowHandler full latest source].
+
 
 = Hey client, remember me? =
 
@@ -260,13 +451,6 @@ public class ScheduleShow {
 
 }}}
 
-
-= Exercise =
-Enhance performances to store not only shows, but also locations and date. 
-
-
-= Exercise solution =
-...
 
 
 
