@@ -41,7 +41,8 @@ foreach ($docs as $doc) {
 			$indent = $matches[1][$key];
 			$indent = str_replace("=", " ", $indent);
 			
-			$tocDetail .= $indent . "==== [$doc#" . str_replace(" ", "_", $label) . " $label] ====\n";
+//			$tocDetail .= $indent . "==== [$doc#" . str_replace(" ", "_", $label) . " $label] ====\n";
+			$tocDetail .= $indent . "* [$doc#" . str_replace(" ", "_", $label) . " $label] <br/>\n";
 		}
 
 	}

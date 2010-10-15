@@ -2,102 +2,102 @@
 
 
 == [Introduction Introduction] ==
- ==== [Introduction#Why_a_free,_online_book? Why a free, online book?] ====
- ==== [Introduction#How_to_read_this_book How to read this book] ====
- ==== [Introduction#Acknowledgements Acknowledgements] ====
+ * [Introduction#Why_a_free,_online_book? Why a free, online book?] <br/>
+ * [Introduction#How_to_read_this_book How to read this book] <br/>
+ * [Introduction#Acknowledgements Acknowledgements] <br/>
 
 == [SoYouHaveAnIdea Clarifying your ideas before writing code] ==
- ==== [SoYouHaveAnIdea#Putting_ideas_in_writing Putting ideas in writing] ====
- ==== [SoYouHaveAnIdea#Personae Personae] ====
-  ==== [SoYouHaveAnIdea#Violeta Violeta] ====
-  ==== [SoYouHaveAnIdea#Stefan Stefan] ====
-  ==== [SoYouHaveAnIdea#Claus Claus] ====
- ==== [SoYouHaveAnIdea#Expressing_personae_needs Expressing personae needs] ====
-  ==== [SoYouHaveAnIdea#User_stories User stories] ====
- ==== [SoYouHaveAnIdea#Backlog_grooming Backlog grooming] ====
- ==== [SoYouHaveAnIdea#Exercise Exercise] ====
- ==== [SoYouHaveAnIdea#Culture_Shows_product_backlog Culture Shows product backlog] ====
- ==== [SoYouHaveAnIdea#Culture_Shows_product_backlog_(for_real) Culture Shows product backlog (for real)] ====
+ * [SoYouHaveAnIdea#Putting_ideas_in_writing Putting ideas in writing] <br/>
+ * [SoYouHaveAnIdea#Personae Personae] <br/>
+  * [SoYouHaveAnIdea#Violeta Violeta] <br/>
+  * [SoYouHaveAnIdea#Stefan Stefan] <br/>
+  * [SoYouHaveAnIdea#Claus Claus] <br/>
+ * [SoYouHaveAnIdea#Expressing_personae_needs Expressing personae needs] <br/>
+  * [SoYouHaveAnIdea#User_stories User stories] <br/>
+ * [SoYouHaveAnIdea#Backlog_grooming Backlog grooming] <br/>
+ * [SoYouHaveAnIdea#Exercise Exercise] <br/>
+ * [SoYouHaveAnIdea#Culture_Shows_product_backlog Culture Shows product backlog] <br/>
+ * [SoYouHaveAnIdea#Culture_Shows_product_backlog_(for_real) Culture Shows product backlog (for real)] <br/>
 
 == [VisualizingYourApp Visualizing your application in action] ==
- ==== [VisualizingYourApp#Mockups Mockups] ====
-  ==== [VisualizingYourApp#Exercise Exercise] ====
-  ==== [VisualizingYourApp#Landing_page Landing page] ====
- ==== [VisualizingYourApp#Get_feedback Get feedback] ====
+ * [VisualizingYourApp#Mockups Mockups] <br/>
+  * [VisualizingYourApp#Exercise Exercise] <br/>
+  * [VisualizingYourApp#Landing_page Landing page] <br/>
+ * [VisualizingYourApp#Get_feedback Get feedback] <br/>
 
 == [TheRightToolForTheJob Are you using the right tool for the job?] ==
- ==== [TheRightToolForTheJob#Analysis_of_using_GWT_for_a_large_UI_project Analysis of using GWT for a large UI project] ====
-  ==== [TheRightToolForTheJob#Goals Goals] ====
-  ==== [TheRightToolForTheJob#Web_applications_paradigm_alternatives Web applications paradigm alternatives] ====
-  ==== [TheRightToolForTheJob#Google_Web_Toolkit_(GWT) Google Web Toolkit (GWT)] ====
-   ==== [TheRightToolForTheJob#Engineering Engineering] ====
-   ==== [TheRightToolForTheJob#Cross-functional_team_collaboration Cross-functional team collaboration] ====
-    ==== [TheRightToolForTheJob#Scrum_teams Scrum teams] ====
-    ==== [TheRightToolForTheJob#User_experience_designers_and_graphic_designers User experience designers and graphic designers] ====
-    ==== [TheRightToolForTheJob#Product_managers_and_support Product managers and support] ====
-    ==== [TheRightToolForTheJob#Operations Operations] ====
-  ==== [TheRightToolForTheJob#More_info_on_GWT More info on GWT] ====
-  ==== [TheRightToolForTheJob#Recommendation Recommendation] ====
-  ==== [TheRightToolForTheJob#Appendix:_Evaluating_GWT_3rd_party_libraries Appendix: Evaluating GWT 3rd party libraries] ====
-  ==== [TheRightToolForTheJob#Appendix:_GWT_apps_at_Google Appendix: GWT apps at Google] ====
-  ==== [TheRightToolForTheJob#Appendix:_Cool_GWT_apps Appendix: Cool GWT apps] ====
-  ==== [TheRightToolForTheJob#Appendix:_Deployment_Setup Appendix: Deployment Setup] ====
+ * [TheRightToolForTheJob#Analysis_of_using_GWT_for_a_large_UI_project Analysis of using GWT for a large UI project] <br/>
+  * [TheRightToolForTheJob#Goals Goals] <br/>
+  * [TheRightToolForTheJob#Web_applications_paradigm_alternatives Web applications paradigm alternatives] <br/>
+  * [TheRightToolForTheJob#Google_Web_Toolkit_(GWT) Google Web Toolkit (GWT)] <br/>
+   * [TheRightToolForTheJob#Engineering Engineering] <br/>
+   * [TheRightToolForTheJob#Cross-functional_team_collaboration Cross-functional team collaboration] <br/>
+    * [TheRightToolForTheJob#Scrum_teams Scrum teams] <br/>
+    * [TheRightToolForTheJob#User_experience_designers_and_graphic_designers User experience designers and graphic designers] <br/>
+    * [TheRightToolForTheJob#Product_managers_and_support Product managers and support] <br/>
+    * [TheRightToolForTheJob#Operations Operations] <br/>
+  * [TheRightToolForTheJob#More_info_on_GWT More info on GWT] <br/>
+  * [TheRightToolForTheJob#Recommendation Recommendation] <br/>
+  * [TheRightToolForTheJob#Appendix:_Evaluating_GWT_3rd_party_libraries Appendix: Evaluating GWT 3rd party libraries] <br/>
+  * [TheRightToolForTheJob#Appendix:_GWT_apps_at_Google Appendix: GWT apps at Google] <br/>
+  * [TheRightToolForTheJob#Appendix:_Cool_GWT_apps Appendix: Cool GWT apps] <br/>
+  * [TheRightToolForTheJob#Appendix:_Deployment_Setup Appendix: Deployment Setup] <br/>
 
 == [GettingStarted Getting started] ==
- ==== [GettingStarted#Environment_Setup Environment Setup] ====
-  ==== [GettingStarted#Useful_Eclipse_plugins Useful Eclipse plugins] ====
-  ==== [GettingStarted#Useful_Eclipse_preferences Useful Eclipse preferences] ====
- ==== [GettingStarted#Getting_Started Getting Started] ====
- ==== [GettingStarted#Book_source_code Book source code] ====
- ==== [GettingStarted#What's_inside_the_template_project What's inside the template project] ====
- ==== [GettingStarted#Useful_tools Useful tools] ====
+ * [GettingStarted#Environment_Setup Environment Setup] <br/>
+  * [GettingStarted#Useful_Eclipse_plugins Useful Eclipse plugins] <br/>
+  * [GettingStarted#Useful_Eclipse_preferences Useful Eclipse preferences] <br/>
+ * [GettingStarted#Getting_Started Getting Started] <br/>
+ * [GettingStarted#Book_source_code Book source code] <br/>
+ * [GettingStarted#What's_inside_the_template_project What's inside the template project] <br/>
+ * [GettingStarted#Useful_tools Useful tools] <br/>
 
 == [DataModeling Data Modeling] ==
- ==== [DataModeling#Data_modeling Data modeling] ====
-  ==== [DataModeling#Exercise Exercise] ====
-  ==== [DataModeling#Exercise_solution:_Entity_relationship_model Exercise solution: Entity relationship model] ====
-  ==== [DataModeling#Notes Notes] ====
+ * [DataModeling#Data_modeling Data modeling] <br/>
+  * [DataModeling#Exercise Exercise] <br/>
+  * [DataModeling#Exercise_solution:_Entity_relationship_model Exercise solution: Entity relationship model] <br/>
+  * [DataModeling#Notes Notes] <br/>
 
 == [BuildingLandingPage Building the landing page] ==
- ==== [BuildingLandingPage#Page_Layout Page Layout] ====
- ==== [BuildingLandingPage#Exercise Exercise] ====
- ==== [BuildingLandingPage#Widgets Widgets] ====
- ==== [BuildingLandingPage#Styling Styling] ====
- ==== [BuildingLandingPage#Using_native_JavaScript Using native JavaScript] ====
- ==== [BuildingLandingPage#Mobile,_tablets,_TV_and_other_devices Mobile, tablets, TV and other devices] ====
- ==== [BuildingLandingPage#Internationalization Internationalization] ====
- ==== [BuildingLandingPage#Model-View-Presenter_(MVP) Model-View-Presenter (MVP)] ====
-  ==== [BuildingLandingPage#Exercise Exercise] ====
-  ==== [BuildingLandingPage#Exercise_solution Exercise solution] ====
- ==== [BuildingLandingPage#Resources Resources] ====
+ * [BuildingLandingPage#Page_Layout Page Layout] <br/>
+ * [BuildingLandingPage#Exercise Exercise] <br/>
+ * [BuildingLandingPage#Widgets Widgets] <br/>
+ * [BuildingLandingPage#Styling Styling] <br/>
+ * [BuildingLandingPage#Using_native_JavaScript Using native JavaScript] <br/>
+ * [BuildingLandingPage#Mobile,_tablets,_TV_and_other_devices Mobile, tablets, TV and other devices] <br/>
+ * [BuildingLandingPage#Internationalization Internationalization] <br/>
+ * [BuildingLandingPage#Model-View-Presenter_(MVP) Model-View-Presenter (MVP)] <br/>
+  * [BuildingLandingPage#Exercise Exercise] <br/>
+  * [BuildingLandingPage#Exercise_solution Exercise solution] <br/>
+ * [BuildingLandingPage#Resources Resources] <br/>
 
 == [ClientServer Client-server communication] ==
- ==== [ClientServer#Pre-requisites Pre-requisites] ====
- ==== [ClientServer#Exercise Exercise] ====
- ==== [ClientServer#Exercise_solution Exercise solution] ====
- ==== [ClientServer#Auto-generated_Action_and_Result Auto-generated Action and Result] ====
- ==== [ClientServer#More_code_cleanup More code cleanup] ====
- ==== [ClientServer#Protecting_against_cross-site_request_forgeries_(XSRF) Protecting against cross-site request forgeries (XSRF)] ====
- ==== [ClientServer#Summary Summary] ====
+ * [ClientServer#Pre-requisites Pre-requisites] <br/>
+ * [ClientServer#Exercise Exercise] <br/>
+ * [ClientServer#Exercise_solution Exercise solution] <br/>
+ * [ClientServer#Auto-generated_Action_and_Result Auto-generated Action and Result] <br/>
+ * [ClientServer#More_code_cleanup More code cleanup] <br/>
+ * [ClientServer#Protecting_against_cross-site_request_forgeries_(XSRF) Protecting against cross-site request forgeries (XSRF)] <br/>
+ * [ClientServer#Summary Summary] <br/>
 
 == [StoringData Saving schedule in datastore] ==
- ==== [StoringData#Data_model Data model] ====
- ==== [StoringData#Storing_data Storing data] ====
- ==== [StoringData#Linking_shows_to_a_theater Linking shows to a theater] ====
- ==== [StoringData#Exercise Exercise] ====
- ==== [StoringData#Exercise_solution Exercise solution] ====
- ==== [StoringData#Datastore_setup Datastore setup] ====
- ==== [StoringData#One-to-Many_relationships One-to-Many relationships] ====
- ==== [StoringData#Many-to-Many_relationships Many-to-Many relationships] ====
- ==== [StoringData#Implementation Implementation] ====
- ==== [StoringData#Hey_client,_remember_me? Hey client, remember me?] ====
- ==== [StoringData#Exercise Exercise] ====
- ==== [StoringData#Exercise_solution Exercise solution] ====
- ==== [StoringData#Resources Resources] ====
+ * [StoringData#Data_model Data model] <br/>
+ * [StoringData#Storing_data Storing data] <br/>
+ * [StoringData#Linking_shows_to_a_theater Linking shows to a theater] <br/>
+ * [StoringData#Exercise Exercise] <br/>
+ * [StoringData#Exercise_solution Exercise solution] <br/>
+ * [StoringData#Datastore_setup Datastore setup] <br/>
+ * [StoringData#One-to-Many_relationships One-to-Many relationships] <br/>
+ * [StoringData#Many-to-Many_relationships Many-to-Many relationships] <br/>
+ * [StoringData#Implementation Implementation] <br/>
+ * [StoringData#Hey_client,_remember_me? Hey client, remember me?] <br/>
+ * [StoringData#Exercise Exercise] <br/>
+ * [StoringData#Exercise_solution Exercise solution] <br/>
+ * [StoringData#Resources Resources] <br/>
 
 == [MoreResources More resources] ==
- ==== [MoreResources#Discussion_groups Discussion groups] ====
- ==== [MoreResources#Blogs Blogs] ====
- ==== [MoreResources#Miscellaneous Miscellaneous] ====
+ * [MoreResources#Discussion_groups Discussion groups] <br/>
+ * [MoreResources#Blogs Blogs] <br/>
+ * [MoreResources#Miscellaneous Miscellaneous] <br/>
 
 == [TODO Planned upcoming sections] ==
