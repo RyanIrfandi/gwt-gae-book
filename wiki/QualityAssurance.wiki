@@ -1,5 +1,22 @@
-#summary Quality Assurance
+#summary Quality assurance
 
 <wiki:toc max_depth="2" />
+
+= Introduction =
+peer reviews - requirements, spec, code
+
+manual testing - last
+
+= Client unit testing =
+
+= UI testing =
+
+= Server testing =
+
+= Performance testing =
+
+= More ways to increase software quality =
+findbugs tool
+
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
