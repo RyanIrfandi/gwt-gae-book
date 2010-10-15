@@ -2,11 +2,7 @@
 
 Here are some sections I'd like to add, as time allows:
 
- * Listing schedule
- * Authenticating with OpenID
- * Data validation
- * Quality Assurance
-  * client unit testing, UI testing, server testing, performance
+
  * Managing theaters, shows, locations, schedule
  * Landing page UX enhancements
   * Form fields auto-completion
@@ -18,6 +14,7 @@ Here are some sections I'd like to add, as time allows:
   * error handling, loading indicator, caching
  * Social networking
  * Opening up to more theater members (adding actors, assistants)
+ * Allowing public to browse our data
  * Analytics
  * Advertise with !AdSense
  * Enabling offline usage
