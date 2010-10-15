@@ -410,7 +410,7 @@ Here are the relevant parts from `ScheduleShowHandler`, see code repository for 
 Enhance performances to store not only shows, but also locations and date. 
 
 = Exercise solution =
-See [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java ScheduleShowHandler full latest source].
+See [http://code.google.com/p/gwt-gae-book/source/detail?r=304 adding location source revision].
 
 
 = Hey client, remember me? =
