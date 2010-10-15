@@ -2,6 +2,8 @@
 
 <wiki:toc max_depth="2" />
 
+There is some reading you have to do in advance for each section, but it's worth it.
+
 = Page Layout =
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/grunge.jpg" border="0"  align="right" />
 There are two approaches to setup a page layout in GWT:
