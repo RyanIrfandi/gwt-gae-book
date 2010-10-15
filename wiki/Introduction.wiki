@@ -26,7 +26,7 @@ There are also some exercises. Give your best shot at solving them rather than j
 [http://code.google.com/p/gwt-gae-book/issues/entry Send feedback] using the link at the bottom of every page any time you have an addition to make or if something doesn't make sense. This book is a living material and you can help improve it.
 
 = Acknowledgements =
-These materials are not by far built from scratch. Most of them are usually adapted from or referencing existing online materials. Many thanks to the countless people which produced them. In particular, I'd like to thank for their contributions to GWT/GAE, guidance and help to Philippe Beaudoin, Christian Goudreau, Zack Grossbart.
+These materials are not by far built from scratch. Most of them are usually adapted from or referencing existing online materials. Many thanks to the countless people which produced them. In particular, I'd like to thank for their contributions to GWT/GAE, guidance and help to Philippe Beaudoin, Christian Goudreau, John Patterson, Zack Grossbart.
 
 
 _Marius Andreiana_
