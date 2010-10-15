@@ -19,11 +19,14 @@ Remember [DataModeling our data modeling] ? Let's code it!
 {{{
 package org.gwtgaebook.CultureShows.shared.model;
 
-import java.util.*;
-
 public class Theater {
 	public String name;
-	public String URL;
+	public String websiteURL;
+	public String photoURL;
+	public String phone;
+	public String locality;
+	public String region;
+	public String countryName;
 	public String language;
 }
 }}}
@@ -140,7 +143,7 @@ Before going to actual code, let's talk about...
 == Datastore setup ==
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/road_home.jpg" border="0"  align="right" />
 
-By default, twig creates indexes for every entity property, which makes it very usable with no configuration. We'll follow the [http://code.google.com/p/twig-persist/wiki/Performance twig performance advice] and [x set properties to be un-indexed by default], specifically annotating each desired property to be indexed. Our updated data model looks like this
+By default, twig creates indexes for every entity property, which makes it very usable with no configuration. We'll follow the [http://code.google.com/p/twig-persist/wiki/Performance twig performance advice] and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/AnnotationObjectDatastoreProvider.java set properties to be un-indexed by default], specifically annotating each desired property to be indexed. Our updated data model looks like this
 
 `Show.java`
 {{{
@@ -160,7 +163,7 @@ public class Show {
 }}}
 
 
-We'll also [x shorten kind names], which means less stored data and increases readability in datastore viewer.
+We'll also [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/MainHandlerModule.java shorten kind names], which means less stored data and increases readability in datastore viewer.
 
 Since we'll use the show name in case-insensitive queries, we're storing a copy of name property which is always trimmed and lowercased. 
 
