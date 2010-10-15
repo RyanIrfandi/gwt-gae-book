@@ -1,4 +1,4 @@
-#summary Data Modeling
+#summary Data modeling
 
 <wiki:toc max_depth="2" />
 
