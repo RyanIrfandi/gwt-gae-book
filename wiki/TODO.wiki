@@ -4,13 +4,13 @@ Here are some sections I'd like to add, as time allows:
 
  * Listing schedule
  * Authenticating with OpenID
- * Managing theaters
  * Data validation
  * Quality Assurance
   * client unit testing, UI testing, server testing, performance
- * Managing shows, locations, schedule
- * Fields auto-completion
- * UI enhancements
+ * Managing theaters, shows, locations, schedule
+ * Landing page UX enhancements
+  * Form fields auto-completion
+  * Remembering last used location
  * Exposing data via APIs for 3rd parties
   * jsonp, rest?
  * Displaying schedule on theater website
