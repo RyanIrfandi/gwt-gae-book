@@ -30,7 +30,7 @@ foreach ($docs as $doc) {
 	
 	$tocShort .= "[$doc $summary]\n\n";
 
-	$tocDetail .= "\n== [$doc $summary] ==\n";
+	$tocDetail .= "\n=== [$doc $summary] ===\n";
 
 
 	if (preg_match_all("/^([=]+)\s([^=]*)/m", $s, $matches)) {		

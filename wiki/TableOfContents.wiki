@@ -19,13 +19,13 @@
  * [SoYouHaveAnIdea#Culture_Shows_product_backlog Culture Shows product backlog] <br/>
  * [SoYouHaveAnIdea#Culture_Shows_product_backlog_(for_real) Culture Shows product backlog (for real)] <br/>
 
-== [VisualizingYourApp Visualizing your application in action] ==
+=== [VisualizingYourApp Visualizing your application in action] ===
  * [VisualizingYourApp#Mockups Mockups] <br/>
   * [VisualizingYourApp#Exercise Exercise] <br/>
   * [VisualizingYourApp#Landing_page Landing page] <br/>
  * [VisualizingYourApp#Get_feedback Get feedback] <br/>
 
-== [TheRightToolForTheJob Are you using the right tool for the job?] ==
+=== [TheRightToolForTheJob Are you using the right tool for the job?] ===
  * [TheRightToolForTheJob#Analysis_of_using_GWT_for_a_large_UI_project Analysis of using GWT for a large UI project] <br/>
   * [TheRightToolForTheJob#Goals Goals] <br/>
   * [TheRightToolForTheJob#Web_applications_paradigm_alternatives Web applications paradigm alternatives] <br/>
@@ -41,9 +41,9 @@
   * [TheRightToolForTheJob#Appendix:_Evaluating_GWT_3rd_party_libraries Appendix: Evaluating GWT 3rd party libraries] <br/>
   * [TheRightToolForTheJob#Appendix:_GWT_apps_at_Google Appendix: GWT apps at Google] <br/>
   * [TheRightToolForTheJob#Appendix:_Cool_GWT_apps Appendix: Cool GWT apps] <br/>
-  * [TheRightToolForTheJob#Appendix:_Deployment_Setup Appendix: Deployment Setup] <br/>
+  * [TheRightToolForTheJob#Appendix:_Deployment_setup Appendix: Deployment setup] <br/>
 
-== [GettingStarted Getting started] ==
+=== [GettingStarted Getting started] ===
  * [GettingStarted#Environment_Setup Environment Setup] <br/>
   * [GettingStarted#Useful_Eclipse_plugins Useful Eclipse plugins] <br/>
   * [GettingStarted#Useful_Eclipse_preferences Useful Eclipse preferences] <br/>
@@ -52,15 +52,15 @@
  * [GettingStarted#What's_inside_the_template_project What's inside the template project] <br/>
  * [GettingStarted#Useful_tools Useful tools] <br/>
 
-== [DataModeling Data Modeling] ==
+=== [DataModeling Data Modeling] ===
  * [DataModeling#Data_modeling Data modeling] <br/>
   * [DataModeling#Exercise Exercise] <br/>
   * [DataModeling#Exercise_solution:_Entity_relationship_model Exercise solution: Entity relationship model] <br/>
   * [DataModeling#Notes Notes] <br/>
 
-== [BuildingLandingPage Building the landing page] ==
+=== [BuildingLandingPage Building the landing page] ===
  * [BuildingLandingPage#Page_Layout Page Layout] <br/>
- * [BuildingLandingPage#Exercise Exercise] <br/>
+ * [BuildingLandingPage#Exercise:_build_the_mocked_up_UI Exercise: build the mocked up UI] <br/>
  * [BuildingLandingPage#Widgets Widgets] <br/>
  * [BuildingLandingPage#Styling Styling] <br/>
  * [BuildingLandingPage#Using_native_JavaScript Using native JavaScript] <br/>
@@ -71,7 +71,7 @@
   * [BuildingLandingPage#Exercise_solution Exercise solution] <br/>
  * [BuildingLandingPage#Resources Resources] <br/>
 
-== [ClientServer Client-server communication] ==
+=== [ClientServer Client-server communication] ===
  * [ClientServer#Pre-requisites Pre-requisites] <br/>
  * [ClientServer#Exercise Exercise] <br/>
  * [ClientServer#Exercise_solution Exercise solution] <br/>
@@ -80,24 +80,24 @@
  * [ClientServer#Protecting_against_cross-site_request_forgeries_(XSRF) Protecting against cross-site request forgeries (XSRF)] <br/>
  * [ClientServer#Summary Summary] <br/>
 
-== [StoringData Saving schedule in datastore] ==
- * [StoringData#Data_model Data model] <br/>
- * [StoringData#Storing_data Storing data] <br/>
- * [StoringData#Linking_shows_to_a_theater Linking shows to a theater] <br/>
- * [StoringData#Exercise Exercise] <br/>
- * [StoringData#Exercise_solution Exercise solution] <br/>
- * [StoringData#Datastore_setup Datastore setup] <br/>
- * [StoringData#One-to-Many_relationships One-to-Many relationships] <br/>
- * [StoringData#Many-to-Many_relationships Many-to-Many relationships] <br/>
+=== [StoringData Saving schedule in datastore] ===
+ * [StoringData#Coding_our_data_model Coding our data model] <br/>
+ * [StoringData#Basic_data_storage Basic data storage] <br/>
+ * [StoringData#Preparing_for_full_implementation Preparing for full implementation] <br/>
+  * [StoringData#Exercise Exercise] <br/>
+  * [StoringData#Exercise_solution Exercise solution] <br/>
+  * [StoringData#Datastore_setup Datastore setup] <br/>
+  * [StoringData#One-to-Many_relationships One-to-Many relationships] <br/>
+  * [StoringData#Many-to-Many_relationships Many-to-Many relationships] <br/>
  * [StoringData#Implementation Implementation] <br/>
  * [StoringData#Hey_client,_remember_me? Hey client, remember me?] <br/>
  * [StoringData#Exercise Exercise] <br/>
  * [StoringData#Exercise_solution Exercise solution] <br/>
  * [StoringData#Resources Resources] <br/>
 
-== [MoreResources More resources] ==
+=== [MoreResources More resources] ===
  * [MoreResources#Discussion_groups Discussion groups] <br/>
  * [MoreResources#Blogs Blogs] <br/>
  * [MoreResources#Miscellaneous Miscellaneous] <br/>
 
-== [TODO Planned upcoming sections] ==
+=== [TODO Planned upcoming sections] ===
