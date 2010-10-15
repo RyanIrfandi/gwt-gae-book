@@ -129,7 +129,7 @@ return theaterKey, showKey, locationKey
 
 Before going to actual code, let's talk about...
 
-= Datastore setup =
+== Datastore setup ==
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/road_home.jpg" border="0"  align="right" />
 
 By default, twig creates indexes for every entity property, which makes it very usable with no configuration. We'll follow the [http://code.google.com/p/twig-persist/wiki/Performance twig performance advice] and [x set properties to be un-indexed by default], specifically annotating each desired property to be indexed. Our updated data model looks like this
@@ -156,7 +156,7 @@ We'll also [x shorten kind names], which means less stored data and increases re
 
 Since we'll use the show name in case-insensitive queries, we're storing a copy of name property which is always trimmed and lowercased. 
 
-= One-to-Many relationships =
+== One-to-Many relationships ==
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/bouldersbeach.jpg" border="0"  align="right" />
 
 (Datastore relationships, that is :)
@@ -189,7 +189,7 @@ List<Show> shows = datastore.find().type(Show.class).ancestor(theater).returnAll
 Coming back to the relational database analogy, Show key embeds the theaterKey reference in its `parentKey` property. !AppEngine keys are always indexed, even if we disabled indexing for class properties (TODO: is this correct?)
 
 
-= Many-to-Many relationships =
+== Many-to-Many relationships ==
 
 In a relational database, we would do it like this:
 {{{
