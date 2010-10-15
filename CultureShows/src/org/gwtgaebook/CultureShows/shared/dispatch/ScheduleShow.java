@@ -13,6 +13,9 @@ public class ScheduleShow {
 	@In(3)
 	String showName;
 
+	@In(4)
+	String locationName;
+
 	@Out(1)
 	String errorText; // empty if success
 

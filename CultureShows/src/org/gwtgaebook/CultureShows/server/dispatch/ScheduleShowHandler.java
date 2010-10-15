@@ -47,6 +47,9 @@ public class ScheduleShowHandler extends
 		Key showKey = null;
 		Show show = null;
 
+		Key locationKey = null;
+		Location location = null;
+
 		Key performanceKey = null;
 		Performance performance = null;
 
@@ -168,16 +171,35 @@ public class ScheduleShowHandler extends
 		}
 		logger.info("Current show " + KeyFactory.keyToString(showKey));
 
-		// TODO setup location
+		// setup location
+		// does show already exist?
+		location = new Location();
+		location.setName(action.getLocationName());
+
+		// query for shows belonging to a theater instance
+		List<Location> locations = datastore.find().type(Location.class)
+				.ancestor(theater).addFilter("nameQuery", FilterOperator.EQUAL,
+						location.nameQuery).returnAll().now();
+		if (locations.size() > 0) {
+			// TODO log error if size != 1
+			location = locations.get(0);
+			locationKey = datastore.associatedKey(location);
+		} else {
+			// store show belonging to a theater
+			locationKey = datastore.store().instance(location).parent(theater)
+					.now();
+		}
+		logger.info("Current location " + KeyFactory.keyToString(locationKey));
 
 		// setup performance
 		performance = new Performance();
 		performance.showKey = showKey;
-		// performance.locationKey = locationKey;
+		performance.locationKey = locationKey;
 
 		performance.theaterKey = theaterKey;
 		performance.showName = show.getName();
 		performance.showWebsiteURL = show.websiteURL;
+		performance.locationName = location.getName();
 		performanceKey = datastore.store(performance);
 
 		// TODO to improve performance, can we pass keys directly from client?
