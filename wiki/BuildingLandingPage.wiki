@@ -34,8 +34,8 @@ First, let's add [http://code.google.com/p/gwt-gae-book/source/browse/#svn/trunk
 }}}
 
 
-= Exercise =
-Open `LandingView.ui.xml` and try to implement the [VisualizingYourApp mocked up UI]. No need to implement any Java logic yet, just focus on widgets and styling. 
+= Exercise: build the mocked up UI =
+Open `LandingView.ui.xml` and try to implement the [VisualizingYourApp mocked up UI]. No need to implement any Java logic yet, just focus on widgets and styling. Continue only when you have a draft version done by yourself.  
 
 = Widgets =
 
