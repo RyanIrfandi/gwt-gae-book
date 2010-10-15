@@ -66,9 +66,11 @@ public class LandingPresenter extends
 	public void scheduleShow(Date date, String showName, String locationName) {
 		Log.info("Presenter scheduling on " + date.toString() + " the show "
 				+ showName + " at location " + locationName);
-		dispatcher.execute(new ScheduleShowAction(Cookies
-				.getCookie(Constants.userTokenCookieName), Cookies
-				.getCookie(Constants.theaterCookieName), showName),
+		dispatcher.execute(
+				new ScheduleShowAction(Cookies
+						.getCookie(Constants.userTokenCookieName), Cookies
+						.getCookie(Constants.theaterCookieName), showName,
+						locationName),
 				new DispatchCallback<ScheduleShowResult>() {
 					@Override
 					public void onSuccess(ScheduleShowResult result) {
