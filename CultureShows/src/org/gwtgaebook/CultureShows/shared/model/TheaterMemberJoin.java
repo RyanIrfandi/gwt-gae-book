@@ -1,7 +1,7 @@
 package org.gwtgaebook.CultureShows.shared.model;
 
-import com.google.appengine.api.datastore.*;
-import com.google.code.twig.annotation.Index;
+import com.google.appengine.api.datastore.Key;
+import com.google.code.twig.annotation.*;
 
 public class TheaterMemberJoin {
 	public enum Role {
