@@ -52,7 +52,7 @@
  * [GettingStarted#What's_inside_the_template_project What's inside the template project] <br/>
  * [GettingStarted#Useful_tools Useful tools] <br/>
 
-=== [DataModeling Data Modeling] ===
+=== [DataModeling Data modeling] ===
  * [DataModeling#Data_modeling Data modeling] <br/>
   * [DataModeling#Exercise Exercise] <br/>
   * [DataModeling#Exercise_solution:_Entity_relationship_model Exercise solution: Entity relationship model] <br/>
@@ -90,14 +90,28 @@
   * [StoringData#One-to-Many_relationships One-to-Many relationships] <br/>
   * [StoringData#Many-to-Many_relationships Many-to-Many relationships] <br/>
  * [StoringData#Implementation Implementation] <br/>
- * [StoringData#Hey_client,_remember_me? Hey client, remember me?] <br/>
  * [StoringData#Exercise Exercise] <br/>
  * [StoringData#Exercise_solution Exercise solution] <br/>
+ * [StoringData#Hey_client,_remember_me? Hey client, remember me?] <br/>
  * [StoringData#Resources Resources] <br/>
+
+=== [ListingSchedule Listing saved schedule] ===
+
+=== [Authentication Authentication with OpenID] ===
+
+=== [DataValidation Data validation] ===
+
+=== [QualityAssurance Quality assurance] ===
+ * [QualityAssurance#Introduction Introduction] <br/>
+ * [QualityAssurance#Client_unit_testing Client unit testing] <br/>
+ * [QualityAssurance#UI_testing UI testing] <br/>
+ * [QualityAssurance#Server_testing Server testing] <br/>
+ * [QualityAssurance#Performance_testing Performance testing] <br/>
+ * [QualityAssurance#More_ways_to_increase_software_quality More ways to increase software quality] <br/>
 
 === [MoreResources More resources] ===
  * [MoreResources#Discussion_groups Discussion groups] <br/>
  * [MoreResources#Blogs Blogs] <br/>
  * [MoreResources#Miscellaneous Miscellaneous] <br/>
 
-=== [TODO Planned upcoming sections] ===
+=== [TODO Planned upcoming chapters] ===

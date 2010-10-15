@@ -10,7 +10,7 @@
 
 [GettingStarted Getting started]
 
-[DataModeling Data Modeling]
+[DataModeling Data modeling]
 
 [BuildingLandingPage Building the landing page]
 
@@ -18,7 +18,15 @@
 
 [StoringData Saving schedule in datastore]
 
+[ListingSchedule Listing saved schedule]
+
+[Authentication Authentication with OpenID]
+
+[DataValidation Data validation]
+
+[QualityAssurance Quality assurance]
+
 [MoreResources More resources]
 
-[TODO Planned upcoming sections]
+[TODO Planned upcoming chapters]
 

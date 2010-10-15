@@ -10,6 +10,10 @@ $docs = array(
 	"BuildingLandingPage",
 	"ClientServer",
 	"StoringData",
+	"ListingSchedule",
+	"Authentication",
+	"DataValidation",
+	"QualityAssurance",
 	"MoreResources",
 	"TODO"
 );
