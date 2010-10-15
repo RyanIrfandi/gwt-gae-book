@@ -1,0 +1,8 @@
+#summary Listing saved schedule
+
+<wiki:toc max_depth="2" />
+
+Until now, we used the local datastore viewer to see what data is saved. Well, it's time to let Violeta see it too.
+
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
