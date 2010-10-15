@@ -269,12 +269,12 @@ public class TheaterMemberJoin {
 
 Now getting a list of Members for a Theater is one query, adding a Member to a Theater is still one write, but changing a Member email requires two writes. We don't do that often, so we're good.
 
-When thinking how to implement your models, consider if you are doings reads often than writes and make the choices that are best for your project. If you are doing way many more readings than updates, consider storing a list of Members needed data embedded inside the Theater model. You will need two writes for an update in this case.
+When thinking how to implement your models, consider if you are doings reads often than writes and make the choices that are best for your project. If you are doing way many more readings than updates, consider storing a list of Members desired properties embedded in the Theater model. You will need two writes for a Member property update in this case.
 
 Hopefully we'll have lots of read requests for Performances, so there too we'll keep copies of Show and Location properties.
 
 *Resources*
- * [http://blog.arbingersys.com/2008/04/google-app-engine-better-many-to-many.html article about many to many], with [http://groups.google.com/group/google-appengine/browse_thread/thread/e9464ceb131c726f group discussion]
+ * [http://blog.arbingersys.com/2008/04/google-app-engine-better-many-to-many.html article about many to many relationships], with [http://groups.google.com/group/google-appengine/browse_thread/thread/e9464ceb131c726f group discussion]
  * [http://stackoverflow.com/questions/1376814/listproperty-of-keys-vs-many-to-many-in-app-engine other approaches]
 
 
