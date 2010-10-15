@@ -5,12 +5,18 @@ import com.gwtplatform.annotation.*;
 @GenDispatch(isSecure = false)
 public class ScheduleShow {
 	@In(1)
-	@Out(1)
-	String theaterKey;
+	String userToken;
 
 	@In(2)
+	String theaterKey;
+
+	@In(3)
 	String showName;
 
-	// @Out(1)
-	// String response;
+	@Out(1)
+	String errorText; // empty if success
+
+	@Out(2)
+	String theaterKeyOut;
+
 }
