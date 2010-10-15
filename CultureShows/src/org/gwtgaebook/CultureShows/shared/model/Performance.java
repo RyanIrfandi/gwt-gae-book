@@ -2,8 +2,8 @@ package org.gwtgaebook.CultureShows.shared.model;
 
 import java.util.*;
 
-import com.google.appengine.api.datastore.*;
-import com.google.code.twig.annotation.Index;
+import com.google.appengine.api.datastore.Key;
+import com.google.code.twig.annotation.*;
 
 public class Performance {
 	@Index
