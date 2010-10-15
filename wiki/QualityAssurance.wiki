@@ -1,0 +1,5 @@
+#summary Quality Assurance
+
+<wiki:toc max_depth="2" />
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
