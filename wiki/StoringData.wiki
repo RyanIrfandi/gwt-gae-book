@@ -37,7 +37,7 @@ package org.gwtgaebook.CultureShows.shared.model;
 
 public class Show {
 	public String name;
-	public String URL;
+	public String websiteURL;
 	public int minuteDuration;
 	...
 }
@@ -59,10 +59,10 @@ import com.google.code.twig.annotation.*;
 		Key showKey = datastore.store(show);
 }}}
 
-After scheduling a show, go to [http://127.0.0.1:8888/_ah/admin your local datastore viewer] and check that it has been saved. Besides data model fields (name, URL), you'll see two more fields, [http://code.google.com/appengine/docs/python/datastore/keysandentitygroups.html Key and ID/Name].
+After scheduling a show, go to [http://127.0.0.1:8888/_ah/admin your local datastore viewer] and check that it has been saved. Besides data model fields (name, websiteURL), you'll see two more fields, [http://code.google.com/appengine/docs/python/datastore/keysandentitygroups.html Key and ID/Name].
 
 = Preparing for full implementation =
-Shows belong to theaters. In a regular app, we would have asked Violeta to perform the following steps:
+Shows belong to Theaters. In a regular app, we would have asked Violeta to perform the following steps:
  * sign up
  * create a theater and specify theater details such as name, website URL
  * define shows and locations assigned to the theater defined above
@@ -148,17 +148,25 @@ By default, twig creates indexes for every entity property, which makes it very 
 `Show.java`
 {{{
 public class Show {
-	public String name;
+	private String name;
 
 	@Index
 	public String nameQuery;
 	// used in queries. It's always trim and lowercase
 
-	public String URL;
+	public String websiteURL;
 	public int minuteDuration;
 	public String posterURL;
 
-	...
+	public void setName(String name) {
+		this.name = name;
+		nameQuery = name.trim().toLowerCase();
+	}
+
+	public String getName() {
+		return name;
+
+	}
 }
 }}}
 
