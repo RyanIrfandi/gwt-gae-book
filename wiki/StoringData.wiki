@@ -205,7 +205,7 @@ showKey = datastore.store().instance(show).parent(theater).now();
 List<Show> shows = datastore.find().type(Show.class).ancestor(theater).returnAll().now();
 }}}
 
-Coming back to the relational database analogy, Show key embeds the theaterKey reference in its `parentKey` property. !AppEngine keys are always indexed, even if we disabled indexing for class properties (TODO: is this correct?)
+Coming back to the relational database analogy, the theaterKey reference is embedded in Show key `parentKey` property. !AppEngine keys are always indexed, even if we disabled indexing for class properties (TODO: is this correct?)
 
 
 == Many-to-Many relationships ==
@@ -226,9 +226,9 @@ CREATE TABLE theaterMember (
 }}}
 
 
-We'll go with the same approach as in relational databases and then optimize it for AppEngine by [http://en.wikipedia.org/wiki/Database_normalization denormalizing].
- 
-`TheaterMemberJoin` model
+We'll go with the same approach as in relational databases and then optimize it for !AppEngine by [http://en.wikipedia.org/wiki/Database_normalization denormalizing]. 
+
+Let's create a new entity, `TheaterMemberJoin` 
 {{{
 public class TheaterMemberJoin {
 	public enum Role {
@@ -248,12 +248,12 @@ public class TheaterMemberJoin {
 To add a Member to a Theater, we need just one query on `TheaterMemberJoin`.
 
 This enables us to answer the two basic questions
-* what Members does a Theater have and with what roles?
-* what Theaters is a Member part of?
+ * what Members does a Theater have and with what roles?
+ * what Theaters is a Member part of?
 
 However, to display a list of Members for a Theater, we need to
-* run a query to get all member keys and roles
-* for each member, run a query to get its details
+ * run a query to get all member keys and roles
+ * for each member, run a query to get its details
 
 If we consider that we actually don't need ALL Member information in thist list, and storage is cheap, we can optimize reading by denormalizing our model and storing a part of Member data in the Join model. We need email and name to get a Member listing, so let's add them
 {{{
