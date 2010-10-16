@@ -39,6 +39,6 @@ After a first draft of mockup you're happy with, brainstorm about it. For exampl
 
 
 = Get feedback =
-You can usually find target personae among your friends, if you don't have access to direct customers yet. Get them to look over the mockups above and provide feedback both about your ideas and [http://en.wikipedia.org/wiki/Usability_testing usability].
+You can usually find target personae among your friends, if you don't have access to direct customers yet. Get them to provide feedback about your ideas and do [http://en.wikipedia.org/wiki/Usability_testing usability testing] using mockups you developed. Changes are much cheaper to be made now than after you have the code written, tested and released.
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
