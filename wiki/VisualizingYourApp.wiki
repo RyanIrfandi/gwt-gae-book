@@ -39,6 +39,6 @@ After a first draft of mockup you're happy with, brainstorm about it. For exampl
 
 
 = Get feedback =
-You can usually find target personae among your friends, if you don't have access to direct customers yet. Get them to look over the diagrams above and provide you feedback both about your ideas and usability.
+You can usually find target personae among your friends, if you don't have access to direct customers yet. Get them to look over the mockups above and provide you feedback both about your ideas and usability.
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
