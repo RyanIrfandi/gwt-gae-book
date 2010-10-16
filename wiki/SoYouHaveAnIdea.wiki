@@ -45,7 +45,7 @@ In [http://en.wikipedia.org/wiki/Scrum_(development) Scrum methodology], the abo
 
 After reading all about scrum, user stories and story points, take a stab at developing the Culture Shows product backlog by yourself and estimating each story before going further. 
 
-Consider the story "As Violeta, I want to delete existing scheduled shows so that it reflects cancellations" to be 3 story points, and estimate the rest relatively to it.
+Consider the story "As Violeta, I want to delete existing scheduled shows so that it reflects cancellations" to be 1 story point, and estimate the rest relatively to it.
 
 = Culture Shows product backlog =
 
@@ -54,11 +54,11 @@ You did actually try to do this by yourself first, right? Go on, this chapter wi
 = Culture Shows product backlog (for real) =
 || *User story* || *Estimate* (story points) ||
 || As Violeta, I want to add/edit/delete the list of shows so that I can schedule them || 8 ||
-|| As Violeta, I want to add shows to the schedule so that world is aware about them || 8 ||
-|| As Violeta, I want to schedule shows in various locations so that I use the best location for a show or do tours || 8 ||
+|| As Violeta, I want to add shows to the schedule so that world is aware about them || 5 ||
+|| As Violeta, I want to schedule shows in various locations so that I use the best location for a show or do tours || 5 ||
 || As Violeta, I want to display shows schedule on theater website as soon as I define it so that I don't waste time asking somebody else to edit it|| 13 ||
-|| As Violeta, I want to edit existing scheduled shows so that I can correct any mistakes I might have done || 5 ||
-|| As Violeta, I want to delete existing scheduled shows so that I can handle cancellations || 3 ||
+|| As Violeta, I want to edit existing scheduled shows so that I can correct any mistakes I might have done || 2 ||
+|| As Violeta, I want to delete existing scheduled shows so that I can handle cancellations || 1 ||
 || As Stefan, I want to enable various websites to display my company's shows schedule so that more people find out about it|| 13 ||
 || As Violeta, I want to restrict access to scheduling shows so that only authorized persons manage it|| 13 ||
 || As Violeta, I want to use Culture Shows in my own language so that I don't have to learn English || 5 ||
