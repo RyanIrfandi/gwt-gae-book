@@ -2,7 +2,7 @@
 
 <wiki:toc max_depth="2" />
 
-You have clear product backlog. Coding time, right? Let's do an imagination exercise first. Pretend all those user stories are already implemented. How would your application functionality look? Will it actually satisfy your personae's needs?
+You have a clear product backlog. Coding time, right? Let's do an imagination exercise first. Pretend all those user stories are already implemented. How would your application functionality look? Will it actually satisfy your personae's needs?
 
 = Mockups =
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/grasping_the_sun.jpg" border="0"  align="right" />
