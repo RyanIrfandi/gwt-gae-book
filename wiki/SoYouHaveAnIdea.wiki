@@ -17,10 +17,10 @@ Who are the Culture Shows personae?
 Violeta is the theater company manager. She works with the group to schedule shows, according the the availability of actors and theater hall. Violeta would like the world to know about upcoming shows, so they can come to them. Violeta couldn't care less about technology, but she is already using email and surfs the web to keep up to date with what happens around.
 
 == Stefan ==
-Stefan is an actor in the theater company. He also has a job and knows how to use computers not only for email, but also to send newsletters to publications, to publish show photos on Facebook and to discuss with theater website designers for making updates such as shows schedule, description and photos.
+Stefan is an actor in the theater company. He also has a day job and knows how to use computers not only for email, but also to send newsletters to publications, to publish show photos on Facebook and to discuss with theater website designers for making updates such as shows schedule, description and photos.
 
 == Claus ==
-Claus loves to go to theater shows. She would like to see what shows are scheduled in her city for the next two weeks, so she can make plans with her friends.
+Claus loves going to theater shows. She usually looks at what shows are scheduled in her city for the next two weeks, so she can make plans with her friends.
 
 = Expressing personae needs = 
 With this application, we want to satisfy the needs of Violeta, Stefan and Claus. It helps if we  clearly identify their needs: we can then estimate and prioritize their order of implementation. 
@@ -33,7 +33,7 @@ So what would be some of our user stories?
 
 As Violeta or Stefan, I want to easily update the shows schedule on our website myself, so that I don't waste time asking somebody else to do it for me.
 
-As Claus, I want to have up to date shows schedule so that I can make plans with my friends about going to them.
+As Claus, I want to learn about upcoming shows so that I can make plans with my friends.
 
 
 = Backlog grooming =
@@ -44,6 +44,8 @@ In [http://en.wikipedia.org/wiki/Scrum_(development) Scrum methodology], the abo
 = Exercise =
 
 After reading all about scrum, user stories and story points, take a stab at developing the Culture Shows product backlog by yourself and estimating each story before going further. 
+
+Consider the story "As Violeta, I want to delete existing scheduled shows so that it reflects cancellations" to be 3 story points, and estimate the rest relatively to it.
 
 = Culture Shows product backlog =
 
@@ -56,7 +58,7 @@ You did actually try to do this by yourself first, right? Go on, this chapter wi
 || As Violeta, I want to schedule shows in various locations of my theater so that I use the best location for a show or do tours || 8 ||
 || As Violeta, I want to display shows schedule on theater website as soon as I define it so that I don't waste time asking somebody else to edit it|| 13 ||
 || As Violeta, I want to edit existing scheduled shows so that I can correct any mistakes I might have done || 5 ||
-|| As Violeta, I want to delete existing scheduled shows so that it reflects cancellations || 5 ||
+|| As Violeta, I want to delete existing scheduled shows so that it reflects cancellations || 3 ||
 || As Stefan, I want to enable various websites to display my company's shows schedule so that more people find out about it|| 13 ||
 || As Violeta, I want to restrict access to scheduling shows so that only authorized persons manage it|| 13 ||
 || As Violeta, I want to use Culture Shows in my own language so that I don't have to learn English || 5 ||
