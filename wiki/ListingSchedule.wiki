@@ -18,6 +18,80 @@ Implement listing added performances. Hints:
  * use a HTMLPanel to display data. We'll enhance this later
 
 == Exercise solution ==
+Added [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetPerformances.java GetPerformances] Action/Result generator, and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java GetPerformancesHandler]
+
+`ScheduleShow` also returns newly added performance data
+{{{
+public class ScheduleShow {
+	...
+	@Out(3)
+	String performanceKey;
+
+	@Out(4)
+	Performance performance;
+}
+
+...
+		return new ScheduleShowResult("", KeyFactory.keyToString(theaterKey),
+				KeyFactory.keyToString(performanceKey), performance);
+}}}
+
+`LandingView` can display performances...
+{{{
+	@UiField
+	HTML performancesContainer;
+
+	public void addPerformance(Performance performance) {
+		performancesContainer.setHTML(performancesContainer.getHTML() + "<br/>"
+				+ performance.showName + " | " + performance.locationName
+				+ " | " + performance.date.toString());
+
+	}
+
+	public void setPerformances(List<Performance> performances) {
+		performancesContainer.setHTML("Show | Location | Date");
+		for (Performance p : performances) {
+			addPerformance(p);
+		}
+
+	}
+}}}
+
+...as instructed by `LandingPresenter`
+{{{
+	protected void onReset() {
+		super.onReset();
+		getView().resetAndFocus();
+
+		if (!(null == Cookies.getCookie(Constants.theaterCookieName) || Cookies
+				.getCookie(Constants.theaterCookieName).isEmpty())) {
+			dispatcher.execute(new GetPerformancesAction(Cookies
+					.getCookie(Constants.theaterCookieName)),
+					new DispatchCallback<GetPerformancesResult>() {
+						@Override
+						public void onSuccess(GetPerformancesResult result) {
+							getView().setPerformances(result.getPerformances());
+						}
+					});
+		}
+
+	}
+
+	public void scheduleShow(Date date, String showName, String locationName) {
+		dispatcher.execute(new ScheduleShowAction(Cookies
+				.getCookie(Constants.userTokenCookieName), Cookies
+				.getCookie(Constants.theaterCookieName), date, showName,
+				locationName), new DispatchCallback<ScheduleShowResult>() {
+			@Override
+			public void onSuccess(ScheduleShowResult result) {
+				Cookies.setCookie(Constants.theaterCookieName, result
+						.getTheaterKeyOut());
+				getView().addPerformance(result.getPerformance());
+			}
+		});
+	}
+
+}}}
 
 = Advanced use cases =
 
