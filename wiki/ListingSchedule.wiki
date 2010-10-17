@@ -11,6 +11,13 @@ In order to quickly get the latest schedule data and display it on client, we ca
  # get all items when page loads
  # when adding/updating/deleting items, send changes from client to server and if response is successful update the client list too
 
+== Exercise ==
+Implement listing added performances. Hints:
+ * remember [ClientServer#Summary client-server communication]
+ * use a HTMLPanel to display data. We'll enhance this later
+
+
+== Exercise solution ==
 
 = Advanced use cases =
 
