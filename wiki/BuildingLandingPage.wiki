@@ -221,14 +221,14 @@ Here's how it's used by the View
 	@UiField
 	TextBox location;
 	@UiField
-	DateBox dateTime;
+	DateBox date;
 
 	@UiField
 	Button scheduleShow;
 
 	@UiHandler("scheduleShow")
 	void onScheduleShowClicked(ClickEvent event) {
-		getUiHandlers().scheduleShow(dateTime.getValue(), show.getValue(),
+		getUiHandlers().scheduleShow(date.getValue(), show.getValue(),
 				location.getValue());
 	}
 }}}
