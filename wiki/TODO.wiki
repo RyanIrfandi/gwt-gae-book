@@ -4,9 +4,12 @@ Here are some sections I'd like to add, as time allows:
 
 
  * Managing theaters, shows, locations, schedule
- * Landing page UX enhancements
+ * Landing page enhancements
+  * i18n
   * Form fields auto-completion
   * Remembering last used location
+  * give feedback on client-server communication status
+  * generic error handling
  * Exposing data via APIs for 3rd parties
   * jsonp, rest?
  * Displaying schedule on theater website
