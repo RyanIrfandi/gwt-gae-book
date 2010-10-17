@@ -11,10 +11,23 @@
 
 [http://code.google.com/intl/nl-NL/appengine/articles/openid.html Using federated authentication via OpenID]
 
-== Updating stored anonymous data ==
 
+
+Here are the steps to add authentication support
+ # define [x UserInfo] model, used to send user information from server to client 
+ # bind `UserInfo` as [http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/Binder.html Guice Singleton]. This will make an UserInfo instance persist in all client, as if it were a static class.
+ # define getUser [x action/result generator] and [x handler]
+ # in `LandingPage` presenter, get user info from server. TODO how to handle if one has multiple places allowing anonymous use? check on all? 
+ # when clicking on Sign In, display an OpenID login dialog
+
+Although you won't be able to tell from UI yet, checking the Firebug console logs will show if user is signed in or not.
 
 = Updating UI to accommodate authentication =
+
+
+= Updating stored anonymous data =
+
+
 
 
 
