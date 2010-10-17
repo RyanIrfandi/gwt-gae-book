@@ -120,7 +120,7 @@ When adding/updating/deleting items, send changes from client to server and rece
 If multiple users would work on same entity, we won't see other users changes until a full page refresh. 
 
 
-How Google Docs solved collaboration: [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs.html challenges], [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs_22.html operational transformation], [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs_23.html collaboration protocol]
+How Google Docs solved collaboration: [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs.html challenges], [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs_22.html operational transformation], [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs_23.html collaboration protocol]. The difference to GWT is that the client has only a fragment of all the dataset, while a Google Docs client always has the full dataset (the document).
 
  offline usage.
 
