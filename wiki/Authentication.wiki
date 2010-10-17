@@ -2,9 +2,18 @@
 
 <wiki:toc max_depth="2" />
 
+= Signing in =
 *Pre-requisites*
+
 [http://openid.net/ OpenID introduction]
+
 [http://code.google.com/appengine/docs/java/users/overview.html AppEngine Users Java API overview]
+
+== Updating stored anonymous data ==
+
+
+= Updating UI to accommodate authentication =
+
 
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
