@@ -14,8 +14,8 @@ In order to quickly get the latest schedule data and display it on client, we ca
 == Exercise ==
 Implement listing added performances. Hints:
  * remember [ClientServer#Summary client-server communication]
+ * no need to check access, performances are public
  * use a HTMLPanel to display data. We'll enhance this later
-
 
 == Exercise solution ==
 
