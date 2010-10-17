@@ -1,5 +1,7 @@
 package org.gwtgaebook.CultureShows.client.landing;
 
+import java.util.*;
+
 import com.google.gwt.core.client.*;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.shared.GwtEvent.*;
@@ -16,6 +18,7 @@ import com.gwtplatform.mvp.client.annotations.*;
 import com.allen_sauer.gwt.log.client.*;
 
 import org.gwtgaebook.CultureShows.client.*;
+import org.gwtgaebook.CultureShows.shared.model.*;
 
 public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 		implements LandingPresenter.MyView {
@@ -36,18 +39,21 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	@UiField
 	TextBox location;
 	@UiField
-	DateBox dateTime;
+	DateBox date;
 
 	@UiField
 	Button scheduleShow;
+
+	@UiField
+	HTML performancesContainer;
 
 	public LandingView() {
 		widget = uiBinder.createAndBindUi(this);
 
 		// workaround for
 		// http://code.google.com/p/google-web-toolkit/issues/detail?id=5295
-		dateTime.getElement().setAttribute("required", "");
-		dateTime.getElement().setAttribute("placeholder", "Date and time");
+		date.getElement().setAttribute("required", "");
+		date.getElement().setAttribute("placeholder", "Date and time");
 		show.getElement().setAttribute("placeholder", "Show name");
 		show.getElement().setAttribute("required", "");
 		location.getElement().setAttribute("placeholder", "Location");
@@ -70,9 +76,24 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 		placeholder();
 	}
 
+	public void addPerformance(Performance performance) {
+		performancesContainer.setHTML(performancesContainer.getHTML() + "<br/>"
+				+ performance.showName + " | " + performance.locationName
+				+ " | " + performance.date.toString());
+
+	}
+
+	public void setPerformances(List<Performance> performances) {
+		performancesContainer.setHTML("Show | Location | Date");
+		for (Performance p : performances) {
+			addPerformance(p);
+		}
+
+	}
+
 	@UiHandler("scheduleShow")
 	void onScheduleShowClicked(ClickEvent event) {
-		getUiHandlers().scheduleShow(dateTime.getValue(), show.getValue(),
+		getUiHandlers().scheduleShow(date.getValue(), show.getValue(),
 				location.getValue());
 	}
 

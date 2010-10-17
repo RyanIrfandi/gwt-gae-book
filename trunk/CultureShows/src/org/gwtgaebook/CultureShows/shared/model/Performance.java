@@ -1,24 +1,22 @@
 package org.gwtgaebook.CultureShows.shared.model;
 
+import java.io.*;
 import java.util.*;
 
-import com.google.appengine.api.datastore.Key;
 import com.google.code.twig.annotation.*;
 
-public class Performance {
+// needs to be Serializable to be sent over GWT-RPC as part of action/result
+public class Performance implements Serializable {
 	@Index
-	public Key showKey;
+	public String showKey;
 	@Index
-	public Key locationKey;
+	public String locationKey;
 	@Index
 	public Date date;
 
 	// denormalized
 	@Index
-	public Key theaterKey;
-	// TODO can performance be queried for theaters without theaterKey, but with
-	// showKey which contains it?
-
+	public String theaterKey;
 	public String showName;
 	public String showWebsiteURL;
 	public String locationName;

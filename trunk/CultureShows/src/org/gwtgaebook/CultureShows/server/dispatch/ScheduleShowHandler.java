@@ -115,7 +115,8 @@ public class ScheduleShowHandler extends
 					// has access
 				} else {
 					return new ScheduleShowResult(
-							"You don't have access to this theater", "");
+							"You don't have access to this theater", null,
+							null, null);
 				}
 
 			}
@@ -193,20 +194,23 @@ public class ScheduleShowHandler extends
 
 		// setup performance
 		performance = new Performance();
-		performance.showKey = showKey;
-		performance.locationKey = locationKey;
 
-		performance.theaterKey = theaterKey;
+		performance.date = action.getDate();
+		performance.showKey = KeyFactory.keyToString(showKey);
+		performance.locationKey = KeyFactory.keyToString(locationKey);
+		performance.theaterKey = KeyFactory.keyToString(theaterKey);
+
 		performance.showName = show.getName();
 		performance.showWebsiteURL = show.websiteURL;
 		performance.locationName = location.getName();
 		performanceKey = datastore.store(performance);
 
-		// TODO to improve performance, can we pass keys directly from client?
+		// TODO to improve performance, can we pass show/location keys directly
+		// from client?
 
 		// TODO testability, break in smaller methods
 
-		// TODO return Performance model and key?
-		return new ScheduleShowResult("", KeyFactory.keyToString(theaterKey));
+		return new ScheduleShowResult("", KeyFactory.keyToString(theaterKey),
+				KeyFactory.keyToString(performanceKey), performance);
 	}
 }
