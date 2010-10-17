@@ -108,9 +108,10 @@ public class ScheduleShowHandler extends
 				// performance scheduling
 				List<TheaterMemberJoin> tmjs = datastore.find().type(
 						TheaterMemberJoin.class).addFilter("theaterKey",
-						FilterOperator.EQUAL, theaterKey).addFilter(
-						"memberKey", FilterOperator.EQUAL, memberKey)
-						.returnAll().now();
+						FilterOperator.EQUAL,
+						KeyFactory.keyToString(theaterKey)).addFilter(
+						"memberKey", FilterOperator.EQUAL,
+						KeyFactory.keyToString(memberKey)).returnAll().now();
 				if (tmjs.size() > 0) {
 					// has access
 				} else {
@@ -139,8 +140,8 @@ public class ScheduleShowHandler extends
 
 			// assign member to theater
 			tmj = new TheaterMemberJoin();
-			tmj.theaterKey = theaterKey;
-			tmj.memberKey = memberKey;
+			tmj.theaterKey = KeyFactory.keyToString(theaterKey);
+			tmj.memberKey = KeyFactory.keyToString(memberKey);
 			tmj.role = Role.ADMINISTRATOR;
 
 			tmj.theaterName = theater.name;
@@ -158,7 +159,6 @@ public class ScheduleShowHandler extends
 		show = new Show();
 		show.setName(action.getShowName());
 
-		// query for shows belonging to a theater instance
 		List<Show> shows = datastore.find().type(Show.class).ancestor(theater)
 				.addFilter("nameQuery", FilterOperator.EQUAL, show.nameQuery)
 				.returnAll().now();
@@ -173,11 +173,10 @@ public class ScheduleShowHandler extends
 		logger.info("Current show " + KeyFactory.keyToString(showKey));
 
 		// setup location
-		// does show already exist?
+		// does location already exist?
 		location = new Location();
 		location.setName(action.getLocationName());
 
-		// query for shows belonging to a theater instance
 		List<Location> locations = datastore.find().type(Location.class)
 				.ancestor(theater).addFilter("nameQuery", FilterOperator.EQUAL,
 						location.nameQuery).returnAll().now();
@@ -198,8 +197,8 @@ public class ScheduleShowHandler extends
 		performance.date = action.getDate();
 		performance.showKey = KeyFactory.keyToString(showKey);
 		performance.locationKey = KeyFactory.keyToString(locationKey);
-		performance.theaterKey = KeyFactory.keyToString(theaterKey);
 
+		performance.theaterKey = KeyFactory.keyToString(theaterKey);
 		performance.showName = show.getName();
 		performance.showWebsiteURL = show.websiteURL;
 		performance.locationName = location.getName();

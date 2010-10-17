@@ -1,6 +1,5 @@
 package org.gwtgaebook.CultureShows.shared.model;
 
-import com.google.appengine.api.datastore.Key;
 import com.google.code.twig.annotation.*;
 
 public class TheaterMemberJoin {
@@ -9,9 +8,9 @@ public class TheaterMemberJoin {
 	};
 
 	@Index
-	public Key theaterKey;
+	public String theaterKey;
 	@Index
-	public Key memberKey;
+	public String memberKey;
 	@Index
 	public Role role;
 
