@@ -5,7 +5,7 @@
 = Signing in =
 *Pre-requisites*
 
-[http://openid.net/ OpenID introduction]
+[http://en.wikipedia.org/wiki/OpenID OpenID introduction]
 
 [http://code.google.com/appengine/docs/java/users/overview.html AppEngine Users Java API overview]
 
