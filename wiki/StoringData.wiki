@@ -88,7 +88,7 @@ Let us write down some [http://en.wikipedia.org/wiki/Pseudocode pseudocode] of h
 
 
 {{{
-//data received from client: userToken, theaterKey, showName, locationName and date
+//data received from client: userToken, theaterKey, date, showName, locationName
 //userToken - random token set by client for users not signed it
 
 anonymous = (AppEngineUser is not signed in)
