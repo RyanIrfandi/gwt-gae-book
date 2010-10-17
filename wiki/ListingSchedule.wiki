@@ -4,24 +4,41 @@
 
 Until now, we used the local datastore viewer to see what data is saved. Well, it's time to let Violeta see it too.
 
-= Use cases =
-Our basic need is a client to do [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD] operations on Performance entity items.
+= A quick, basic solution =
+Our basic need is to have a client doing [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD] operations on Performance entity items. We just covered Create, moving on to Read.
+
+In order to quickly get the latest schedule data and display it on client, we can 
+ # get all items when page loads
+ # when adding/updating/deleting items, send changes from client to server and if response is successful update the client list too
+
+
+= Advanced use cases =
 
 For the sake of example, let's consider some use cases which aren't really needed by Culture Shows, but might make sense in a larger app:
+ * working with millions of entity items
  * pagination (either in the form of prev/next pages or [http://ui-patterns.com/patterns/ContinuousScrolling continuous] / [http://www.infinite-scroll.com/ infinite] scrolling)
  * sorting
  * filtering
  * multi-user (changes made by others should appear real-time to current user)
  * offline usage
 
-= Alternatives =
+= Exercise =
 
-In order to get the latest schedule data and display it on client, we can do one of these:
- # get all items when page loads. When adding/updating/deleting items, send changes from client to server and if response is successful update the client list too. If multiple users would work on same entity, we won't see other users changes until a full page refresh. We also need to be careful on pagination, sorting, filtering.
- # when adding/updating/deleting items, send changes from client to server and receive back full data from server for the current client view (considering pagination, sorting, filtering). It solves the issues above, but it transfers too much data on each request.
- # 
+Think what are the issues of the basic solution and how could it be enhanced to support the use cases above.
+
+= Enhancing the basic solution =
+
+When we have millions of items, we definitely need to load on client only small chunks of these, depending on what the user wants to see (consider pagination, sorting, filtering).
+
+
+When adding/updating/deleting items, send changes from client to server and receive back full data from server for the current client view (considering pagination, sorting, filtering). It solves the issues above, but it transfers too much data on each request.
+
+
+If multiple users would work on same entity, we won't see other users changes until a full page refresh. 
 
 
  offline usage.
+
+
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
