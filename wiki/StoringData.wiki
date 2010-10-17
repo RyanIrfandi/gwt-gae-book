@@ -139,7 +139,7 @@ return theaterKey, ...
 
 
 
-= Hey client, remember me? =
+== Hey client, remember me? ==
 
 We need the GWT client to remember the current theater and send it with each request, so we avoid creating a new theater for every show. The theater will either be sent from server when it's created, or chosen by Violeta to work on, if she will have multiple theaters.
 
