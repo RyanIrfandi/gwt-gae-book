@@ -139,57 +139,6 @@ return theaterKey, ...
 
 
 
-== Hey client, remember me? ==
-
-We need the GWT client to remember the current theater and send it with each request, so we avoid creating a new theater for every show. The theater will either be sent from server when it's created, or chosen by Violeta to work on, if she will have multiple theaters.
-
-There are a few possibilities to store data in GWT client as a session:
- * [http://stackoverflow.com/questions/1382088/session-id-cookie-in-gwt-rpc use server sessions], and persist sessions among requests. [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/268ec2887bec95d2/ full sample]
- * use a static variable. It will be lost when users refresh page.
- * use HTML5 web storage
- * use cookies
-
-For remembering the current theater, we'll go with simplest solution: a cookie. We'll use the same solution to remember the anonymous users between server calls.
-
-`ScheduleShow.java` Action and Result generator
-{{{
-public class ScheduleShow {
-	@In(1)
-	String userToken;
-
-	@In(2)
-	String theaterKey;
-
-	@In(3)
-	String showName;
-
-	@Out(1)
-	String errorText; // empty if success
-
-	@Out(2)
-	String theaterKeyOut;
-
-}
-}}}
-
-`LandingPresenter.java`
-{{{
-		dispatcher.execute(new ScheduleShowAction(Cookies
-				.getCookie(Constants.userTokenCookieName), Cookies
-				.getCookie(Constants.theaterCookieName), showName),
-				new DispatchCallback<ScheduleShowResult>() {
-					@Override
-					public void onSuccess(ScheduleShowResult result) {
-						...
-						Cookies.setCookie(Constants.theaterCookieName, result
-								.getTheaterKeyOut());
-					}
-				});
-
-}}}
-
-
-
 Before going the rest of the code, let's talk about...
 
 == Datastore setup ==
@@ -330,6 +279,57 @@ Hopefully we'll have lots of read requests for Performances, so there too we'll 
  * [http://stackoverflow.com/questions/1376814/listproperty-of-keys-vs-many-to-many-in-app-engine other approaches]
 
 
+
+
+== Hey client, remember me? ==
+
+We need the GWT client to remember the current theater and send it with each request, so we avoid creating a new theater for every show. The theater will either be sent from server when it's created, or chosen by Violeta to work on, if she will have multiple theaters.
+
+There are a few possibilities to store data in GWT client as a session:
+ * [http://stackoverflow.com/questions/1382088/session-id-cookie-in-gwt-rpc use server sessions], and persist sessions among requests. [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/268ec2887bec95d2/ full sample]
+ * use a static variable. It will be lost when users refresh page.
+ * use HTML5 web storage
+ * use cookies
+
+For remembering the current theater, we'll go with simplest solution: a cookie. We'll use the same solution to remember the anonymous users between server calls.
+
+`ScheduleShow.java` Action and Result generator
+{{{
+public class ScheduleShow {
+	@In(1)
+	String userToken;
+
+	@In(2)
+	String theaterKey;
+
+	@In(3)
+	String showName;
+
+	@Out(1)
+	String errorText; // empty if success
+
+	@Out(2)
+	String theaterKeyOut;
+
+}
+}}}
+
+`LandingPresenter.java`
+{{{
+		dispatcher.execute(new ScheduleShowAction(Cookies
+				.getCookie(Constants.userTokenCookieName), Cookies
+				.getCookie(Constants.theaterCookieName), showName),
+				new DispatchCallback<ScheduleShowResult>() {
+					@Override
+					public void onSuccess(ScheduleShowResult result) {
+						...
+						Cookies.setCookie(Constants.theaterCookieName, result
+								.getTheaterKeyOut());
+					}
+				});
+
+}}}
+
 = Implementation =
 
 Here are the relevant parts from `ScheduleShowHandler`, see code repository for [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java full latest source].
@@ -447,10 +447,10 @@ Here are the relevant parts from `ScheduleShowHandler`, see code repository for 
 
 		// setup performance
 		performance = new Performance();
-		performance.showKey = showKey;
-		// performance.locationKey = locationKey;
 
-		performance.theaterKey = theaterKey;
+		performance.showKey = KeyFactory.keyToString(showKey);
+
+		performance.theaterKey = KeyFactory.keyToString(theaterKey);
 		performance.showName = show.getName();
 		performance.showWebsiteURL = show.websiteURL;
 		performanceKey = datastore.store(performance);
