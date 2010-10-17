@@ -19,7 +19,7 @@ For the sake of example, let's consider some use cases which aren't really neede
  * pagination (either in the form of prev/next pages or [http://ui-patterns.com/patterns/ContinuousScrolling continuous] / [http://www.infinite-scroll.com/ infinite] scrolling)
  * sorting
  * filtering
- * multi-user (changes made by others should appear real-time to current user)
+ * collaboration (changes made by others should appear real-time to current user)
  * offline usage
 
 = Exercise =
@@ -27,6 +27,8 @@ For the sake of example, let's consider some use cases which aren't really neede
 Think what are the issues of the basic solution and how could it be enhanced to support the use cases above.
 
 = Enhancing the basic solution =
+
+TODO
 
 When we have millions of items, we definitely need to load on client only small chunks of these, depending on what the user wants to see (consider pagination, sorting, filtering).
 
@@ -36,6 +38,8 @@ When adding/updating/deleting items, send changes from client to server and rece
 
 If multiple users would work on same entity, we won't see other users changes until a full page refresh. 
 
+
+How Google Docs solved collaboration: [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs.html challenges], [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs_22.html operational transformation], [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs_23.html collaboration protocol]
 
  offline usage.
 
