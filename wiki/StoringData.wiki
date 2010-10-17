@@ -382,9 +382,10 @@ Here are the relevant parts from `ScheduleShowHandler`, see code repository for 
 				// performance scheduling
 				List<TheaterMemberJoin> tmjs = datastore.find().type(
 						TheaterMemberJoin.class).addFilter("theaterKey",
-						FilterOperator.EQUAL, theaterKey).addFilter(
-						"memberKey", FilterOperator.EQUAL, memberKey)
-						.returnAll().now();
+						FilterOperator.EQUAL,
+						KeyFactory.keyToString(theaterKey)).addFilter(
+						"memberKey", FilterOperator.EQUAL,
+						KeyFactory.keyToString(memberKey)).returnAll().now();
 				if (tmjs.size() > 0) {
 					// has access
 				} else {
@@ -412,8 +413,8 @@ Here are the relevant parts from `ScheduleShowHandler`, see code repository for 
 
 			// assign member to theater
 			tmj = new TheaterMemberJoin();
-			tmj.theaterKey = theaterKey;
-			tmj.memberKey = memberKey;
+			tmj.theaterKey = KeyFactory.keyToString(theaterKey);
+			tmj.memberKey = KeyFactory.keyToString(memberKey);
 			tmj.role = Role.ADMINISTRATOR;
 
 			tmj.theaterName = theater.name;
@@ -428,7 +429,6 @@ Here are the relevant parts from `ScheduleShowHandler`, see code repository for 
 		show = new Show();
 		show.setName(action.getShowName());
 
-		// query for shows belonging to a theater instance
 		List<Show> shows = datastore.find().type(Show.class).ancestor(theater)
 				.addFilter("nameQuery", FilterOperator.EQUAL, show.nameQuery)
 				.returnAll().now();
