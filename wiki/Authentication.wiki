@@ -9,6 +9,8 @@
 
 [http://code.google.com/appengine/docs/java/users/overview.html AppEngine Users Java API overview]
 
+[http://code.google.com/intl/nl-NL/appengine/articles/openid.html Using federated authentication via OpenID]
+
 == Updating stored anonymous data ==
 
 
