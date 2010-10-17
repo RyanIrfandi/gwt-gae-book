@@ -14,6 +14,7 @@ manual testing - last
 = Server testing =
 
 = Performance testing =
+is client first load waiting for server to say if signed in or not? Assume no and update UI when response received. 
 
 = More ways to increase software quality =
 findbugs tool
