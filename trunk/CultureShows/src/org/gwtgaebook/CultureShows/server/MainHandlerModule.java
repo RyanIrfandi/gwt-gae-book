@@ -20,6 +20,7 @@ public class MainHandlerModule extends HandlerModule {
 		// bind Actions to ActionHandlers and ActionValidators
 		bindHandler(ScheduleShowAction.class, ScheduleShowHandler.class);
 		bindHandler(GetPerformancesAction.class, GetPerformancesHandler.class);
+		bindHandler(GetUserAction.class, GetUserHandler.class);
 
 		// datastore config
 		DefaultConfiguration.registerTypeName(Member.class, "Member");

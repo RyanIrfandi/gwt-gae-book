@@ -44,6 +44,12 @@
 		padding: 1em;
 	}
 
+	.sidebarHeader {
+		float: right;
+		margin: 0em;
+		padding: 1em;
+	}
+
 	.shows {
 		clear:both;
 		padding: 1em 0em;
@@ -58,9 +64,8 @@
     		<g:HTMLPanel addStyleNames="{style.mainContent}">
     			<g:Image resource='{res.logo}'/>
     		</g:HTMLPanel>
-    		<g:HTMLPanel addStyleNames="{style.sidebar}">
-    			<g:Anchor ui:field="signIn" href="" addStyleNames="{res.style.anchor}">Sign In</g:Anchor>
-    		</g:HTMLPanel>
+    		<g:HTML ui:field="signInOut" addStyleNames="{style.sidebarHeader}">
+    		</g:HTML>
     	</g:HTMLPanel>
 
 

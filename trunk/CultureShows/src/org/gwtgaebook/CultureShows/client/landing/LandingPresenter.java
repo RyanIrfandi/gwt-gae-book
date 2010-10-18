@@ -3,6 +3,7 @@ package org.gwtgaebook.CultureShows.client.landing;
 import java.util.*;
 
 import com.allen_sauer.gwt.log.client.*;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.*;
 import com.google.inject.*;
 import com.gwtplatform.mvp.client.*;
@@ -27,23 +28,43 @@ public class LandingPresenter extends
 	}
 
 	public interface MyView extends View, HasUiHandlers<LandingUiHandlers> {
-		void resetAndFocus();
+		public void resetAndFocus();
 
 		public void addPerformance(Performance performance);
 
 		public void setPerformances(List<Performance> performances);
+
+		public void setSignInOut(UserInfo userInfo);
 	}
 
 	private final PlaceManager placeManager;
 	private final DispatchAsync dispatcher;
+	private UserInfo userInfo;
 
 	@Inject
 	public LandingPresenter(EventBus eventBus, MyView view, MyProxy proxy,
-			PlaceManager placeManager, DispatchAsync dispatcher) {
+			PlaceManager placeManager, DispatchAsync dispatcher,
+			UserInfo userInfo) {
 		super(eventBus, view, proxy);
 		this.placeManager = placeManager;
 		this.dispatcher = dispatcher;
+		this.userInfo = userInfo;
 		getView().setUiHandlers(this);
+
+		// TODO Log.info("Window " + Window.getHref());
+
+		dispatcher.execute(new GetUserAction(GWT.getHostPageBaseURL()),
+				new DispatchCallback<GetUserResult>() {
+					@Override
+					public void onSuccess(GetUserResult result) {
+						if (!result.getErrorText().isEmpty()) {
+							// TODO have a general handler for this
+							Window.alert(result.getErrorText());
+							return;
+						}
+						setUserInfo(result.getUserInfo());
+					}
+				});
 
 		// if not signed in, set a random user token to emulate signed in
 		// functionality
@@ -104,5 +125,15 @@ public class LandingPresenter extends
 				getView().addPerformance(result.getPerformance());
 			}
 		});
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+		Log.info("User isSignedIn " + userInfo.isSignedIn.toString()
+				+ " with email " + userInfo.email + " username "
+				+ userInfo.userId);
+		Log.info("Sign In URLs " + userInfo.signInURLs.toString()
+				+ " Sign Out URL " + userInfo.signOutURL);
+		getView().setSignInOut(userInfo);
 	}
 }

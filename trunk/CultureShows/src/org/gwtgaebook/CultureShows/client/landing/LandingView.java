@@ -47,6 +47,9 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	@UiField
 	HTML performancesContainer;
 
+	@UiField
+	HTML signInOut;
+
 	public LandingView() {
 		widget = uiBinder.createAndBindUi(this);
 
@@ -95,6 +98,22 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	void onScheduleShowClicked(ClickEvent event) {
 		getUiHandlers().scheduleShow(date.getValue(), show.getValue(),
 				location.getValue());
+	}
+
+	public void setSignInOut(UserInfo userInfo) {
+		String html;
+		if (userInfo.isSignedIn) {
+			html = userInfo.email + " | " + "<a href='" + userInfo.signOutURL
+					+ "'>Sign Out</a>";
+		} else {
+			html = "<a href='" + userInfo.signInURLs.get("Google")
+					+ "'>Sign In with Google</a>" + " | " + "<a href='"
+					+ userInfo.signInURLs.get("Yahoo")
+					+ "'>Sign In with Yahoo</a>";
+
+		}
+		signInOut.setHTML(html);
+
 	}
 
 }
