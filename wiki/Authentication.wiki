@@ -45,6 +45,9 @@ Here are the steps to add authentication support
 }}}
  # in `LandingPage` View have a basic UI for signing in/out
 {{{
+	@UiField
+	HTML signInOut;
+
 	public void setSignInOut(UserInfo userInfo) {
 		String html;
 		if (userInfo.isSignedIn) {
