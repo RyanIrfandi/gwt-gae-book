@@ -25,7 +25,7 @@ Although you won't be able to tell from UI yet, checking the Firebug console log
 = Updating UI to accommodate authentication =
 
 
-= Updating stored anonymous data =
+= Migrating stored anonymous data to signed in users =
 
 
 
