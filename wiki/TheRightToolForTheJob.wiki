@@ -7,7 +7,7 @@ Before settling on GWT and GAE, ask yourself if they are the best fit for your p
  * what are the alternatives you have? how do they compare?
 
 
-= Analysis of using GWT for a large UI project =
+= Analysis of using GWT for a large application =
 
 This is an analysis done in 2010 for a large project which has a .NET back-end, with REST APIs (transport: XML and JSON). We control the back-end. We're looking for a framework to replace the current UI. 
 
@@ -49,7 +49,8 @@ The latter approach has a few interesting advantages
 
     
 Disadvantages: 
- * (perceived) you need APIs for almost every feature exposed to front-end, which might be perceived as more work. You'd have to build that functionality anyway, and using APIs forces you to think about separation of UI from back-end. You should also have an API layer which takes care of all common functionality (e.g. authentication, logging) rather than doing this individually for each API.
+ * [http://jeoftp.blogspot.com/2010/01/why-i-left-gwt-and-came-crawling-back.html generated markup] is [http://code.google.com/p/google-web-toolkit/issues/detail?id=4684 bloated], making it harder to style among others. See [http://groups.google.co.jp/group/google-web-toolkit/tree/browse_frm/thread/c8cfc4d2dba16862/e12745a14290fffb explanation] about why some of that markup is needed
+ * (perceived) you need APIs for almost every feature exposed to front-end, which might be perceived as more work. You'd have to build that functionality anyway, and using APIs forces you to think about separation of UI from back-end. You should also have an API layer which takes care of all common functionality (e.g. authentication, logging) rather than doing this individually for each API
 
 
 == Google Web Toolkit (GWT) ==
@@ -191,6 +192,8 @@ Mobile Maps and Latitude for iPhone
 == Appendix: Cool GWT apps ==
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/old_boat.jpg" border="0"  align="right" />
 
+[http://www.contactoffice.com/virtual-office/en/product/versions/personal.jsp?tab=demo#demo ContactOffice]
+
 [http://smist08.wordpress.com/2009/12/03/the-sage-erp-accpac-6-0a-portal/ Sage ERP Portal]
 
 http://www.studyblue.com/
@@ -202,7 +205,6 @@ http://www.zackgrossbart.com/hackito/spiffy/
 
 [http://www.sambajam.com/signup SambaJAM] ([http://www.youtube.com/user/sambastream#p/a/u/1/izUeOhLxLpg video])
 
-http://beta.contactoffice.com/
 
 http://riflethru.com/ (both desktop and mobile UIs)
 
