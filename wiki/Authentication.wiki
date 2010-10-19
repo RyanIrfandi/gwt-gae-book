@@ -188,7 +188,12 @@ Interested parties can listen to this event and handle it as desired. For exampl
 Change Landing so it displays Sign In button only if user is not signed in.
 
 === Exercise solution ===
-[x Changelist]
+[http://code.google.com/p/gwt-gae-book/source/detail?spec=svn376&r=376 Changelist]
+
+= Enhancing sign in experience =
+
+== Custom widgets ==
+
 
 = Migrating stored anonymous data to signed in users =
 
