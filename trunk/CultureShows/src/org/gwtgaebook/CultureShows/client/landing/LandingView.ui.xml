@@ -54,8 +54,8 @@ elegant philanthropic silk portfolio gem.
 			    <g:Button ui:field="scheduleShow" addStyleNames="{res.style.button} {res.style.green} {res.style.medium}">Schedule show</g:Button>
 		    </g:HTMLPanel>
 
-		    <g:HTMLPanel ui:field="sidebar" addStyleNames="{style.sidebar}">
-				<g:Button addStyleNames="{res.style.button} {res.style.green} {res.style.small} {res.style.block}">Sign In</g:Button>
+		    <g:HTMLPanel ui:field="sidebar" addStyleNames="{style.sidebar}" visible="false">
+				<g:Button ui:field="signIn" addStyleNames="{res.style.button} {res.style.green} {res.style.small} {res.style.block}">Sign In</g:Button>
 				to permanently save shows,
 				locations, schedule and more
 		    </g:HTMLPanel>
