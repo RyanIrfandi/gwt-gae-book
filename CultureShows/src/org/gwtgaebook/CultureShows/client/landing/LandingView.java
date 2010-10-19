@@ -101,12 +101,12 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	}
 
 	public void setSignInOut(UserInfo userInfo) {
-		// TODO
-		if (userInfo.isSignedIn) {
-			sidebar.clear();
-		} else {
+		// ideally, sign in markup shouldn't even be loaded or present in dom if
+		// user is signed in, but it's not that big to justify creating a
+		// separate widget or create it here dynamically instead of UiBinder
+		if (!userInfo.isSignedIn) {
+			sidebar.setVisible(true);
 		}
 
 	}
-
 }

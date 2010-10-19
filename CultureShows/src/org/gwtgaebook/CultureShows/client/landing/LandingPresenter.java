@@ -12,6 +12,8 @@ import com.gwtplatform.mvp.client.proxy.*;
 import com.gwtplatform.dispatch.client.*;
 
 import org.gwtgaebook.CultureShows.client.*;
+import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent;
+import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent.UserInfoAvailableHandler;
 import org.gwtgaebook.CultureShows.client.util.*;
 import org.gwtgaebook.CultureShows.shared.*;
 import org.gwtgaebook.CultureShows.shared.dispatch.*;
@@ -122,14 +124,22 @@ public class LandingPresenter extends
 		});
 	}
 
-	// TODO onbind userinfo avail; on avail set sidebar
-	// public void setUserInfo(UserInfo userInfo) {
-	// this.userInfo = userInfo;
-	// Log.info("User isSignedIn " + userInfo.isSignedIn.toString()
-	// + " with email " + userInfo.email + " username "
-	// + userInfo.userId);
-	// Log.info("Sign In URLs " + userInfo.signInURLs.toString()
-	// + " Sign Out URL " + userInfo.signOutURL);
-	// getView().setSignInOut(userInfo);
-	// }
+	@Override
+	protected void onBind() {
+		super.onBind();
+
+		addRegisteredHandler(UserInfoAvailableEvent.getType(),
+				new UserInfoAvailableHandler() {
+					@Override
+					public void onHasUserInfoAvailable(
+							UserInfoAvailableEvent event) {
+						setSignInOut(event.getUserInfo());
+
+					}
+				});
+	}
+
+	public void setSignInOut(UserInfo userInfo) {
+		getView().setSignInOut(userInfo);
+	}
 }
