@@ -31,8 +31,8 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 
 	public final Widget widget;
 
-	@UiField
-	HTMLPanel container;
+	// @UiField
+	// HTMLPanel container;
 
 	@UiField
 	TextBox show;
@@ -48,7 +48,7 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	HTML performancesContainer;
 
 	@UiField
-	HTML signInOut;
+	HTMLPanel sidebar;
 
 	public LandingView() {
 		widget = uiBinder.createAndBindUi(this);
@@ -66,7 +66,7 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 
 	@Override
 	public Widget asWidget() {
-		return container;
+		return widget;
 	}
 
 	private static native void placeholder() /*-{
@@ -101,18 +101,11 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	}
 
 	public void setSignInOut(UserInfo userInfo) {
-		String html;
+		// TODO
 		if (userInfo.isSignedIn) {
-			html = userInfo.email + " | " + "<a href='" + userInfo.signOutURL
-					+ "'>Sign Out</a>";
+			sidebar.clear();
 		} else {
-			html = "<a href='" + userInfo.signInURLs.get("Google")
-					+ "'>Sign In with Google</a>" + " | " + "<a href='"
-					+ userInfo.signInURLs.get("Yahoo")
-					+ "'>Sign In with Yahoo</a>";
-
 		}
-		signInOut.setHTML(html);
 
 	}
 

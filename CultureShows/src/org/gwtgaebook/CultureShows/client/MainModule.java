@@ -27,5 +27,8 @@ public class MainModule extends AbstractPresenterModule {
 				.in(Singleton.class);
 		bind(RootPresenter.class).asEagerSingleton();
 
+		bindPresenter(MainPresenter.class, MainPresenter.MyView.class,
+				MainView.class, MainPresenter.MyProxy.class);
+
 	}
 }

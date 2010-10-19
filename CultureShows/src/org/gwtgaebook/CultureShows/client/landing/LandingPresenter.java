@@ -23,8 +23,7 @@ public class LandingPresenter extends
 
 	@ProxyStandard
 	@NameToken(NameTokens.landing)
-	// TODO public interface MyProxy extends ProxyPlace<LandingPresenter>
-	public interface MyProxy extends Proxy<LandingPresenter>, Place {
+	public interface MyProxy extends ProxyPlace<LandingPresenter> {
 	}
 
 	public interface MyView extends View, HasUiHandlers<LandingUiHandlers> {
@@ -39,38 +38,35 @@ public class LandingPresenter extends
 
 	private final PlaceManager placeManager;
 	private final DispatchAsync dispatcher;
-	private UserInfo userInfo;
 
 	@Inject
 	public LandingPresenter(EventBus eventBus, MyView view, MyProxy proxy,
-			PlaceManager placeManager, DispatchAsync dispatcher,
-			UserInfo userInfo) {
+			PlaceManager placeManager, DispatchAsync dispatcher) {
 		super(eventBus, view, proxy);
 		this.placeManager = placeManager;
 		this.dispatcher = dispatcher;
-		this.userInfo = userInfo;
 		getView().setUiHandlers(this);
 
-		dispatcher.execute(new GetUserAction(Window.Location.getHref()),
-				new DispatchCallback<GetUserResult>() {
-					@Override
-					public void onSuccess(GetUserResult result) {
-						if (!result.getErrorText().isEmpty()) {
-							// TODO have a general handler for this
-							Window.alert(result.getErrorText());
-							return;
-						}
-						setUserInfo(result.getUserInfo());
-					}
-				});
-
-		// if not signed in, set a random user token to emulate signed in
-		// functionality
-		// TODO set only if not signed in
-		if (null == Cookies.getCookie(Constants.userTokenCookieName)
-				|| Cookies.getCookie(Constants.userTokenCookieName).isEmpty()) {
-			Cookies.setCookie(Constants.userTokenCookieName, MyUUID.uuid());
-		}
+		// dispatcher.execute(new GetUserAction(Window.Location.getHref()),
+		// new DispatchCallback<GetUserResult>() {
+		// @Override
+		// public void onSuccess(GetUserResult result) {
+		// if (!result.getErrorText().isEmpty()) {
+		// // TODO have a general handler for this
+		// Window.alert(result.getErrorText());
+		// return;
+		// }
+		// setUserInfo(result.getUserInfo());
+		// }
+		// });
+		//
+		// // if not signed in, set a random user token to emulate signed in
+		// // functionality
+		// // TODO set only if not signed in
+		// if (null == Cookies.getCookie(Constants.userTokenCookieName)
+		// || Cookies.getCookie(Constants.userTokenCookieName).isEmpty()) {
+		// Cookies.setCookie(Constants.userTokenCookieName, MyUUID.uuid());
+		// }
 
 	}
 
@@ -100,7 +96,8 @@ public class LandingPresenter extends
 
 	@Override
 	protected void revealInParent() {
-		RevealRootContentEvent.fire(this, this);
+		RevealContentEvent.fire(this, MainPresenter.TYPE_RevealMainContent,
+				this);
 	}
 
 	@Override
@@ -125,13 +122,14 @@ public class LandingPresenter extends
 		});
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
-		this.userInfo = userInfo;
-		Log.info("User isSignedIn " + userInfo.isSignedIn.toString()
-				+ " with email " + userInfo.email + " username "
-				+ userInfo.userId);
-		Log.info("Sign In URLs " + userInfo.signInURLs.toString()
-				+ " Sign Out URL " + userInfo.signOutURL);
-		getView().setSignInOut(userInfo);
-	}
+	// TODO onbind userinfo avail; on avail set sidebar
+	// public void setUserInfo(UserInfo userInfo) {
+	// this.userInfo = userInfo;
+	// Log.info("User isSignedIn " + userInfo.isSignedIn.toString()
+	// + " with email " + userInfo.email + " username "
+	// + userInfo.userId);
+	// Log.info("Sign In URLs " + userInfo.signInURLs.toString()
+	// + " Sign Out URL " + userInfo.signOutURL);
+	// getView().setSignInOut(userInfo);
+	// }
 }
