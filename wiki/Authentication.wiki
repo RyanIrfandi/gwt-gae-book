@@ -41,7 +41,7 @@ Here are the steps to add authentication support
 }}}
  # in `LandingPage` presenter, get user info from server
 {{{
-		dispatcher.execute(new GetUserAction(GWT.getHostPageBaseURL()),
+		dispatcher.execute(new GetUserAction(Window.Location.getHref()),
 				new DispatchCallback<GetUserResult>() {
 					@Override
 					public void onSuccess(GetUserResult result) {
