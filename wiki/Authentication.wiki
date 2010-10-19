@@ -3,15 +3,11 @@
 <wiki:toc max_depth="2" />
 
 = Signing in =
-<blockquote>
 *Pre-requisites*
 
-[http://en.wikipedia.org/wiki/OpenID OpenID introduction]
-
-[http://code.google.com/appengine/docs/java/users/overview.html AppEngine Users Java API overview]
-
-[http://code.google.com/intl/nl-NL/appengine/articles/openid.html Using federated authentication via OpenID]
-</blockquote>
+ * [http://en.wikipedia.org/wiki/OpenID OpenID introduction]
+ * [http://code.google.com/appengine/docs/java/users/overview.html AppEngine Users Java API overview]
+ * [http://code.google.com/intl/nl-NL/appengine/articles/openid.html Using federated authentication via OpenID]
 
 Here are the steps to add authentication support
  # define [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/UserInfo.java UserInfo] model, used to send user information from server to client 
