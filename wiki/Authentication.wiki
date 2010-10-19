@@ -108,14 +108,87 @@ _Signed in with Yahoo_ <br/>
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signedInY.png" border="1"  />
 
 
+App Engine supports more !OpenID providers. To keep the UI usable, we'll limit the options to the most popular two.
+
 = Updating UI to accommodate authentication =
 
+As you keep adding functionality, you also need to consider what are the final goals you need to reach with your app and consider refactoring in order to better support those goals (be careful not to [http://en.wikipedia.org/wiki/Overengineering overengineer] it).
+
+== Goals ==
+What are the goals we're trying to accomplish?
+ * have multiple places (such as Landing page), each with the same header
+  * some accessible by anonymous users (e.g. Landing page, About Culture Shows)
+  * some restricted to signed in users, and maybe with some specific permissions
+ * sometimes content depends on user signed in state or permissions (e.g. header will show Sign In or Sign Out links)
+ * app can be initialized from any place, not just the default (if somebody bookmarked it or hits browser refresh)
+ * sign in/out can be triggered from any place, should return to that place 
+ 
+== Refactoring ==
+
+Let's introduce a Main presenter & view, which will contain a Header and a Main content placeholder. All relevant contents from Landing are moved to these new entities, leaving here just show scheduling.
+Here's the [http://code.google.com/p/gwt-gae-book/source/detail?spec=svn372&r=372 full refactoring changelist].
 
 == Custom events ==
+*Pre-requisites*
+ * [http://arcbees.wordpress.com/2010/08/24/gwt-platform-event-best-practice/ Custom events with gwt-platform]
 
-TODO
+We were already getting user info and setting the header depending on user state. There are more places though which depend on it, e.g. Sign In button on the right of Landing page. We'll let Main presenter initiate getting user info, and when that's received fire a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/event/UserInfoAvailableEvent.java UserInfoAvailableEvent] :
 
-App Engine supports more !OpenID providers. To keep the UI usable, we'll limit the options to the most popular two.
+{{{
+
+	@Override
+	protected void onBind() {
+		super.onBind();
+
+		dispatcher.execute(new GetUserAction(Window.Location.getHref()),
+				new DispatchCallback<GetUserResult>() {
+					@Override
+					public void onSuccess(GetUserResult result) {
+						if (!result.getErrorText().isEmpty()) {
+							Window.alert(result.getErrorText());
+							return;
+						}
+						setUserInfo(result.getUserInfo());
+					}
+				});
+
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+		UserInfoAvailableEvent.fire(this, userInfo);
+	}
+}}}
+
+Interested parties can listen to this event and handle it as desired. For example, the Header will do
+{{{
+	@Override
+	protected void onBind() {
+		super.onBind();
+
+		addRegisteredHandler(UserInfoAvailableEvent.getType(),
+				new UserInfoAvailableHandler() {
+					@Override
+					public void onHasUserInfoAvailable(
+							UserInfoAvailableEvent event) {
+						setSignInOut(event.getUserInfo());
+
+					}
+				});
+	}
+
+	public void setSignInOut(UserInfo userInfo) {
+		getView().setSignInOut(userInfo);
+	}
+
+}}}
+
+
+=== Exercise ===
+Change Landing so it displays Sign In button only if user is not signed in.
+
+=== Exercise solution ===
+[x Changelist]
 
 = Migrating stored anonymous data to signed in users =
 
