@@ -3,28 +3,30 @@
 Here are some sections I'd like to add, as time allows:
 
 
- * Managing theaters, shows, locations, schedule
  * Landing page enhancements
+  * Data validation
   * i18n
   * Form fields auto-completion
   * Remembering last used location
-  * give feedback on client-server communication status
-  * generic error handling
+ * Managing theaters and preferences
+ * Managing shows, locations, schedule
  * Exposing data via APIs for 3rd parties
-  * jsonp, rest?
+  * jsonp, rest
  * Displaying schedule on theater website
+
  * Client-server communication enhancements
-  * error handling, loading indicator, caching
+  * give feedback on communication status
+  * generic error handling
+  * caching
+ * Analytics
+ * Enabling offline usage
  * Social networking
  * Opening up to more theater members (adding actors, assistants)
  * Allowing public to browse our data
- * Analytics
  * Advertise with !AdSense
- * Enabling offline usage
  * Making reservations
  * Charging money
   * Google checkout
- * Custom widgets
  * Working with REST APIs from GWT
 
 What else would you like to see covered?
