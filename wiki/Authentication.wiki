@@ -12,7 +12,6 @@
 [http://code.google.com/intl/nl-NL/appengine/articles/openid.html Using federated authentication via OpenID]
 
 
-
 Here are the steps to add authentication support
  # define [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/UserInfo.java UserInfo] model, used to send user information from server to client 
  # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/MainModule.java bind UserInfo] as [http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/Binder.html Guice Singleton]. This will make an UserInfo instance persist in all client, as if it were a static class. TODO true?
@@ -65,10 +64,37 @@ Here are the steps to add authentication support
 	}
 }}}
 
-It's really that easy.
+It's really that easy. The result?
+
+_Signed out_ <br/>
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signedOut.png" border="1"  />
+
+-----
+
+_Signing in with Google_ <br/>
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signingInG.png" border="1"  />
+
+-----
+
+_Signed in with Google_ <br/>
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signedInG.png" border="1"  />
+
+-----
+
+_Signing in with Yahoo_ <br/>
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signingInY.png" border="1"  />
+
+-----
+
+_Signed in with Yahoo_ <br/>
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signedInY.png" border="1"  />
+
 
 = Updating UI to accommodate authentication =
 
+TODO
+
+App Engine supports more !OpenID providers. To keep the UI usable, we'll limit the options to the most popular two.
 
 = Migrating stored anonymous data to signed in users =
 
