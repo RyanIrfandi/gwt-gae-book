@@ -110,6 +110,9 @@ _Signed in with Yahoo_ <br/>
 
 = Updating UI to accommodate authentication =
 
+
+== Custom events ==
+
 TODO
 
 App Engine supports more !OpenID providers. To keep the UI usable, we'll limit the options to the most popular two.
