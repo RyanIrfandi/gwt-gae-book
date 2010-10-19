@@ -51,9 +51,7 @@ public class LandingPresenter extends
 		this.userInfo = userInfo;
 		getView().setUiHandlers(this);
 
-		// TODO Log.info("Window " + Window.getHref());
-
-		dispatcher.execute(new GetUserAction(GWT.getHostPageBaseURL()),
+		dispatcher.execute(new GetUserAction(Window.Location.getHref()),
 				new DispatchCallback<GetUserResult>() {
 					@Override
 					public void onSuccess(GetUserResult result) {
