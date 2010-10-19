@@ -139,10 +139,10 @@ Now, any color blind, long-time, terminal-only Unix administrator can tell somet
 
 
 Here's how it was done:
- * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/resources/main.css main.css] - added various styles, to be used in all application
- * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/resources/Resources.java Resources.java] - listed style names
- * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/war/main.html main.html] - added a jQuery plugin as fallback for HTML5 placeholder attribute and .placeholder class
- * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml LandingView.ui.xml] - updated markup, added style names
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/resources/main.css?r=168 main.css] - added various styles, to be used in all application
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/resources/Resources.java?r=168 Resources.java] - listed style names
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/war/main.html?r=372 main.html] - added a jQuery plugin as fallback for HTML5 placeholder attribute and .placeholder class
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml?r=168 LandingView.ui.xml] - updated markup, added style names
  * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java?r=184 LandingView.java] - added HTML5 placeholder, required attributes and activated jQuery plugin via [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JSNI]
 
 = Using native !JavaScript =
