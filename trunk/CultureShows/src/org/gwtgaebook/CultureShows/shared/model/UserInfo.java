@@ -5,7 +5,7 @@ import java.util.*;
 
 // transports http://code.google.com/appengine/docs/java/javadoc/com/google/appengine/api/users/User.html info to client
 public class UserInfo implements Serializable {
-	public Boolean isSignedIn = false;
+	public Boolean isSignedIn;
 	public String userId;
 	public String email;
 

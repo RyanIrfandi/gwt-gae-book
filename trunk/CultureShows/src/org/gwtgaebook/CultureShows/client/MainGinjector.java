@@ -8,9 +8,11 @@ import com.gwtplatform.mvp.client.annotations.*;
 import com.gwtplatform.mvp.client.proxy.*;
 
 import org.gwtgaebook.CultureShows.client.resources.*;
+import org.gwtgaebook.CultureShows.client.widget.*;
 import org.gwtgaebook.CultureShows.client.landing.*;
 
-@GinModules( { DispatchAsyncModule.class, MainModule.class, LandingModule.class })
+@GinModules( { DispatchAsyncModule.class, MainModule.class, WidgetModule.class,
+		LandingModule.class })
 public interface MainGinjector extends Ginjector {
 	EventBus getEventBus();
 
@@ -21,6 +23,8 @@ public interface MainGinjector extends Ginjector {
 	Resources getResources();
 
 	Translations getTranslations();
+
+	Provider<MainPresenter> getMainPresenter();
 
 	Provider<LandingPresenter> getLandingPresenter();
 
