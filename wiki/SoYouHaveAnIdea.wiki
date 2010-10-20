@@ -7,7 +7,7 @@ So you have a great idea about a new web application? Cool! Sometimes it might b
 = Putting ideas in writing =
 Let's consider this idea: there is a small theater company in your city which has great shows. They also have a website which presents the group to the public and has the shows schedule. You'd like to enable somebody in the theater company to easily update the shows schedule on the website. Once you implement this functionality, you'd like to make it available to other theater companies across the world. Let's call this application Culture Shows.
 
-You've just identified somebody's need that you could solve. "Somebody" it's usually a human, which in software design is referred to as [http://en.wikipedia.org/wiki/Persona_(marketing) persona].
+You've just identified somebody's need that you could solve. "Somebody" is usually a human, which in software design is referred to as [http://en.wikipedia.org/wiki/Persona_(marketing) persona].
 
 = Personae =
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/actor_red.jpg" border="0"  align="left" />
