@@ -233,9 +233,9 @@ We'll achieve this by
 
 }}}
 
+See [http://code.google.com/p/gwt-gae-book/source/detail?spec=svn400&r=400 full changelist].
 
 TODO: load Sign In code & images only when required
-
 
 
 = Migrating stored anonymous data to signed in users =
