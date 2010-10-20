@@ -1,0 +1,19 @@
+#summary Landing page enhancements
+
+
+= Internationalization =
+
+*Pre-requisites*
+ * [http://code.google.com/webtoolkit/doc/latest/DevGuideI18n.html Developer's Guide - Internationalization] 
+ * [http://code.google.com/p/gwt-platform/wiki/MergeLocale using the provided MergeLocale script].
+
+TODO
+
+
+= Data validation =
+
+
+= Form fields auto-completion =
+
+
+= Remembering last used location =
