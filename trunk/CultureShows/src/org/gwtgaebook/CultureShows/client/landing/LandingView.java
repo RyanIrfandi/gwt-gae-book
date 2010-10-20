@@ -109,4 +109,10 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 		}
 
 	}
+
+	@UiHandler("signIn")
+	void onSignInClicked(ClickEvent event) {
+		getUiHandlers().requestSignIn();
+	}
+
 }

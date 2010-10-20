@@ -12,6 +12,7 @@ import com.gwtplatform.mvp.client.proxy.*;
 import com.gwtplatform.dispatch.client.*;
 
 import org.gwtgaebook.CultureShows.client.*;
+import org.gwtgaebook.CultureShows.client.event.SignInEvent;
 import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent;
 import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent.UserInfoAvailableHandler;
 import org.gwtgaebook.CultureShows.client.util.*;
@@ -48,27 +49,6 @@ public class LandingPresenter extends
 		this.placeManager = placeManager;
 		this.dispatcher = dispatcher;
 		getView().setUiHandlers(this);
-
-		// dispatcher.execute(new GetUserAction(Window.Location.getHref()),
-		// new DispatchCallback<GetUserResult>() {
-		// @Override
-		// public void onSuccess(GetUserResult result) {
-		// if (!result.getErrorText().isEmpty()) {
-		// // TODO have a general handler for this
-		// Window.alert(result.getErrorText());
-		// return;
-		// }
-		// setUserInfo(result.getUserInfo());
-		// }
-		// });
-		//
-		// // if not signed in, set a random user token to emulate signed in
-		// // functionality
-		// // TODO set only if not signed in
-		// if (null == Cookies.getCookie(Constants.userTokenCookieName)
-		// || Cookies.getCookie(Constants.userTokenCookieName).isEmpty()) {
-		// Cookies.setCookie(Constants.userTokenCookieName, MyUUID.uuid());
-		// }
 
 	}
 
@@ -141,5 +121,9 @@ public class LandingPresenter extends
 
 	public void setSignInOut(UserInfo userInfo) {
 		getView().setSignInOut(userInfo);
+	}
+
+	public void requestSignIn() {
+		SignInEvent.fire(this);
 	}
 }

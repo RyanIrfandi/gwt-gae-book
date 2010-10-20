@@ -1,11 +1,16 @@
 package org.gwtgaebook.CultureShows.client.widget;
 
+import org.gwtgaebook.CultureShows.client.event.SignInEvent;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.*;
@@ -21,9 +26,17 @@ public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements
 	private final Widget widget;
 
 	@UiField
-	HTML signInOut;
+	TokenSeparatedList nav;
 
-	@Inject
+	@UiField
+	Anchor signIn;
+	@UiField
+	Anchor signOut;
+	@UiField
+	InlineLabel username;
+
+	private UserInfo userInfo;
+
 	public HeaderView() {
 		widget = uiBinder.createAndBindUi(this);
 	}
@@ -33,20 +46,25 @@ public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements
 		return widget;
 	}
 
-	public void setSignInOut(UserInfo userInfo) {
-		String html;
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
 		if (userInfo.isSignedIn) {
-			html = userInfo.email + " | " + "<a href='" + userInfo.signOutURL
-					+ "'>Sign Out</a>";
+			username.setText(userInfo.email);
+			nav.setWidgetVisible(username, true);
+			nav.setWidgetVisible(signOut, true);
 		} else {
-			html = "<a href='" + userInfo.signInURLs.get("Google")
-					+ "'>Sign In with Google</a>" + " | " + "<a href='"
-					+ userInfo.signInURLs.get("Yahoo")
-					+ "'>Sign In with Yahoo</a>";
-
+			nav.setWidgetVisible(signIn, true);
 		}
-		signInOut.setHTML(html);
 
 	}
 
+	@UiHandler("signIn")
+	void onSignInClicked(ClickEvent event) {
+		getUiHandlers().requestSignIn();
+	}
+
+	@UiHandler("signOut")
+	void onSignOutClicked(ClickEvent event) {
+		Window.Location.replace(userInfo.signOutURL);
+	}
 }
