@@ -4,7 +4,7 @@
 
 Time to add some functionality! There is some reading you have to do in advance for each section, but it's worth it.
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/rencontres-3.jpg" border="0"  align="right" />
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/chair_theater.jpg" border="0"  align="right" />
 
 = Pre-requisites =
 
