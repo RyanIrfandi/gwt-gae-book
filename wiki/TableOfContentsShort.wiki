@@ -22,9 +22,9 @@
 
 [Authentication Authentication with OpenID]
 
-[DataValidation Data validation]
-
 [QualityAssurance Quality assurance]
+
+[LandingEnhancements Landing page enhancements]
 
 [MoreResources More resources]
 

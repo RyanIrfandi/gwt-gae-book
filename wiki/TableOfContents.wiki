@@ -26,7 +26,7 @@
  * [VisualizingYourApp#Get_feedback Get feedback] <br/>
 
 === [TheRightToolForTheJob Are you using the right tool for the job?] ===
- * [TheRightToolForTheJob#Analysis_of_using_GWT_for_a_large_UI_project Analysis of using GWT for a large UI project] <br/>
+ * [TheRightToolForTheJob#Analysis_of_using_GWT_for_a_large_application Analysis of using GWT for a large application] <br/>
   * [TheRightToolForTheJob#Goals Goals] <br/>
   * [TheRightToolForTheJob#Web_applications_paradigm_alternatives Web applications paradigm alternatives] <br/>
   * [TheRightToolForTheJob#Google_Web_Toolkit_(GWT) Google Web Toolkit (GWT)] <br/>
@@ -65,7 +65,6 @@
  * [BuildingLandingPage#Styling Styling] <br/>
  * [BuildingLandingPage#Using_native_JavaScript Using native JavaScript] <br/>
  * [BuildingLandingPage#Mobile,_tablets,_TV_and_other_devices Mobile, tablets, TV and other devices] <br/>
- * [BuildingLandingPage#Internationalization Internationalization] <br/>
  * [BuildingLandingPage#Model-View-Presenter_(MVP) Model-View-Presenter (MVP)] <br/>
   * [BuildingLandingPage#Exercise Exercise] <br/>
   * [BuildingLandingPage#Exercise_solution Exercise solution] <br/>
@@ -89,17 +88,31 @@
   * [StoringData#Datastore_setup Datastore setup] <br/>
   * [StoringData#One-to-Many_relationships One-to-Many relationships] <br/>
   * [StoringData#Many-to-Many_relationships Many-to-Many relationships] <br/>
+  * [StoringData#Hey_client,_remember_me? Hey client, remember me?] <br/>
  * [StoringData#Implementation Implementation] <br/>
  * [StoringData#Exercise Exercise] <br/>
  * [StoringData#Exercise_solution Exercise solution] <br/>
- * [StoringData#Hey_client,_remember_me? Hey client, remember me?] <br/>
  * [StoringData#Resources Resources] <br/>
 
 === [ListingSchedule Listing saved schedule] ===
+ * [ListingSchedule#A_quick,_basic_solution A quick, basic solution] <br/>
+  * [ListingSchedule#Exercise Exercise] <br/>
+  * [ListingSchedule#Exercise_solution Exercise solution] <br/>
+ * [ListingSchedule#Advanced_use_cases Advanced use cases] <br/>
+ * [ListingSchedule#Exercise Exercise] <br/>
+ * [ListingSchedule#Enhancing_the_basic_solution Enhancing the basic solution] <br/>
 
 === [Authentication Authentication with OpenID] ===
-
-=== [DataValidation Data validation] ===
+ * [Authentication#Signing_in_using_OpenID Signing in using OpenID] <br/>
+ * [Authentication#Updating_UI_to_accommodate_authentication Updating UI to accommodate authentication] <br/>
+  * [Authentication#Goals Goals] <br/>
+  * [Authentication#Refactoring Refactoring] <br/>
+  * [Authentication#Custom_events Custom events] <br/>
+   * [Authentication#Exercise Exercise] <br/>
+   * [Authentication#Exercise_solution Exercise solution] <br/>
+ * [Authentication#Enhancing_sign_in_experience Enhancing sign in experience] <br/>
+  * [Authentication#Custom_widgets Custom widgets] <br/>
+ * [Authentication#Migrating_stored_anonymous_data_to_signed_in_users Migrating stored anonymous data to signed in users] <br/>
 
 === [QualityAssurance Quality assurance] ===
  * [QualityAssurance#Introduction Introduction] <br/>
@@ -108,6 +121,12 @@
  * [QualityAssurance#Server_testing Server testing] <br/>
  * [QualityAssurance#Performance_testing Performance testing] <br/>
  * [QualityAssurance#More_ways_to_increase_software_quality More ways to increase software quality] <br/>
+
+=== [LandingEnhancements Landing page enhancements] ===
+ * [LandingEnhancements#Internationalization Internationalization] <br/>
+ * [LandingEnhancements#Data_validation Data validation] <br/>
+ * [LandingEnhancements#Form_fields_auto-completion Form fields auto-completion] <br/>
+ * [LandingEnhancements#Remembering_last_used_location Remembering last used location] <br/>
 
 === [MoreResources More resources] ===
  * [MoreResources#Discussion_groups Discussion groups] <br/>

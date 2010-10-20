@@ -12,8 +12,8 @@ $docs = array(
 	"StoringData",
 	"ListingSchedule",
 	"Authentication",
-	"DataValidation",
 	"QualityAssurance",
+	"LandingEnhancements",
 	"MoreResources",
 	"TODO"
 );
