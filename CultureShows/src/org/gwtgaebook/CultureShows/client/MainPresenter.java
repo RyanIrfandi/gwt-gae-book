@@ -11,8 +11,10 @@ import com.gwtplatform.dispatch.client.*;
 
 import org.gwtgaebook.CultureShows.client.*;
 import org.gwtgaebook.CultureShows.client.event.*;
+import org.gwtgaebook.CultureShows.client.event.SignInEvent.SignInHandler;
+import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent.UserInfoAvailableHandler;
 import org.gwtgaebook.CultureShows.client.util.*;
-import org.gwtgaebook.CultureShows.client.widget.HeaderPresenter;
+import org.gwtgaebook.CultureShows.client.widget.*;
 import org.gwtgaebook.CultureShows.shared.*;
 import org.gwtgaebook.CultureShows.shared.dispatch.*;
 import org.gwtgaebook.CultureShows.shared.model.*;
@@ -38,16 +40,21 @@ public class MainPresenter extends
 
 	private final HeaderPresenter headerPresenter;
 
+	private final SignInPresenter signInPresenter;
+
 	@Inject
 	public MainPresenter(final EventBus eventBus, final MyView view,
 			final MyProxy proxy, final PlaceManager placeManager,
 			final DispatchAsync dispatcher, UserInfo userInfo,
-			final HeaderPresenter headerPresenter) {
+			final HeaderPresenter headerPresenter,
+			final SignInPresenter signInPresenter) {
 		super(eventBus, view, proxy);
 		this.placeManager = placeManager;
 		this.dispatcher = dispatcher;
 		this.userInfo = userInfo;
 		this.headerPresenter = headerPresenter;
+		this.signInPresenter = signInPresenter;
+
 		getView().setUiHandlers(this);
 
 	}
@@ -67,6 +74,14 @@ public class MainPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
+
+		addRegisteredHandler(SignInEvent.getType(), new SignInHandler() {
+			@Override
+			public void onHasSignIn(SignInEvent event) {
+				showSignInDialog();
+
+			}
+		});
 
 		dispatcher.execute(new GetUserAction(Window.Location.getHref()),
 				new DispatchCallback<GetUserResult>() {
@@ -98,4 +113,10 @@ public class MainPresenter extends
 				+ " Sign Out URL " + userInfo.signOutURL);
 		UserInfoAvailableEvent.fire(this, userInfo);
 	}
+
+	public void showSignInDialog() {
+		signInPresenter.setUserInfo(userInfo);
+		RevealRootPopupContentEvent.fire(this, signInPresenter);
+	}
+
 }

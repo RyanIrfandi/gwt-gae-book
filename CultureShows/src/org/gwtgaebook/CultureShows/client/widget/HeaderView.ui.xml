@@ -1,6 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:w="urn:import:org.gwtgaebook.CultureShows.client.widget"
 >
 
 	<ui:with type="org.gwtgaebook.CultureShows.client.NameTokens" field="nameTokens" />
@@ -8,9 +9,21 @@
 
 	<ui:style>
 
+		.anchor {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+		.username {
+			font-weight: bold;
+		}
+
 	</ui:style>
 
+	<!-- by default, all widgets are hidden. View will enable them depending on userInfo -->
+	<w:TokenSeparatedList token="&nbsp;|&nbsp;" ui:field="nav">
+		<g:Anchor ui:field="signIn" addStyleNames="{style.anchor}" visible="false">Sign In</g:Anchor>
+		<g:InlineLabel ui:field="username" addStyleNames="{style.username}" visible="false"/>
+		<g:Anchor ui:field="signOut" addStyleNames="{style.anchor}" visible="false">Sign out</g:Anchor>
+	</w:TokenSeparatedList>
 
-	<g:HTML ui:field="signInOut">
-	</g:HTML>
 </ui:UiBinder>

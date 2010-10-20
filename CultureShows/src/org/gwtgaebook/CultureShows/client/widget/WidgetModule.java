@@ -13,6 +13,8 @@ public class WidgetModule extends AbstractPresenterModule {
 
 		bindPresenterWidget(HeaderPresenter.class,
 				HeaderPresenter.MyView.class, HeaderView.class);
+		bindPresenterWidget(SignInPresenter.class,
+				SignInPresenter.MyView.class, SignInView.class);
 
 	}
 }

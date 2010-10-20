@@ -21,7 +21,7 @@
 		height: 3em;
 		font-size: 0.8em;
 		background-color: #FF9C00;
-		color: #EEDB00;
+		color: #000000;
 		/* green #7BB31A yellow #EEDB00  blue #8B88FF http://www.colorcombos.com/color-scheme-98.html */
 	}
 
