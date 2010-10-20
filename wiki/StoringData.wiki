@@ -72,6 +72,7 @@ Shows belong to Theaters. In a regular app, we would have asked Violeta to perfo
 
 We can do better! We're simply asking Violeta to schedule a show. If she decides to sign in, we'll preserve the data for her. We'll take care of the details behind the scenes (pun intended :-), even though that's more work for us, the engineers.
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/rencontres-2.jpg" border="0"  align="left" />
 
 == Exercise ==
 
@@ -280,6 +281,8 @@ Hopefully we'll have lots of read requests for Performances, so there too we'll 
  * [http://blog.arbingersys.com/2008/04/google-app-engine-better-many-to-many.html article about many to many relationships], with [http://groups.google.com/group/google-appengine/browse_thread/thread/e9464ceb131c726f group discussion]
  * [http://stackoverflow.com/questions/1376814/listproperty-of-keys-vs-many-to-many-in-app-engine other approaches]
 
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/quijote3.jpg" border="0"  align="right" />
 
 == Hey client, remember me? ==
 
