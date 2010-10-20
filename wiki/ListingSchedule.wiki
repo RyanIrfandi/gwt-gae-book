@@ -4,7 +4,7 @@
 
 Until now, we used the local datastore viewer to see what data is saved. Well, it's time to let Violeta see it too.
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/rencontres-1.jpg" border="0"  align="right" />
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/rencontres_1.jpg" border="0"  align="right" />
 
 = A quick, basic solution =
 Our basic need is to have a client doing [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD] operations on Performance entity items. We just covered Create, moving on to Read.
