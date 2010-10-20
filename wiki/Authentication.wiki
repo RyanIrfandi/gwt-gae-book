@@ -129,10 +129,10 @@ What are the goals we're trying to accomplish?
 
 == Refactoring ==
 
-Let's introduce a Main presenter & view, which will contain a Header and a Main content placeholder. All relevant contents from Landing are moved to these new entities, leaving here just show scheduling.
+Let's introduce a Main presenter, which will contain a Header widget and a Main content placeholder. All relevant contents from Landing are moved to these new entities, leaving here just show scheduling.
 Here's the [http://code.google.com/p/gwt-gae-book/source/detail?spec=svn372&r=372 full refactoring changelist].
 
-== Custom events ==
+== Custom widgets & events ==
 *Pre-requisites*
  * [http://arcbees.wordpress.com/2010/08/24/gwt-platform-event-best-practice/ Custom events with gwt-platform]
 
@@ -197,8 +197,45 @@ Change Landing so it displays Sign In button only if user is not signed in.
 [http://code.google.com/p/gwt-gae-book/source/detail?spec=svn376&r=376 Changelist]
 
 = Enhancing sign in experience =
+Here are some goals for a better sign in experience:
+ * have a nice Sign In dialog
+ * allow triggering Sign In from various places
+ * load Sign In code & images only when required, in order to keep the initial download size small 
 
-== Custom widgets ==
+We'll achieve this by
+ * introducing a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/widget/ Sign In widget]
+ * introducing a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/event/SignInEvent.java Sign In event], handled by `MainPresenter`
+{{{
+		addRegisteredHandler(SignInEvent.getType(), new SignInHandler() {
+			@Override
+			public void onHasSignIn(SignInEvent event) {
+				showSignInDialog();
+
+			}
+		});
+...
+	public void showSignInDialog() {
+		signInPresenter.setUserInfo(userInfo);
+		RevealRootPopupContentEvent.fire(this, signInPresenter);
+	}
+
+}}}
+ * making the Header and Landing fire the Sign In event on user request, e.g.
+{{{
+@UiHandler("signIn")
+        void onSignInClicked(ClickEvent event) {
+                getUiHandlers().requestSignIn();
+        }
+...
+	public void requestSignIn() {
+		SignInEvent.fire(this);
+	}
+
+}}}
+
+
+TODO: load Sign In code & images only when required
+
 
 
 = Migrating stored anonymous data to signed in users =
