@@ -200,7 +200,7 @@ Change Landing so it displays Sign In button only if user is not signed in.
 Here are some goals for a better sign in experience:
  * have a nice Sign In dialog
  * allow triggering Sign In from various places
- * load Sign In code & images only when required, in order to keep the initial download size small 
+ * ideally, load Sign In code & images only when required, in order to keep the initial download size small 
 
 We'll achieve this by
  * introducing a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/widget/ Sign In widget]
@@ -235,8 +235,50 @@ We'll achieve this by
 
 See [http://code.google.com/p/gwt-gae-book/source/detail?spec=svn400&r=400 full changelist].
 
-TODO: load Sign In code & images only when required
+= Code splitting =
+*Pre-requisites*
+ * [http://code.google.com/webtoolkit/doc/latest/DevGuideCodeSplitting.html Code splitting]
+ * [http://jcheng.wordpress.com/2010/02/16/elegant-code-splitting-with-gwt/ Elegant code splitting]
 
+
+Loading Sign In code & images separately can be done in a basic way with these changes to `MainPresenter` :
+
+{{{
+	private final AsyncProvider<SignInPresenter> signInPresenterAP;
+
+	@Inject
+	public MainPresenter(... ,
+		final AsyncProvider<SignInPresenter> signInPresenterAP) {
+		...
+		this.signInPresenterAP = signInPresenterAP;
+
+	}
+
+	public void showSignInDialog() {
+
+		signInPresenterAP.get(new AsyncCallback<SignInPresenter>() {
+
+			@Override
+			public void onSuccess(SignInPresenter signInPresenter) {
+				showSignInDialogNow(signInPresenter);
+			}
+
+			@Override
+			public void onFailure(Throwable reason) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+	}
+
+	public void showSignInDialogNow(SignInPresenter signInPresenter) {
+		setUserInfo(userInfo);
+		RevealRootPopupContentEvent.fire(this, signInPresenter);
+	}
+
+}}}
+
+This reduced the initial download from 76kb to 71kb, downloading in a second phase another 10kb. The savings are not that big, so we'll leave this optimization out for now.
 
 = Migrating stored anonymous data to signed in users =
 
