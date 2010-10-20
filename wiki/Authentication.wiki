@@ -125,6 +125,8 @@ What are the goals we're trying to accomplish?
  * app can be initialized from any place, not just the default (if somebody bookmarked it or hits browser refresh)
  * sign in/out can be triggered from any place, should return to that place 
  
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/architecture.jpg" border="0"  align="right" />
+
 == Refactoring ==
 
 Let's introduce a Main presenter & view, which will contain a Header and a Main content placeholder. All relevant contents from Landing are moved to these new entities, leaving here just show scheduling.
