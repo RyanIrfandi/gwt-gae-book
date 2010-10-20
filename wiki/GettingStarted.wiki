@@ -2,6 +2,8 @@
 
 <wiki:toc max_depth="2" />
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/race_day_2.jpg" border="0"  align="right" />
+
 = Environment Setup =
 
 Setup [http://java.sun.com/javase/downloads/ Java]
