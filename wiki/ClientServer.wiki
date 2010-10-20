@@ -4,6 +4,8 @@
 
 Time to add some functionality! There is some reading you have to do in advance for each section, but it's worth it.
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/rencontres-3.jpg" border="0"  align="right" />
+
 = Pre-requisites =
 
  * [http://code.google.com/appengine/docs/whatisgoogleappengine.html Google App Engine introduction]
@@ -121,6 +123,8 @@ import org.gwtgaebook.CultureShows.server.dispatch.*;
 		// bind Actions to ActionHandlers and ActionValidators
 		bindHandler(ScheduleShowAction.class, ScheduleShowHandler.class);
 }}}
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/made1.jpg" border="0" />
 
 `LandingPresenter.java`
 {{{
