@@ -2,6 +2,8 @@
 
 <wiki:toc max_depth="2" />
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/vintage_keys.jpg" border="0"  align="right" />
+
 = Signing in using OpenID =
 *Pre-requisites*
 
@@ -183,6 +185,8 @@ Interested parties can listen to this event and handle it as desired. For exampl
 
 }}}
 
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/vis_3.jpg" border="0"  align="right" />
 
 === Exercise ===
 Change Landing so it displays Sign In button only if user is not signed in.
