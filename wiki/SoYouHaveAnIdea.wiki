@@ -14,7 +14,7 @@ You've just identified somebody's need that you could solve. "Somebody" is usual
 Who are the Culture Shows personae?
 
 == Violeta ==
-Violeta is the theater company manager. She works with the group to schedule shows, according the the availability of actors and theater hall. Violeta would like the world to know about upcoming shows, so they can come to them. Violeta couldn't care less about technology, but she is already using email and surfs the web to keep up to date with what happens around.
+Violeta is the theater company manager. She works with the group to schedule shows, according to the availability of actors and theater hall. Violeta would like the world to know about upcoming shows, so they can come to them. Violeta couldn't care less about technology, but she is already using email and surfs the web to keep up to date with what happens around.
 
 == Stefan ==
 Stefan is an actor in the theater company. He also has a day job and knows how to use computers not only for email, but also to send newsletters to publications, to publish show photos on Facebook and to discuss with theater website designers for making updates such as shows schedule, description and photos.
@@ -54,16 +54,16 @@ You did actually try to do this by yourself first, right? Go on, this chapter wi
 = Culture Shows product backlog (for real) =
 || *User story* || *Estimate* (story points) ||
 || As Violeta, I want to add/edit/delete the list of shows so that I can schedule them || 8 ||
-|| As Violeta, I want to add shows to the schedule so that world is aware about them || 5 ||
+|| As Violeta, I want to add shows to the schedule so that the world is aware about them || 5 ||
 || As Violeta, I want to schedule shows in various locations so that I use the best location for a show or do tours || 5 ||
-|| As Violeta, I want to display shows schedule on theater website as soon as I define it so that I don't waste time asking somebody else to edit it|| 13 ||
+|| As Violeta, I want to display a show schedule on the theater website as soon as I define it so that I don't waste time asking somebody else to edit it|| 13 ||
 || As Violeta, I want to edit existing scheduled shows so that I can correct any mistakes I might have done || 2 ||
 || As Violeta, I want to delete existing scheduled shows so that I can handle cancellations || 1 ||
 || As Stefan, I want to enable various websites to display my company's shows schedule so that more people find out about it|| 13 ||
 || As Violeta, I want to restrict access to scheduling shows so that only authorized persons manage it|| 13 ||
 || As Violeta, I want to use Culture Shows in my own language so that I don't have to learn English || 5 ||
-|| As Stefan, I want to our Facebook group to display each show information two weeks in advance so that more people find out about it|| 13 ||
-|| As Stefan, I want to our Twitter account to display each show information two weeks in advance so that more people find out about it|| 13 ||
+|| As Stefan, I want our Facebook group to display each show information two weeks in advance so that more people find out about it|| 13 ||
+|| As Stefan, I want our Twitter account to display each show information two weeks in advance so that more people find out about it|| 13 ||
 || As Claus, I want to make a reservation so that I know for sure I'll have a place to see the show when I go to theater || 40 ||
 || As Violeta, I want to notify existing reservation owners about changes in schedule so that they find out about it and adjust their plans || 8 ||
 || As Violeta, I want to remind existing reservation owners about shows two days in advance so that I'm sure they didn't forget and minimize the chances of them being late || 8 ||
