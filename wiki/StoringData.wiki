@@ -122,7 +122,7 @@ if (theaterKey is not empty) {
 }
 
 if (theaterKey is empty) {
-	create theater instance with name "anonymous-YYYY-MM-DD-{random}"
+	create theater instance
 	theaterKey = store(theater)
 	assign member to theater with role administrator
 }
