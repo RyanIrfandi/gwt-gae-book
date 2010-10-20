@@ -26,19 +26,19 @@ Looking at the top user stories, could we cover these in the landing page?
 
 [http://gwt-gae-book.googlecode.com/svn/wiki/assets/CultureShowsMocks.ep Mockups source]
 
-As we target this application to Violeta, note that we let her enter directly some shows without even signing in, so she will be thrilled of how easy she can get results and be motivated to continue using it.
+As we target this application to Violeta, note that we let her enter directly some shows without even signing in, so she will be thrilled at how easily she can get results and be motivated to continue using it.
 
 After a first draft of mockup you're happy with, brainstorm about it. For example:
- * fields in grid should be editable, so we avoid edit buttons? 
+ * Should fields in the grid be editable, so we avoid edit buttons? 
   * unintuitive to use and harder to implement
-  * how about clicking on a row will fill the fields at top and "Schedule" button is replaced with "Update", "Delete from schedule" buttons?
- * how to delete entries?
- * show and location: text entry with auto-completion or combo boxes? 
- * need to edit shows to specify more details (summary, link to show homepage, actors). Could do via a "Manage shows" link at top
- * is this UI fully usable on touch-based devices?
+  * how about clicking on a row will fill the fields at top and the "Schedule" button is replaced with "Update" and "Delete from schedule" buttons?
+ * How to delete entries?
+ * Show and location: text entry with auto-completion or combo boxes? 
+ * Need to edit shows to specify more details (summary, link to show homepage, actors). Could do via a "Manage shows" link at top
+ * Is this UI fully usable on touch-based devices?
 
 
 = Get feedback =
-You can usually find target personae among your friends, if you don't have access to direct customers yet. Get them to provide feedback about your ideas and do [http://en.wikipedia.org/wiki/Usability_testing usability testing] using mockups you developed. Changes are much cheaper to be made now than after you have the code written, tested and released.
+You can usually find target personae among your friends, if you don't have access to direct customers yet. Get them to provide feedback about your ideas and do [http://en.wikipedia.org/wiki/Usability_testing usability testing] using mockups you developed. Changes are much cheaper to do now than once the code is written, tested and released.
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
