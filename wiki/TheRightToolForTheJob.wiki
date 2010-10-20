@@ -49,7 +49,7 @@ The latter approach has a few interesting advantages
 
     
 Disadvantages: 
- * [http://jeoftp.blogspot.com/2010/01/why-i-left-gwt-and-came-crawling-back.html generated markup] is [http://code.google.com/p/google-web-toolkit/issues/detail?id=4684 bloated], making it harder to style among others. See [http://groups.google.co.jp/group/google-web-toolkit/tree/browse_frm/thread/c8cfc4d2dba16862/e12745a14290fffb explanation] about why some of that markup is needed
+ * [http://jeoftp.blogspot.com/2010/01/why-i-left-gwt-and-came-crawling-back.html generated markup] is [http://code.google.com/p/google-web-toolkit/issues/detail?id=4684 bloated], making it harder to style among others. See [http://groups.google.com/group/google-web-toolkit/tree/browse_frm/thread/c8cfc4d2dba16862/e12745a14290fffb explanation] about why some of that markup is needed
  * (perceived) you need APIs for almost every feature exposed to front-end, which might be perceived as more work. You'd have to build that functionality anyway, and using APIs forces you to think about separation of UI from back-end. You should also have an API layer which takes care of all common functionality (e.g. authentication, logging) rather than doing this individually for each API
 
 
