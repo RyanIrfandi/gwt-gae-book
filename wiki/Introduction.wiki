@@ -29,7 +29,9 @@ There are also some exercises. Give your best shot at solving them rather than j
 These materials are not by far built from scratch. Most of them are usually adapted from or referencing existing online materials. Many thanks to the countless people which produced them. In particular, I'd like to thank for their contributions to GWT/GAE, guidance and help to Philippe Beaudoin, Christian Goudreau, John Patterson, Zack Grossbart.
 
 
-_Marius Andreiana_<wiki:comment>NAV_START</wiki:comment>
+_Marius Andreiana_
+
+<wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' alt='Send feedback' /></a>
 <img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' alt='' />
 <a href='http://code.google.com/p/gwt-gae-book/wiki/TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' alt='Table Of Contents' /></a>
