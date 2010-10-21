@@ -326,18 +326,16 @@ The Handler constructors will be called only once per instance, not once per req
 
 
 == Design of handling both anonymous and authenticated users ==
-We'll need to change `GetUserHandler` to handle anonymous users, authenticated users and migrating data from anonymous to authenticated if needed. We need let the client always set whatever `UserToken`is returned by `GetUserHandler` and have the logic for it on the server.
+We'll need to change `GetUserHandler` to handle anonymous users, authenticated users and migrating data from anonymous to authenticated if needed. We'll let the client always set whatever `UserToken` is returned by `GetUserHandler` and have the logic for setting it on the server.
 
 We also need to update `LandingPresenter` to get performances both on presenter reveal (e.g. returning to landing page from another place in app) and on `UserInfoAvailableEvent`. Scheduling performances is pretty much ok as it is now, since we designed with this use case in mind.
 
 So what are the use cases which need to handled by `GetUserHandler`?
  * anonymous user: preserve token if given, otherwise generate a token
- * anonymous user, 1st request (no user token)
- * anonymous user, 2nd request (has user token)
  * returning anonymous user, has performances - need to know theaterKey (assuming it won't be in cookie anymore)
  * anonymous user which has performances, but is also registered and has performances as registered member too
- * user signed in, 1st request (update member info)
- * user signed in, 2nd request
+ * user signed in with `UserToken` set (need to update member data)
+ * user signed in, without `UserToken` set
 
 
 With this in mind, the pseudocode for `GetUserHandler` could be like this:
@@ -373,7 +371,7 @@ if (!isSignedIn)
 }}}
 
 
-What do think? Yep, it starts getting messy and very prone to bugs. Just like real-life projects :) You need to continuously watch out for these situations. Rather than getting absorbed in delivering this, let's step back for a moment and see if we can [http://en.wikipedia.org/wiki/KISS_principle keep it simple].
+What do think? Yep, it starts getting messy and very prone to bugs. Just like real-life projects :) You need to continuously watch out for situations like this. Rather than getting absorbed in delivering, let's step back for a moment and see if we can [http://en.wikipedia.org/wiki/KISS_principle keep it simple].
 
 == Refactoring of... requirements! ==
 To simplify, we need to introduce some constraints.
@@ -386,7 +384,7 @@ We could simplify a little by always having a Member record for signed in users.
 
 What was the reason we let Violeta schedule shows without being signed in? To lower the user entry barrier. Well, with OpenID, that barrier is just two mouse clicks high: sign in and authorize our app. Let's do this:
  * allow only signed in users to schedule shows
- * let anonymous users fill the landing page data, but on 'Schedule show' prompt them to sign in. When coming back to app signed in, save the data for them.
+ * let anonymous users fill the landing page data, but on 'Schedule show' prompt them to sign in. When coming back to app after signing in, save the data for them.
  
 = Updated design for getting user info and scheduling shows =
 So our first approach wasn't the best possible. Probably this re-design isn't perfect either, but as long as it's better than the initial one, we're good. Let's create [http://code.google.com/p/gwt-gae-book/source/browse/#svn/branches/CultureShows-allow-anonymous-scheduling/CultureShows a branch] with old code, [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShows-allow-anonymous-scheduling.tgz&can=2&q= an archive], and move on! 
