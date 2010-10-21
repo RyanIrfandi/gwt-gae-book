@@ -15,4 +15,5 @@ public class Member {
 	public String photoURL;
 	@Index
 	public Date birthDate;
+	public Date signUpDate;
 }

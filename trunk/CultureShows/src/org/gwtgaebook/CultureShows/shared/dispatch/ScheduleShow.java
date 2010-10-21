@@ -9,18 +9,15 @@ import com.gwtplatform.annotation.*;
 @GenDispatch(isSecure = false)
 public class ScheduleShow {
 	@In(1)
-	String userToken;
-
-	@In(2)
 	String theaterKey;
 
-	@In(4)
+	@In(2)
 	Date date;
 
-	@In(5)
+	@In(3)
 	String showName;
 
-	@In(6)
+	@In(4)
 	String locationName;
 
 	@Out(1)
@@ -31,9 +28,6 @@ public class ScheduleShow {
 	String theaterKeyOut;
 
 	@Out(3)
-	String performanceKey;
-
-	@Out(4)
-	Performance performance;
+	Map<String, Performance> performancesMap = new HashMap<String, Performance>();
 
 }

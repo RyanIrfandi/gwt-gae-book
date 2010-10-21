@@ -17,4 +17,8 @@ public class GetUser {
 	@Out(2)
 	UserInfo userInfo;
 
+	@Out(3)
+	// theaters user has access to; key/name
+	Map<String, String> theatersMap = new HashMap<String, String>();
+
 }

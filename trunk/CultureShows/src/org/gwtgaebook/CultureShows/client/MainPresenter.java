@@ -34,7 +34,7 @@ public class MainPresenter extends
 
 	private final PlaceManager placeManager;
 	private final DispatchAsync dispatcher;
-	private UserInfo userInfo;
+	// private UserInfo userInfo;
 
 	public static final Object TYPE_RevealHeaderContent = new Object();
 	@ContentSlot
@@ -44,16 +44,17 @@ public class MainPresenter extends
 
 	private final SignInPresenter signInPresenter;
 
+	// UserInfo userInfo,
 	@Inject
 	public MainPresenter(final EventBus eventBus, final MyView view,
 			final MyProxy proxy, final PlaceManager placeManager,
-			final DispatchAsync dispatcher, UserInfo userInfo,
+			final DispatchAsync dispatcher,
 			final HeaderPresenter headerPresenter,
 			final SignInPresenter signInPresenter) {
 		super(eventBus, view, proxy);
 		this.placeManager = placeManager;
 		this.dispatcher = dispatcher;
-		this.userInfo = userInfo;
+		// this.userInfo = userInfo;
 		this.headerPresenter = headerPresenter;
 		this.signInPresenter = signInPresenter;
 
@@ -77,14 +78,6 @@ public class MainPresenter extends
 	protected void onBind() {
 		super.onBind();
 
-		addRegisteredHandler(SignInEvent.getType(), new SignInHandler() {
-			@Override
-			public void onHasSignIn(SignInEvent event) {
-				showSignInDialog();
-
-			}
-		});
-
 		dispatcher.execute(new GetUserAction(Window.Location.getHref()),
 				new DispatchCallback<GetUserResult>() {
 					@Override
@@ -94,38 +87,47 @@ public class MainPresenter extends
 							Window.alert(result.getErrorText());
 							return;
 						}
-						if (result.getUserInfo().theatersMap.size() > 0) {
-							Iterator<String> it = result.getUserInfo().theatersMap
+						UserInfoStatic.userInfo = result.getUserInfo();
+						UserInfoStatic.theatersMap = result.getTheatersMap();
+
+						if (UserInfoStatic.theatersMap.size() > 0) {
+							Iterator<String> it = UserInfoStatic.theatersMap
 									.keySet().iterator();
 							if (it.hasNext()) {
-								Cookies.setCookie(Constants.theaterCookieName,
-										it.next());
+								UserInfoStatic.currentTheaterKey = it.next();
 							}
 						}
-						setUserInfo(result.getUserInfo());
+						// TODO testability broken if relying to global static
+						// UserInfo
+						onGetUserSuccess();
 					}
 				});
 
-		// set a random user token to emulate signed in functionality
-		if (null == Cookies.getCookie(Constants.userTokenCookieName)
-				|| Cookies.getCookie(Constants.userTokenCookieName).isEmpty()) {
-			Cookies.setCookie(Constants.userTokenCookieName, MyUUID.uuid());
-		}
+		addRegisteredHandler(SignInEvent.getType(), new SignInHandler() {
+			@Override
+			public void onHasSignIn(SignInEvent event) {
+				showSignInDialog();
+
+			}
+		});
 
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
-		this.userInfo = userInfo;
-		Log.info("User isSignedIn " + userInfo.isSignedIn.toString()
-				+ " with email " + userInfo.email + " username "
-				+ userInfo.userId);
-		Log.info("Sign In URLs " + userInfo.signInURLs.toString()
-				+ " Sign Out URL " + userInfo.signOutURL);
-		UserInfoAvailableEvent.fire(this, userInfo);
+	public void onGetUserSuccess() {
+		// this.userInfo = userInfo;
+		Log.info("User isSignedIn "
+				+ UserInfoStatic.userInfo.isSignedIn.toString()
+				+ " with email " + UserInfoStatic.userInfo.email + " username "
+				+ UserInfoStatic.userInfo.userId);
+		Log.info("Sign In URLs "
+				+ UserInfoStatic.userInfo.signInURLs.toString()
+				+ " Sign Out URL " + UserInfoStatic.userInfo.signOutURL);
+		// , UserInfouserInfo
+		UserInfoAvailableEvent.fire(this, UserInfoStatic.userInfo);
 	}
 
 	public void showSignInDialog() {
-		signInPresenter.setUserInfo(userInfo);
+		signInPresenter.setUserInfo(UserInfoStatic.userInfo);
 		RevealRootPopupContentEvent.fire(this, signInPresenter);
 	}
 
