@@ -34,7 +34,7 @@ The images used inside the book and project are taken from [http://www.openclipa
 
 = About the author =
 
-I'm a software engineer living in Bucharest, Romania. Besides developing software, which I do both for making a living and fun, I love mountain trekking, bike riding, dancing, listening to music and the sound of growing grass, and contemplating the [http://picasaweb.google.com/Marius.Andreiana2/201007Moldoveanu#5500536711529308322 beauties] of [http://picasaweb.google.com/Marius.Andreiana2/200909AzugaBrebu#5381658896815102626 Earth] and [http://picasaweb.google.com/Marius.Andreiana2/201006SanFrancisco#5479737052835259090 Universe].
+I'm a software engineer living in Bucharest, Romania. Besides developing software, which I do both for making a living and fun, I love mountain trekking, bike riding, dancing, listening to music and the sound of growing grass, and contemplating the beauties of [http://picasaweb.google.com/Marius.Andreiana2/200909AzugaBrebu#5381658896815102626 Earth] and [http://picasaweb.google.com/Marius.Andreiana2/201006SanFrancisco#5479737052835259090 Universe].
 
 _Marius Andreiana_
 
