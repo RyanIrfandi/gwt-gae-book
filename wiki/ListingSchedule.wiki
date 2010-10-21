@@ -95,17 +95,17 @@ public class ScheduleShow {
 
 }}}
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/made_in_romania7.jpg" border="0"  align="left" />
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/made_in_romania7.jpg" border="0"  align="right" />
 
 = Advanced use cases =
 
 For the sake of example, let's consider some use cases which aren't really needed by Culture Shows, but might make sense in a larger app:
-  * working with millions of entity items
-  * pagination (either in the form of prev/next pages or [http://ui-patterns.com/patterns/ContinuousScrolling continuous] / [http://www.infinite-scroll.com/ infinite] scrolling)
-  * sorting
-  * filtering
-  * collaboration (changes made by others should appear real-time to current user)
-  * offline usage
+ * working with millions of entity items
+ * pagination (either in the form of prev/next pages or [http://ui-patterns.com/patterns/ContinuousScrolling continuous] / [http://www.infinite-scroll.com/ infinite] scrolling)
+ * sorting
+ * filtering
+ * collaboration (changes made by others should appear real-time to current user)
+ * offline usage
 
 = Exercise =
 
