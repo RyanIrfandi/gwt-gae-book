@@ -112,7 +112,6 @@ for ($i = 0; $i<count($chapters); $i++) {
 	fwrite($f, $s);
 	fclose($f);
 
-	if ($i == 3) exit();
 }
 
 
