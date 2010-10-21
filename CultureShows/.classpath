@@ -22,5 +22,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT (1)"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/guava-r07.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

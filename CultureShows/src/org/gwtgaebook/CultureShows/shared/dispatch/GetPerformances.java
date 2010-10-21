@@ -1,6 +1,7 @@
 package org.gwtgaebook.CultureShows.shared.dispatch;
 
 import java.util.*;
+
 import com.gwtplatform.annotation.*;
 
 import org.gwtgaebook.CultureShows.shared.model.*;
@@ -14,6 +15,6 @@ public class GetPerformances {
 	String errorText; // empty if success
 
 	@Out(2)
-	List<Performance> performances;
+	Map<String, Performance> performancesMap = new HashMap<String, Performance>();
 
 }

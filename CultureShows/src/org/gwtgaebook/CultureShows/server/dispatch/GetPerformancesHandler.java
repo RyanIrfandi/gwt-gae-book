@@ -9,6 +9,7 @@ import com.gwtplatform.dispatch.shared.*;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.repackaged.com.google.common.base.Strings;
 import com.google.code.twig.*;
 
 import org.gwtgaebook.CultureShows.shared.dispatch.*;
@@ -31,10 +32,10 @@ public class GetPerformancesHandler extends
 
 		// by default, get only future performances
 		Date date = new java.util.Date();
+		Map<String, Performance> performancesMap = new HashMap<String, Performance>();
 
 		// check key
-		if (!(null == action.getTheaterKey() || action.getTheaterKey()
-				.isEmpty())) {
+		if (!Strings.isNullOrEmpty(action.getTheaterKey())) {
 			// theaterKey sent by client is not empty
 			try {
 				theaterKey = KeyFactory.stringToKey(action.getTheaterKey());
@@ -55,7 +56,11 @@ public class GetPerformancesHandler extends
 				FilterOperator.EQUAL, KeyFactory.keyToString(theaterKey))
 				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, date)
 				.returnAll().now();
+		for (int i = 0; i < performances.size(); i++) {
+			performancesMap.put(KeyFactory.keyToString(datastore
+					.associatedKey(performances.get(i))), performances.get(i));
+		}
 
-		return new GetPerformancesResult("", performances);
+		return new GetPerformancesResult("", performancesMap);
 	}
 }

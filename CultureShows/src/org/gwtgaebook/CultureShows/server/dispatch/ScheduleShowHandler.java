@@ -10,6 +10,7 @@ import com.gwtplatform.dispatch.shared.*;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.repackaged.com.google.common.base.Strings;
 import com.google.code.twig.*;
 
 import org.gwtgaebook.CultureShows.shared.dispatch.*;
@@ -62,39 +63,26 @@ public class ScheduleShowHandler extends
 
 		logger.info("Handler scheduling show " + action.getShowName());
 
-		// authentication
-		// TODO anonymous = (AppEngineUser is not signed in)
-
-		if (anonymous) {
-			userId = Constants.anonymousUserPrefix + action.getUserToken();
-			// prefix prevents client setting valid user IDs and overwriting
-			// their data
-			// issue: client can overwrite any anonymous user data by setting a
-			// matching RandomToken. That's ok.
-		} else {
-			// TODO set userId
+		if (!userInfo.isSignedIn) {
+			// TODO ActionValidator
+			return new ScheduleShowResult("Not signed in", null, null);
 		}
 
-		// setup member
-		// does this member already exist?
+		// load member record, exception if it does not exist
+		// TODO setup a reusable, testable provider for this
 		List<Member> members = datastore.find().type(Member.class).addFilter(
-				"userId", FilterOperator.EQUAL, userId).returnAll().now();
+				"userId", FilterOperator.EQUAL, userInfo.userId).returnAll()
+				.now();
 		if (members.size() > 0) {
 			// TODO log error if size != 1
 			member = members.get(0);
 			memberKey = datastore.associatedKey(member);
 		} else {
-			// store member
-			// TODO if signed in, fill email, language...
-			member = new Member();
-			member.userId = userId;
-			memberKey = datastore.store(member);
-
+			return new ScheduleShowResult("Member doesn't exist", null, null);
 		}
 
 		// setup theater
-		if (!(null == action.getTheaterKey() || action.getTheaterKey()
-				.isEmpty())) {
+		if (!Strings.isNullOrEmpty(action.getTheaterKey())) {
 			// theaterKey sent by client is not empty
 			try {
 				theaterKey = KeyFactory.stringToKey(action.getTheaterKey());
@@ -120,8 +108,7 @@ public class ScheduleShowHandler extends
 					// has access
 				} else {
 					return new ScheduleShowResult(
-							"You don't have access to this theater", null,
-							null, null);
+							"You don't have access to this theater", null, null);
 				}
 
 			}
@@ -203,12 +190,16 @@ public class ScheduleShowHandler extends
 		performance.locationName = location.getName();
 		performanceKey = datastore.store(performance);
 
+		Map<String, Performance> performancesMap = new HashMap<String, Performance>();
+		performancesMap
+				.put(KeyFactory.keyToString(performanceKey), performance);
+
 		// TODO to improve performance, can we pass show/location keys directly
 		// from client?
 
 		// TODO testability, break in smaller methods
 
 		return new ScheduleShowResult("", KeyFactory.keyToString(theaterKey),
-				KeyFactory.keyToString(performanceKey), performance);
+				performancesMap);
 	}
 }

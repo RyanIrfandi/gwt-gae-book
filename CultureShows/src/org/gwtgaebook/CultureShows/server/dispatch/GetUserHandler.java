@@ -3,6 +3,7 @@ package org.gwtgaebook.CultureShows.server.dispatch;
 import java.util.*;
 
 import com.google.inject.*;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.users.*;
@@ -33,9 +34,45 @@ public class GetUserHandler extends
 
 		UserService userService = UserServiceFactory.getUserService();
 
+		// theaters user has access to; key/name
+		Map<String, String> theatersMap = new HashMap<String, String>();
+
 		if (userInfo.isSignedIn) {
 			userInfo.signOutURL = userService.createLogoutURL(action
 					.getRequestURI());
+
+			// check if user has a Member record, create one if not
+			Member member = null;
+			Key memberKey = null;
+
+			List<Member> members = datastore.find().type(Member.class)
+					.addFilter("userId", FilterOperator.EQUAL, userInfo.userId)
+					.returnAll().now();
+			if (members.size() > 0) {
+				// TODO log error if size != 1
+				member = members.get(0);
+				memberKey = datastore.associatedKey(member);
+
+				// get theaters member has access to
+				List<TheaterMemberJoin> tmjs = datastore.find().type(
+						TheaterMemberJoin.class)
+						.addFilter("memberKey", FilterOperator.EQUAL,
+								KeyFactory.keyToString(memberKey)).returnAll()
+						.now();
+				for (int i = 0; i < tmjs.size(); i++) {
+					theatersMap.put(tmjs.get(i).theaterKey,
+							tmjs.get(i).theaterName);
+				}
+
+			} else {
+				// store member
+				member = new Member();
+				member.userId = userInfo.userId;
+				member.email = userInfo.email;
+				member.signUpDate = new Date();
+				memberKey = datastore.store(member);
+			}
+
 		} else {
 			userInfo.signInURLs.put("Google", userService.createLoginURL(action
 					.getRequestURI(), null, "google.com/accounts/o8/id", null));
@@ -43,6 +80,6 @@ public class GetUserHandler extends
 					.getRequestURI(), null, "yahoo.com", null));
 		}
 
-		return new GetUserResult("", userInfo);
+		return new GetUserResult("", userInfo, theatersMap);
 	}
 }

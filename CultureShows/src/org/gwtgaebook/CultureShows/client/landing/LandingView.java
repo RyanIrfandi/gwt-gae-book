@@ -79,18 +79,24 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 		placeholder();
 	}
 
-	public void addPerformance(Performance performance) {
-		performancesContainer.setHTML(performancesContainer.getHTML() + "<br/>"
-				+ performance.showName + " | " + performance.locationName
-				+ " | " + performance.date.toString());
+	public void addPerformances(Map<String, Performance> performanceMap) {
+		Iterator<String> i = performanceMap.keySet().iterator();
+		String key;
+		while (i.hasNext()) {
+			key = i.next();
+			performancesContainer.setHTML(performancesContainer.getHTML()
+					+ "<br/>" + performanceMap.get(key).showName + " | "
+					+ performanceMap.get(key).locationName + " | "
+					+ performanceMap.get(key).date.toString());
+
+		}
 
 	}
 
-	public void setPerformances(List<Performance> performances) {
+	public void setPerformances(Map<String, Performance> performanceMap) {
 		performancesContainer.setHTML("Show | Location | Date");
-		for (Performance p : performances) {
-			addPerformance(p);
-		}
+
+		addPerformances(performanceMap);
 
 	}
 
