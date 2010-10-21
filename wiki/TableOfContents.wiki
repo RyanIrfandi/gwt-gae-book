@@ -107,12 +107,22 @@
  * [Authentication#Updating_UI_to_accommodate_authentication Updating UI to accommodate authentication] <br/>
   * [Authentication#Goals Goals] <br/>
   * [Authentication#Refactoring Refactoring] <br/>
-  * [Authentication#Custom_events Custom events] <br/>
+  * [Authentication#Custom_widgets_&_events Custom widgets & events] <br/>
    * [Authentication#Exercise Exercise] <br/>
    * [Authentication#Exercise_solution Exercise solution] <br/>
  * [Authentication#Enhancing_sign_in_experience Enhancing sign in experience] <br/>
-  * [Authentication#Custom_widgets Custom widgets] <br/>
+ * [Authentication#Code_splitting Code splitting] <br/>
  * [Authentication#Migrating_stored_anonymous_data_to_signed_in_users Migrating stored anonymous data to signed in users] <br/>
+  * [Authentication#Guice_Providers Guice Providers] <br/>
+  * [Authentication#Design_of_handling_both_anonymous_and_authenticated_users Design of handling both anonymous and authenticated users] <br/>
+  * [Authentication#Refactoring_of..._requirements Refactoring of... requirements] <br/>
+   * [Authentication#Exercise_two Exercise two] <br/>
+   * [Authentication#Exercise_two_solution Exercise two solution] <br/>
+ * [Authentication#Updated_application_design Updated application design] <br/>
+  * [Authentication#GetUserHandler_pseudocode GetUserHandler pseudocode] <br/>
+  * [Authentication#MainPresenter_pseudocode MainPresenter pseudocode] <br/>
+  * [Authentication#LandingPresenter_pseudocode LandingPresenter pseudocode] <br/>
+  * [Authentication#ScheduleShowHandler_pseudocode ScheduleShowHandler pseudocode] <br/>
 
 === [QualityAssurance Quality assurance] ===
  * [QualityAssurance#Introduction Introduction] <br/>
