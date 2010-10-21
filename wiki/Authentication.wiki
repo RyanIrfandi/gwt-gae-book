@@ -282,7 +282,114 @@ This reduced the initial download from 76kb to 71kb, downloading in a second pha
 
 = Migrating stored anonymous data to signed in users =
 
+== Guice Providers == 
+Since we'll start needing user info on more calls on server, we'll introduce a [http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/Provider.html Guice Provider] for it :
+{{{
+public class UserInfoProvider implements Provider<UserInfo> {
 
+	public UserInfo get() {
+		UserInfo userInfo = new UserInfo();
+
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+
+		if (user != null) {
+			userInfo.isSignedIn = true;
+			userInfo.email = user.getEmail();
+			userInfo.userId = user.getUserId();
+		} else {
+			userInfo.isSignedIn = false;
+		}
+
+		return userInfo;
+	}
+}
+
+}}}
+
+The Handler constructors will be called only once per instance, not once per request. Since we need fresh user info on each request to see if the user is actually signed in or not, unlike !ObjectDatastore, we'll inject the provider this time and get user info manually in execute() :
+{{{
+	@Inject
+	public GetUserHandler(final Provider<UserInfo> userInfoProvider,
+			final ObjectDatastore datastore) {
+		super(userInfoProvider, datastore);
+	}
+
+	@Override
+	public GetUserResult execute(GetUserAction action, ExecutionContext context)
+			throws ActionException {
+
+		UserInfo userInfo = userInfoProvider.get();
+		...
+	}
+}}}
+
+
+== Design of handling both anonymous and authenticated users ==
+We'll need to change `GetUserHandler` to handle anonymous users, authenticated users and migrating data from anonymous to authenticated if needed. We need let the client always set whatever `UserToken`is returned by `GetUserHandler` and have the logic for it on the server.
+
+We also need to update `LandingPresenter` to get performances both on presenter reveal (e.g. returning to landing page from another place in app) and on `UserInfoAvailableEvent`. Scheduling performances is pretty much ok as it is now, since we designed with this use case in mind.
+
+So what are the use cases which need to handled by `GetUserHandler`?
+ * anonymous user: preserve token if given, otherwise generate a token
+ * anonymous user, 1st request (no user token)
+ * anonymous user, 2nd request (has user token)
+ * returning anonymous user, has performances - need to know theaterKey (assuming it won't be in cookie anymore)
+ * anonymous user which has performances, but is also registered and has performances as registered member too
+ * user signed in, 1st request (update member info)
+ * user signed in, 2nd request
+
+
+With this in mind, the pseudocode for `GetUserHandler` could be like this:
+{{{
+userTokenOut = null
+
+if userToken not empty
+	find member where userId = "anonymous" + userToken
+	if member exists
+		// has a member record from anonymous usage
+		// does he have a previous registered member too? if yes, merge anonymous data into registered
+		if isSignedIn
+			find signedInMember
+			if found
+				update tmjs to signedInMember
+				delete anonymousMember
+			else
+				update member set userId
+
+
+if isSignedIn && null = member
+	find member by userId
+	
+
+if (null != member)
+	get theaters member has access to		
+
+if (!isSignedIn)
+	if userToken
+		userTokenOut = userToken
+	else
+		userTokenOut = random
+}}}
+
+
+What do think? Yep, it starts getting messy and very prone to bugs. Just like real-life projects :) You need to continuously watch out for these situations. Rather than getting absorbed in delivering this, let's step back for a moment and see if we can [http://en.wikipedia.org/wiki/KISS_principle keep it simple].
+
+== Refactoring of... requirements! ==
+To simplify, we need to introduce some constraints.
+
+=== Exercise two ===
+Think what constraints can we introduce in our requirements.
+
+=== Exercise two solution ===
+We could simplify a little by always having a Member record for signed in users. Maybe we could have all the `UserToken` logic in `ScheduleShowHandler`, since we don't need it if there are no performances saved, right? Or we could move all the anonymous user handling on the client, and on signing in just save the data. Still not simple enough.
+
+What was the reason we let Violeta schedule shows without being signed in? To lower the user entry barrier. Well, with OpenID, that barrier is just two mouse clicks high: sign in and authorize our app. Let's do this:
+ * allow only signed in users to schedule shows
+ * let anonymous users fill the landing page data, but on 'Schedule show' prompt them to sign in. When coming back to app signed in, save the data for them.
+ 
+= Updated design for getting user info and scheduling shows =
+So our first approach wasn't the best possible. Probably this re-design isn't perfect either, but as long as it's better than the initial one, we're good. Let's create [http://code.google.com/p/gwt-gae-book/source/browse/#svn/branches/CultureShows-allow-anonymous-scheduling/CultureShows a branch] with old code, [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShows-allow-anonymous-scheduling.tgz&can=2&q= an archive], and move on! 
 
 
 
