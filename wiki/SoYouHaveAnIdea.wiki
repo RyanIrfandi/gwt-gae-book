@@ -69,7 +69,7 @@ You did actually try to do this by yourself first, right? Go on, this chapter wi
 || As Violeta, I want to remind existing reservation owners about shows two days in advance so that I'm sure they didn't forget and minimize the chances of them being late || 8 ||
 || As Violeta, I want to display all shows on theater website with links to details so that I can have a portfolio || 5 ||
 
-= More resources =
+= Additional resources =
 
  * [http://www.joelonsoftware.com/articles/fog0000000036.html Painless Functional Specifications]
 
