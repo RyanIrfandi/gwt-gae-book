@@ -463,7 +463,7 @@ Enhance performances to store not only shows, but also locations and date.
 See [http://code.google.com/p/gwt-gae-book/source/detail?r=304 adding location source revision].
 
 
-= Resources =
+= Additional resources =
  * [http://code.google.com/appengine/docs/java/datastore/ App Engine Datastore Java API]
  * [http://borglin.net/gwt-project/?page_id=604  A comparison of persistence frameworks]  for App Engine, [http://code.google.com/p/twig-persist/wiki/Comparison another comparison]
 
