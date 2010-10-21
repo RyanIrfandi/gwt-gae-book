@@ -5,6 +5,7 @@
  * [Introduction#Why_a_free,_online_book? Why a free, online book?] <br/>
  * [Introduction#How_to_read_this_book How to read this book] <br/>
  * [Introduction#Acknowledgements Acknowledgements] <br/>
+ * [Introduction#About_the_author About the author] <br/>
 
 === [SoYouHaveAnIdea Clarifying your ideas before writing code] ===
  * [SoYouHaveAnIdea#Putting_ideas_in_writing Putting ideas in writing] <br/>
@@ -18,6 +19,7 @@
  * [SoYouHaveAnIdea#Exercise Exercise] <br/>
  * [SoYouHaveAnIdea#Culture_Shows_product_backlog Culture Shows product backlog] <br/>
  * [SoYouHaveAnIdea#Culture_Shows_product_backlog_(for_real) Culture Shows product backlog (for real)] <br/>
+ * [SoYouHaveAnIdea#Additional_resources Additional resources] <br/>
 
 === [VisualizingYourApp Visualizing your application in action] ===
  * [VisualizingYourApp#Mockups Mockups] <br/>
@@ -68,7 +70,7 @@
  * [BuildingLandingPage#Model-View-Presenter_(MVP) Model-View-Presenter (MVP)] <br/>
   * [BuildingLandingPage#Exercise Exercise] <br/>
   * [BuildingLandingPage#Exercise_solution Exercise solution] <br/>
- * [BuildingLandingPage#Resources Resources] <br/>
+ * [BuildingLandingPage#Additional_resources Additional resources] <br/>
 
 === [ClientServer Client-server communication] ===
  * [ClientServer#Pre-requisites Pre-requisites] <br/>
@@ -92,7 +94,7 @@
  * [StoringData#Implementation Implementation] <br/>
  * [StoringData#Exercise Exercise] <br/>
  * [StoringData#Exercise_solution Exercise solution] <br/>
- * [StoringData#Resources Resources] <br/>
+ * [StoringData#Additional_resources Additional resources] <br/>
 
 === [ListingSchedule Listing saved schedule] ===
  * [ListingSchedule#A_quick,_basic_solution A quick, basic solution] <br/>
@@ -138,9 +140,9 @@
  * [LandingEnhancements#Form_fields_auto-completion Form fields auto-completion] <br/>
  * [LandingEnhancements#Remembering_last_used_location Remembering last used location] <br/>
 
-=== [MoreResources More resources] ===
- * [MoreResources#Discussion_groups Discussion groups] <br/>
- * [MoreResources#Blogs Blogs] <br/>
- * [MoreResources#Miscellaneous Miscellaneous] <br/>
+=== [AdditionalResources Additional  resources] ===
+ * [AdditionalResources#Discussion_groups Discussion groups] <br/>
+ * [AdditionalResources#Blogs Blogs] <br/>
+ * [AdditionalResources#Miscellaneous Miscellaneous] <br/>
 
 === [TODO Planned upcoming chapters] ===

@@ -14,7 +14,7 @@ $docs = array(
 	"Authentication",
 	"QualityAssurance",
 	"LandingEnhancements",
-	"MoreResources",
+	"AdditionalResources",
 	"TODO"
 );
 /*

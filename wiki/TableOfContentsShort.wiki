@@ -26,7 +26,7 @@
 
 [LandingEnhancements Landing page enhancements]
 
-[MoreResources More resources]
+[AdditionalResources Additional  resources]
 
 [TODO Planned upcoming chapters]
 
