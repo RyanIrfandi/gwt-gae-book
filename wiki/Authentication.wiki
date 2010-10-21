@@ -474,5 +474,6 @@ store(performance)
 return theaterKey, performanceMap
 }}}
 
+For implementation, see [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/ latest source code].
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
