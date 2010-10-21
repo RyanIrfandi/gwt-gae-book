@@ -389,7 +389,7 @@ What was the reason we let Violeta schedule shows without being signed in? To lo
 = Updated design for getting user info and scheduling shows =
 So our first approach wasn't the best possible. Probably this re-design isn't perfect either, but as long as it's better than the initial one, we're good. Let's create [http://code.google.com/p/gwt-gae-book/source/browse/#svn/branches/CultureShows-allow-anonymous-scheduling/CultureShows a branch] with old code, [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShows-allow-anonymous-scheduling.tgz&can=2&q= an archive], and move on! 
 
-== GetUserHandler pseudocode ==
+== !GetUserHandler pseudocode ==
 {{{
 get userInfo
 if isSignedIn
@@ -400,7 +400,7 @@ else
 	get signInURLs
 }}}
 
-== MainPresenter pseudocode ==
+== !MainPresenter pseudocode ==
 {{{
 request GetUser
 
@@ -412,7 +412,7 @@ on GetUser complete
 }}}
 
 
-== LandingPresenter pseudocode ==
+== !LandingPresenter pseudocode ==
 {{{
 on ScheduleShow request
 	if isSignedIn
@@ -434,7 +434,7 @@ on ScheduleShow complete
 
 
 
-== ScheduleShowHandler pseudocode ==
+== !ScheduleShowHandler pseudocode ==
 {{{
 //called only when user isSignedIn
 //data received from client: theaterKey (may be empty), date, showName, locationName
