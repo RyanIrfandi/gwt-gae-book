@@ -88,21 +88,20 @@ for ($i = 0; $i<count($chapters); $i++) {
 	$s = fread($f, 1000000);
 	fclose($f);
 
-	$s = str_replace('<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>', "", $s);
 	$s = preg_replace("/" . str_replace("/", "\/", NAV_START) . "(.*)" . str_replace("/", "\/", NAV_END) . "/ms", "", $s);
 	
 	$s .= NAV_START . "\n";
-	$s .= "<a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' alt='Send feedback' /></a>" . "\n";
-	$s .= "<img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' alt='' />" . "\n";
+	$s .= "<a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>" . "\n";
+	$s .= "<img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />" . "\n";
 
 	if ($i>0) {
-		$s .= "<a href='" . NAV_ROOT . $chapters[$i-1]->href . "'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' alt='Previous chapter: " . $chapters[$i-1]->name . "' /></a>" . "\n";
+		$s .= "<a href='" . NAV_ROOT . $chapters[$i-1]->href . "'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' title='Previous chapter: " . $chapters[$i-1]->name . "' /></a>" . "\n";
 	}
 
-	$s .= "<a href='" . NAV_ROOT . "TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' alt='Table Of Contents' /></a>" . "\n";
+	$s .= "<a href='" . NAV_ROOT . "TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' title='Table Of Contents' /></a>" . "\n";
 
 	if ($i<(count($chapters)-1)) {
-		$s .= "<a href='" . NAV_ROOT . $chapters[$i+1]->href . "'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' alt='Next chapter: " . $chapters[$i+1]->name . "' /></a>" . "\n";
+		$s .= "<a href='" . NAV_ROOT . $chapters[$i+1]->href . "'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: " . $chapters[$i+1]->name . "' /></a>" . "\n";
 	}
 
 	$s .= NAV_END;

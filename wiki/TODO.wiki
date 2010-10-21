@@ -34,8 +34,8 @@ What else would you like to see covered?
 Feel free to contribute with <a href="http://code.google.com/p/gwt-gae-book/issues/entry">code</a> or [https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZYVQ36QASGH2W&lc=RO&item_name=GWT%20GAE%20online%20book&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted a donation].
 
 <wiki:comment>NAV_START</wiki:comment>
-<a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' alt='Send feedback' /></a>
-<img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' alt='' />
-<a href='http://code.google.com/p/gwt-gae-book/wiki/MoreResources'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' alt='Previous chapter: More resources' /></a>
-<a href='http://code.google.com/p/gwt-gae-book/wiki/TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' alt='Table Of Contents' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
+<img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />
+<a href='http://code.google.com/p/gwt-gae-book/wiki/MoreResources'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' title='Previous chapter: More resources' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/wiki/TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' title='Table Of Contents' /></a>
 <wiki:comment>NAV_END</wiki:comment>

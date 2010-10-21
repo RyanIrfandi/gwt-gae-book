@@ -23,9 +23,9 @@ findbugs tool
 
 
 <wiki:comment>NAV_START</wiki:comment>
-<a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' alt='Send feedback' /></a>
-<img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' alt='' />
-<a href='http://code.google.com/p/gwt-gae-book/wiki/Authentication'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' alt='Previous chapter: Authentication with OpenID' /></a>
-<a href='http://code.google.com/p/gwt-gae-book/wiki/TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' alt='Table Of Contents' /></a>
-<a href='http://code.google.com/p/gwt-gae-book/wiki/LandingEnhancements'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' alt='Next chapter: Landing page enhancements' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
+<img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />
+<a href='http://code.google.com/p/gwt-gae-book/wiki/Authentication'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' title='Previous chapter: Authentication with OpenID' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/wiki/TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' title='Table Of Contents' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/wiki/LandingEnhancements'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: Landing page enhancements' /></a>
 <wiki:comment>NAV_END</wiki:comment>
