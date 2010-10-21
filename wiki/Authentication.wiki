@@ -405,7 +405,7 @@ else
 {{{
 request GetUser
 
-on GetUser complete
+on GetUserSuccess
 	set UserInfo, including 
 		theaters member has access to
 		currentTheaterKey (first from the list)
@@ -430,7 +430,7 @@ on UserInfoAvailableEvent and user isSignedIn
 	if theaterKey is set
 		request GetPerformances
 
-on ScheduleShow complete
+on ScheduleShowSuccess
 	set theaterKey returned by server
 }}}
 
