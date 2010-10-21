@@ -29,6 +29,12 @@ These materials are not by far built from scratch. Most of them are usually adap
 
 The images used inside the book and project are taken from [http://www.openclipart.org Open Clip Art Library],  [http://www.sxc.hu/ Stock.XCHNG] and [http://www.passe-partoutdp.ro/ Passe-Partout DP]. All images are copyrighted and they are the properties of respective owners.
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/marius.jpg" border="0"  align="right" />
+
+= About the author =
+
+I'm a software engineer living in Bucharest, Romania. Besides developing software, which I do both for making a living and fun, I love mountain trekking, bike riding, dancing, listening to music and the sound of growing grass, and contemplating the [http://picasaweb.google.com/Marius.Andreiana2/201007Moldoveanu#5500536711529308322 beauties] of [http://picasaweb.google.com/Marius.Andreiana2/200909AzugaBrebu#5381658896815102626 earth] and [http://picasaweb.google.com/Marius.Andreiana2/201006SanFrancisco#5479737052835259090 universe].
+
 _Marius Andreiana_
 
 <wiki:comment>NAV_START</wiki:comment>
