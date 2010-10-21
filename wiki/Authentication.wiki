@@ -4,6 +4,8 @@
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/vintage_keys.jpg" border="0"  align="right" />
 
+Although it's possible to develop App Engine applications with custom authentication (e.g. using your own username/password lookup, or by connecting to custom 3rd party web services), we'll focus on OpenID.
+
 = Signing in using OpenID =
 *Pre-requisites*
 
