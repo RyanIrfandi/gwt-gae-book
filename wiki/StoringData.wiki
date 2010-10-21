@@ -402,14 +402,9 @@ Here are the relevant parts from `ScheduleShowHandler`, see code repository for 
 		}
 
 		if (null == theaterKey) {
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = new Date();
-			String random = UUID.randomUUID().toString();
-
 			theater = new Theater();
 
-			theater.name = "anonymous-" + dateFormat.format(date) + "-"
-					+ random;
+			theater.name = "My Theater";
 			// store creates a Key in the datastore and keeps it in the
 			// ObjectDatastore associated with this theater instance. Basically,
 			// every OD has a Map<Object, Key> which is used to look up the Key
