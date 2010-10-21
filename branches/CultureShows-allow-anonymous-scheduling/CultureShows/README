@@ -1,0 +1,24 @@
+License:
+Apache License, Version 2.0 (the "License").
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+Parts of package might have specific licensing attached.
+
+
+Authors:
+Marius Andreiana & others
+Various code samples/functionality were taken from libraries, blogs, discussion groups etc.
+
+
+Notes
+Generate resource styles list with
+java -cp ~/.eclipse/155965261/plugins/com.google.gwt.eclipse.sdkbundle.2.0.4_2.0.4.v201006301254/gwt-2.0.4/gwt-dev.jar:~/.eclipse/155965261/plugins/com.google.gwt.eclipse.sdkbundle.2.0.4_2.0.4.v201006301254/gwt-2.0.4/gwt-user.jar com.google.gwt.resources.css.InterfaceGenerator typeName Style -css src/org/gwtgaebook/CultureShows/client/resources/main.css
+
+
+
+
+
+

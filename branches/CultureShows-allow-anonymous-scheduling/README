@@ -1,0 +1,10 @@
+environmentSetup.sh - bash script to setup your development environment on Fedora Linux OS. After running it you just need to install Google plugin in Eclipse.
+
+template.tgz - archive of a template project which contains the most common libraries you'll use
+
+createProject.sh - bash script to create a new project from the above template. Usage:
+createProject.sh com.your.projectname
+When done, use File > Import > Existing Projects from Eclipse.
+
+createProject.bat - MS windows script to create a new project from the above template. TODO somebody please build this and send it to be included. Until then just unpack the archive and use it as it is.
+
