@@ -422,13 +422,15 @@ on ScheduleShow request
 		save Performance data in cookie so it is available on user return 
 		ask user to sign in instead of making the server request
 
+onUserInfoAvailable
+	getView().setSignInOut(UserInfoStatic.userInfo);
 
-on UserInfoAvailableEvent and user isSignedIn
-	if Performance data exists in cookie
-		request ScheduleShow //it will add to currentTheaterKey if set
-		remove Performance data in cookie
-	if theaterKey is set
-		request GetPerformances
+	if user isSignedIn
+		if Performance data exists in cookie
+			request ScheduleShow //it will add to currentTheaterKey if set
+			remove Performance data in cookie
+		if theaterKey is set
+			request GetPerformances
 
 on ScheduleShowSuccess
 	set theaterKey returned by server
