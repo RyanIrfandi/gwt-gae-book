@@ -241,15 +241,17 @@ Note there are no widgets or other UI elements from View exposed in Presenter. T
 [http://code.google.com/p/gwt-gae-book/source/browse/#svn/trunk/CultureShows Browse the full source code]
 
 = Resources =
+[http://www.openclipart.org Open Clip Art Library]
+
+[http://www.sxc.hu/ Stock.XCHNG free stock photos] 
+
+[http://www.smashingmagazine.com Smashing Magazine]
+
 [http://www.alistapart.com/articles/fluidgrids/ Fluid grids] 
 
 [http://www.webdesignerwall.com/tutorials/css3-gradient-buttons/ Gradient buttons]
 
 [http://www.mezzoblue.com/zengarden/resources/ CSS Zen Garden resources]
-
-[http://www.openclipart.org Open Clip Art Library]
-
-[http://www.sxc.hu/ Stock.XCHNG free stock photos] 
 
 [http://www.colorcombos.com/combolibrary.html Color combos]
 
