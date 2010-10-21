@@ -386,7 +386,7 @@ What was the reason we let Violeta schedule shows without being signed in? To lo
  * allow only signed in users to schedule shows
  * let anonymous users fill the landing page data, but on 'Schedule show' prompt them to sign in. When coming back to app after signing in, save the data for them.
  
-= Updated design for getting user info and scheduling shows =
+= Updated application design =
 So our first approach wasn't the best possible. Probably this re-design isn't perfect either, but as long as it's better than the initial one, we're good. Let's create [http://code.google.com/p/gwt-gae-book/source/browse/#svn/branches/CultureShows-allow-anonymous-scheduling/CultureShows a branch] with old code, [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShows-allow-anonymous-scheduling.tgz&can=2&q= an archive], and move on! 
 
 == !GetUserHandler pseudocode ==
