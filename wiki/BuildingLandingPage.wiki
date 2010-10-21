@@ -247,9 +247,9 @@ Note there are no widgets or other UI elements from View exposed in Presenter. T
 
 [http://www.mezzoblue.com/zengarden/resources/ CSS Zen Garden resources]
 
-[http://www.openclipart.org/ Open Clipart]
+[http://www.openclipart.org Open Clip Art Library]
 
-[http://www.sxc.hu/ Free stock photos]
+[http://www.sxc.hu/ Stock.XCHNG free stock photos] 
 
 [http://www.colorcombos.com/combolibrary.html Color combos]
 
