@@ -1,9 +1,11 @@
 package org.gwtgaebook.CultureShows.client.landing;
 
+import java.text.ParseException;
 import java.util.*;
 
 import com.allen_sauer.gwt.log.client.*;
 import com.google.gwt.core.client.GWT; //import com.google.gwt.thirdparty.guava.common.base.Strings;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.*;
 import com.google.inject.*;
 import com.gwtplatform.mvp.client.*;
@@ -41,13 +43,17 @@ public class LandingPresenter extends
 
 	private final PlaceManager placeManager;
 	private final DispatchAsync dispatcher;
+	private ClientState clientState;
 
 	@Inject
 	public LandingPresenter(EventBus eventBus, MyView view, MyProxy proxy,
-			PlaceManager placeManager, DispatchAsync dispatcher) {
+			PlaceManager placeManager, DispatchAsync dispatcher,
+			final ClientState clientState) {
 		super(eventBus, view, proxy);
 		this.placeManager = placeManager;
 		this.dispatcher = dispatcher;
+		this.clientState = clientState;
+
 		getView().setUiHandlers(this);
 
 	}
@@ -70,12 +76,12 @@ public class LandingPresenter extends
 	public void scheduleShow(Date date, String showName, String locationName) {
 		Log.info("Requested performance scheduling on " + date.toString()
 				+ " the show " + showName + " at location " + locationName
-				+ " for theater " + UserInfoStatic.currentTheaterKey);
-		if (null != UserInfoStatic.userInfo) {
-			if (UserInfoStatic.userInfo.isSignedIn) {
+				+ " for theater " + clientState.currentTheaterKey);
+		if (null != clientState.userInfo) {
+			if (clientState.userInfo.isSignedIn) {
 				// make the server request
 				dispatcher.execute(new ScheduleShowAction(
-						UserInfoStatic.currentTheaterKey, date, showName,
+						clientState.currentTheaterKey, date, showName,
 						locationName),
 						new DispatchCallback<ScheduleShowResult>() {
 							@Override
@@ -85,7 +91,7 @@ public class LandingPresenter extends
 									Window.alert(result.getErrorText());
 									return;
 								}
-								UserInfoStatic.currentTheaterKey = result
+								clientState.currentTheaterKey = result
 										.getTheaterKeyOut();
 								getView().addPerformances(
 										result.getPerformancesMap());
@@ -95,9 +101,12 @@ public class LandingPresenter extends
 			} else {
 				// save Performance data in cookie so it is available on user
 				// return
-				// TODO set in proper format, depending on i18n
-				Cookies.setCookie(Constants.PerformanceDateCookieName, date
-						.toString());
+				// this date format shouldn't be i18n'ed, it's only for internal
+				// use
+				DateTimeFormat dateFormat = DateTimeFormat
+						.getFormat(Constants.defaultDateFormat);
+				Cookies.setCookie(Constants.PerformanceDateCookieName,
+						dateFormat.format(date));
 				Cookies.setCookie(Constants.PerformanceShowNameCookieName,
 						showName);
 				Cookies.setCookie(Constants.PerformanceLocationNameCookieName,
@@ -106,8 +115,9 @@ public class LandingPresenter extends
 				requestSignIn();
 			}
 		}
-		// TODO should handle case when (null == UserInfoStatic.userInfo),
-		// meaning getUserInfo request never returned. Nothing will happen on
+		// TODO should handle case when (null == clientState.userInfo),
+		// meaning getUserInfo request never returned. Now nothing will happen
+		// on
 		// Schedule Show
 	}
 
@@ -120,7 +130,7 @@ public class LandingPresenter extends
 					@Override
 					public void onHasUserInfoAvailable(
 							UserInfoAvailableEvent event) {
-						onUserInfoAvailable();
+						onUserInfoAvailable(event.getUserInfo());
 
 					}
 				});
@@ -131,11 +141,11 @@ public class LandingPresenter extends
 	}
 
 	public void requestPerformances() {
-		// Strings.isNullOrEmpty(UserInfoStatic.currentTheaterKey)
-		if (!(null == UserInfoStatic.currentTheaterKey || UserInfoStatic.currentTheaterKey
+		// Strings.isNullOrEmpty(clientState.currentTheaterKey)
+		if (!(null == clientState.currentTheaterKey || clientState.currentTheaterKey
 				.isEmpty())) {
 			dispatcher.execute(new GetPerformancesAction(
-					UserInfoStatic.currentTheaterKey),
+					clientState.currentTheaterKey),
 					new DispatchCallback<GetPerformancesResult>() {
 						@Override
 						public void onSuccess(GetPerformancesResult result) {
@@ -152,19 +162,26 @@ public class LandingPresenter extends
 
 	}
 
-	public void onUserInfoAvailable() {
+	public void onUserInfoAvailable(UserInfo userInfo) {
+		clientState.userInfo = userInfo;
+		getView().setSignInOut(clientState.userInfo);
 
-		getView().setSignInOut(UserInfoStatic.userInfo);
-
-		if (UserInfoStatic.userInfo.isSignedIn) {
+		if (clientState.userInfo.isSignedIn) {
 			// Strings.isNullOrEmpty(Cookies.getCookie(Constants.PerformanceDateCookieName))
 			if (!(null == Cookies
 					.getCookie(Constants.PerformanceDateCookieName) || Cookies
 					.getCookie(Constants.PerformanceDateCookieName).isEmpty())) {
-				// TODO convert to date
-				// Cookies.getCookie(Constants.PerformanceDateCookieName)
+
+				DateTimeFormat dateFormat = DateTimeFormat
+						.getFormat(Constants.defaultDateFormat);
+
+				Date date;
+				date = dateFormat.parse(Cookies
+						.getCookie(Constants.PerformanceDateCookieName));
+				// won't bother with parse errors; worst case anonymous
+				// scheduled performance will be messed
 				scheduleShow(
-						new Date(),
+						date,
 						Cookies
 								.getCookie(Constants.PerformanceShowNameCookieName),
 						Cookies
@@ -173,6 +190,7 @@ public class LandingPresenter extends
 				Cookies.removeCookie(Constants.PerformanceShowNameCookieName);
 				Cookies
 						.removeCookie(Constants.PerformanceLocationNameCookieName);
+
 			}
 
 			requestPerformances();

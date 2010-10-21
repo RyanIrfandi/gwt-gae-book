@@ -16,7 +16,7 @@ public class MainModule extends AbstractPresenterModule {
 	protected void configure() {
 		bind(Resources.class).in(Singleton.class);
 		bind(Translations.class).in(Singleton.class);
-		bind(UserInfo.class).in(Singleton.class);
+		bind(ClientState.class).in(Singleton.class);
 		// bind(SignedInGatekeeper.class).in(Singleton.class);
 
 		bind(EventBus.class).to(DefaultEventBus.class).in(Singleton.class);
