@@ -1,5 +1,4 @@
 #summary Introduction
-#labels Featured
 
 Rather than writing a full book, gwt-gae-book complements existing online materials in a logical, structured, easy to follow way. With the help of community, this set of guides and samples intends to 
  * introduce engineers to GWT and GAE
