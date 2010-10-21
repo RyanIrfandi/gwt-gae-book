@@ -418,7 +418,7 @@ on ScheduleShow request
 	if isSignedIn
 		make the server request
 	else
-		save Performance data in cookies so it's available on their return 
+		save Performance data in cookies so it is available on their return 
 		ask user to sign in instead of making the server request
 
 
@@ -439,7 +439,7 @@ on ScheduleShow complete
 //called only when user isSignedIn
 //data received from client: theaterKey (may be empty), date, showName, locationName
 
-load member record, exception if it doesn't exist
+load member record, exception if it does not exist
 
 // setup theater
 if (theaterKey is not empty) {
