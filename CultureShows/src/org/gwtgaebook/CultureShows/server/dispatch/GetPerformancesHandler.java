@@ -18,8 +18,9 @@ public class GetPerformancesHandler extends
 		DispatchActionHandler<GetPerformancesAction, GetPerformancesResult> {
 
 	@Inject
-	public GetPerformancesHandler(final ObjectDatastore datastore) {
-		super(datastore);
+	public GetPerformancesHandler(final Provider<UserInfo> userInfoProvider,
+			final ObjectDatastore datastore) {
+		super(userInfoProvider, datastore);
 	}
 
 	@Override

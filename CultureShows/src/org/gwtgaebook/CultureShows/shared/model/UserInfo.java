@@ -12,4 +12,7 @@ public class UserInfo implements Serializable {
 	public HashMap<String, String> signInURLs = new HashMap<String, String>();
 	public String signOutURL;
 
+	// theaters user has access to; key/name
+	public Map<String, String> theatersMap = new HashMap<String, String>();
+
 }

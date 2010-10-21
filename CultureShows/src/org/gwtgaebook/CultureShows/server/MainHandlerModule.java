@@ -4,6 +4,8 @@ import com.gwtplatform.dispatch.server.guice.*;
 import com.google.code.twig.*;
 import com.google.code.twig.annotation.*;
 import com.google.code.twig.configuration.*;
+import com.google.inject.Singleton;
+import com.google.inject.servlet.RequestScoped;
 
 import org.gwtgaebook.CultureShows.shared.dispatch.*;
 import org.gwtgaebook.CultureShows.shared.model.*;
@@ -15,7 +17,7 @@ public class MainHandlerModule extends HandlerModule {
 	protected void configureHandlers() {
 		bind(ObjectDatastore.class).toProvider(
 				AnnotationObjectDatastoreProvider.class);
-		// bind(ObjectDatastore.class).to(AnnotationObjectDatastore.class);
+		bind(UserInfo.class).toProvider(UserInfoProvider.class);
 
 		// bind Actions to ActionHandlers and ActionValidators
 		bindHandler(ScheduleShowAction.class, ScheduleShowHandler.class);

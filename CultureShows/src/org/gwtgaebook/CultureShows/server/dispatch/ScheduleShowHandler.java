@@ -13,6 +13,7 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.code.twig.*;
 
 import org.gwtgaebook.CultureShows.shared.dispatch.*;
+import org.gwtgaebook.CultureShows.shared.*;
 import org.gwtgaebook.CultureShows.shared.model.*;
 import org.gwtgaebook.CultureShows.shared.model.TheaterMemberJoin.Role;
 
@@ -20,13 +21,16 @@ public class ScheduleShowHandler extends
 		DispatchActionHandler<ScheduleShowAction, ScheduleShowResult> {
 
 	@Inject
-	public ScheduleShowHandler(final ObjectDatastore datastore) {
-		super(datastore);
+	public ScheduleShowHandler(final Provider<UserInfo> userInfoProvider,
+			final ObjectDatastore datastore) {
+		super(userInfoProvider, datastore);
 	}
 
 	@Override
 	public ScheduleShowResult execute(ScheduleShowAction action,
 			ExecutionContext context) throws ActionException {
+
+		UserInfo userInfo = userInfoProvider.get();
 
 		// TODO Verify that the input is valid.
 		// if (!FieldVerifier.isValidName(input)) {
@@ -62,7 +66,7 @@ public class ScheduleShowHandler extends
 		// TODO anonymous = (AppEngineUser is not signed in)
 
 		if (anonymous) {
-			userId = "anonymous-" + action.getUserToken();
+			userId = Constants.anonymousUserPrefix + action.getUserToken();
 			// prefix prevents client setting valid user IDs and overwriting
 			// their data
 			// issue: client can overwrite any anonymous user data by setting a
@@ -124,14 +128,9 @@ public class ScheduleShowHandler extends
 		}
 
 		if (null == theaterKey) {
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = new Date();
-			String random = UUID.randomUUID().toString();
-
 			theater = new Theater();
 
-			theater.name = "anonymous-" + dateFormat.format(date) + "-"
-					+ random;
+			theater.name = Constants.defaultTheaterName;
 			// store creates a Key in the datastore and keeps it in the
 			// ObjectDatastore associated with this theater instance. Basically,
 			// every OD has a Map<Object, Key> which is used to look up the Key
