@@ -1,4 +1,4 @@
-#summary More resources
+#summary Additional  resources
 
 <wiki:toc max_depth="2" />
 
