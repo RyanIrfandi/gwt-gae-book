@@ -40,6 +40,7 @@ Feel free to [http://code.google.com/p/gwt-gae-book/source/checkout checkout the
 
 = What's inside the template project =
 You can use the template project every time you start a new application. It contains a few libraries already setup, such as
+ * [http://code.google.com/p/guava-libraries/ guava]
  * [http://code.google.com/p/google-guice/ guice] 
  * [http://code.google.com/p/google-gin/ gin]
  * [http://code.google.com/p/gwt-platform/ gwt-platform]
