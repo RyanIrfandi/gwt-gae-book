@@ -389,6 +389,86 @@ What was the reason we let Violeta schedule shows without being signed in? To lo
 = Updated design for getting user info and scheduling shows =
 So our first approach wasn't the best possible. Probably this re-design isn't perfect either, but as long as it's better than the initial one, we're good. Let's create [http://code.google.com/p/gwt-gae-book/source/browse/#svn/branches/CultureShows-allow-anonymous-scheduling/CultureShows a branch] with old code, [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShows-allow-anonymous-scheduling.tgz&can=2&q= an archive], and move on! 
 
+== GetUserHandler pseudocode ==
+{{{
+get userInfo
+if isSignedIn
+	get signOutURL
+	check if user has a Member record, create one if not
+	get theaters member has access to
+else
+	get signInURLs
+}}}
+
+== MainPresenter pseudocode ==
+{{{
+request GetUser
+
+on GetUser complete
+	set UserInfo, including 
+		theaters member has access to
+		currentTheaterKey (first from the list)
+	UserInfoAvailableEvent.fire
+}}}
+
+
+== LandingPresenter pseudocode ==
+{{{
+on ScheduleShow request
+	if isSignedIn
+		make the server request
+	else
+		save Performance data in cookies so it's available on their return 
+		ask user to sign in instead of making the server request
+
+
+on UserInfoAvailableEvent and user isSignedIn
+	if Performance data exists in cookies
+		request ScheduleShow //it will add to currentTheaterKey if set
+		remove Performance data in cookies
+	if theaterKey is set, request GetPerformances
+
+on ScheduleShow complete
+	set theaterKey returned by server
+}}}
+
+
+
+== ScheduleShowHandler pseudocode ==
+{{{
+//called only when user isSignedIn
+//data received from client: theaterKey (may be empty), date, showName, locationName
+
+load member record, exception if it doesn't exist
+
+// setup theater
+if (theaterKey is not empty) {
+	load theater //might not exist, key may be invalid
+	if (null == theater) {
+		theaterKey = null	
+	} else {
+		verify memberKey has access to theater, exception if not
+	}
+}
+
+if (theaterKey is empty) {
+	create theater instance
+	theaterKey = store(theater)
+	assign member to theater with role administrator
+}
+
+// setup show
+showKey = find(showName assigned to theaterKey)
+if (showKey is empty) {
+	create and store show with parent=theater 
+}
+
+//same with location
+
+store(performance)
+
+return theaterKey, performanceMap
+}}}
 
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png" border="0"  /><a href="http://code.google.com/p/gwt-gae-book/issues/entry">Send feedback</a>
