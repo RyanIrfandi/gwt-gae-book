@@ -423,7 +423,7 @@ on ScheduleShow request
 		ask user to sign in instead of making the server request
 
 onUserInfoAvailable
-	getView().setSignInOut(UserInfoStatic.userInfo);
+	getView.setSignInOut
 
 	if user isSignedIn
 		if Performance data exists in cookie
