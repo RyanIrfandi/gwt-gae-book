@@ -1,5 +1,7 @@
 package org.gwtgaebook.CultureShows.client;
 
+import java.util.Iterator;
+
 import com.allen_sauer.gwt.log.client.*;
 import com.google.gwt.event.shared.GwtEvent.Type;
 import com.google.gwt.user.client.*;
@@ -91,6 +93,14 @@ public class MainPresenter extends
 							// TODO have a general handler for this
 							Window.alert(result.getErrorText());
 							return;
+						}
+						if (result.getUserInfo().theatersMap.size() > 0) {
+							Iterator<String> it = result.getUserInfo().theatersMap
+									.keySet().iterator();
+							if (it.hasNext()) {
+								Cookies.setCookie(Constants.theaterCookieName,
+										it.next());
+							}
 						}
 						setUserInfo(result.getUserInfo());
 					}

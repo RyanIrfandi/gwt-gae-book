@@ -57,29 +57,13 @@ public class LandingPresenter extends
 		super.onReset();
 		getView().resetAndFocus();
 
-		if (!(null == Cookies.getCookie(Constants.theaterCookieName) || Cookies
-				.getCookie(Constants.theaterCookieName).isEmpty())) {
-			dispatcher.execute(new GetPerformancesAction(Cookies
-					.getCookie(Constants.theaterCookieName)),
-					new DispatchCallback<GetPerformancesResult>() {
-						@Override
-						public void onSuccess(GetPerformancesResult result) {
-							if (!result.getErrorText().isEmpty()) {
-								// TODO have a general handler for this
-								Window.alert(result.getErrorText());
-								return;
-							}
-							getView().setPerformances(result.getPerformances());
-						}
-					});
-		}
-
 	}
 
 	@Override
 	protected void revealInParent() {
 		RevealContentEvent.fire(this, MainPresenter.TYPE_RevealMainContent,
 				this);
+		requestPerformances();
 	}
 
 	@Override
@@ -114,6 +98,9 @@ public class LandingPresenter extends
 					public void onHasUserInfoAvailable(
 							UserInfoAvailableEvent event) {
 						setSignInOut(event.getUserInfo());
+						// in case user just logged in
+						// TODO it will get triggered twice sometimes
+						requestPerformances();
 
 					}
 				});
@@ -126,4 +113,25 @@ public class LandingPresenter extends
 	public void requestSignIn() {
 		SignInEvent.fire(this);
 	}
+
+	public void requestPerformances() {
+		if (!(null == Cookies.getCookie(Constants.theaterCookieName) || Cookies
+				.getCookie(Constants.theaterCookieName).isEmpty())) {
+			dispatcher.execute(new GetPerformancesAction(Cookies
+					.getCookie(Constants.theaterCookieName)),
+					new DispatchCallback<GetPerformancesResult>() {
+						@Override
+						public void onSuccess(GetPerformancesResult result) {
+							if (!result.getErrorText().isEmpty()) {
+								// TODO have a general handler for this
+								Window.alert(result.getErrorText());
+								return;
+							}
+							getView().setPerformances(result.getPerformances());
+						}
+					});
+		}
+
+	}
+
 }
