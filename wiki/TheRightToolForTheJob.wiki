@@ -49,7 +49,7 @@ The latter approach has a few interesting advantages
 
     
 Disadvantages: 
- * [http://jeoftp.blogspot.com/2010/01/why-i-left-gwt-and-came-crawling-back.html generated markup] is [http://code.google.com/p/google-web-toolkit/issues/detail?id=4684 bloated], making it harder to style among others. See [http://groups.google.com/group/google-web-toolkit/tree/browse_frm/thread/c8cfc4d2dba16862/e12745a14290fffb explanation] about why some of that markup is needed
+ * [http://jeoftp.blogspot.com/2010/01/why-i-left-gwt-and-came-crawling-back.html generated markup] is bloated, making it harder to style among others. See [http://groups.google.com/group/google-web-toolkit/tree/browse_frm/thread/c8cfc4d2dba16862/e12745a14290fffb explanation] about why some of that markup is needed
  * (perceived) you need APIs for almost every feature exposed to front-end, which might be perceived as more work. You'd have to build that functionality anyway, and using APIs forces you to think about separation of UI from back-end. You should also have an API layer which takes care of all common functionality (e.g. authentication, logging) rather than doing this individually for each API
 
 
@@ -92,7 +92,7 @@ A particular advantage over ASP.NET is availability of many mature tools & libra
 
 
 Not so good:
- * introduces a new technology (Java) to the team, a new IDE. However, that’s why we hire good software engineers, not good C++/PHP developers. Either way the team needs to learn to work with new paradigms (e.g. ASP.NET MVC) and use new tools (e.g. building and using image sprites to minimize number of HTTP calls, profiling tools, unit testing frameworks)
+ * introduces a new technology (Java) to the team, a new IDE. That’s why it's best to hire good software engineers, not good C++/PHP developers. The team might need to learn to work with new paradigms and use new tools anyway  (e.g. building and using image sprites to minimize number of HTTP calls, profiling tools, unit testing frameworks)
  * one-time setup of build system. If not using GWT, we need additional tools anyway for JS compiling and image bundles building
  * some widgets have tagsoup
  * sometimes you need to write boilerplate code to achieve a functionality (e.g. make a REST call)
@@ -196,21 +196,22 @@ Mobile Maps and Latitude for iPhone
 
 [http://smist08.wordpress.com/2009/12/03/the-sage-erp-accpac-6-0a-portal/ Sage ERP Portal]
 
-http://www.studyblue.com/
+[http://www.studyblue.com/ StudyBlue]
+
+[http://bookedin.net BookedIN]
 
 [http://www.yesmail.com/Products/Platforms/Yesmail-Enterprise.aspx Yesmail] 
 ([http://www.youtube.com/watch?v=DPchEb6Pz-c demo], [http://devcenter.yesmail.com/com.yesmail.magellan.gwt.rolodexdemo.RolodexDemoApp/RolodexDemoApp.html sample widget]) 
 
-http://www.zackgrossbart.com/hackito/spiffy/
+[http://www.zackgrossbart.com/hackito/spiffy/ Spiffy]
 
 [http://www.sambajam.com/signup SambaJAM] ([http://www.youtube.com/user/sambastream#p/a/u/1/izUeOhLxLpg video])
 
+[http://riflethru.com/ riflethru] (both desktop and mobile UIs)
 
-http://riflethru.com/ (both desktop and mobile UIs)
+[http://www.appbrain.com/ appbrain]
 
-http://www.appbrain.com/
-
-http://jboss.org/drools/drools-guvnor.html
+[http://jboss.org/drools/drools-guvnor.html Drools Guvnor]
 
 [http://james.apache.org/hupa/screenshots.html Apache Hupa IMAP mail client]
 
