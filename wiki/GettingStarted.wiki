@@ -54,6 +54,7 @@ Visit these project sites to find out more about them. Come back to their docume
 
 = Useful tools =
  * [http://getfirebug.com/ Firebug] and [http://www.softwareishard.com/blog/firecookie/ Firecookie]
+ * [https://addons.mozilla.org/en-US/firefox/addon/6647/ HttpFox]
 
 
 <wiki:comment>NAV_START</wiki:comment>
