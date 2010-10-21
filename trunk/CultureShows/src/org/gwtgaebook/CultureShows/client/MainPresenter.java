@@ -34,7 +34,7 @@ public class MainPresenter extends
 
 	private final PlaceManager placeManager;
 	private final DispatchAsync dispatcher;
-	// private UserInfo userInfo;
+	private ClientState clientState;
 
 	public static final Object TYPE_RevealHeaderContent = new Object();
 	@ContentSlot
@@ -44,19 +44,18 @@ public class MainPresenter extends
 
 	private final SignInPresenter signInPresenter;
 
-	// UserInfo userInfo,
 	@Inject
 	public MainPresenter(final EventBus eventBus, final MyView view,
 			final MyProxy proxy, final PlaceManager placeManager,
 			final DispatchAsync dispatcher,
 			final HeaderPresenter headerPresenter,
-			final SignInPresenter signInPresenter) {
+			final SignInPresenter signInPresenter, final ClientState clientState) {
 		super(eventBus, view, proxy);
 		this.placeManager = placeManager;
 		this.dispatcher = dispatcher;
-		// this.userInfo = userInfo;
 		this.headerPresenter = headerPresenter;
 		this.signInPresenter = signInPresenter;
+		this.clientState = clientState;
 
 		getView().setUiHandlers(this);
 
@@ -87,14 +86,14 @@ public class MainPresenter extends
 							Window.alert(result.getErrorText());
 							return;
 						}
-						UserInfoStatic.userInfo = result.getUserInfo();
-						UserInfoStatic.theatersMap = result.getTheatersMap();
+						clientState.userInfo = result.getUserInfo();
+						clientState.theatersMap = result.getTheatersMap();
 
-						if (UserInfoStatic.theatersMap.size() > 0) {
-							Iterator<String> it = UserInfoStatic.theatersMap
+						if (clientState.theatersMap.size() > 0) {
+							Iterator<String> it = clientState.theatersMap
 									.keySet().iterator();
 							if (it.hasNext()) {
-								UserInfoStatic.currentTheaterKey = it.next();
+								clientState.currentTheaterKey = it.next();
 							}
 						}
 						// TODO testability broken if relying to global static
@@ -116,18 +115,17 @@ public class MainPresenter extends
 	public void onGetUserSuccess() {
 		// this.userInfo = userInfo;
 		Log.info("User isSignedIn "
-				+ UserInfoStatic.userInfo.isSignedIn.toString()
-				+ " with email " + UserInfoStatic.userInfo.email + " username "
-				+ UserInfoStatic.userInfo.userId);
-		Log.info("Sign In URLs "
-				+ UserInfoStatic.userInfo.signInURLs.toString()
-				+ " Sign Out URL " + UserInfoStatic.userInfo.signOutURL);
+				+ clientState.userInfo.isSignedIn.toString() + " with email "
+				+ clientState.userInfo.email + " username "
+				+ clientState.userInfo.userId);
+		Log.info("Sign In URLs " + clientState.userInfo.signInURLs.toString()
+				+ " Sign Out URL " + clientState.userInfo.signOutURL);
 		// , UserInfouserInfo
-		UserInfoAvailableEvent.fire(this, UserInfoStatic.userInfo);
+		UserInfoAvailableEvent.fire(this, clientState.userInfo);
 	}
 
 	public void showSignInDialog() {
-		signInPresenter.setUserInfo(UserInfoStatic.userInfo);
+		signInPresenter.setUserInfo(clientState.userInfo);
 		RevealRootPopupContentEvent.fire(this, signInPresenter);
 	}
 

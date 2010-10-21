@@ -5,6 +5,7 @@ import java.util.*;
 import com.google.gwt.core.client.*;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.shared.GwtEvent.*;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.*;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
@@ -18,6 +19,7 @@ import com.gwtplatform.mvp.client.annotations.*;
 import com.allen_sauer.gwt.log.client.*;
 
 import org.gwtgaebook.CultureShows.client.*;
+import org.gwtgaebook.CultureShows.shared.Constants;
 import org.gwtgaebook.CultureShows.shared.model.*;
 
 public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
@@ -53,6 +55,8 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	public LandingView() {
 		widget = uiBinder.createAndBindUi(this);
 
+		date.setFormat(new DateBox.DefaultFormat(DateTimeFormat
+				.getFormat(Constants.defaultDateFormat)));
 		// workaround for
 		// http://code.google.com/p/google-web-toolkit/issues/detail?id=5295
 		date.getElement().setAttribute("required", "");
