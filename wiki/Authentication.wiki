@@ -237,7 +237,7 @@ We'll achieve this by
 
 Here's the result:
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/signInWidget.jpg" border="0" />
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signInWidget.png" border="0" />
 
 TODO: somebody please style the SignIn widget to look better and send your changes to be included here.
 
