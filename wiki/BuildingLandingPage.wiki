@@ -240,7 +240,7 @@ Note there are no widgets or other UI elements from View exposed in Presenter. T
 
 [http://code.google.com/p/gwt-gae-book/source/browse/#svn/trunk/CultureShows Browse the full source code]
 
-= Resources =
+= Additional resources =
 [http://www.openclipart.org Open Clip Art Library]
 
 [http://www.sxc.hu/ Stock.XCHNG free stock photos] 
