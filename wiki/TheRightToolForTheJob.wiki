@@ -4,54 +4,62 @@
 
 Before settling on GWT and GAE, ask yourself if they are the best fit for your project. 
  * what are your needs? 
- * what are the alternatives you have? how do they compare?
+ * what are the alternatives you have? 
+ * how do they compare?
 
 
 = Analysis of using GWT for a large application =
 
-This is an analysis done in 2010 for a large project which has a .NET back-end, with REST APIs (transport: XML and JSON). We control the back-end. We're looking for a framework to replace the current UI. 
+This is an analysis done in September 2010 for a project. It was mapped to our specific  project needs and environment.
+
+== Project background ==
+This is a large project which has a .NET back-end, with REST APIs (transport: XML and JSON). We control the back-end. We're looking for a framework to replace the current UI. 
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/journey.jpg" border="0"  align="right" />
 
-== Goals ==
+== Framework evaluation criteria ==
 
- * clean architecture: separation of presentation from behavior
- * automatically testable (not just Selenium, but also unit tests, jmeter etc)
- * ease of developing new features - evaluate amount of work implied on adding a new feature or changing an existing one
- * ease of adoption by all engineering team (programming language, documentation / learning materials, development environment setup)
- * ease of integration with other frameworks & components (e.g. jQuery, tinyMCE)
- * multi-screen/multi-device/touch support - either out of the box, or easy to add, but not blocker
- * ease of integrating with 3rd party services 
- * widgets available, with easy skinning
- * i18n support
+ * Clean architecture: separation of presentation from behavior
+ * Automatically testable not only with Selenium, but also with unit tests
+ * Ease of developing new features and changing an existing ones
+ * Ease of adoption by all engineering team (consider programming language, documentation / learning materials, development environment setup, support)
+ * Ease of integration with other frameworks & components like jQuery
+ * Multi-screen/multi-device/touch support, either out of the box or easy to add, but not blocker
+ * Ease of integrating with 3rd party services 
+ * Widgets available, ease of skinning
+ * I18N support
 
 
 == Web applications paradigm alternatives ==
 
 
-When developing web applications, you can choose to expose the front end functionality in more ways:
- * heavily coupled with back-end (e.g. Java/PHP/ASP back-end will generate the required HTML/JS/CSS). In this case it’s strongly recommended to use architectures such as MVC and template libraries, in order to reduce coupling.
- * over web service APIs (REST or RPC), and have the front-end communicate with back-end via APIs.
+When developing web applications, one can choose to implement the front end functionality heavily coupled with back-end, e.g. Java/PHP/ASP back-end will generate the required HTML/JS/CSS. In this case it’s strongly recommended to use architectures such as MVC and template libraries, in order to reduce coupling.
+
+An alternative is to have the front-end completely separated from back-end, communicating via web services API (REST or RPC). This approach has a few interesting advantages, shown below.
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/father_and_child.jpg" border="0"  align="right" />
 
-The latter approach has a few interesting advantages
- * clean architecture (separation of UI from back-end is forced). You might have additional MVP architecture layers on front-end (front-end Model is different than back-end Model, e.g. you might have fields stored in multiple tables and expose all under a single entity in API)
- * easier testing automation (unit testing for back-end; functional & performance testing over APIs; unit testing and automated browser testing for front-end)
- * easier to debug by blackbox QEs (e.g. just by using Firebug, they can determine the cause for an issue: back-end business logic or front-end)
- * decoupling of front-end from back-end. Simpler deployment, easy rollbacks, simpler overall project maintenance (specific example: all project build/database broken impeds all teams work; back-end project build broken will allow front-end development to continue using any available deployment)
- * easily allows simultaneous multiple UI versions in production. After deploying a new release (back-end and front-end), you can switch on the new front-end release separately by flipping a switch. You can also do gradual activation for UI features (e.g. activate it for only 10% of the customers and get feedback before activating it to all) and easily do A-B testing  
- * no technology constraints for front-end clients. Use the right tool for the specific job you need
- * APIs will be available for other clients, making you ready for scalable growth. You can have web apps, native mobile clients, native desktop clients and 3rd party services integration, all on top of the same APIs
- * you're no longer the only kid on the block, and one size doesn't fit all. Current web apps need to consider integrating to other services (think social, or a photo editor/print service). When integrating with these, you'll use same patterns as in your app. Often your back-end server doesn't need to interact with the 3rd party service at all, only the front-end client will need to know how to work with them. Example: if your users can to upload photos to your website and you develop an API for this, the client can latter be enhanced to allow users to select photos from Picasa/Flickr/Facebook rather than just their hard-drive. Unless you also want to save Picasa user account information, the back-end doesn’t need to be touched to implement this functionality
- * significantly less bandwitdth/CPU/memory requirements for servers
- * better user experience. Faster response time, update only specific parts of the page instead of full page reload on user actions
+First, it enforces a clean architecture by completely separating the font-end client from back-end. One can design the back-end completely separated from front-end, having in mind just [http://www.infoq.com/presentations/SOA-Business-Autonomous-Components SOA and EDA]. The front-end might have an additional MVP architecture . Note that front-end Model is different than back-end Model, e.g. one might have fields stored in multiple tables and expose all of them under a single entity in API.
 
-    
-Disadvantages: 
- * [http://jeoftp.blogspot.com/2010/01/why-i-left-gwt-and-came-crawling-back.html generated markup] is bloated, making it harder to style among others. See [http://groups.google.com/group/google-web-toolkit/tree/browse_frm/thread/c8cfc4d2dba16862/e12745a14290fffb explanation] about why some of that markup is needed
- * (perceived) you need APIs for almost every feature exposed to front-end, which might be perceived as more work. You'd have to build that functionality anyway, and using APIs forces you to think about separation of UI from back-end. You should also have an API layer which takes care of all common functionality (e.g. authentication, logging) rather than doing this individually for each API
+Testing automation is easier. One can have unit and integration testing for back-end; functional & performance testing over APIs; unit testing and automated browser testing for front-end.
 
+Black Box QEs are able to debug issues in more detail by monitoring client-server communication. By using a tool like Firebug, they can tell if the cause is on back-end business logic or front-end, resulting in better bug reports.
+
+By decoupling front-end from back-end, the release deployment is also decoupled. One can now have simultaneous multiple front-end versions in production. Combined with versioned APIs, one lowers the risk of affecting all customers with bugs introduced with the new release. After deploying a new back-end and front-end release, one can test first the back-end and then switch on the new front-end version separately by flipping a switch. One can also do gradual roll-out for frond-end features by activating it for only 10% of the customers first, getting feedback and then making it available for all users. Roll-backs are seamlessly done in the same way. One also gets easy A-B testing possibilities.
+
+For large projects, overall project maintenance gets simpler. Developers can work separately on back-end and front-end if desired. We sometimes had the back-end broken due to changing database configurations, which impeded all team. A part of the team could have continued working on front-end during this time, using mock APIs or other functioning back-end deployments.
+
+Technology constraints are no longer imposed on front-end clients. With web service APIs, use the right front-end tool for the specific job one needs.
+
+APIs will also be available for other clients, making you ready for scalable growth. You can have web apps, native mobile clients, native desktop clients and 3rd party services integration, all on top of the same tested APIs.
+
+One is no longer the only kid on the block, and one size doesn't fit all. Current web apps need to consider integrating to other services (think social, or a photo editor/print service). When integrating with these, one will use the same patterns that were used to develop the initial app. Sometimes the back-end server doesn't even need to interact with the 3rd party service at all, having just the front-end client knowing how to work with them. Example: if users can upload photos to an app having an API for this, the client can latter be enhanced to allow users to upload photos from Picasa/Flickr/Facebook rather than just their hard-drive. Unless the app wants to save Picasa user account information, the back-end doesn't need to be touched to implement this functionality.
+
+A disadvantage of this approach is the need of APIs for almost every feature exposed to front-end, which might be perceived as more work. One would have to build that functionality anyway, and using APIs forces one to think about separation of UI from back-end. Having an API layer which takes care of all common functionality (e.g. authentication, logging) rather than doing this individually for each API is strongly recommended. 
+
+One also needs to be careful on backwards compatibility when having multiple front-end clients. Use API versioning and run automated tests for all API versions on each release.
+
+The notes above are applicable for any technologies having front-end using back-end via web service APIs. Next, we'll go into more details regarding GWT.
 
 == Google Web Toolkit (GWT) ==
 
@@ -83,6 +91,8 @@ Good:
  * native MVP support 
  * REST support
  * [http://code.google.com/webtoolkit/doc/latest/DevGuideA11y.html accessibility support]
+Having separate, static front-end functionality will require significantly less bandwitdth/CPU/memory requirements for servers. 
+ * better user experience. Faster response time, update only specific parts of the page instead of full page reload on user actions
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/lemon.jpg" border="0"  align="right" />
 A particular advantage over ASP.NET is availability of many mature tools & libraries which are free and open source (from unit testing and mocks builder frameworks, to static code analysis). Even if cost is not an issue, for engineering this translates to
@@ -94,7 +104,7 @@ A particular advantage over ASP.NET is availability of many mature tools & libra
 Not so good:
  * introduces a new technology (Java) to the team, a new IDE. That’s why it's best to hire good software engineers, not good C++/PHP developers. The team might need to learn to work with new paradigms and use new tools anyway  (e.g. building and using image sprites to minimize number of HTTP calls, profiling tools, unit testing frameworks)
  * one-time setup of build system. If not using GWT, we need additional tools anyway for JS compiling and image bundles building
- * some widgets have tagsoup
+ * [http://jeoftp.blogspot.com/2010/01/why-i-left-gwt-and-came-crawling-back.html generated markup] is bloated, making it harder to style among others. See [http://groups.google.com/group/google-web-toolkit/tree/browse_frm/thread/c8cfc4d2dba16862/e12745a14290fffb explanation] about why some of that markup is needed
  * sometimes you need to write boilerplate code to achieve a functionality (e.g. make a REST call)
  * missing powerful widgets (e.g. [http://www.smartclient.com/smartgwt/showcase/#tiling_filter_sort SmartGWT’s TileGrid]). Reason: GWT is a toolkit, enabling others to write libraries for it, not a full all-in-one solution for web apps development. There are many 3rd party widget libraries
 
