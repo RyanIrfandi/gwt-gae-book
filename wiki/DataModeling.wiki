@@ -31,7 +31,7 @@ For simplicity, we won't handle the case when a location is shared by more theat
 
 A theater has contact info. Locations also may have contact info (if they are not owned by theater but rather rented, or a theater might have two locations in different city areas, each with it's own phone to make ticket reservations).
 
-Try to avoid generic entities such as "User". Besides Member, here we might also have Spectator (Claus).
+Try to avoid generic entities such as "User". Besides Member, here we might also have Spectator (Claudia).
 
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
