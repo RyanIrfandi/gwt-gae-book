@@ -19,11 +19,11 @@ Violeta is the theater company manager. She works with the group to schedule sho
 == Stefan ==
 Stefan is an actor in the theater company. He also has a day job and knows how to use computers not only for email, but also to send newsletters to publications, to publish show photos on Facebook and to discuss with theater website designers for making updates such as shows schedule, description and photos.
 
-== Claus ==
-Claus loves going to theater shows. She usually looks at what shows are scheduled in her city for the next two weeks, so she can make plans with her friends.
+== Claudia ==
+Claudia loves going to theater shows. She usually looks at what shows are scheduled in her city for the next two weeks, so she can make plans with her friends.
 
 = Expressing personae needs = 
-With this application, we want to satisfy the needs of Violeta, Stefan and Claus. It helps if we  clearly identify their needs: we can then estimate and prioritize their order of implementation. 
+With this application, we want to satisfy the needs of Violeta, Stefan and Claudia. It helps if we  clearly identify their needs: we can then estimate and prioritize their order of implementation. 
 
 One form of expressing personae needs is  [http://en.wikipedia.org/wiki/User_story user stories]. See [http://www.examiner.com/business-technology-in-kansas-city/how-to-write-effective-user-stories-a-agile-scrum-environment how to write effective user stories] and [http://www.stellman-greene.com/2009/05/03/requirements-101-user-stories-vs-use-cases/ how do they compare with use cases].
 
@@ -33,7 +33,7 @@ So what would be some of our user stories?
 
 As Violeta or Stefan, I want to easily update the shows schedule on our website myself, so that I don't waste time asking somebody else to do it for me.
 
-As Claus, I want to learn about upcoming shows so that I can make plans with my friends.
+As Claudia, I want to learn about upcoming shows so that I can make plans with my friends.
 
 
 = Backlog grooming =
@@ -64,7 +64,7 @@ You did actually try to do this by yourself first, right? Go on, this chapter wi
 || As Violeta, I want to use Culture Shows in my own language so that I don't have to learn English || 5 ||
 || As Stefan, I want our Facebook group to display each show information two weeks in advance so that more people find out about it|| 13 ||
 || As Stefan, I want our Twitter account to display each show information two weeks in advance so that more people find out about it|| 13 ||
-|| As Claus, I want to make a reservation so that I know for sure I'll have a place to see the show when I go to theater || 40 ||
+|| As Claudia, I want to make a reservation so that I know for sure I'll have a place to see the show when I go to theater || 40 ||
 || As Violeta, I want to notify existing reservation owners about changes in schedule so that they find out about it and adjust their plans || 8 ||
 || As Violeta, I want to remind existing reservation owners about shows two days in advance so that I'm sure they didn't forget and minimize the chances of them being late || 8 ||
 || As Violeta, I want to display all shows on theater website with links to details so that I can have a portfolio || 5 ||
