@@ -2,10 +2,11 @@
 
 <wiki:toc max_depth="2" />
 
+= Evaluating alternatives = 
 Before settling on GWT and GAE, ask yourself if they are the best fit for your project. 
- * what are your needs? 
- * what are the alternatives you have? 
- * how do they compare?
+ * What are your needs? 
+ * What are the alternatives you have? 
+ * How do they compare?
 
 
 = Analysis of using GWT for a large application =
