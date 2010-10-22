@@ -116,11 +116,13 @@ A large web app it’s built by a large cross-functional team. We have Black Box
 ==== Scrum teams ====
 We use Scrum with 4 week sprints and apply Scrum best practices such as splitting large stories in small ones. While we try to work on stories in order of priority, we still reach the last sprint week with most stories not done as we cannot fully parallelize effort to work on one story at a time.
 
- * multiple developers will be able to work on the same story (one or two back-end, one front-end using mock data models, which have to be built anyway for unit testing)
- * early development of functional front-end with mock data models. Black box QEs will be able to do early QA on user workflows and usability, rather then at the sprint end when it’s usually too late to do major changes. Specific example: we had a large feature developed and released, which is working mostly ok from functionality point of view, but had large usability issues raised by customers.
- * white box QAs can write API tests as soon as the data model is agreed, and can review and contribute to front-end unit testing (both with mock Views, which tests the Presenter logic, and with real Views, which tests browser functionality).
- * rapid development on integrating separate workflows. If we already fully developed two separate workflows, to integrate them we need to change only the client. Example: If you have a front-end to post a Wordpress blog entry which includes images, and you also have a separate photo gallery management section in the same application, you only need to update the client to enable drag and dropping photos from your photo galleries into a blog post.
+With GWT, multiple developers will be able to work on the same story (one or two back-end, one front-end using mock data models, which have to be built anyway for unit testing). 
 
+We can have early development of functional front-end with mock data models. Black Box QEs will be able to do early QA on user workflows and usability, rather then at the sprint end when it’s usually too late to do major changes. Specific example: we had a large feature developed and released, which is working mostly ok from functionality point of view, but had large usability issues raised by customers.
+
+White Box QAs can write API tests as soon as the data model is agreed, and then can review and contribute to front-end unit testing.
+
+If we already fully developed two separate workflows, to integrate them we need to change only the client. Example: If you have a front-end to post a Wordpress blog entry which includes images, and you also have a separate photo gallery management section in the same application, you only need to update the client to enable drag and dropping photos from your photo galleries into a blog post.
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/stone_tower.jpg" border="0"  align="left" />
 
@@ -128,7 +130,7 @@ We use Scrum with 4 week sprints and apply Scrum best practices such as splittin
 
 With the current process, UX designers develop wireframes and some high resolution mockups for larger features. Then they don’t interact at all with the end result until it’s completed by the team. Feedback from UX is sometimes integrated in the next sprint, sometimes not considered as the story it’s done and we need to continue working on other features.
 
-Using GWT will allow the team to rapidly develop early UIs, with mock data models. UX team will be able to see their proposed workflows in action during the actual feature development. As GWT separates not only logic from presentation with MVP, but also [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html HTML/CSS markup from Java code], UX folks are able to make changes themselves to markup, CSS and widgets, and submit their final changes directly into the version control system, again during the feature development (we are using Continuous Integration). Front-end unit tests developed by engineering team make sure they don’t break anything.
+Using GWT will allow the team to rapidly develop early UIs, with mock data models. UX team will be able to see their proposed workflows in action during the actual feature development. As GWT separates not only logic from presentation with MVP, but also [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html HTML/CSS markup from Java code], designers would be able to make changes themselves to markup, CSS and widgets, and submit their final changes directly into the version control system, again during the feature development (we are using Continuous Integration). 
 
 ==== Product managers and support ==== 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/against_light.jpg" border="0"  align="right" />
@@ -159,14 +161,12 @@ A GWT front-end is just a set of cachable HTML/JS/CSS/images static files, which
 [http://code.google.com/webtoolkit/articles/mvp-architecture.html MVP architecture for GWT]
 
 
-== Recommendation ==
+== Next steps ==
 
-Besides GWT, we looked at various other frameworks, including Sproutcore, Capuccino, ASP.NET with MVC and ASP.NET AJAX (documented these internally).
 GWT has many advantages and fits our needs. 
+Besides GWT, we looked at various other frameworks, including Sproutcore, Capuccino, ASP.NET with MVC and ASP.NET AJAX (documented these internally).
 
-Next step: deep dive on ASP.NET with MVC.
-
-GWT specific next steps: test deployment, research how easy is using CSS and external JS, research overwriting generated markup for some widgets or building more complex widgets from scratch if needed, review top open bugs to see how stable/maintained GWT is (we cannot do the same with ASP :)
+GWT specific next steps: test deployment, research how easy is using CSS and external JS, research overwriting generated markup for some widgets or building more complex widgets from scratch if needed, review top open bugs to see how stable/maintained GWT is.
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/learning_with_pencil.jpg" border="0"  align="left" />
 For feedback on this document, please contact Marius.Andreiana @ gmail.com. Thanks to the GWT discussion group and other folks, who already provided valuable feedback.
@@ -174,7 +174,7 @@ For feedback on this document, please contact Marius.Andreiana @ gmail.com. Than
 
 == Appendix: Evaluating GWT 3rd party libraries ==
 
-GWT has many 3rd party libraries, covering areas such as widgets, validation, logging, charts and even equation editors. A few of the widget libraries chose to heavily use Javascript and their own widget model to implement various widgets (e.g. SmartGWT), leading to various issues: [http://forums.smartclient.com/showthread.php?p=15141 layout], performance, some incompatibility with native GWT widgets. I recommend not using this kind of libraries and stick to widgets built on the GWT model, including [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html UiBinder].
+GWT has many 3rd party libraries, covering areas such as widgets, validation, logging, charts and even equation editors. A few of the widget libraries chose to heavily use !JavaScript and their own widget model to implement various widgets (e.g. SmartGWT), leading to various issues: [http://forums.smartclient.com/showthread.php?p=15141 layout], performance, some incompatibility with native GWT widgets. I recommend not using this kind of libraries and stick to widgets built on the GWT model and [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html UiBinder].
 
 
 == Appendix: GWT apps at Google ==
@@ -241,20 +241,17 @@ Response: tweets
 
 *Production*
 
-Deploy app.html on api.backend.com which loads compiled JS from CDN. app.html is loaded in an iframe from wherever is needed to avoid SOP restrictions on all browsers.
+Deploy app.html on api.backend.com which loads compiled assets from CDN. app.html is loaded in an iframe from wherever is needed to avoid SOP restrictions on all browsers.
 
 *Development environment for folks doing client-only development*
 
-api.backend.com will return on all requests the header
+api.internal.backend.com will return on all requests the header
 {{{
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Authorization
 }}}
-so that the UI can be served from frontend.com and other domains, but still access the APIs
-(same origin policy). There won't be anything else on api.site.com besides stateless APIs (no cookies, no html files).
-User navigates to frontend.com. The UI gets username & password, passes it to api.backend.com, then it will store authToken and use it on all further requests (same as a cookie stores session id on other systems).
 
-This setup should be fully secure for production too, but we cannot use it as Internet Explorer doesn’t support properly Access-Control-Allow-Origin with XHR (has a separate proprietary object, XDomainRequest, for this use case).
+This setup should be fully secure for production too, but we cannot use it as Internet Explorer doesn’t support [https://developer.mozilla.org/En/HTTP_Access_Control Access-Control-Allow-Origin] with XHR (has a separate proprietary object, XDomainRequest, for this use case).
 
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
