@@ -167,7 +167,7 @@ Besides the few files we worked with so far, the template project contains sever
 
  * [http://code.google.com/webtoolkit/articles/mvp-architecture.html MVP architecture]
  * [http://code.google.com/p/gwt-platform/wiki/GettingStarted Getting started with gwt-platform]
- * [http://code.google.com/webtoolkit/doc/trunk/DevGuideMvpActivitiesAndPlaces.html GWT MVP Framework]
+ * [http://code.google.com/webtoolkit/doc/latest/DevGuideMvpActivitiesAndPlaces.html GWT MVP Framework]
  * [http://code.google.com/p/gwt-platform/wiki/ComparisonWithGwtMVP Comparison of gwt-platform with GWT MVP]
  * [http://martinfowler.com/eaaDev/uiArchs.html GUI Architectures]
  * [http://code.google.com/p/google-guice/ Guice dependency injection framework]
