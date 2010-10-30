@@ -1,8 +1,8 @@
 package org.gwtgaebook.CultureShows.client.widget;
 
+import org.gwtgaebook.CultureShows.client.Main;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
 
-import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -42,7 +42,7 @@ public class SignInView extends PopupViewImpl implements SignInPresenter.MyView 
 
 	@UiHandler("googleSignIn")
 	void onGoogleSignInClicked(ClickEvent event) {
-		Log.info("redirecting to " + userInfo.signInURLs.get("Google"));
+		Main.logger.info("redirecting to " + userInfo.signInURLs.get("Google"));
 		Window.Location.replace(userInfo.signInURLs.get("Google"));
 	}
 
