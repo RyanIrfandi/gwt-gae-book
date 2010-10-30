@@ -11,12 +11,15 @@ TODO
 
 
 = Data validation =
-
+TODO Waiting for gwt 2.1.x/2.2 to finish data validation support
 
 = Form fields auto-completion =
 
 
 = Remembering last used location =
+
+
+
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
 <img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />
