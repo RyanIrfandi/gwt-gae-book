@@ -16,7 +16,6 @@ import static com.google.gwt.query.client.css.CSS.*;
 
 import com.gwtplatform.mvp.client.*;
 import com.gwtplatform.mvp.client.annotations.*;
-import com.allen_sauer.gwt.log.client.*;
 
 import org.gwtgaebook.CultureShows.client.*;
 import org.gwtgaebook.CultureShows.shared.Constants;

@@ -2,7 +2,6 @@ package org.gwtgaebook.CultureShows.client;
 
 import java.util.Iterator;
 
-import com.allen_sauer.gwt.log.client.*;
 import com.google.gwt.event.shared.GwtEvent.Type;
 import com.google.gwt.user.client.*;
 import com.google.inject.*;
@@ -114,12 +113,13 @@ public class MainPresenter extends
 
 	public void onGetUserSuccess() {
 		// this.userInfo = userInfo;
-		Log.info("User isSignedIn "
+		Main.logger.info("User isSignedIn "
 				+ clientState.userInfo.isSignedIn.toString() + " with email "
 				+ clientState.userInfo.email + " username "
 				+ clientState.userInfo.userId);
-		Log.info("Sign In URLs " + clientState.userInfo.signInURLs.toString()
-				+ " Sign Out URL " + clientState.userInfo.signOutURL);
+		Main.logger.info("Sign In URLs "
+				+ clientState.userInfo.signInURLs.toString() + " Sign Out URL "
+				+ clientState.userInfo.signOutURL);
 		// , UserInfouserInfo
 		UserInfoAvailableEvent.fire(this, clientState.userInfo);
 	}

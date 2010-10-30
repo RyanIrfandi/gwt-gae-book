@@ -2,8 +2,8 @@ package org.gwtgaebook.CultureShows.client.landing;
 
 import java.text.ParseException;
 import java.util.*;
+import java.util.logging.Logger;
 
-import com.allen_sauer.gwt.log.client.*;
 import com.google.gwt.core.client.GWT; //import com.google.gwt.thirdparty.guava.common.base.Strings;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.*;
@@ -74,7 +74,7 @@ public class LandingPresenter extends
 
 	@Override
 	public void scheduleShow(Date date, String showName, String locationName) {
-		Log.info("Requested performance scheduling on " + date.toString()
+		Main.logger.info("Requested performance scheduling on " + date.toString()
 				+ " the show " + showName + " at location " + locationName
 				+ " for theater " + clientState.currentTheaterKey);
 		if (null != clientState.userInfo) {
