@@ -378,7 +378,7 @@ if (!isSignedIn)
 }}}
 
 
-What do think? Yep, it starts getting messy and very prone to bugs. Just like real-life projects :) You need to continuously watch out for situations like this. Rather than getting absorbed in delivering, let's step back for a moment and see if we can [http://en.wikipedia.org/wiki/KISS_principle keep it simple].
+What do think? Yep, it starts getting messy and very prone to bugs. Just like real-life projects :) You need to continuously watch out for situations like this. It's good we realize the complexity from pseudocode, rather than from written and debugged code. Rather than getting absorbed in delivering, let's step back for a moment and see if we can [http://en.wikipedia.org/wiki/KISS_principle keep it simple].
 
 == Refactoring of... requirements! ==
 To simplify, we need to introduce some constraints.
