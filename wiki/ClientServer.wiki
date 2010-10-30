@@ -147,19 +147,19 @@ import org.gwtgaebook.CultureShows.shared.dispatch.*;
 
 	@Override
 	public void scheduleShow(Date date, String showName, String locationName) {
-		Log.info("Presenter scheduling on " + date.toString() + " the show "
+		Main.logger.info("Presenter scheduling on " + date.toString() + " the show "
 				+ showName + " at location " + locationName);
 		dispatcher.execute(new ScheduleShowAction(showName),
 				new AsyncCallback<ScheduleShowResult>() {
 					@Override
 					public void onFailure(Throwable caught) {
-						Log.error("Scheduleing show failed "
+						Main.logger.severe("Scheduleing show failed "
 								+ caught.getMessage());
 					}
 
 					@Override
 					public void onSuccess(ScheduleShowResult result) {
-						Log.info("Scheduled show");
+						Main.logger.info("Scheduled show");
 					}
 				});
 	}
@@ -200,7 +200,7 @@ Here's the updated !LandingPresenter:
 				new DispatchCallback<ScheduleShowResult>() {
 					@Override
 					public void onSuccess(ScheduleShowResult result) {
-						Log.info("Scheduled show");
+						Main.logger.info("Scheduled show");
 					}
 				});
 }}}
