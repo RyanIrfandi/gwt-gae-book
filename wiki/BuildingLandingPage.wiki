@@ -207,7 +207,7 @@ Let's actually keep our commitment and implement this:
 {{{
 	@Override
 	public void scheduleShow(Date date, String showName, String locationName) {
-		Log.info("Presenter scheduling on " + date.toString() + " the show "
+		Main.logger.info("Presenter scheduling on " + date.toString() + " the show "
 				+ showName + " at location " + locationName);
 	}
 }}}
