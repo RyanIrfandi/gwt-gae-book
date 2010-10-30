@@ -27,15 +27,12 @@ Added [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/sr
 public class ScheduleShow {
 	...
 	@Out(3)
-	String performanceKey;
-
-	@Out(4)
-	Performance performance;
+	Map<String, Performance> performancesMap = new HashMap<String, Performance>();
 }
 
 ...
 		return new ScheduleShowResult("", KeyFactory.keyToString(theaterKey),
-				KeyFactory.keyToString(performanceKey), performance);
+				performancesMap);
 }}}
 
 `LandingView` can display performances...
@@ -43,55 +40,59 @@ public class ScheduleShow {
 	@UiField
 	HTML performancesContainer;
 
-	public void addPerformance(Performance performance) {
-		performancesContainer.setHTML(performancesContainer.getHTML() + "<br/>"
-				+ performance.showName + " | " + performance.locationName
-				+ " | " + performance.date.toString());
+	public void addPerformances(Map<String, Performance> performanceMap) {
+		Iterator<String> i = performanceMap.keySet().iterator();
+		String key;
+		while (i.hasNext()) {
+			key = i.next();
+			performancesContainer.setHTML(performancesContainer.getHTML()
+					+ "<br/>" + performanceMap.get(key).showName + " | "
+					+ performanceMap.get(key).locationName + " | "
+					+ performanceMap.get(key).date.toString());
+
+		}
 
 	}
 
-	public void setPerformances(List<Performance> performances) {
+	public void setPerformances(Map<String, Performance> performanceMap) {
 		performancesContainer.setHTML("Show | Location | Date");
-		for (Performance p : performances) {
-			addPerformance(p);
-		}
+
+		addPerformances(performanceMap);
 
 	}
 }}}
 
 ...as instructed by `LandingPresenter`
 {{{
-	protected void onReset() {
-		super.onReset();
-		getView().resetAndFocus();
-
-		if (!(null == Cookies.getCookie(Constants.theaterCookieName) || Cookies
-				.getCookie(Constants.theaterCookieName).isEmpty())) {
-			dispatcher.execute(new GetPerformancesAction(Cookies
-					.getCookie(Constants.theaterCookieName)),
+	public void requestPerformances() {
+		if (!(null == clientState.currentTheaterKey || clientState.currentTheaterKey
+				.isEmpty())) {
+			dispatcher.execute(new GetPerformancesAction(
+					clientState.currentTheaterKey),
 					new DispatchCallback<GetPerformancesResult>() {
 						@Override
 						public void onSuccess(GetPerformancesResult result) {
-							getView().setPerformances(result.getPerformances());
+							if (!result.getErrorText().isEmpty()) {
+								// TODO have a general handler for this
+								Window.alert(result.getErrorText());
+								return;
+							}
+							getView().setPerformances(
+									result.getPerformancesMap());
 						}
 					});
 		}
 
 	}
 
-	public void scheduleShow(Date date, String showName, String locationName) {
-		dispatcher.execute(new ScheduleShowAction(Cookies
-				.getCookie(Constants.userTokenCookieName), Cookies
-				.getCookie(Constants.theaterCookieName), date, showName,
-				locationName), new DispatchCallback<ScheduleShowResult>() {
-			@Override
-			public void onSuccess(ScheduleShowResult result) {
-				Cookies.setCookie(Constants.theaterCookieName, result
-						.getTheaterKeyOut());
-				getView().addPerformance(result.getPerformance());
-			}
-		});
-	}
+
+	...
+
+		if (clientState.userInfo.isSignedIn) {
+			...
+			requestPerformances();
+		}
+
 
 }}}
 
