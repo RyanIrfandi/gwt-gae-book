@@ -74,6 +74,7 @@ You did actually try to do this by yourself first, right? Go on, this chapter wi
  * [http://www.joelonsoftware.com/articles/fog0000000036.html Painless Functional Specifications]
 
 
+
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
 <img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />

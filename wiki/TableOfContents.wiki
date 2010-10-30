@@ -12,7 +12,7 @@
  * [SoYouHaveAnIdea#Personae Personae] <br/>
   * [SoYouHaveAnIdea#Violeta Violeta] <br/>
   * [SoYouHaveAnIdea#Stefan Stefan] <br/>
-  * [SoYouHaveAnIdea#Claus Claus] <br/>
+  * [SoYouHaveAnIdea#Claudia Claudia] <br/>
  * [SoYouHaveAnIdea#Expressing_personae_needs Expressing personae needs] <br/>
   * [SoYouHaveAnIdea#User_stories User stories] <br/>
  * [SoYouHaveAnIdea#Backlog_grooming Backlog grooming] <br/>
@@ -28,22 +28,24 @@
  * [VisualizingYourApp#Get_feedback Get feedback] <br/>
 
 === [TheRightToolForTheJob Are you using the right tool for the job?] ===
+ * [TheRightToolForTheJob#Evaluating_alternatives Evaluating alternatives] <br/>
  * [TheRightToolForTheJob#Analysis_of_using_GWT_for_a_large_application Analysis of using GWT for a large application] <br/>
-  * [TheRightToolForTheJob#Goals Goals] <br/>
-  * [TheRightToolForTheJob#Web_applications_paradigm_alternatives Web applications paradigm alternatives] <br/>
-  * [TheRightToolForTheJob#Google_Web_Toolkit_(GWT) Google Web Toolkit (GWT)] <br/>
-   * [TheRightToolForTheJob#Engineering Engineering] <br/>
-   * [TheRightToolForTheJob#Cross-functional_team_collaboration Cross-functional team collaboration] <br/>
-    * [TheRightToolForTheJob#Scrum_teams Scrum teams] <br/>
-    * [TheRightToolForTheJob#User_experience_designers_and_graphic_designers User experience designers and graphic designers] <br/>
-    * [TheRightToolForTheJob#Product_managers_and_support Product managers and support] <br/>
-    * [TheRightToolForTheJob#Operations Operations] <br/>
-  * [TheRightToolForTheJob#More_info_on_GWT More info on GWT] <br/>
-  * [TheRightToolForTheJob#Recommendation Recommendation] <br/>
-  * [TheRightToolForTheJob#Appendix:_Evaluating_GWT_3rd_party_libraries Appendix: Evaluating GWT 3rd party libraries] <br/>
-  * [TheRightToolForTheJob#Appendix:_GWT_apps_at_Google Appendix: GWT apps at Google] <br/>
-  * [TheRightToolForTheJob#Appendix:_Cool_GWT_apps Appendix: Cool GWT apps] <br/>
-  * [TheRightToolForTheJob#Appendix:_Deployment_setup Appendix: Deployment setup] <br/>
+ * [TheRightToolForTheJob#Project_background Project background] <br/>
+ * [TheRightToolForTheJob#Framework_evaluation_criteria Framework evaluation criteria] <br/>
+ * [TheRightToolForTheJob#Web_applications_paradigm_alternatives Web applications paradigm alternatives] <br/>
+ * [TheRightToolForTheJob#Google_Web_Toolkit_(GWT) Google Web Toolkit (GWT)] <br/>
+  * [TheRightToolForTheJob#Engineering Engineering] <br/>
+  * [TheRightToolForTheJob#Cross-functional_team_collaboration Cross-functional team collaboration] <br/>
+   * [TheRightToolForTheJob#Scrum_teams Scrum teams] <br/>
+   * [TheRightToolForTheJob#User_experience_designers_and_graphic_designers User experience designers and graphic designers] <br/>
+   * [TheRightToolForTheJob#Product_managers_and_support Product managers and support] <br/>
+   * [TheRightToolForTheJob#Operations Operations] <br/>
+ * [TheRightToolForTheJob#More_info_on_GWT More info on GWT] <br/>
+ * [TheRightToolForTheJob#Next_steps Next steps] <br/>
+ * [TheRightToolForTheJob#Appendix:_Evaluating_GWT_3rd_party_libraries Appendix: Evaluating GWT 3rd party libraries] <br/>
+ * [TheRightToolForTheJob#Appendix:_GWT_apps_at_Google Appendix: GWT apps at Google] <br/>
+ * [TheRightToolForTheJob#Appendix:_Cool_GWT_apps Appendix: Cool GWT apps] <br/>
+ * [TheRightToolForTheJob#Appendix:_Deployment_setup Appendix: Deployment setup] <br/>
 
 === [GettingStarted Getting started] ===
  * [GettingStarted#Environment_Setup Environment Setup] <br/>
@@ -78,7 +80,6 @@
  * [ClientServer#Exercise_solution Exercise solution] <br/>
  * [ClientServer#Auto-generated_Action_and_Result Auto-generated Action and Result] <br/>
  * [ClientServer#More_code_cleanup More code cleanup] <br/>
- * [ClientServer#Protecting_against_cross-site_request_forgeries_(XSRF) Protecting against cross-site request forgeries (XSRF)] <br/>
  * [ClientServer#Summary Summary] <br/>
 
 === [StoringData Saving schedule in datastore] ===
@@ -95,14 +96,6 @@
  * [StoringData#Exercise Exercise] <br/>
  * [StoringData#Exercise_solution Exercise solution] <br/>
  * [StoringData#Additional_resources Additional resources] <br/>
-
-=== [ListingSchedule Listing saved schedule] ===
- * [ListingSchedule#A_quick,_basic_solution A quick, basic solution] <br/>
-  * [ListingSchedule#Exercise Exercise] <br/>
-  * [ListingSchedule#Exercise_solution Exercise solution] <br/>
- * [ListingSchedule#Advanced_use_cases Advanced use cases] <br/>
- * [ListingSchedule#Exercise Exercise] <br/>
- * [ListingSchedule#Enhancing_the_basic_solution Enhancing the basic solution] <br/>
 
 === [Authentication Authentication with OpenID] ===
  * [Authentication#Signing_in_using_OpenID Signing in using OpenID] <br/>
@@ -125,6 +118,14 @@
   * [Authentication#MainPresenter_pseudocode MainPresenter pseudocode] <br/>
   * [Authentication#LandingPresenter_pseudocode LandingPresenter pseudocode] <br/>
   * [Authentication#ScheduleShowHandler_pseudocode ScheduleShowHandler pseudocode] <br/>
+
+=== [ListingSchedule Listing saved schedule] ===
+ * [ListingSchedule#A_quick,_basic_solution A quick, basic solution] <br/>
+  * [ListingSchedule#Exercise Exercise] <br/>
+  * [ListingSchedule#Exercise_solution Exercise solution] <br/>
+ * [ListingSchedule#Advanced_use_cases Advanced use cases] <br/>
+ * [ListingSchedule#Exercise Exercise] <br/>
+ * [ListingSchedule#Enhancing_the_basic_solution Enhancing the basic solution] <br/>
 
 === [QualityAssurance Quality assurance] ===
  * [QualityAssurance#Introduction Introduction] <br/>
