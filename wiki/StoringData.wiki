@@ -209,7 +209,7 @@ showKey = datastore.store().instance(show).parent(theater).now();
 List<Show> shows = datastore.find().type(Show.class).ancestor(theater).returnAll().now();
 }}}
 
-Coming back to the relational database analogy, the theaterKey reference is embedded in Show key `parentKey` property. !AppEngine keys are always indexed, even if we disabled indexing for class properties (TODO: is this correct?)
+Coming back to the relational database analogy, the theaterKey reference is embedded in Show key `parentKey` property. !AppEngine keys are always indexed, even if we disable indexing for class properties.
 
 
 == Many-to-Many relationships ==
