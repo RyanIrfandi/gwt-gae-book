@@ -20,9 +20,11 @@ Implement listing added performances. Hints:
  * use a HTMLPanel to display data. We'll enhance this later
 
 == Exercise solution ==
-Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetPerformances.java GetPerformances] Action/Result generator, and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java GetPerformancesHandler]
+Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetPerformances.java GetPerformances] Action/Result generator.
 
-`ScheduleShow` returns newly added performance data, so it can be displayed on the client
+Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java GetPerformancesHandler].
+
+Enhance `ScheduleShow` to return newly added performance data, so it can be displayed on the client
 {{{
 public class ScheduleShow {
 	...
@@ -35,7 +37,7 @@ public class ScheduleShow {
 				performancesMap);
 }}}
 
-`LandingView` can display performances...
+Enhance `LandingView` to display performances...
 {{{
 	@UiField
 	HTML performancesContainer;
