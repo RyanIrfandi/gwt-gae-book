@@ -9,10 +9,7 @@ Here are some sections I'd like to add, as time allows:
   * jsonp, rest
  * Displaying schedule on theater websites
 
- * Client-server communication enhancements
-  * give feedback on communication status
-  * generic error handling
-  * caching
+ * [CommunicationEnhancements Client-server communication enhancements]
 
  * Working with REST APIs from GWT
 
