@@ -473,5 +473,5 @@ See [http://code.google.com/p/gwt-gae-book/source/detail?r=304 adding location s
 <img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />
 <a href='http://code.google.com/p/gwt-gae-book/wiki/ClientServer'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' title='Previous chapter: Client-server communication' /></a>
 <a href='http://code.google.com/p/gwt-gae-book/wiki/TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' title='Table Of Contents' /></a>
-<a href='http://code.google.com/p/gwt-gae-book/wiki/Authentication'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: Authentication with OpenID' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/wiki/ListingSchedule'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: Listing saved schedule' /></a>
 <wiki:comment>NAV_END</wiki:comment>

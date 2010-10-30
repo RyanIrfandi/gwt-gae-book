@@ -18,9 +18,9 @@
 
 [StoringData Saving schedule in datastore]
 
-[Authentication Authentication with OpenID]
-
 [ListingSchedule Listing saved schedule]
+
+[Authentication Authentication with OpenID]
 
 [QualityAssurance Quality assurance]
 
