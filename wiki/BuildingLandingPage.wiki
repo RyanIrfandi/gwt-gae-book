@@ -13,13 +13,7 @@ There are two approaches to setup a page layout in GWT:
 We'll go with the first, standards-based approach. You will use your existing CSS knowledge, or learn it now if needed. CSS will benefit you when developing any web application, not just GWT-based ones.
 
 
-[GettingStarted Download the template project] and run
-{{{
-./createProject.sh org.gwtgaebook.CultureShows
-}}}
-then do File > Import > Existing Projects from Eclipse. Run it to make sure it's working.
-
-_If you can't run the bash script, then use the template project as it is. Waiting for somebody to build a .bat equivalent_
+Download and unpack [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShows-0.1.tgz the basic project skeleton] and do File > Import > Existing Projects from Eclipse. Run it to make sure it's working.
 
 For now we'll focus on building the landing page only, feel free to ignore the rest of the files in template app. We'll cover them later.
 
