@@ -1,14 +1,18 @@
 package org.gwtgaebook.CultureShows.client;
 
-import com.google.inject.*;
-import com.gwtplatform.mvp.client.*;
-import com.gwtplatform.mvp.client.gin.*;
-import com.gwtplatform.mvp.client.annotations.*;
-import com.gwtplatform.mvp.client.proxy.*;
+import org.gwtgaebook.CultureShows.client.resources.Resources;
+import org.gwtgaebook.CultureShows.client.resources.Translations;
 
-import org.gwtgaebook.CultureShows.client.resources.*;
-import org.gwtgaebook.CultureShows.client.landing.*;
-import org.gwtgaebook.CultureShows.shared.model.UserInfo;
+import com.google.inject.Singleton;
+import com.gwtplatform.mvp.client.DefaultEventBus;
+import com.gwtplatform.mvp.client.DefaultProxyFailureHandler;
+import com.gwtplatform.mvp.client.EventBus;
+import com.gwtplatform.mvp.client.RootPresenter;
+import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+import com.gwtplatform.mvp.client.proxy.ParameterTokenFormatter;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.gwtplatform.mvp.client.proxy.ProxyFailureHandler;
+import com.gwtplatform.mvp.client.proxy.TokenFormatter;
 
 public class MainModule extends AbstractPresenterModule {
 
