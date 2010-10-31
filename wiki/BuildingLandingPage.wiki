@@ -19,6 +19,8 @@ We'll go with the first, standards-based approach. You will use your existing CS
 }}}
 then do File > Import > Existing Projects from Eclipse. Run it to make sure it's working.
 
+_If you can't run the bash script, then use the template project as it is. Waiting for somebody to build a .bat equivalent_
+
 For now we'll focus on building the landing page only, feel free to ignore the rest of the files in template app. We'll cover them later.
 
 *Pre-requisites*
