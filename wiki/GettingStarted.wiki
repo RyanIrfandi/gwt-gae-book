@@ -41,7 +41,7 @@ Here's  [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShow
 </wiki:comment>
 
 = What's inside the template project =
-To get you started, I've setup [http://gwt-gae-book.googlecode.com/svn/trunk/template.tgz a template Eclipse project]. It contains a basic page and the most common libraries we'll use:
+To get you started, I've setup  [http://gwt-gae-book.googlecode.com/svn/trunk/CultureShows-0.1.tgz a basic Eclipse project]. It contains one page and the most common libraries we'll use:
  * [http://code.google.com/p/guava-libraries/ guava]
  * [http://code.google.com/p/google-guice/ guice] 
  * [http://code.google.com/p/google-gin/ gin]
@@ -53,7 +53,7 @@ To get you started, I've setup [http://gwt-gae-book.googlecode.com/svn/trunk/tem
 
 Visit these project sites to find out more about them. Come back to their documentation whenever needed as we progress with our application.
 
-You can use the template project every time you start a new application. 
+You can use [http://gwt-gae-book.googlecode.com/svn/trunk/template.tgz a template project] every time you start a new application. 
 
 = Useful tools =
  * [http://getfirebug.com/ Firebug] and [http://www.softwareishard.com/blog/firecookie/ Firecookie]
