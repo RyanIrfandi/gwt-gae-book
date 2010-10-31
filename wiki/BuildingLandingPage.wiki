@@ -2,6 +2,10 @@
 
 <wiki:toc max_depth="2" />
 
+Download and unpack [http://gwt-gae-book.googlecode.com/svn/trunk/CultureShows-0.1.tgz the basic project] already setup for you and do `File > Import > Existing Projects` from Eclipse. Run it to make sure it's working.
+
+For now we'll focus on building the landing page only, feel free to ignore the rest of the files in the template project. We'll cover them later.
+
 There is some reading you have to do in advance for each section, but it's worth it.
 
 = Page Layout =
@@ -13,9 +17,6 @@ There are two approaches to setup a page layout in GWT:
 We'll go with the first, standards-based approach. You will use your existing CSS knowledge, or learn it now if needed. CSS will benefit you when developing any web application, not just GWT-based ones.
 
 
-Download and unpack [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShows-0.1.tgz the basic project skeleton] and do File > Import > Existing Projects from Eclipse. Run it to make sure it's working.
-
-For now we'll focus on building the landing page only, feel free to ignore the rest of the files in template app. We'll cover them later.
 
 *Pre-requisites*
  * [http://code.google.com/webtoolkit/doc/latest/DevGuideUi.html Build User Interfaces], including [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html Declarative Layout with UiBinder] 
