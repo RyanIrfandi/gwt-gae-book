@@ -104,6 +104,7 @@
  * [ListingSchedule#Advanced_use_cases Advanced use cases] <br/>
  * [ListingSchedule#Exercise Exercise] <br/>
  * [ListingSchedule#Enhancing_the_basic_solution Enhancing the basic solution] <br/>
+ * [ListingSchedule#Handling_item_selection Handling item selection] <br/>
 
 === [Authentication Authentication with OpenID] ===
  * [Authentication#Signing_in_using_OpenID Signing in using OpenID] <br/>
