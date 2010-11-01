@@ -97,7 +97,7 @@ public class ScheduleShow {
 				performance);
 }}}
 
-Enhance `LandingView` to display performances...
+Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView] to display performances...
 {{{
 	@UiField
 	HTML performancesContainer;
@@ -119,7 +119,7 @@ Enhance `LandingView` to display performances...
 	}
 }}}
 
-...as instructed by `LandingPresenter`
+...as instructed by [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter]
 {{{
 	public void requestPerformances() {
 		if (!(null == clientState.currentTheaterKey || clientState.currentTheaterKey
@@ -185,7 +185,7 @@ Think what are the issues of the basic solution and how could it be enhanced to 
 
 Luckily, GWT team already thought about these use cases and introduced [http://code.google.com/webtoolkit/doc/latest/DevGuideUiCellWidgets.html Data Presentation Widgets]. Go ahead and learn about them.
 
-Ready? As a very first step, let's add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/view/client/ProvidesKey.html Key Provider] to `Performance` data model:
+Ready? As a very first step, let's add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/view/client/ProvidesKey.html Key Provider] to [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/Performance.java Performance] data model:
 {{{
 public class Performance implements Serializable {
 	public static final ProvidesKey<Performance> KEY_PROVIDER = new ProvidesKey<Performance>() {
@@ -202,7 +202,7 @@ public class Performance implements Serializable {
 
 Note that `performanceKey` won't be stored, we'll just use it to send keys to client so we can uniquely identify entities later. Update the handlers to set the key:
 
-`ScheduleShowHandler`
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java ScheduleShowHandler]
 {{{
 		...
 		performance.performanceKey = KeyFactory.keyToString(performanceKey);
@@ -210,7 +210,7 @@ Note that `performanceKey` won't be stored, we'll just use it to send keys to cl
 				performance);
 }}}
 
-`GetPerformancesHandler`
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java GetPerformancesHandler]
 {{{
 		...
 		// add key to model, so it can be sent to client
@@ -225,24 +225,162 @@ Note that `performanceKey` won't be stored, we'll just use it to send keys to cl
 		return new GetPerformancesResult("", performances);
 }}}
 
+Next, add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/user/cellview/client/CellList.html CellList] widget to [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml LandingView.ui.xml]
+{{{
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:gcell="urn:import:com.google.gwt.user.cellview.client"
+	...
+	>
+
+	...
+	    <g:HTML ui:field="performancesContainer" addStyleNames="{style.shows}">
+	    </g:HTML>
+
+	    <gcell:CellList ui:field="performancesCL" />
+}}}
+
+and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView]...
+{{{
+	...
+	public class PerformanceCell extends AbstractCell<Performance> {
+
+		@Override
+		public void render(Performance performance, Object key,
+				SafeHtmlBuilder sb) {
+
+			if (null == performance) {
+				return;
+			}
+
+			sb.appendEscaped(performance.date.toString());
+			sb.appendHtmlConstant(" | ");
+			sb.appendEscaped(performance.showName);
+			sb.appendHtmlConstant("<br/>");
+			sb.appendEscaped(performance.locationName);
+		}
+	}
+
+	protected class PerformancesAsyncAdapter extends
+			AsyncDataProvider<Performance> {
+		@Override
+		protected void onRangeChanged(HasData<Performance> display) {
+			if (getUiHandlers() != null) {
+				Range newRange = display.getVisibleRange();
+				getUiHandlers().onRangeOrSizeChanged(newRange.getStart(),
+						newRange.getLength());
+			}
+		}
+	}
+
+	private final PerformancesAsyncAdapter performancesAsyncAdapter;
+
+	@UiField
+	CellList<Performance> performancesCL;
 
 
-TODO
+	public LandingView() {
+		...
+		performancesCL.setVisibleRange(Constants.visibleRangeStart,
+				Constants.visibleRangeLength);
+		performancesAsyncAdapter = new PerformancesAsyncAdapter();
+		performancesAsyncAdapter.addDataDisplay(performancesCL);
 
-When we have millions of items, we definitely need to load on client only small chunks of these, depending on what the user wants to see (consider pagination, sorting, filtering).
+	}
 
+	...
 
-When adding/updating/deleting items, send changes from client to server and receive back full data from server for the current client view (considering pagination, sorting, filtering). It solves the issues above, but it transfers too much data on each request.
+	@UiFactory
+	CellList<Performance> createPerformanceCL() {
+		PerformanceCell performanceCell = new PerformanceCell();
+		CellList<Performance> cl = new CellList<Performance>(performanceCell);
 
+		return cl;
+	}
 
-If multiple users would work on same entity, we need to see other users changes without doing a full page refresh. 
+	@Override
+	public void loadData(Integer start, Integer length,
+			List<Performance> performances) {
+		performancesAsyncAdapter.updateRowData(start, performances);
+		performancesAsyncAdapter.updateRowCount(length, false);
+		performancesCL.setVisibleRange(start, Constants.visibleRangeLength);
+		performancesCL.redraw();
+	}
+
+}}}
+
+...and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter]
+{{{
+
+	public void requestPerformances() {
+	...
+							getView().setPerformances(result.getPerformances());
+							getView().loadData(Constants.visibleRangeStart,
+									result.getPerformances().size(),
+									result.getPerformances());
+	...
+	}
+
+	@Override
+	public void onRangeOrSizeChanged(Integer visibleRangeStart,
+			Integer visibleRangeLength) {
+		// usually, this should have requested a new set of data from server for
+		// visible range. Not needed on upcoming performances, just fetch them
+		// all
+		requestPerformances();
+	}
+
+}}}
+
+Try it out!
+
+= Handling item selection =
+
+Later, we'll also need to select a performance from the list, in order to update or delete it. We might as well implement selection now, so we can also test the performance key availability.
+
+In [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView] add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/view/client/SingleSelectionModel.html SingleSelectionModel]
+{{{
+
+	@UiFactory
+	CellList<Performance> createPerformanceCL() {
+		...
+		setSelectionModel(cl);
+
+		return cl;
+	}
+
+	private void setSelectionModel(CellList<Performance> cl) {
+		final SingleSelectionModel<Performance> selectionModel = new SingleSelectionModel<Performance>();
+
+		selectionModel
+				.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+					@Override
+					public void onSelectionChange(SelectionChangeEvent event) {
+						Performance p = selectionModel.getSelectedObject();
+
+						getUiHandlers().onPerformanceSelected(p);
+					}
+				});
+
+		cl.setSelectionModel(selectionModel);
+	}
+
+}}}
+
+and in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter] just log this for now
+{{{
+	public void onPerformanceSelected(Performance p) {
+		Main.logger.info("Selected performance " + p.performanceKey
+				+ " with show " + p.showName);
+	}
+}}}
+
+We'll leave sorting, filtering, collaboration, offline usage to be implemented in later chapters. We have a good setup now, ready to be built upon.
+
 
 <wiki:comment>
 
 How Google Docs solved collaboration: [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs.html challenges], [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs_22.html operational transformation], [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs_23.html collaboration protocol]. The difference to GWT is that the client has only a fragment of all the dataset, while a Google Docs client always has the full dataset (the document).
 </wiki:comment>
-
-We'll leave sorting, filtering, collaboration, offline usage to be implemented in later chapters, but we have a good setup now, ready to be built upon.
 
 
 
