@@ -21,21 +21,80 @@ Implement listing added performances. Hints:
 
 == Exercise solution ==
 Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetPerformances.java GetPerformances] Action/Result generator.
+{{{
+public class GetPerformances {
+	@In(1)
+	String theaterKey;
 
-Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java GetPerformancesHandler].
+	@Out(1)
+	String errorText; // empty if success
 
-Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java ScheduleShow] to return newly added performance data, so it can be displayed on the client
+	@Out(2)
+	List<Performance> performances = new ArrayList<Performance>();
+}
+}}}
+
+Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java GetPerformancesHandler]
+{{{
+public class GetPerformancesHandler extends
+		DispatchActionHandler<GetPerformancesAction, GetPerformancesResult> {
+
+	@Inject
+	public GetPerformancesHandler(final Provider<UserInfo> userInfoProvider,
+			final ObjectDatastore datastore) {
+		super(userInfoProvider, datastore);
+	}
+
+	@Override
+	public GetPerformancesResult execute(GetPerformancesAction action,
+			ExecutionContext context) throws ActionException {
+
+		Key theaterKey = null;
+
+		// by default, get only future performances
+		Date date = new java.util.Date();
+
+		// check key
+		if (!Strings.isNullOrEmpty(action.getTheaterKey())) {
+			// theaterKey sent by client is not empty
+			try {
+				theaterKey = KeyFactory.stringToKey(action.getTheaterKey());
+			} catch (Exception e) {
+				// invalid key, ignore it
+			}
+		}
+
+		if (null == theaterKey) {
+			return new GetPerformancesResult("Empty or invalid theater", null);
+		}
+
+		// no need to check access, performances are public
+
+		// query for shows belonging to a theater instance
+		List<Performance> performances = datastore.find().type(
+				Performance.class).addFilter("theaterKey",
+				FilterOperator.EQUAL, KeyFactory.keyToString(theaterKey))
+				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, date)
+				.returnAll().now();
+
+		return new GetPerformancesResult("", performances);
+	}
+}
+}}}
+
+Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java ScheduleShow] to return newly added performance data, so it can be displayed on the client after being saved:
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java ScheduleShow]
 {{{
 public class ScheduleShow {
 	...
 	@Out(3)
-	Map<String, Performance> performancesMap = new HashMap<String, Performance>();
+	Performance performance;
 }
 }}}
 [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java ScheduleShowHandler]
 {{{
 		return new ScheduleShowResult("", KeyFactory.keyToString(theaterKey),
-				performancesMap);
+				performance);
 }}}
 
 Enhance `LandingView` to display performances...
@@ -43,24 +102,19 @@ Enhance `LandingView` to display performances...
 	@UiField
 	HTML performancesContainer;
 
-	public void addPerformances(Map<String, Performance> performanceMap) {
-		Iterator<String> i = performanceMap.keySet().iterator();
-		String key;
-		while (i.hasNext()) {
-			key = i.next();
-			performancesContainer.setHTML(performancesContainer.getHTML()
-					+ "<br/>" + performanceMap.get(key).showName + " | "
-					+ performanceMap.get(key).locationName + " | "
-					+ performanceMap.get(key).date.toString());
-
-		}
+	public void addPerformance(Performance p) {
+		performancesContainer.setHTML(performancesContainer.getHTML() + "<br/>"
+				+ p.showName + " | " + p.locationName + " | "
+				+ p.date.toString());
 
 	}
 
-	public void setPerformances(Map<String, Performance> performanceMap) {
+	public void setPerformances(List<Performance> performances) {
 		performancesContainer.setHTML("Show | Location | Date");
 
-		addPerformances(performanceMap);
+		for (Performance p : performances) {
+			addPerformance(p);
+		}
 
 	}
 }}}
@@ -76,12 +130,11 @@ Enhance `LandingView` to display performances...
 						@Override
 						public void onSuccess(GetPerformancesResult result) {
 							if (!result.getErrorText().isEmpty()) {
-								// TODO have a general handler for this
 								Window.alert(result.getErrorText());
 								return;
 							}
 							getView().setPerformances(
-									result.getPerformancesMap());
+									result.getPerformances());
 						}
 					});
 		}
@@ -94,6 +147,21 @@ Enhance `LandingView` to display performances...
 		RevealContentEvent.fire(this, MainPresenter.TYPE_RevealMainContent,
 				this);
 		requestPerformances();
+	}
+
+	@Override
+	public void scheduleShow(Date date, String showName, String locationName) {
+		...
+				dispatcher.execute(new ScheduleShowAction(
+				...
+							public void onSuccess(ScheduleShowResult result) {
+								...
+								getView().addPerformance(
+										result.getPerformance());
+							}
+						});
+
+		...
 	}
 }}}
 
@@ -115,6 +183,50 @@ Think what are the issues of the basic solution and how could it be enhanced to 
 
 = Enhancing the basic solution =
 
+Luckily, GWT team already thought about these use cases and introduced [http://code.google.com/webtoolkit/doc/latest/DevGuideUiCellWidgets.html Data Presentation Widgets]. Go ahead and learn about them.
+
+Ready? As a very first step, let's add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/view/client/ProvidesKey.html Key Provider] to `Performance` data model:
+{{{
+public class Performance implements Serializable {
+	public static final ProvidesKey<Performance> KEY_PROVIDER = new ProvidesKey<Performance>() {
+		public Object getKey(Performance p) {
+			return (null == p) ? null : p.performanceKey;
+		}
+	};
+
+	@Store(false)
+	public String performanceKey;
+
+	...
+}}}
+
+Note that `performanceKey` won't be stored, we'll just use it to send keys to client so we can uniquely identify entities later. Update the handlers to set the key:
+
+`ScheduleShowHandler`
+{{{
+		...
+		performance.performanceKey = KeyFactory.keyToString(performanceKey);
+		return new ScheduleShowResult("", KeyFactory.keyToString(theaterKey),
+				performance);
+}}}
+
+`GetPerformancesHandler`
+{{{
+		...
+		// add key to model, so it can be sent to client
+		Performance p;
+		for (int i = 0; i < performances.size(); i++) {
+			p = performances.get(i);
+			p.performanceKey = KeyFactory.keyToString(datastore
+					.associatedKey(p));
+			performances.set(i, p);
+		}
+
+		return new GetPerformancesResult("", performances);
+}}}
+
+
+
 TODO
 
 When we have millions of items, we definitely need to load on client only small chunks of these, depending on what the user wants to see (consider pagination, sorting, filtering).
@@ -123,12 +235,14 @@ When we have millions of items, we definitely need to load on client only small 
 When adding/updating/deleting items, send changes from client to server and receive back full data from server for the current client view (considering pagination, sorting, filtering). It solves the issues above, but it transfers too much data on each request.
 
 
-If multiple users would work on same entity, we won't see other users changes until a full page refresh. 
+If multiple users would work on same entity, we need to see other users changes without doing a full page refresh. 
 
+<wiki:comment>
 
 How Google Docs solved collaboration: [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs.html challenges], [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs_22.html operational transformation], [http://googledocs.blogspot.com/2010/09/whats-different-about-new-google-docs_23.html collaboration protocol]. The difference to GWT is that the client has only a fragment of all the dataset, while a Google Docs client always has the full dataset (the document).
+</wiki:comment>
 
-offline usage
+We'll leave sorting, filtering, collaboration, offline usage to be implemented in later chapters, but we have a good setup now, ready to be built upon.
 
 
 
