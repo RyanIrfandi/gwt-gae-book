@@ -32,7 +32,6 @@ public class GetPerformancesHandler extends
 
 		// by default, get only future performances
 		Date date = new java.util.Date();
-		Map<String, Performance> performancesMap = new HashMap<String, Performance>();
 
 		// check key
 		if (!Strings.isNullOrEmpty(action.getTheaterKey())) {
@@ -55,12 +54,17 @@ public class GetPerformancesHandler extends
 				Performance.class).addFilter("theaterKey",
 				FilterOperator.EQUAL, KeyFactory.keyToString(theaterKey))
 				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, date)
-				.returnAll().now();
+				.addSort("date").returnAll().now();
+
+		// add key to model, so it can be sent to client
+		Performance p;
 		for (int i = 0; i < performances.size(); i++) {
-			performancesMap.put(KeyFactory.keyToString(datastore
-					.associatedKey(performances.get(i))), performances.get(i));
+			p = performances.get(i);
+			p.performanceKey = KeyFactory.keyToString(datastore
+					.associatedKey(p));
+			performances.set(i, p);
 		}
 
-		return new GetPerformancesResult("", performancesMap);
+		return new GetPerformancesResult("", performances);
 	}
 }

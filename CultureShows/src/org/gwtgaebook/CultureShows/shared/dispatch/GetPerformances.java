@@ -1,10 +1,13 @@
 package org.gwtgaebook.CultureShows.shared.dispatch;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.gwtplatform.annotation.*;
+import org.gwtgaebook.CultureShows.shared.model.Performance;
 
-import org.gwtgaebook.CultureShows.shared.model.*;
+import com.gwtplatform.annotation.GenDispatch;
+import com.gwtplatform.annotation.In;
+import com.gwtplatform.annotation.Out;
 
 @GenDispatch(isSecure = false)
 public class GetPerformances {
@@ -15,6 +18,5 @@ public class GetPerformances {
 	String errorText; // empty if success
 
 	@Out(2)
-	Map<String, Performance> performancesMap = new HashMap<String, Performance>();
-
+	List<Performance> performances = new ArrayList<Performance>();
 }
