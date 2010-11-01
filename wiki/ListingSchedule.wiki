@@ -364,7 +364,7 @@ and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/t
 
 }}}
 
-Try it out! Go through [[http://code.google.com/webtoolkit/doc/latest/DevGuideUiCellWidgets.html examples] and  [http://code.google.com/webtoolkit/doc/latest/RefGWTClassAPI.html GWT API docs] to make sure you understand everything we just did.
+Try it out! Go through [http://code.google.com/webtoolkit/doc/latest/DevGuideUiCellWidgets.html examples] and  [http://code.google.com/webtoolkit/doc/latest/RefGWTClassAPI.html GWT API docs] to make sure you understand everything we just did.
 
 = Handling item selection =
 
