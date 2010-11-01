@@ -28,6 +28,5 @@ public class ScheduleShow {
 	String theaterKeyOut;
 
 	@Out(3)
-	Map<String, Performance> performancesMap = new HashMap<String, Performance>();
-
+	Performance performance;
 }

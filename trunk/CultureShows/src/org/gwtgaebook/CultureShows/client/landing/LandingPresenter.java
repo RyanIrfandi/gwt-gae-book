@@ -34,11 +34,17 @@ public class LandingPresenter extends
 	public interface MyView extends View, HasUiHandlers<LandingUiHandlers> {
 		public void resetAndFocus();
 
-		public void addPerformances(Map<String, Performance> performanceMap);
-
-		public void setPerformances(Map<String, Performance> performanceMap);
+		// public void addPerformance(Performance p);
+		//
+		// public void setPerformances(List<Performance> performances);
 
 		public void setSignInOut(UserInfo userInfo);
+
+		public void loadPerformanceData(Integer start, Integer length,
+				List<Performance> performances);
+
+		public void refreshPerformances();
+
 	}
 
 	private final PlaceManager placeManager;
@@ -74,9 +80,10 @@ public class LandingPresenter extends
 
 	@Override
 	public void scheduleShow(Date date, String showName, String locationName) {
-		Main.logger.info("Requested performance scheduling on " + date.toString()
-				+ " the show " + showName + " at location " + locationName
-				+ " for theater " + clientState.currentTheaterKey);
+		Main.logger.info("Requested performance scheduling on "
+				+ date.toString() + " the show " + showName + " at location "
+				+ locationName + " for theater "
+				+ clientState.currentTheaterKey);
 		if (null != clientState.userInfo) {
 			if (clientState.userInfo.isSignedIn) {
 				// make the server request
@@ -93,8 +100,9 @@ public class LandingPresenter extends
 								}
 								clientState.currentTheaterKey = result
 										.getTheaterKeyOut();
-								getView().addPerformances(
-										result.getPerformancesMap());
+								// getView().addPerformance(
+								// result.getPerformance());
+								getView().refreshPerformances();
 							}
 						});
 
@@ -154,8 +162,12 @@ public class LandingPresenter extends
 								Window.alert(result.getErrorText());
 								return;
 							}
-							getView().setPerformances(
-									result.getPerformancesMap());
+							// getView().setPerformances(result.getPerformances());
+							// TODO result.getPageStart()
+							getView().loadPerformanceData(
+									Constants.visibleRangeStart,
+									result.getPerformances().size(),
+									result.getPerformances());
 						}
 					});
 		}
@@ -195,5 +207,19 @@ public class LandingPresenter extends
 
 			requestPerformances();
 		}
+	}
+
+	@Override
+	public void onRangeOrSizeChanged(Integer visibleRangeStart,
+			Integer visibleRangeLength) {
+		// usually, this should have requested a new set of data from server for
+		// visible range. Not needed on upcoming performances, just fetch them
+		// all
+		requestPerformances();
+	}
+
+	public void onPerformanceSelected(Performance p) {
+		Main.logger.info("Selected performance " + p.performanceKey
+				+ " with show " + p.showName);
 	}
 }

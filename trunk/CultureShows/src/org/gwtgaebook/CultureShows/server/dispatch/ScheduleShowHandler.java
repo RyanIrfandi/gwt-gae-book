@@ -190,16 +190,11 @@ public class ScheduleShowHandler extends
 		performance.locationName = location.getName();
 		performanceKey = datastore.store(performance);
 
-		Map<String, Performance> performancesMap = new HashMap<String, Performance>();
-		performancesMap
-				.put(KeyFactory.keyToString(performanceKey), performance);
-
-		// TODO to improve performance, can we pass show/location keys directly
-		// from client?
+		performance.performanceKey = KeyFactory.keyToString(performanceKey);
 
 		// TODO testability, break in smaller methods
 
 		return new ScheduleShowResult("", KeyFactory.keyToString(theaterKey),
-				performancesMap);
+				performance);
 	}
 }

@@ -1,25 +1,37 @@
 package org.gwtgaebook.CultureShows.client.landing;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
-import com.google.gwt.core.client.*;
-import com.google.gwt.event.dom.client.*;
-import com.google.gwt.event.shared.GwtEvent.*;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.uibinder.client.*;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.*;
-import com.google.gwt.user.datepicker.client.*;
-import com.google.gwt.query.client.*;
-import static com.google.gwt.query.client.GQuery.*;
-import static com.google.gwt.query.client.css.CSS.*;
-
-import com.gwtplatform.mvp.client.*;
-import com.gwtplatform.mvp.client.annotations.*;
-
-import org.gwtgaebook.CultureShows.client.*;
 import org.gwtgaebook.CultureShows.shared.Constants;
-import org.gwtgaebook.CultureShows.shared.model.*;
+import org.gwtgaebook.CultureShows.shared.model.Performance;
+import org.gwtgaebook.CultureShows.shared.model.UserInfo;
+
+import com.google.gwt.cell.client.AbstractCell;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiFactory;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.datepicker.client.DateBox;
+import com.google.gwt.view.client.AsyncDataProvider;
+import com.google.gwt.view.client.HasData;
+import com.google.gwt.view.client.Range;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
 public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 		implements LandingPresenter.MyView {
@@ -30,8 +42,47 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	private static LandingViewUiBinder uiBinder = GWT
 			.create(LandingViewUiBinder.class);
 
-	public final Widget widget;
+	public class PerformanceCell extends AbstractCell<Performance> {
 
+		@Override
+		public void render(Performance performance, Object key,
+				SafeHtmlBuilder sb) {
+
+			if (null == performance) {
+				return;
+			}
+
+			DateTimeFormat dateFormat = DateTimeFormat
+					.getFormat(Constants.defaultDateFormat);
+
+			sb.appendHtmlConstant("<span class='performanceDate'>");
+			sb.appendEscaped(dateFormat.format(performance.date));
+			sb.appendHtmlConstant("</span>");
+			sb.appendHtmlConstant("<span class='showName'>");
+			sb.appendEscaped(performance.showName);
+			sb.appendHtmlConstant("</span>");
+			sb.appendHtmlConstant("<span class='locationName'>");
+			sb.appendEscaped(performance.locationName);
+			sb.appendHtmlConstant("</span>");
+		}
+	}
+
+	protected class PerformancesAsyncAdapter extends
+			AsyncDataProvider<Performance> {
+		@Override
+		protected void onRangeChanged(HasData<Performance> display) {
+			if (getUiHandlers() != null) {
+				Range newRange = display.getVisibleRange();
+				getUiHandlers().onRangeOrSizeChanged(newRange.getStart(),
+						newRange.getLength());
+			}
+		}
+	}
+
+	public final Widget widget;
+	private final PerformancesAsyncAdapter performancesAsyncAdapter;
+
+	//
 	// @UiField
 	// HTMLPanel container;
 
@@ -45,8 +96,11 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	@UiField
 	Button scheduleShow;
 
+	// @UiField
+	// HTML performancesContainer;
+
 	@UiField
-	HTML performancesContainer;
+	CellList<Performance> performancesCL;
 
 	@UiField
 	HTMLPanel sidebar;
@@ -65,6 +119,11 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 		location.getElement().setAttribute("placeholder", "Location");
 		show.getElement().setAttribute("required", "");
 
+		performancesCL.setVisibleRange(Constants.visibleRangeStart,
+				Constants.visibleRangeLength);
+		performancesAsyncAdapter = new PerformancesAsyncAdapter();
+		performancesAsyncAdapter.addDataDisplay(performancesCL);
+
 	}
 
 	@Override
@@ -82,26 +141,21 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 		placeholder();
 	}
 
-	public void addPerformances(Map<String, Performance> performanceMap) {
-		Iterator<String> i = performanceMap.keySet().iterator();
-		String key;
-		while (i.hasNext()) {
-			key = i.next();
-			performancesContainer.setHTML(performancesContainer.getHTML()
-					+ "<br/>" + performanceMap.get(key).showName + " | "
-					+ performanceMap.get(key).locationName + " | "
-					+ performanceMap.get(key).date.toString());
-
-		}
-
-	}
-
-	public void setPerformances(Map<String, Performance> performanceMap) {
-		performancesContainer.setHTML("Show | Location | Date");
-
-		addPerformances(performanceMap);
-
-	}
+	// public void addPerformance(Performance p) {
+	// performancesContainer.setHTML(performancesContainer.getHTML() + "<br/>"
+	// + p.showName + " | " + p.locationName + " | "
+	// + p.date.toString());
+	//
+	// }
+	//
+	// public void setPerformances(List<Performance> performances) {
+	// performancesContainer.setHTML("Show | Location | Date");
+	//
+	// for (Performance p : performances) {
+	// addPerformance(p);
+	// }
+	//
+	// }
 
 	@UiHandler("scheduleShow")
 	void onScheduleShowClicked(ClickEvent event) {
@@ -122,6 +176,48 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	@UiHandler("signIn")
 	void onSignInClicked(ClickEvent event) {
 		getUiHandlers().requestSignIn();
+	}
+
+	@UiFactory
+	CellList<Performance> createPerformanceCL() {
+		PerformanceCell performanceCell = new PerformanceCell();
+		CellList<Performance> cl = new CellList<Performance>(performanceCell,
+				Performance.KEY_PROVIDER);
+		setSelectionModel(cl);
+
+		return cl;
+	}
+
+	@Override
+	public void loadPerformanceData(Integer start, Integer length,
+			List<Performance> performances) {
+		performancesAsyncAdapter.updateRowData(start, performances);
+		performancesAsyncAdapter.updateRowCount(length, false);
+		performancesCL.setVisibleRange(start, Constants.visibleRangeLength);
+		performancesCL.redraw();
+	}
+
+	@Override
+	public void refreshPerformances() {
+		getUiHandlers().onRangeOrSizeChanged(
+				performancesCL.getVisibleRange().getStart(),
+				performancesCL.getVisibleRange().getLength());
+	}
+
+	private void setSelectionModel(CellList<Performance> cl) {
+		final SingleSelectionModel<Performance> selectionModel = new SingleSelectionModel<Performance>();
+
+		selectionModel
+				.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+					@Override
+					public void onSelectionChange(SelectionChangeEvent event) {
+						Performance p = selectionModel.getSelectedObject();
+
+						getUiHandlers().onPerformanceSelected(p);
+					}
+				});
+
+		cl.setSelectionModel(selectionModel);
 	}
 
 }
