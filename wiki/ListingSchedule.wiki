@@ -232,11 +232,15 @@ Next, add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google
 	...
 	>
 
-	...
-	    <g:HTML ui:field="performancesContainer" addStyleNames="{style.shows}">
-	    </g:HTML>
+		...
+		<g:HTML ui:field="performancesContainer" addStyleNames="{style.shows}">
+		</g:HTML>
 
-	    <gcell:CellList ui:field="performancesCL" />
+		<g:HTMLPanel addStyleNames="{style.shows}">
+			<h4>Scheduled shows</h4>
+	    	<gcell:CellList ui:field="performancesCL" />
+		</g:HTMLPanel>
+
 }}}
 
 and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView]...
@@ -396,7 +400,7 @@ and in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/s
 	}
 }}}
 
-We'll leave sorting, filtering, collaboration, offline usage to be implemented in later chapters. We have a good setup now, ready to be built upon.
+We'll leave pagination, sorting, filtering, collaboration, offline usage to be implemented in later chapters. We have a good setup now, ready to be built upon.
 
 
 <wiki:comment>
