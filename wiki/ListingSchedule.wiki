@@ -75,7 +75,7 @@ public class GetPerformancesHandler extends
 				Performance.class).addFilter("theaterKey",
 				FilterOperator.EQUAL, KeyFactory.keyToString(theaterKey))
 				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, date)
-				.returnAll().now();
+				.addSort("date").returnAll().now();
 
 		return new GetPerformancesResult("", performances);
 	}
@@ -292,18 +292,26 @@ and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/t
 	@UiFactory
 	CellList<Performance> createPerformanceCL() {
 		PerformanceCell performanceCell = new PerformanceCell();
-		CellList<Performance> cl = new CellList<Performance>(performanceCell);
+		CellList<Performance> cl = new CellList<Performance>(performanceCell,
+				Performance.KEY_PROVIDER);
 
 		return cl;
 	}
 
 	@Override
-	public void loadData(Integer start, Integer length,
+	public void loadPerformanceData(Integer start, Integer length,
 			List<Performance> performances) {
 		performancesAsyncAdapter.updateRowData(start, performances);
 		performancesAsyncAdapter.updateRowCount(length, false);
 		performancesCL.setVisibleRange(start, Constants.visibleRangeLength);
 		performancesCL.redraw();
+	}
+
+	@Override
+	public void refreshPerformances() {
+		getUiHandlers().onRangeOrSizeChanged(
+				performancesCL.getVisibleRange().getStart(),
+				performancesCL.getVisibleRange().getLength());
 	}
 
 }}}
@@ -314,11 +322,25 @@ and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/t
 	public void requestPerformances() {
 	...
 							getView().setPerformances(result.getPerformances());
-							getView().loadData(Constants.visibleRangeStart,
+							getView().loadPerformanceData(
+									Constants.visibleRangeStart,
 									result.getPerformances().size(),
 									result.getPerformances());
 	...
 	}
+
+	public void scheduleShow(Date date, String showName, String locationName) {
+	...
+							public void onSuccess(ScheduleShowResult result) {
+								...
+								getView().addPerformance(
+										result.getPerformance());
+								getView().refreshPerformances();
+							}
+
+	...
+	}
+
 
 	@Override
 	public void onRangeOrSizeChanged(Integer visibleRangeStart,
@@ -331,7 +353,7 @@ and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/t
 
 }}}
 
-Try it out!
+Try it out! Go through [[http://code.google.com/webtoolkit/doc/latest/DevGuideUiCellWidgets.html examples] and  [http://code.google.com/webtoolkit/doc/latest/RefGWTClassAPI.html GWT API docs] to make sure you understand everything we just did.
 
 = Handling item selection =
 
