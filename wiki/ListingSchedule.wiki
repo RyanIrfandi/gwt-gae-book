@@ -256,11 +256,18 @@ and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/t
 				return;
 			}
 
-			sb.appendEscaped(performance.date.toString());
-			sb.appendHtmlConstant(" | ");
+			DateTimeFormat dateFormat = DateTimeFormat
+					.getFormat(Constants.defaultDateFormat);
+
+			sb.appendHtmlConstant("<span class='performanceDate'>");
+			sb.appendEscaped(dateFormat.format(performance.date));
+			sb.appendHtmlConstant("</span>");
+			sb.appendHtmlConstant("<span class='showName'>");
 			sb.appendEscaped(performance.showName);
-			sb.appendHtmlConstant("<br/>");
+			sb.appendHtmlConstant("</span>");
+			sb.appendHtmlConstant("<span class='locationName'>");
 			sb.appendEscaped(performance.locationName);
+			sb.appendHtmlConstant("</span>");
 		}
 	}
 
