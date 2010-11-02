@@ -86,17 +86,14 @@ public class MainPresenter extends
 							return;
 						}
 						clientState.userInfo = result.getUserInfo();
-						clientState.theatersMap = result.getTheatersMap();
+						clientState.theaters = result.getTheaters();
 
-						if (clientState.theatersMap.size() > 0) {
-							Iterator<String> it = clientState.theatersMap
-									.keySet().iterator();
-							if (it.hasNext()) {
-								clientState.currentTheaterKey = it.next();
-							}
+						if (clientState.theaters.size() > 0) {
+							clientState.currentTheaterKey = clientState.theaters
+									.get(0).theaterKey;
 						}
-						// TODO testability broken if relying to global static
-						// UserInfo
+						// TODO testability broken if relying to global
+						// ClientState
 						onGetUserSuccess();
 					}
 				});

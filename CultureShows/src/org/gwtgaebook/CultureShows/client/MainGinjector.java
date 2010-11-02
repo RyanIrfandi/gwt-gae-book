@@ -11,7 +11,7 @@ import org.gwtgaebook.CultureShows.client.resources.*;
 import org.gwtgaebook.CultureShows.client.widget.*;
 import org.gwtgaebook.CultureShows.client.landing.*;
 
-@GinModules( { DispatchAsyncModule.class, MainModule.class, WidgetModule.class,
+@GinModules({ DispatchAsyncModule.class, MainModule.class, WidgetModule.class,
 		LandingModule.class })
 public interface MainGinjector extends Ginjector {
 	EventBus getEventBus();

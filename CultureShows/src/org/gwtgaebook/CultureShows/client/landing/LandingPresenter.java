@@ -194,14 +194,11 @@ public class LandingPresenter extends
 				// scheduled performance will be messed
 				scheduleShow(
 						date,
-						Cookies
-								.getCookie(Constants.PerformanceShowNameCookieName),
-						Cookies
-								.getCookie(Constants.PerformanceLocationNameCookieName));
+						Cookies.getCookie(Constants.PerformanceShowNameCookieName),
+						Cookies.getCookie(Constants.PerformanceLocationNameCookieName));
 				Cookies.removeCookie(Constants.PerformanceDateCookieName);
 				Cookies.removeCookie(Constants.PerformanceShowNameCookieName);
-				Cookies
-						.removeCookie(Constants.PerformanceLocationNameCookieName);
+				Cookies.removeCookie(Constants.PerformanceLocationNameCookieName);
 
 			}
 

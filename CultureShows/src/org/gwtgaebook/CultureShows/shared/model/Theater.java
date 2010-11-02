@@ -1,8 +1,21 @@
 package org.gwtgaebook.CultureShows.shared.model;
 
-import com.google.code.twig.annotation.*;
+import java.io.Serializable;
 
-public class Theater {
+import com.google.code.twig.annotation.*;
+import com.google.gwt.view.client.ProvidesKey;
+
+@SuppressWarnings("serial")
+public class Theater implements Serializable {
+	public static final ProvidesKey<Theater> KEY_PROVIDER = new ProvidesKey<Theater>() {
+		public Object getKey(Theater t) {
+			return (null == t) ? null : t.theaterKey;
+		}
+	};
+
+	@Store(false)
+	public String theaterKey;
+
 	@Index
 	public String name;
 	public String websiteURL;

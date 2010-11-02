@@ -70,9 +70,9 @@ public class ScheduleShowHandler extends
 
 		// load member record, exception if it does not exist
 		// TODO setup a reusable, testable provider for this
-		List<Member> members = datastore.find().type(Member.class).addFilter(
-				"userId", FilterOperator.EQUAL, userInfo.userId).returnAll()
-				.now();
+		List<Member> members = datastore.find().type(Member.class)
+				.addFilter("userId", FilterOperator.EQUAL, userInfo.userId)
+				.returnAll().now();
 		if (members.size() > 0) {
 			// TODO log error if size != 1
 			member = members.get(0);
@@ -98,12 +98,14 @@ public class ScheduleShowHandler extends
 			} else {
 				// verify member has access to theater with role allowing
 				// performance scheduling
-				List<TheaterMemberJoin> tmjs = datastore.find().type(
-						TheaterMemberJoin.class).addFilter("theaterKey",
-						FilterOperator.EQUAL,
-						KeyFactory.keyToString(theaterKey)).addFilter(
-						"memberKey", FilterOperator.EQUAL,
-						KeyFactory.keyToString(memberKey)).returnAll().now();
+				List<TheaterMemberJoin> tmjs = datastore
+						.find()
+						.type(TheaterMemberJoin.class)
+						.addFilter("theaterKey", FilterOperator.EQUAL,
+								KeyFactory.keyToString(theaterKey))
+						.addFilter("memberKey", FilterOperator.EQUAL,
+								KeyFactory.keyToString(memberKey)).returnAll()
+						.now();
 				if (tmjs.size() > 0) {
 					// has access
 				} else {
@@ -163,8 +165,11 @@ public class ScheduleShowHandler extends
 		location = new Location();
 		location.setName(action.getLocationName());
 
-		List<Location> locations = datastore.find().type(Location.class)
-				.ancestor(theater).addFilter("nameQuery", FilterOperator.EQUAL,
+		List<Location> locations = datastore
+				.find()
+				.type(Location.class)
+				.ancestor(theater)
+				.addFilter("nameQuery", FilterOperator.EQUAL,
 						location.nameQuery).returnAll().now();
 		if (locations.size() > 0) {
 			// TODO log error if size != 1
