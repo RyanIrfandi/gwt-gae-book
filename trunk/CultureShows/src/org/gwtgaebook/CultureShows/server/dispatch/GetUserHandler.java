@@ -35,7 +35,7 @@ public class GetUserHandler extends
 		UserService userService = UserServiceFactory.getUserService();
 
 		// theaters user has access to; key/name
-		Map<String, String> theatersMap = new HashMap<String, String>();
+		List<Theater> theaters = new ArrayList<Theater>();
 
 		if (userInfo.isSignedIn) {
 			userInfo.signOutURL = userService.createLogoutURL(action
@@ -54,14 +54,17 @@ public class GetUserHandler extends
 				memberKey = datastore.associatedKey(member);
 
 				// get theaters member has access to
-				List<TheaterMemberJoin> tmjs = datastore.find().type(
-						TheaterMemberJoin.class)
+				List<TheaterMemberJoin> tmjs = datastore
+						.find()
+						.type(TheaterMemberJoin.class)
 						.addFilter("memberKey", FilterOperator.EQUAL,
 								KeyFactory.keyToString(memberKey)).returnAll()
 						.now();
 				for (int i = 0; i < tmjs.size(); i++) {
-					theatersMap.put(tmjs.get(i).theaterKey,
-							tmjs.get(i).theaterName);
+					Theater t = new Theater();
+					t.theaterKey = tmjs.get(i).theaterKey;
+					t.name = tmjs.get(i).theaterName;
+					theaters.add(t);
 				}
 
 			} else {
@@ -74,12 +77,13 @@ public class GetUserHandler extends
 			}
 
 		} else {
-			userInfo.signInURLs.put("Google", userService.createLoginURL(action
-					.getRequestURI(), null, "google.com/accounts/o8/id", null));
-			userInfo.signInURLs.put("Yahoo", userService.createLoginURL(action
-					.getRequestURI(), null, "yahoo.com", null));
+			userInfo.signInURLs.put("Google", userService.createLoginURL(
+					action.getRequestURI(), null, "google.com/accounts/o8/id",
+					null));
+			userInfo.signInURLs.put("Yahoo", userService.createLoginURL(
+					action.getRequestURI(), null, "yahoo.com", null));
 		}
 
-		return new GetUserResult("", userInfo, theatersMap);
+		return new GetUserResult("", userInfo, theaters);
 	}
 }

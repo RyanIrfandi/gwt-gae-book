@@ -19,6 +19,6 @@ public class GetUser {
 
 	@Out(3)
 	// theaters user has access to; key/name
-	Map<String, String> theatersMap = new HashMap<String, String>();
+	List<Theater> theaters = new ArrayList<Theater>();
 
 }

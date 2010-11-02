@@ -50,9 +50,11 @@ public class GetPerformancesHandler extends
 		// no need to check access, performances are public
 
 		// query for shows belonging to a theater instance
-		List<Performance> performances = datastore.find().type(
-				Performance.class).addFilter("theaterKey",
-				FilterOperator.EQUAL, KeyFactory.keyToString(theaterKey))
+		List<Performance> performances = datastore
+				.find()
+				.type(Performance.class)
+				.addFilter("theaterKey", FilterOperator.EQUAL,
+						KeyFactory.keyToString(theaterKey))
 				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, date)
 				.addSort("date").returnAll().now();
 
