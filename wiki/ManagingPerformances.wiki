@@ -4,6 +4,19 @@ We covered scheduling performances, listing performances and authentication. In 
 
 <wiki:toc max_depth="2" />
 
+
+= Updated mockups =
+
+[VisualizingYourApp#Landing_page We discussed] it might be best to use the same fields for updating performances schedule. Let's update the mockups before implementing the code.
+
+Initial landing page
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing.png" border="2" style="border: 2;" />
+
+Landing page with a performance selected
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landingperformanceselected.png" border="2" style="border: 2;" />
+
+Clicking on New would reset the selection and bring back the page to the initial state. Send feedback with suggestions on making this better.
+
 = Design =
 We could implement two new handlers for these, but we'd duplicate some common parts between them. Instead, let's create a new handler based on !ScheduleShowHandler, which should handle Create, Update and Delete.
 
@@ -68,6 +81,7 @@ case U:
 
 return performance
 }}}
+
 
 = Implementing !ManagePerformance =
 ...
