@@ -12,6 +12,7 @@ $docs = array(
 	"StoringData",
 	"ListingSchedule",
 	"Authentication",
+	"ManagingPerformances",
 	"QualityAssurance",
 	"LandingEnhancements",
 	"AdditionalResources",
