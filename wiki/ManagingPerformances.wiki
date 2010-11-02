@@ -46,14 +46,10 @@ case D:
 	check oldPerformance belongs to given theaterKey, exception if not
 }
 
-
-
-
 if (D == actionType) {
 	delete(performanceKey)
 	return null;
 }
-
 
 // setup show
 showKey = find(showName assigned to theaterKey)
@@ -69,7 +65,6 @@ case C:
 case U:
 	update(performance)
 }
-
 
 return performance
 }}}
