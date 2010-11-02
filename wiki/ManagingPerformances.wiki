@@ -9,10 +9,10 @@ We covered scheduling performances, listing performances and authentication. In 
 
 [VisualizingYourApp#Landing_page We discussed] it might be best to use the same fields for updating performances schedule. Let's update the mockups before implementing the code.
 
-Initial landing page
+*Initial landing page*
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing.png" border="2" style="border: 2;" />
 
-Landing page with a performance selected
+*Landing page with a performance selected*
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landingperformanceselected.png" border="2" style="border: 2;" />
 
 Clicking on New would reset the selection and bring back the page to the initial state. Send feedback with suggestions on making this better.
