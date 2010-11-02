@@ -4,7 +4,7 @@ We covered scheduling performances, listing performances and authentication. In 
 
 <wiki:toc max_depth="2" />
 
-= Design of updating and deleting performances =
+= Design =
 We could implement two new handlers for these, but we'd duplicate some common parts between them. Instead, let's create a new handler based on !ScheduleShowHandler, which should handle Create, Update and Delete.
 
 By now you know the drill :) What next?
@@ -76,5 +76,3 @@ return performance
 
 = Implementing !ManagePerformance =
 ...
-
-
