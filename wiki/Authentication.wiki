@@ -478,7 +478,7 @@ if (showKey is empty) {
 
 store(performance)
 
-return theaterKey, performanceMap
+return theaterKey, performance
 }}}
 
 For implementation, see [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/ latest source code].
