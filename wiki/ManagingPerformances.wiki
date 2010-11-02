@@ -1,0 +1,80 @@
+#summary Updating and deleting performances
+
+We covered scheduling performances, listing performances and authentication. In this chapter, we'll look at updating and deleting performances, in order to have a complete [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD].
+
+<wiki:toc max_depth="2" />
+
+= Design of updating and deleting performances =
+We could implement two new handlers for these, but we'd duplicate some common parts between them. Instead, let's create a new handler based on !ScheduleShowHandler, which should handle Create, Update and Delete.
+
+By now you know the drill :) What next?
+
+== Exercise ==
+Update the [Authentication#ScheduleShowHandler_pseudocode ScheduleShowHandler pseudocode] to handle Create, Update and Delete.
+
+== !ManagePerformanceHandler pseudocode  ==
+{{{
+//called only when user isSignedIn
+//data received from client: actionType (Create, Update, Delete), Performance
+
+load member record, exception if it does not exist
+
+// setup theater
+if (theaterKey is not empty) {
+	load theater //might not exist, key may be invalid
+	if (null == theater) {
+		theaterKey = null	
+	} else {
+		verify memberKey has access to theater, exception if not
+	}
+}
+
+switch(actionType) {
+case C:
+	if (theaterKey is empty) {
+		create theater instance
+		theaterKey = store(theater)
+		assign member to theater with role administrator
+	}
+case U:
+case D:
+	if (theaterKey is empty) {
+		exception: invalid key
+	}
+
+	oldPerformance = load(performanceKey)
+	check oldPerformance belongs to given theaterKey, exception if not
+}
+
+
+
+
+if (D == actionType) {
+	delete(performanceKey)
+	return null;
+}
+
+
+// setup show
+showKey = find(showName assigned to theaterKey)
+if (showKey is empty) {
+	create and store show with parent=theater 
+}
+
+// setup location...
+
+switch(actionType) {
+case C:
+	store(performance)
+case U:
+	update(performance)
+}
+
+
+return performance
+}}}
+
+= Implementing !ManagePerformance =
+...
+
+
