@@ -22,7 +22,7 @@ Looking at the top user stories, could we cover these in the landing page?
  * As Violeta, I want to edit existing scheduled shows so that I can correct any mistakes I might have done
  * As Violeta, I want to delete existing scheduled shows so that it reflects cancellations
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing.png" border="2" style="border: 2;" />
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landingv1.png" border="2" style="border: 2;" />
 
 [http://gwt-gae-book.googlecode.com/svn/wiki/assets/CultureShowsMocks.ep Mockups source]
 
