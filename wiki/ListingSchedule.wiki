@@ -409,6 +409,31 @@ and in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/s
 
 We'll leave pagination, sorting, filtering, collaboration, offline usage to be implemented in later chapters. We have a good setup now, ready to be built upon.
 
+= Styling Data Presentation Widgets =
+
+Let's overwrite the default styling by extending [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/user/cellview/client/CellList.Resources.html CellList.Resources] with a modified copy of [http://code.google.com/p/google-web-toolkit/source/browse/releases/2.1/user/src/com/google/gwt/user/cellview/client/CellList.css CellList.css], then pass it to `CellList` constructor in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView]:
+{{{
+	interface PerformancesResources extends CellList.Resources {
+		@Source(value = { CellList.Style.DEFAULT_CSS, "Performances.css" })
+		CellList.Style cellListStyle();
+	}
+
+	CellList<Performance> createPerformanceCL() {
+		...
+		CellList<Performance> cl = new CellList<Performance>(
+				performanceCell,
+				GWT.<PerformancesResources> create(PerformancesResources.class),
+				Performance.KEY_PROVIDER);
+		...
+
+	}
+}}}
+
+And here's the result
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/landing_cell_style.png" border="1"   />
+
+Learn more about Cell styling [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/6c17bb1825685564 here].
+
 
 <wiki:comment>
 
