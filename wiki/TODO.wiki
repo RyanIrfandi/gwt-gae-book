@@ -3,25 +3,35 @@
 Here are some sections I'd like to add, as time allows:
 
 
+ * Exposing functionality to 3rd parties via REST APIs 
+  * requiring OpenID authentication, API keys...
+  * API bestpractices (presentations; versioning, paging, filtering, DOS attacks)
+  * microformats
+ * Working with REST APIs from GWT 
  * Managing theaters and preferences
- * Managing shows, locations, schedule
- * Exposing data via APIs for 3rd parties
-  * jsonp, rest
+ * Managing shows, locations, performances
+ * Exposing read-only data to 3rd parties
+  * jsonp
  * Displaying schedule on theater websites
 
+
  * [CommunicationEnhancements Client-server communication enhancements]
-
- * Working with REST APIs from GWT
-
  * Analytics
+  * defining key metrics, monitoring workflows, A-B testing
+ * Offering support for users
  * Enabling offline usage
- * Social networking
+ * Integration with social networks 
+  * Google & FB places, twitter, FB events
  * Opening up to more theater members (adding actors, assistants)
  * Allowing public to browse our data
  * Advertise with !AdSense
  * Making reservations
  * Charging money
   * Google checkout
+ * Enhanced multi-device support
+  * native or web?
+ * Developing Flex clients with Spring Roo (depends on [https://jira.springsource.org/browse/ROOFLEX-19 bug])
+
 
 What else would you like to see covered?
 
