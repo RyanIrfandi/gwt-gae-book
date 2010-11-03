@@ -81,6 +81,11 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 		}
 	}
 
+	interface PerformancesResources extends CellList.Resources {
+		@Source(value = { CellList.Style.DEFAULT_CSS, "Performances.css" })
+		CellList.Style cellListStyle();
+	}
+
 	public final Widget widget;
 	private final PerformancesAsyncAdapter performancesAsyncAdapter;
 
@@ -143,22 +148,6 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 		placeholder();
 	}
 
-	// public void addPerformance(Performance p) {
-	// performancesContainer.setHTML(performancesContainer.getHTML() + "<br/>"
-	// + p.showName + " | " + p.locationName + " | "
-	// + p.date.toString());
-	//
-	// }
-	//
-	// public void setPerformances(List<Performance> performances) {
-	// performancesContainer.setHTML("Show | Location | Date");
-	//
-	// for (Performance p : performances) {
-	// addPerformance(p);
-	// }
-	//
-	// }
-
 	@UiHandler("scheduleShow")
 	void onScheduleShowClicked(ClickEvent event) {
 		getUiHandlers().scheduleShow(date.getValue(), show.getValue(),
@@ -183,7 +172,9 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	@UiFactory
 	CellList<Performance> createPerformanceCL() {
 		PerformanceCell performanceCell = new PerformanceCell();
-		CellList<Performance> cl = new CellList<Performance>(performanceCell,
+		CellList<Performance> cl = new CellList<Performance>(
+				performanceCell,
+				GWT.<PerformancesResources> create(PerformancesResources.class),
 				Performance.KEY_PROVIDER);
 		setSelectionModel(cl);
 
