@@ -80,6 +80,7 @@ storeOrUpdate(performance)
 return performance
 }}}
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/calendar_series_4.jpg" border="0"  align="right" />
 
 = Implementation  =
 
@@ -332,6 +333,8 @@ public class ManagePerformanceHandler extends
 	}
 }
 }}}
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/theatre_and_performance.jpg" border="0"  />
 
 == Client view ==
 The landing page has two additional buttons, initially hidden
