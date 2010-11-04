@@ -17,6 +17,42 @@ TODO Waiting for gwt 2.1.x/2.2 to finish data validation support
 
 
 = Remembering last used location =
+Since location is usually the same for smaller theaters, let's save the last used location in a cookie and set it to be the default value when creating new performances.
+V
+{{{
+	public void setDefaultValues() {
+		date.setValue(null);
+		show.setValue("");
+		if (null != Cookies
+				.getCookie(Constants.PerformanceLocationNameCookieName)) {
+			location.setValue(Cookies
+					.getCookie(Constants.PerformanceLocationNameCookieName));
+		} else {
+			location.setValue("");
+		}
+	}
+
+	public void resetAndFocus() {
+		...
+		setDefaultValues();
+	}
+}}}
+
+P
+{{{
+	public void createPerformance(Date date, String showName,
+			String locationName) {
+		...
+								Cookies.setCookie(
+										Constants.PerformanceLocationNameCookieName,
+										result.getPerformanceOut().locationName);
+								getView().setDefaultValues();
+	}
+}}}
+
+
+= Giving users feedback on action results =
+messages fade out after 3s: added, deleted, updated..
 
 
 
