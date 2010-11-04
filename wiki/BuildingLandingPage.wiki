@@ -150,6 +150,26 @@ If you are looking for jQuery-like functionality in GWT, there's [http://code.go
 
 Again, use the best tool for the job. Therefore an important criteria selection for your tool set should be allowing easy inter-operating with other tools.
 
+*Update*
+After encountering some issues with this particular !jQuery placeholder plugin, I've removed it and implemented a better fall-back: have hidden labels for form fields, and display them if the browser does not support placeholder attribute:
+{{{
+<g:Label ui:field="dateLbl" visible="false">Date and time</g:Label>
+...
+	private static native String placeholderSupport() /*-{
+		var i = document.createElement('input');
+		if ('placeholder' in i) {
+			return "yes";
+		} else {
+			return "no";
+		}
+	}-*/;
+
+...
+		if (placeholderSupport().equals("no")) {
+			dateLbl.setVisible(true);
+			...
+		}
+}}}
 
 = Mobile, tablets, TV and other devices =
 
