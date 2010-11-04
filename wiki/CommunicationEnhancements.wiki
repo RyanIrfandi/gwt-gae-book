@@ -16,8 +16,11 @@ and log out Violeta for example. Other sites might even perform other actions on
 One way to protect agains XSRF is to allow only requests which have your site as referral. A more effective way is to issue a token on user login, which can be stored by our application client in a cookie and cannot be accessed by badsite.com, then pass this token on each request and have the server check the token validity.
 
 TODO
+= Action validators =
+TODO
 
-= Giving feedback on communication status =
+= Giving feedback to users on communication status =
+loading indicator
 
 TODO
 
@@ -27,5 +30,3 @@ TODO
 
 =  Caching =
 TODO
-
-
