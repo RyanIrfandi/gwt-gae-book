@@ -333,6 +333,8 @@ The Handler constructors will be called only once per instance, not once per req
 
 
 == Design of handling both anonymous and authenticated users ==
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/daisy_in_the_sun.jpg" border="0"  align="right" />
+
 We'll need to change `GetUserHandler` to handle anonymous users, authenticated users and migrating data from anonymous to authenticated if needed. We'll let the client always set whatever `UserToken` is returned by `GetUserHandler` and have the logic for setting it on the server.
 
 We also need to update `LandingPresenter` to get performances both on presenter reveal (e.g. returning to landing page from another place in app) and on `UserInfoAvailableEvent`. Scheduling performances is pretty much ok as it is now, since we designed with this use case in mind.
