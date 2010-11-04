@@ -1,22 +1,28 @@
 package org.gwtgaebook.CultureShows.server.dispatch;
 
-import java.text.*;
-import java.util.*;
+import java.util.List;
 
-import com.google.inject.*;
+import org.gwtgaebook.CultureShows.shared.Constants;
+import org.gwtgaebook.CultureShows.shared.dispatch.ScheduleShowAction;
+import org.gwtgaebook.CultureShows.shared.dispatch.ScheduleShowResult;
+import org.gwtgaebook.CultureShows.shared.model.Location;
+import org.gwtgaebook.CultureShows.shared.model.Member;
+import org.gwtgaebook.CultureShows.shared.model.Performance;
+import org.gwtgaebook.CultureShows.shared.model.Show;
+import org.gwtgaebook.CultureShows.shared.model.Theater;
+import org.gwtgaebook.CultureShows.shared.model.TheaterMemberJoin;
+import org.gwtgaebook.CultureShows.shared.model.TheaterMemberJoin.Role;
+import org.gwtgaebook.CultureShows.shared.model.UserInfo;
 
-import com.gwtplatform.dispatch.server.*;
-import com.gwtplatform.dispatch.shared.*;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.repackaged.com.google.common.base.Strings;
-import com.google.code.twig.*;
-
-import org.gwtgaebook.CultureShows.shared.dispatch.*;
-import org.gwtgaebook.CultureShows.shared.*;
-import org.gwtgaebook.CultureShows.shared.model.*;
-import org.gwtgaebook.CultureShows.shared.model.TheaterMemberJoin.Role;
+import com.google.code.twig.ObjectDatastore;
+import com.google.inject.Inject;
+import com.google.inject.Provider;
+import com.gwtplatform.dispatch.server.ExecutionContext;
+import com.gwtplatform.dispatch.shared.ActionException;
 
 public class ScheduleShowHandler extends
 		DispatchActionHandler<ScheduleShowAction, ScheduleShowResult> {
@@ -57,10 +63,6 @@ public class ScheduleShowHandler extends
 
 		Key performanceKey = null;
 		Performance performance = null;
-
-		String userId = null;
-		Boolean anonymous = true;
-
 		logger.info("Handler scheduling show " + action.getShowName());
 
 		if (!userInfo.isSignedIn) {
