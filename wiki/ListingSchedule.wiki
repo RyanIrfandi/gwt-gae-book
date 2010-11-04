@@ -382,7 +382,8 @@ In [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/o
 	}
 
 	private void setSelectionModel(CellList<Performance> cl) {
-		final SingleSelectionModel<Performance> selectionModel = new SingleSelectionModel<Performance>();
+		final SingleSelectionModel<Performance> selectionModel = 
+			new SingleSelectionModel<Performance>();
 
 		selectionModel
 				.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
@@ -433,7 +434,9 @@ And here's the result
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing_cell_style.png" />
 
-Learn more about Cell styling [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/6c17bb1825685564 here].
+= Additional resources =
+
+ * Learn more about [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/6c17bb1825685564 Cell styling]
 
 
 <wiki:comment>
