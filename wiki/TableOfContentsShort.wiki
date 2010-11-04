@@ -22,6 +22,8 @@
 
 [Authentication Authentication with OpenID]
 
+[ManagingPerformances Updating and deleting performances]
+
 [QualityAssurance Quality assurance]
 
 [LandingEnhancements Landing page enhancements]

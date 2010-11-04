@@ -105,6 +105,8 @@
  * [ListingSchedule#Exercise Exercise] <br/>
  * [ListingSchedule#Enhancing_the_basic_solution Enhancing the basic solution] <br/>
  * [ListingSchedule#Handling_item_selection Handling item selection] <br/>
+ * [ListingSchedule#Styling_data_presentation_widgets Styling data presentation widgets] <br/>
+ * [ListingSchedule#Additional_resources Additional resources] <br/>
 
 === [Authentication Authentication with OpenID] ===
  * [Authentication#Signing_in_using_OpenID Signing in using OpenID] <br/>
@@ -128,6 +130,16 @@
   * [Authentication#LandingPresenter_pseudocode LandingPresenter pseudocode] <br/>
   * [Authentication#ScheduleShowHandler_pseudocode ScheduleShowHandler pseudocode] <br/>
 
+=== [ManagingPerformances Updating and deleting performances] ===
+ * [ManagingPerformances#Updated_mockups Updated mockups] <br/>
+ * [ManagingPerformances#Design Design] <br/>
+  * [ManagingPerformances#Exercise Exercise] <br/>
+  * [ManagingPerformances#ManagePerformanceHandler_pseudocode ManagePerformanceHandler pseudocode] <br/>
+ * [ManagingPerformances#Implementation Implementation] <br/>
+  * [ManagingPerformances#Server_handler Server handler] <br/>
+  * [ManagingPerformances#Client_view Client view] <br/>
+  * [ManagingPerformances#Client_presenter Client presenter] <br/>
+
 === [QualityAssurance Quality assurance] ===
  * [QualityAssurance#Introduction Introduction] <br/>
  * [QualityAssurance#Client_unit_testing Client unit testing] <br/>
@@ -141,6 +153,7 @@
  * [LandingEnhancements#Data_validation Data validation] <br/>
  * [LandingEnhancements#Form_fields_auto-completion Form fields auto-completion] <br/>
  * [LandingEnhancements#Remembering_last_used_location Remembering last used location] <br/>
+ * [LandingEnhancements#Giving_users_feedback_on_action_results Giving users feedback on action results] <br/>
 
 === [AdditionalResources Additional  resources] ===
  * [AdditionalResources#Discussion_groups Discussion groups] <br/>
