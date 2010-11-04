@@ -546,6 +546,7 @@ The presenter will handle the create, update and delete actions. `createPerforma
 	}
 }}}
 
+Next, we'll look at how can we test what we've got so far.
 
 
 <wiki:comment>NAV_START</wiki:comment>
