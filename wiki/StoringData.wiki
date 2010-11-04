@@ -335,7 +335,7 @@ public class ScheduleShow {
 
 = Implementation =
 
-Here are the relevant parts from `ScheduleShowHandler`, see code repository for [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java full latest source].
+Here are the relevant parts from `ScheduleShowHandler`, see code repository for [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java?r=519 full latest source].
 {{{
 		// authentication
 		// TODO anonymous = (AppEngineUser is not signed in)
