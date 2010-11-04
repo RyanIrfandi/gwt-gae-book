@@ -337,9 +337,12 @@ public class ManagePerformanceHandler extends
 The landing page has two additional buttons, initially hidden
 [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml LandingView.ui.xml]
 {{{
-			    <g:Button ui:field="createPerformance" addStyleNames="{res.style.button} {res.style.green} {res.style.medium}">Schedule performance</g:Button>
-			    <g:Button ui:field="updatePerformance" visible="false" addStyleNames="{res.style.button} {res.style.blue} {res.style.small}">Update</g:Button>
-			    <g:Button ui:field="deletePerformance" visible="false" addStyleNames="{res.style.button} {res.style.blue} {res.style.small}">Delete</g:Button>
+<g:Button ui:field="createPerformance" addStyleNames="{res.style.button} {res.style.green} {res.style.medium}"
+    >Schedule performance</g:Button>
+<g:Button ui:field="updatePerformance" visible="false" addStyleNames="{res.style.button} {res.style.blue} {res.style.small}"
+    >Update</g:Button>
+<g:Button ui:field="deletePerformance" visible="false" addStyleNames="{res.style.button} {res.style.blue} {res.style.small}"
+    >Delete</g:Button>
 }}}
 
 The view shows/hides these when a performance is selected, and calls the appropriate presenter methods
