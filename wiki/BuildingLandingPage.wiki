@@ -144,7 +144,7 @@ Here's how it was done:
 
 = Using native !JavaScript =
 
-There are cases when you might want to use native !JavaScript rather than pure GWT, such as the one above. See [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JavaScript Native Interface] and an example of  [http://www.zackgrossbart.com/hackito/antiptrn-gwt2/ building custom GWT widgets which include native JavaScript]. JSNI is a good choice when you want to reuse existing larger !JavaScript functionality (e.g. jQuery plugins) with easy upgrades to new versions, or sharing your code with other pure !JavaScript users.
+There are cases when you might want to use native !JavaScript rather than pure GWT, such as the one above. See [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JavaScript Native Interface] and an example of  [http://www.zackgrossbart.com/hackito/antiptrn-gwt2/ building custom GWT widgets which include native JavaScript]. JSNI is a good choice when you want to reuse existing larger !JavaScript functionality (e.g. jQuery plugins) with easy upgrades to new versions, or sharing your code with other pure !JavaScript users. Note that using native !JavaScript will prevent you from using pure !JUnit test cases and you will need to use GWTTestCase, which is slower. Usage of native !JavaScript should be minimized whenever possible.
 
 If you are looking for jQuery-like functionality in GWT, there's [http://code.google.com/p/gwtquery/ gwtQuery] ([http://www.youtube.com/watch?v=sl5em1UPuoI video introduction]). gwtQuery is a better choice when you're writing functionality from scratch as it gives you all GWT advantages over native !JavaScript. 
 
