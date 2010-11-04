@@ -296,7 +296,7 @@ There are a few possibilities to store data in GWT client as a session:
 
 For remembering the current theater, we'll go with simplest solution: a cookie. We'll use the same solution to remember the anonymous users between server calls.
 
-`ScheduleShow.java` Action and Result generator
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java?r=519 ScheduleShow] Action and Result generator
 {{{
 public class ScheduleShow {
 	@In(1)
@@ -317,7 +317,7 @@ public class ScheduleShow {
 }
 }}}
 
-`LandingPresenter.java`
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=519 LandingPresenter]
 {{{
 		dispatcher.execute(new ScheduleShowAction(Cookies
 				.getCookie(Constants.userTokenCookieName), Cookies
@@ -335,7 +335,7 @@ public class ScheduleShow {
 
 = Implementation =
 
-Here are the relevant parts from `ScheduleShowHandler`, see code repository for [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java?r=519 full latest source].
+Here are the relevant parts from [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java?r=519 ScheduleShowHandler]
 {{{
 		// authentication
 		// TODO anonymous = (AppEngineUser is not signed in)
