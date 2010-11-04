@@ -20,7 +20,7 @@ Implement listing added performances. Hints:
  * use a HTMLPanel to display data. We'll enhance this later
 
 == Exercise solution ==
-Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetPerformances.java GetPerformances] Action/Result generator.
+Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetPerformances.java?r=519 GetPerformances] Action/Result generator.
 {{{
 public class GetPerformances {
 	@In(1)
@@ -34,7 +34,7 @@ public class GetPerformances {
 }
 }}}
 
-Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java GetPerformancesHandler]
+Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java?r=519 GetPerformancesHandler]
 {{{
 public class GetPerformancesHandler extends
 		DispatchActionHandler<GetPerformancesAction, GetPerformancesResult> {
@@ -82,8 +82,8 @@ public class GetPerformancesHandler extends
 }
 }}}
 
-Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java ScheduleShow] to return newly added performance data, so it can be displayed on the client after being saved:
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java ScheduleShow]
+Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java?r=519 ScheduleShow] to return newly added performance data, so it can be displayed on the client after being saved:
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java?r=519 ScheduleShow]
 {{{
 public class ScheduleShow {
 	...
@@ -91,13 +91,13 @@ public class ScheduleShow {
 	Performance performance;
 }
 }}}
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java ScheduleShowHandler]
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java?r=519 ScheduleShowHandler]
 {{{
 		return new ScheduleShowResult("", KeyFactory.keyToString(theaterKey),
 				performance);
 }}}
 
-Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView] to display performances...
+Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java?r=519 LandingView] to display performances...
 {{{
 	@UiField
 	HTML performancesContainer;
@@ -119,7 +119,7 @@ Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/
 	}
 }}}
 
-...as instructed by [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter]
+...as instructed by [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=519 LandingPresenter]
 {{{
 	public void requestPerformances() {
 		if (!(null == clientState.currentTheaterKey || clientState.currentTheaterKey
@@ -185,7 +185,7 @@ Think what are the issues of the basic solution and how could it be enhanced to 
 
 Luckily, GWT team already thought about these use cases and introduced [http://code.google.com/webtoolkit/doc/latest/DevGuideUiCellWidgets.html Data Presentation Widgets]. Go ahead and learn about them.
 
-Ready? As a very first step, let's add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/view/client/ProvidesKey.html Key Provider] to [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/Performance.java Performance] data model:
+Ready? As a very first step, let's add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/view/client/ProvidesKey.html Key Provider] to [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/Performance.java?r=519 Performance] data model:
 {{{
 public class Performance implements Serializable {
 	public static final ProvidesKey<Performance> KEY_PROVIDER = new ProvidesKey<Performance>() {
@@ -202,7 +202,7 @@ public class Performance implements Serializable {
 
 Note that `performanceKey` won't be stored, we'll just use it to send keys to client so we can uniquely identify entities later. Update the handlers to set the key:
 
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java ScheduleShowHandler]
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java?r=519 ScheduleShowHandler]
 {{{
 		...
 		performance.performanceKey = KeyFactory.keyToString(performanceKey);
@@ -210,7 +210,7 @@ Note that `performanceKey` won't be stored, we'll just use it to send keys to cl
 				performance);
 }}}
 
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java GetPerformancesHandler]
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java?r=519 GetPerformancesHandler]
 {{{
 		...
 		// add key to model, so it can be sent to client
@@ -225,7 +225,7 @@ Note that `performanceKey` won't be stored, we'll just use it to send keys to cl
 		return new GetPerformancesResult("", performances);
 }}}
 
-Next, add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/user/cellview/client/CellList.html CellList] widget to [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml LandingView.ui.xml]
+Next, add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/user/cellview/client/CellList.html CellList] widget to [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml?r=519 LandingView.ui.xml]
 {{{
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:gcell="urn:import:com.google.gwt.user.cellview.client"
@@ -243,7 +243,7 @@ Next, add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google
 
 }}}
 
-and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView]...
+and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java?r=519 LandingView]...
 {{{
 	...
 	public class PerformanceCell extends AbstractCell<Performance> {
@@ -327,7 +327,7 @@ and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/t
 
 }}}
 
-...and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter]
+...and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=519 LandingPresenter]
 {{{
 
 	public void requestPerformances() {
@@ -370,7 +370,7 @@ Try it out! Go through [http://code.google.com/webtoolkit/doc/latest/DevGuideUiC
 
 Later, we'll also need to select a performance from the list, in order to update or delete it. We might as well implement selection now, so we can also test the performance key availability.
 
-In [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView] add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/view/client/SingleSelectionModel.html SingleSelectionModel]
+In [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java?r=519 LandingView] add a [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/view/client/SingleSelectionModel.html SingleSelectionModel]
 {{{
 
 	@UiFactory
@@ -400,7 +400,7 @@ In [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/o
 
 }}}
 
-and in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter] just log this for now
+and in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=519 LandingPresenter] just log this for now
 {{{
 	public void onPerformanceSelected(Performance p) {
 		Main.logger.info("Selected performance " + p.performanceKey
@@ -412,7 +412,7 @@ We'll leave pagination, sorting, filtering, collaboration, offline usage to be i
 
 = Styling data presentation widgets =
 
-Let's overwrite the default styling by extending [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/user/cellview/client/CellList.Resources.html CellList.Resources] with a modified copy of [http://code.google.com/p/google-web-toolkit/source/browse/releases/2.1/user/src/com/google/gwt/user/cellview/client/CellList.css CellList.css], then pass it to `CellList` constructor in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView]:
+Let's overwrite the default styling by extending [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/user/cellview/client/CellList.Resources.html CellList.Resources] with a modified copy of [http://code.google.com/p/google-web-toolkit/source/browse/releases/2.1/user/src/com/google/gwt/user/cellview/client/CellList.css CellList.css], then pass it to `CellList` constructor in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java?r=519 LandingView]:
 {{{
 	interface PerformancesResources extends CellList.Resources {
 		@Source(value = { CellList.Style.DEFAULT_CSS, "Performances.css" })
