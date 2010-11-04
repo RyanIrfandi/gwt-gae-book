@@ -1,9 +1,8 @@
 package org.gwtgaebook.CultureShows.client.landing;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
+import org.gwtgaebook.CultureShows.client.Main;
 import org.gwtgaebook.CultureShows.shared.Constants;
 import org.gwtgaebook.CultureShows.shared.model.Performance;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
@@ -18,13 +17,10 @@ import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -89,22 +85,24 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	public final Widget widget;
 	private final PerformancesAsyncAdapter performancesAsyncAdapter;
 
-	//
-	// @UiField
-	// HTMLPanel container;
-
+	@UiField
+	DateBox date;
 	@UiField
 	TextBox show;
 	@UiField
 	TextBox location;
-	@UiField
-	DateBox date;
 
 	@UiField
-	Button scheduleShow;
+	Label dateLbl;
+	@UiField
+	Label showLbl;
+	@UiField
+	Label locationLbl;
 
-	// @UiField
-	// HTML performancesContainer;
+	@UiField
+	Button updatePerformance;
+	@UiField
+	Button deletePerformance;
 
 	@UiField
 	CellList<Performance> performancesCL;
@@ -114,6 +112,14 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 
 	public LandingView() {
 		widget = uiBinder.createAndBindUi(this);
+
+		// fallback for browsers which don't support placeholder attribute
+		// null == date.getElement().getAttribute("placeholder")
+		if (placeholderSupport().equals("no")) {
+			dateLbl.setVisible(true);
+			showLbl.setVisible(true);
+			locationLbl.setVisible(true);
+		}
 
 		date.setFormat(new DateBox.DefaultFormat(DateTimeFormat
 				.getFormat(Constants.defaultDateFormat)));
@@ -133,25 +139,37 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 
 	}
 
+	// workaround for
+	// http://code.google.com/p/google-web-toolkit/issues/detail?id=5541
+	private static native String placeholderSupport() /*-{
+		var i = document.createElement('input');
+		if ('placeholder' in i) {
+		return "yes";
+		} else {
+		return "no";
+		}
+	}-*/;
+
 	@Override
 	public Widget asWidget() {
 		return widget;
 	}
 
-	private static native void placeholder() /*-{
-		$wnd.$("input:text").placeholder();
-	}-*/;
-
-	public void resetAndFocus() {
-		// jQuery fallback for browsers which don't support placeholder
-		// attribute
-		placeholder();
+	@Override
+	public void setDefaultValues() {
+		date.setValue(null);
+		show.setValue("");
+		if (null != Cookies
+				.getCookie(Constants.PerformanceLocationNameCookieName)) {
+			location.setValue(Cookies
+					.getCookie(Constants.PerformanceLocationNameCookieName));
+		} else {
+			location.setValue("");
+		}
 	}
 
-	@UiHandler("scheduleShow")
-	void onScheduleShowClicked(ClickEvent event) {
-		getUiHandlers().scheduleShow(date.getValue(), show.getValue(),
-				location.getValue());
+	public void resetAndFocus() {
+		setDefaultValues();
 	}
 
 	public void setSignInOut(UserInfo userInfo) {
@@ -172,10 +190,13 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	@UiFactory
 	CellList<Performance> createPerformanceCL() {
 		PerformanceCell performanceCell = new PerformanceCell();
+		SafeHtmlBuilder sb = new SafeHtmlBuilder();
 		CellList<Performance> cl = new CellList<Performance>(
 				performanceCell,
 				GWT.<PerformancesResources> create(PerformancesResources.class),
 				Performance.KEY_PROVIDER);
+		cl.setEmptyListMessage(sb.appendHtmlConstant(
+				"No performances created yet").toSafeHtml());
 		setSelectionModel(cl);
 
 		return cl;
@@ -184,6 +205,7 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	@Override
 	public void loadPerformanceData(Integer start, Integer length,
 			List<Performance> performances) {
+		setIsPerformanceSelected(false);
 		performancesAsyncAdapter.updateRowData(start, performances);
 		performancesAsyncAdapter.updateRowCount(length, false);
 		performancesCL.setVisibleRange(start, Constants.visibleRangeLength);
@@ -192,9 +214,18 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 
 	@Override
 	public void refreshPerformances() {
+		setIsPerformanceSelected(false);
 		getUiHandlers().onRangeOrSizeChanged(
 				performancesCL.getVisibleRange().getStart(),
 				performancesCL.getVisibleRange().getLength());
+	}
+
+	public void setIsPerformanceSelected(Boolean selected) {
+		updatePerformance.setVisible(selected);
+		deletePerformance.setVisible(selected);
+		if (!selected) {
+			setDefaultValues();
+		}
 	}
 
 	private void setSelectionModel(CellList<Performance> cl) {
@@ -205,7 +236,12 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 					@Override
 					public void onSelectionChange(SelectionChangeEvent event) {
 						Performance p = selectionModel.getSelectedObject();
-
+						setIsPerformanceSelected(null != p);
+						if (null != p) {
+							date.setValue(p.date);
+							show.setValue(p.showName);
+							location.setValue(p.locationName);
+						}
 						getUiHandlers().onPerformanceSelected(p);
 					}
 				});
@@ -213,4 +249,28 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 		cl.setSelectionModel(selectionModel);
 	}
 
+	@UiHandler("createPerformance")
+	void onCreatePerformanceClicked(ClickEvent event) {
+		getUiHandlers().createPerformance(date.getValue(), show.getValue(),
+				location.getValue());
+	}
+
+	@UiHandler("updatePerformance")
+	void onUpdatePerformanceClicked(ClickEvent event) {
+		// TODO how to solve Unchecked cast?
+		final SingleSelectionModel<Performance> selectionModel = (SingleSelectionModel<Performance>) performancesCL
+				.getSelectionModel();
+		getUiHandlers().updatePerformance(
+				selectionModel.getSelectedObject().performanceKey,
+				date.getValue(), show.getValue(), location.getValue());
+	}
+
+	@UiHandler("deletePerformance")
+	void onDeletePerformanceClicked(ClickEvent event) {
+		// TODO how to solve Unchecked cast?
+		final SingleSelectionModel<Performance> selectionModel = (SingleSelectionModel<Performance>) performancesCL
+				.getSelectionModel();
+		getUiHandlers().deletePerformance(
+				selectionModel.getSelectedObject().performanceKey);
+	}
 }

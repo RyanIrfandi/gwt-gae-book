@@ -31,6 +31,8 @@ public interface Resources extends ClientBundle {
 
 		String anchor();
 
+		String fieldLabel();
+
 	}
 
 }
