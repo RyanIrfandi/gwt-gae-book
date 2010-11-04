@@ -171,12 +171,8 @@ It works, but it's a lot of code to write just to get a string from client to se
  * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Configuring_your_build_environment Configure your build environment] for annotation processing. This is already setup in the template project.
  * [http://code.google.com/p/gwt-platform/wiki/BoilerplateGeneration#Generate_Action_and_Result Generating Action and Result]
 
-Instead of Action and Result, we can have only `shared/dispatch/ScheduleShow.java`
+Instead of Action and Result, we can have only [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java ScheduleShow]
 {{{
-package org.gwtgaebook.CultureShows.shared.dispatch;
-
-import com.gwtplatform.annotation.*;
-
 @GenDispatch(isSecure = false)
 public class ScheduleShow {
 	@In(1)
