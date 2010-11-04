@@ -10,7 +10,7 @@ Time to add some functionality!
 
  * [http://code.google.com/p/twig-persist/wiki/Quickstart Quickstart with twig-persist], an Object Datastore for Google App Engine
  * [http://code.google.com/p/twig-persist/wiki/Configuration Creating a Data Model]
- * [http://code.google.com/p/twig-persist/source/browse/src/test/java/com/google/code/twig/festival/MusicFestivalTestCase.java twig unit tests] to see more usage examples
+ * [http://code.google.com/p/twig-persist/source/browse/src/test/java/com/google/code/twig/tests/festival/MusicFestivalTestCase.java?r=c82aa7fecaa63d6d90ca6f55d30ecb812ff779e3 twig unit tests] to see more usage examples
 
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/bale_of_hay.jpg" border="0"  align="right" />
