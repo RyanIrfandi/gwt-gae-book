@@ -334,7 +334,6 @@ public class ManagePerformanceHandler extends
 }
 }}}
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/theatre_and_performance.jpg" border="0" align="right"  />
 
 == Client view ==
 The landing page has two additional buttons, initially hidden
@@ -350,6 +349,8 @@ The landing page has two additional buttons, initially hidden
     addStyleNames="{res.style.button} {res.style.blue} {res.style.small}"
     >Delete</g:Button>
 }}}
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/theatre_and_performance.jpg" border="0" align="right"  />
 
 The view shows/hides these when a performance is selected, and calls the appropriate presenter methods
 [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView]
