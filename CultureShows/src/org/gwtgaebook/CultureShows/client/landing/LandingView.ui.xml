@@ -56,10 +56,18 @@ elegant philanthropic silk portfolio gem.
 
 		<g:HTMLPanel>
 		    <g:HTMLPanel addStyleNames="{style.mainContent}">
+				<g:Label ui:field="dateLbl" visible="false" addStyleNames="{res.style.fieldLabel}">Date and time</g:Label>
 				<gdp:DateBox ui:field="date" title="Date and time" addStyleNames="{res.style.block} {res.style.medium}"></gdp:DateBox>
+
+			    <g:Label ui:field="showLbl" visible="false" addStyleNames="{res.style.fieldLabel}">Show name</g:Label>
 			    <g:TextBox ui:field="show" title="Show name" addStyleNames="{res.style.block} {res.style.medium}"></g:TextBox>
+
+			    <g:Label ui:field="locationLbl" visible="false" addStyleNames="{res.style.fieldLabel}">Location</g:Label>
 			    <g:TextBox ui:field="location" title="Location" addStyleNames="{res.style.block} {res.style.medium}"></g:TextBox>
-			    <g:Button ui:field="scheduleShow" addStyleNames="{res.style.button} {res.style.green} {res.style.medium}">Schedule show</g:Button>
+
+			    <g:Button ui:field="createPerformance" addStyleNames="{res.style.button} {res.style.green} {res.style.medium}">Schedule performance</g:Button>
+			    <g:Button ui:field="updatePerformance" visible="false" addStyleNames="{res.style.button} {res.style.blue} {res.style.small}">Update</g:Button>
+			    <g:Button ui:field="deletePerformance" visible="false" addStyleNames="{res.style.button} {res.style.blue} {res.style.small}">Delete</g:Button>
 		    </g:HTMLPanel>
 
 		    <g:HTMLPanel ui:field="sidebar" addStyleNames="{style.sidebar}" visible="false">

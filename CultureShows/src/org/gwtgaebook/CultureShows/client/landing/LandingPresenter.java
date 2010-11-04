@@ -1,26 +1,38 @@
 package org.gwtgaebook.CultureShows.client.landing;
 
-import java.text.ParseException;
-import java.util.*;
-import java.util.logging.Logger;
+import java.util.Date;
+import java.util.List;
 
-import com.google.gwt.core.client.GWT; //import com.google.gwt.thirdparty.guava.common.base.Strings;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.client.*;
-import com.google.inject.*;
-import com.gwtplatform.mvp.client.*;
-import com.gwtplatform.mvp.client.annotations.*;
-import com.gwtplatform.mvp.client.proxy.*;
-import com.gwtplatform.dispatch.client.*;
-
-import org.gwtgaebook.CultureShows.client.*;
+import org.gwtgaebook.CultureShows.client.ClientState;
+import org.gwtgaebook.CultureShows.client.DispatchCallback;
+import org.gwtgaebook.CultureShows.client.Main;
+import org.gwtgaebook.CultureShows.client.MainPresenter;
+import org.gwtgaebook.CultureShows.client.NameTokens;
 import org.gwtgaebook.CultureShows.client.event.SignInEvent;
 import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent;
 import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent.UserInfoAvailableHandler;
-import org.gwtgaebook.CultureShows.client.util.*;
-import org.gwtgaebook.CultureShows.shared.*;
-import org.gwtgaebook.CultureShows.shared.dispatch.*;
-import org.gwtgaebook.CultureShows.shared.model.*;
+import org.gwtgaebook.CultureShows.shared.Constants;
+import org.gwtgaebook.CultureShows.shared.dispatch.GetPerformancesAction;
+import org.gwtgaebook.CultureShows.shared.dispatch.GetPerformancesResult;
+import org.gwtgaebook.CultureShows.shared.dispatch.ManagePerformanceAction;
+import org.gwtgaebook.CultureShows.shared.dispatch.ManagePerformanceResult;
+import org.gwtgaebook.CultureShows.shared.model.Performance;
+import org.gwtgaebook.CultureShows.shared.model.UserInfo;
+
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.Window;
+import com.google.inject.Inject;
+import com.gwtplatform.dispatch.client.DispatchAsync;
+import com.gwtplatform.mvp.client.EventBus;
+import com.gwtplatform.mvp.client.HasUiHandlers;
+import com.gwtplatform.mvp.client.Presenter;
+import com.gwtplatform.mvp.client.View;
+import com.gwtplatform.mvp.client.annotations.NameToken;
+import com.gwtplatform.mvp.client.annotations.ProxyStandard;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+import com.gwtplatform.mvp.client.proxy.RevealContentEvent;
 
 public class LandingPresenter extends
 		Presenter<LandingPresenter.MyView, LandingPresenter.MyProxy> implements
@@ -33,6 +45,8 @@ public class LandingPresenter extends
 
 	public interface MyView extends View, HasUiHandlers<LandingUiHandlers> {
 		public void resetAndFocus();
+
+		public void setDefaultValues();
 
 		// public void addPerformance(Performance p);
 		//
@@ -76,57 +90,6 @@ public class LandingPresenter extends
 		RevealContentEvent.fire(this, MainPresenter.TYPE_RevealMainContent,
 				this);
 		requestPerformances();
-	}
-
-	@Override
-	public void scheduleShow(Date date, String showName, String locationName) {
-		Main.logger.info("Requested performance scheduling on "
-				+ date.toString() + " the show " + showName + " at location "
-				+ locationName + " for theater "
-				+ clientState.currentTheaterKey);
-		if (null != clientState.userInfo) {
-			if (clientState.userInfo.isSignedIn) {
-				// make the server request
-				dispatcher.execute(new ScheduleShowAction(
-						clientState.currentTheaterKey, date, showName,
-						locationName),
-						new DispatchCallback<ScheduleShowResult>() {
-							@Override
-							public void onSuccess(ScheduleShowResult result) {
-								if (!result.getErrorText().isEmpty()) {
-									// TODO have a general handler for this
-									Window.alert(result.getErrorText());
-									return;
-								}
-								clientState.currentTheaterKey = result
-										.getTheaterKeyOut();
-								// getView().addPerformance(
-								// result.getPerformance());
-								getView().refreshPerformances();
-							}
-						});
-
-			} else {
-				// save Performance data in cookie so it is available on user
-				// return
-				// this date format shouldn't be i18n'ed, it's only for internal
-				// use
-				DateTimeFormat dateFormat = DateTimeFormat
-						.getFormat(Constants.defaultDateFormat);
-				Cookies.setCookie(Constants.PerformanceDateCookieName,
-						dateFormat.format(date));
-				Cookies.setCookie(Constants.PerformanceShowNameCookieName,
-						showName);
-				Cookies.setCookie(Constants.PerformanceLocationNameCookieName,
-						locationName);
-				// ask user to sign in instead of making the server request
-				requestSignIn();
-			}
-		}
-		// TODO should handle case when (null == clientState.userInfo),
-		// meaning getUserInfo request never returned. Now nothing will happen
-		// on
-		// Schedule Show
 	}
 
 	@Override
@@ -190,15 +153,14 @@ public class LandingPresenter extends
 				Date date;
 				date = dateFormat.parse(Cookies
 						.getCookie(Constants.PerformanceDateCookieName));
-				// won't bother with parse errors; worst case anonymous
-				// scheduled performance will be messed
-				scheduleShow(
+				// TODO handle parse errors
+				createPerformance(
 						date,
 						Cookies.getCookie(Constants.PerformanceShowNameCookieName),
 						Cookies.getCookie(Constants.PerformanceLocationNameCookieName));
 				Cookies.removeCookie(Constants.PerformanceDateCookieName);
 				Cookies.removeCookie(Constants.PerformanceShowNameCookieName);
-				Cookies.removeCookie(Constants.PerformanceLocationNameCookieName);
+				// Cookies.removeCookie(Constants.PerformanceLocationNameCookieName);
 
 			}
 
@@ -219,4 +181,122 @@ public class LandingPresenter extends
 		Main.logger.info("Selected performance " + p.performanceKey
 				+ " with show " + p.showName);
 	}
+
+	@Override
+	public void createPerformance(Date date, String showName,
+			String locationName) {
+		Main.logger.info("Requested performance scheduling on "
+				+ date.toString() + " the show " + showName + " at location "
+				+ locationName + " for theater "
+				+ clientState.currentTheaterKey);
+		if (null != clientState.userInfo) {
+			if (clientState.userInfo.isSignedIn) {
+				// make the server request
+				Performance p = new Performance();
+				p.date = date;
+				p.showName = showName;
+				p.locationName = locationName;
+				p.theaterKey = clientState.currentTheaterKey;
+
+				dispatcher.execute(new ManagePerformanceAction(
+						Constants.manageActionType.CREATE, p),
+						new DispatchCallback<ManagePerformanceResult>() {
+							@Override
+							public void onSuccess(ManagePerformanceResult result) {
+								if (!result.getErrorText().isEmpty()) {
+									// TODO have a general handler for this
+									Window.alert(result.getErrorText());
+									return;
+								}
+								clientState.currentTheaterKey = result
+										.getPerformanceOut().theaterKey;
+								// getView().addPerformance(
+								// result.getPerformance());
+								// remember last used location
+								Cookies.setCookie(
+										Constants.PerformanceLocationNameCookieName,
+										result.getPerformanceOut().locationName);
+								getView().setDefaultValues();
+								getView().refreshPerformances();
+							}
+						});
+
+			} else {
+				// save Performance data in cookie so it is available on user
+				// return
+				// this date format shouldn't be i18n'ed, it's only for internal
+				// use
+				DateTimeFormat dateFormat = DateTimeFormat
+						.getFormat(Constants.defaultDateFormat);
+				Cookies.setCookie(Constants.PerformanceDateCookieName,
+						dateFormat.format(date));
+				Cookies.setCookie(Constants.PerformanceShowNameCookieName,
+						showName);
+				Cookies.setCookie(Constants.PerformanceLocationNameCookieName,
+						locationName);
+				// ask user to sign in instead of making the server request
+				requestSignIn();
+			}
+		}
+		// TODO should handle case when (null == clientState.userInfo),
+		// meaning getUserInfo request never returned. Now nothing will happen
+	}
+
+	@Override
+	public void updatePerformance(String performanceKey, Date date,
+			String showName, String locationName) {
+		Main.logger.info("Requested performance update for " + performanceKey
+				+ " with date " + date.toString() + " the show " + showName
+				+ " at location " + locationName + " for theater "
+				+ clientState.currentTheaterKey);
+
+		Performance p = new Performance();
+		p.performanceKey = performanceKey;
+		p.date = date;
+		p.showName = showName;
+		p.locationName = locationName;
+		p.theaterKey = clientState.currentTheaterKey;
+
+		dispatcher.execute(new ManagePerformanceAction(
+				Constants.manageActionType.UPDATE, p),
+				new DispatchCallback<ManagePerformanceResult>() {
+					@Override
+					public void onSuccess(ManagePerformanceResult result) {
+						if (!result.getErrorText().isEmpty()) {
+							// TODO have a general handler for this
+							Window.alert(result.getErrorText());
+							return;
+						}
+						getView().setDefaultValues();
+						getView().refreshPerformances();
+					}
+				});
+
+	}
+
+	@Override
+	public void deletePerformance(String performanceKey) {
+		Main.logger.info("Requested performance update for " + performanceKey);
+
+		Performance p = new Performance();
+		p.performanceKey = performanceKey;
+		p.theaterKey = clientState.currentTheaterKey;
+
+		dispatcher.execute(new ManagePerformanceAction(
+				Constants.manageActionType.DELETE, p),
+				new DispatchCallback<ManagePerformanceResult>() {
+					@Override
+					public void onSuccess(ManagePerformanceResult result) {
+						if (!result.getErrorText().isEmpty()) {
+							// TODO have a general handler for this
+							Window.alert(result.getErrorText());
+							return;
+						}
+						getView().setDefaultValues();
+						getView().refreshPerformances();
+					}
+				});
+
+	}
+
 }

@@ -5,6 +5,8 @@ import java.io.Serializable;
 import com.google.code.twig.annotation.*;
 import com.google.gwt.view.client.ProvidesKey;
 
+//TODO use private fields instead of public in models
+
 @SuppressWarnings("serial")
 public class Theater implements Serializable {
 	public static final ProvidesKey<Theater> KEY_PROVIDER = new ProvidesKey<Theater>() {

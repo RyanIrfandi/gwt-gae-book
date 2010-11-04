@@ -112,5 +112,6 @@ body {
 	cursor: pointer;
 }
 
-
-
+.fieldLabel {
+	color: #007ead;
+}

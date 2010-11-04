@@ -20,7 +20,8 @@ public class MainHandlerModule extends HandlerModule {
 		bind(UserInfo.class).toProvider(UserInfoProvider.class);
 
 		// bind Actions to ActionHandlers and ActionValidators
-		bindHandler(ScheduleShowAction.class, ScheduleShowHandler.class);
+		bindHandler(ManagePerformanceAction.class,
+				ManagePerformanceHandler.class);
 		bindHandler(GetPerformancesAction.class, GetPerformancesHandler.class);
 		bindHandler(GetUserAction.class, GetUserHandler.class);
 

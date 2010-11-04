@@ -20,11 +20,11 @@ public class Performance implements Serializable {
 	public String performanceKey;
 
 	@Index
+	public Date date;
+	@Index
 	public String showKey;
 	@Index
 	public String locationKey;
-	@Index
-	public Date date;
 
 	// denormalized
 	@Index
