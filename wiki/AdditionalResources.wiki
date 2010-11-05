@@ -27,6 +27,14 @@ http://tbroyer.posterous.com/
 
 http://experienceswithgwt.blogspot.com
 
+= Open source applications using GWT/GAE =
+http://code.google.com/p/apapul/
+
+http://code.google.com/p/puzzlebazar/
+
+http://code.google.com/p/tire-d8/
+
+
 = Miscellaneous =
 
 [http://www.google.com/notebook/public/17393756076936429562/BDUsxIgoQmJbCk7ch Getting the Most from Eclipse], [http://eclipse.dzone.com/news/effective-eclipse-shortcut-key shortcut] [http://rayfd.wordpress.com/2007/05/20/10-eclipse-navigation-shortcuts-every-java-programmer-should-know/ keys]
