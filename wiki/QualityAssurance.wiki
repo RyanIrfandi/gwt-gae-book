@@ -1,25 +1,73 @@
 #summary Quality assurance
 
+So far we developed a [basic app http://cultureshows.appspot.com/], which allows signing in with OpenID and managing performances schedule. Before we add more features, we need to look more at quality.
+
 <wiki:toc max_depth="2" />
 
-= Introduction =
-peer reviews - requirements, spec, code
 
-manual testing - last
+= Pre-requisites =
+ * Make sure you have [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShows-0.3-before-QA.tgz the latest source code] for this chapter
+ * [http://en.wikipedia.org/wiki/Quality_assurance General quality assurance]
+ * [http://en.wikipedia.org/wiki/Software_quality Software quality]
+
+= When should QA start? =
+If you answered at unit tests, or right at the beginning of development with [http://en.wikipedia.org/wiki/Test-driven_development Test-driven development], think again. What if you deliver a bug-free, but useless project to your customer?
+
+QA should start when we [SoYouHaveAnIdea start defining requirements]. The later we fix defects, the more costly they are. A bad user story is much easier to fix before we actually implement it.
+
+Let's see how we can increase quality for the main phases in a software project. Note that this is an iterative process which repeats continuously in a project, rather than being done in a [http://en.wikipedia.org/wiki/Waterfall_model waterfall] way.
+
+
+
+= Personae =
+
+=  User stories =
+Consider defining what is the project success is, what customer success is.
+
+Priorities
+
+peer reviews
+
+
+= Metrics and KPIs =
+
+
+= User interface =
+
+
+= Software design =
+
+
+design spec
+pseudocode
+
+= Code =
 
 Careful on how much QA is invested in initial 1.0 *code*. Just did a major redesign, some would have been thrown away.
 
-= Client unit testing =
 
-= UI testing =
+== Client unit testing ==
 
-= Server testing =
+== UI testing ==
 
-= Performance testing =
+== Server testing ==
+
+== Performance testing ==
 is client first load waiting for server to say if signed in or not? Assume no and update UI when response received. 
 
-= More ways to increase software quality =
+== More ways to increase software quality ==
 findbugs tool
+
+= Deployment =
+
+= Other areas =
+Operations (monitoring availability, performance), support, marketing (campaigns success)...
+
+
+
+
+
+
 
 
 <wiki:comment>NAV_START</wiki:comment>
