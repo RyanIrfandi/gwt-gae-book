@@ -65,15 +65,27 @@ According to their actions, present the corresponding screen print. If they want
  * <a href="http://www.amazon.com/gp/product/0321344758?ie=UTF8&tag=gwtgaebook-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0321344758">Don't Make Me Think: A Common Sense Approach to Web Usability</a><img src="http://www.assoc-amazon.com/e/ir?t=gwtgaebook-20&l=as2&o=1&a=0321344758" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> (great book)
  * <a href="http://www.amazon.com/gp/product/0672326140?ie=UTF8&tag=gwtgaebook-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0672326140">The Inmates Are Running the Asylum: Why High Tech Products Drive Us Crazy and How to Restore the Sanity</a><img src="http://www.assoc-amazon.com/e/ir?t=gwtgaebook-20&l=as2&o=1&a=0672326140" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
+= Functional specifications =
+[http://en.wikipedia.org/wiki/Functional_specification Functional specifications] detail the application from users point of view. It helps making sure all stakeholders (from customers to engineers) have the same understanding of the expected behavior.
 
-= Software design =
+A functional specification might include details about user interface (UI), behaviors, expected performance, internationalization and privacy requirements, constraints and limitations, interaction with other systems.
 
-design spec (arch, testability, performance,...)
+[http://en.wikipedia.org/wiki/Software_peer_review Peer reviews], with varying degrees of formality, help in discovering defects.
 
-peer reviews
+*Additional resources*
+ * [http://www.joelonsoftware.com/articles/fog0000000036.html Painless Functional Specifications]
+ * [http://vast.uccs.edu/~tboult/CS330/DOCS/Requirements%20Review%20Checklist.doc Example Requirements Review Checklist]
 
+= Design/technical specifications =
 
-I might be old school, but I still like doing pseudocode first for complex functionality. [Authentication#Design_of_handling_both_anonymous_and_authenticated_users We saw] how this saved us from investing into actual code writing, debugging and testing which would have been thrown away later. Pseudocode also gives a higher-level overview on how various components works. Keep it updated as the project develops, to be used later as a reference by you and others.
+[http://en.wikipedia.org/wiki/Software_design Design specifications] explain how the application works from engineering point of view. What should go into it? Topics vary from project to project and might include architecture, data models, logic, internationalization, testability, testing recommendations (just what's not obvious from functional specification), performance, security. As a guideline, I like to think about
+ * what helps to clarify and estimate how one would implement this feature, before writing code
+ * what would I find helpful if I come back to this project/functionality after six months
+ * if I was a new team member, what would help me getting ready for changing existing features or implementing new ones
+
+I might be old school, but I like doing pseudocode first for complex functionality. [Authentication#Design_of_handling_both_anonymous_and_authenticated_users We saw] how this saved us from investing into actual code writing, debugging and testing which would have been thrown away later. Pseudocode also gives a higher-level overview on how various components works. Keep it updated as the project develops, to be used later as a reference by you and others.
+
+[http://en.wikipedia.org/wiki/Software_peer_review Peer reviews] with fellow engineers  are extremely useful for early defect discovery. Keeping a history of found defects and spent time helps balancing the allocated review time for best return of investment. If reviews find almost no defects, the author is either a great engineer, or the reviews aren't effective.
 
 
 = Code =
@@ -81,28 +93,78 @@ I might be old school, but I still like doing pseudocode first for complex funct
 Careful on how much QA is invested in initial 1.0 *code*. Just did a major redesign, some would have been thrown away.
 
 
-== Client unit testing ==
+== Static code analysis tools ==
+
+http://sonar.codehaus.org
+Checkstyle, PMD, Findbugs, Clover, Cobertura.
+
+JavaNCSS, and JDepend,
+
+== Code reviews ==
+Effective [http://en.wikipedia.org/wiki/Code_review code reviews] are one of the most handy methods to increase code quality. [http://www.google.com/search?sourceid=chrome&ie=UTF-8&q=code+review+code.google Code review tools] ease the interaction between engineers and offer integrated comments and defects tracking.
+
+*Additional resources*
+ * <a href="http://www.amazon.com/gp/product/020161622X?ie=UTF8&tag=gwtgaebook-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=020161622X">The Pragmatic Programmer: From Journeyman to Master</a><img src="http://www.assoc-amazon.com/e/ir?t=gwtgaebook-20&l=as2&o=1&a=020161622X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+ * [http://misko.hevery.com/code-reviewers-guide/ Code reviewers guide] (focused on Java)
+ * [http://www.basilv.com/psd/blog/2007/strategies-for-effective-code-reviews Strategies for effective code reviews]
+
+
+= Testing =
+
+Here are more details about what [http://en.wikipedia.org/wiki/Software_testing testing] can be performed. We'll focus only on a few of these.
+
+[http://en.wikipedia.org/wiki/Software_peer_review Peer reviews] should again be used in the areas below to discover where testing could be improved.
+
+
+
+
+
+
+== Unit testing ==
+
+http://arcbees.wordpress.com/2010/09/19/unit-testing-for-dummies/
 
 == UI testing ==
+Selenium
+http://www.opensourcetesting.org/
 
-== Server testing ==
+== API testing ==
+
+!jMeter
 
 == Performance testing ==
 is client first load waiting for server to say if signed in or not? Assume no and update UI when response received. 
 
-== More ways to increase software quality ==
-findbugs tool
 
-*Additional resources*
- * <a href="http://www.amazon.com/gp/product/020161622X?ie=UTF8&tag=gwtgaebook-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=020161622X">The Pragmatic Programmer: From Journeyman to Master</a><img src="http://www.assoc-amazon.com/e/ir?t=gwtgaebook-20&l=as2&o=1&a=020161622X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+http://www.uselessapplications.com/en/Application/FirefoxThrottle.aspx
+chrome Speed Tracer are asta?
 
 
-= Deployment =
+
+webpagetest.org
+
+generate from server a page containing ClientState obj?
+http://code.google.com/webtoolkit/articles/dynamic_host_page.html
+
+
+
+
+
+
+
+== Manual test cases  ==
+Finally, there are situations when automating some tests isn't cost effective. These [http://en.wikipedia.org/wiki/Test_case test cases] should be documented so one can run them whenever needed.
+
+
+== Additional resources ==
+ * [http://googletesting.blogspot.com/ Google testing blog]
+ * [http://en.wikipedia.org/wiki/A/B_testing A/B testing]
+ * [https://www.google.com/analytics/siteopt Google website optimizer]
+
+
 
 = Other areas =
-Operations (monitoring availability, performance), support, marketing (campaigns success)...
-
-
+Quality should be considered in all project areas, not just software development. These include deployment, data centers management (monitoring availability, performance), support, marketing.
 
 
 
