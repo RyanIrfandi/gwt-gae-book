@@ -31,6 +31,8 @@ Ask what's missing to help them accomplish their goals, and rate the importance 
 
 *Additional resources*
  * [http://www.slideshare.net/craigwbrown/invest-in-good-user-stories-presentation INVEST in user stories]
+ * <a href="http://www.amazon.com/gp/product/0976470705?ie=UTF8&tag=gwtgaebook-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0976470705">The Four Steps to the Epiphany</a><img src="http://www.assoc-amazon.com/e/ir?t=gwtgaebook-20&l=as2&o=1&a=0976470705" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> : customer discovery, customer validation, customer creation, company building
+
 
 = Metrics and KPIs =
 They say "You can’t improve what you can’t measure". If we're asked "How is the project doing?" and reply "Good", a follow-up question might be "What do you understand by good?". Common project metrics include 
@@ -53,6 +55,11 @@ Using Scrum allows quick (bi-weekly to monthly) inspection of these, and adaptin
  * [http://www.theultimatequestion.com/theultimatequestion/measuring_netpromoter.asp?groupcode=2 Measuring Net Promoter Score]
 
 = User interface =
+
+
+*Additional resources*
+ * <a href="http://www.amazon.com/gp/product/0321344758?ie=UTF8&tag=gwtgaebook-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0321344758">Don't Make Me Think: A Common Sense Approach to Web Usability</a><img src="http://www.assoc-amazon.com/e/ir?t=gwtgaebook-20&l=as2&o=1&a=0321344758" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> (great book)
+ * <a href="http://www.amazon.com/gp/product/0672326140?ie=UTF8&tag=gwtgaebook-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0672326140">The Inmates Are Running the Asylum: Why High Tech Products Drive Us Crazy and How to Restore the Sanity</a><img src="http://www.assoc-amazon.com/e/ir?t=gwtgaebook-20&l=as2&o=1&a=0672326140" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 
 = Software design =
