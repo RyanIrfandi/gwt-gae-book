@@ -9,7 +9,9 @@ Rather than writing a full book, gwt-gae-book complements existing online materi
 = Why a free, online book? =
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/study_1.jpg" border="0"  align="right" />
 
-I believe the world (both people and technology) is better through collaboration, sharing of knowledge and [http://www.gnu.org/philosophy/right-to-read.html having the right to read]. By free education (even in the form of this small book), anybody has the choice of learning and getting better, rather than just the ones who can afford it. With free programming languages, libraries, tools and documentation, we'll see better applications, more and better collaborative ideas on improving them, and a better hiring market for software development companies. Will technical book authors die of hunger? No, they'll just have to consider doing something else for profit rather than writing books all life (which they probably already do). Hopefully donations will also help a little.
+I believe the world (both people and technology) is better through collaboration, sharing of knowledge and [http://www.gnu.org/philosophy/right-to-read.html having the right to read]. 
+
+By free education (even in the form of this small book), anybody has the choice of learning and getting better, rather than just the ones who can afford it. With free programming languages, libraries, tools and documentation, we'll see better applications, more and better collaborative ideas on improving them, and a better hiring market for software development companies. Will technical book authors die of hunger? No, they'll just have to consider doing something else for profit rather than writing books all life (which they probably already do). Hopefully donations will also help a little.
 
 I personally avoid printed technical books as
  * technology moves fast. A well prepared, printed material will usually be partially outdated by the time you purchase it
