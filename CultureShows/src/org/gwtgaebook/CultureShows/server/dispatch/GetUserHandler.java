@@ -73,7 +73,7 @@ public class GetUserHandler extends
 				member.userId = userInfo.userId;
 				member.email = userInfo.email;
 				member.signUpDate = new Date();
-				memberKey = datastore.store(member);
+				datastore.store(member);
 			}
 
 		} else {
