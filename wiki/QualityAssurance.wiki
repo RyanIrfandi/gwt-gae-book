@@ -1,6 +1,6 @@
 #summary Quality assurance
 
-So far we developed a [basic app http://cultureshows.appspot.com/], which allows signing in with OpenID and managing performances schedule. Before we add more features, we need to look more at quality.
+So far we developed a [http://cultureshows.appspot.com/ basic app], which allows signing in with OpenID and managing performances schedule. Before we add more features, we need to look more at quality.
 
 <wiki:toc max_depth="2" />
 
@@ -17,26 +17,47 @@ QA should start when we [SoYouHaveAnIdea start defining requirements]. The later
 
 Let's see how we can increase quality for the main phases in a software project. Note that this is an iterative process which repeats continuously in a project, rather than being done in a [http://en.wikipedia.org/wiki/Waterfall_model waterfall] way.
 
-
-
 = Personae =
+When defining [http://en.wikipedia.org/wiki/Persona_(marketing) user personae], consider your intended audience. Then search, meet and discuss with a few representatives for each of the draft personae you described so far. Understand their behavior patterns, environment, skills and needs, and include these in persona description.
+
+*Additional resources*
+ * [http://www.designstamp.com/downloads/DesignStamp_PersonaProcess.pdf The Persona Process]
 
 =  User stories =
-Consider defining what is the project success is, what customer success is.
+Having a good idea of personae life goals, experience goals and end goals, we can start [SoYouHaveAnIdea defining user stories] that contribute to accomplishing those goals.
 
-Priorities
+One of the best ways to validate stories and prioritization is to share them with personae representatives. List all the stories (removing "As Persona") and ask them to rate their importance. Discuss why they rated it that way. The lowest rated stories should probably be completely removed from your backlog. 
+Ask what's missing to help them accomplish their goals, and rate the importance of those stories too.
 
-peer reviews
-
+*Additional resources*
+ * [http://www.slideshare.net/craigwbrown/invest-in-good-user-stories-presentation INVEST in user stories]
 
 = Metrics and KPIs =
+They say "You can’t improve what you can’t measure". If we're asked "How is the project doing?" and reply "Good", a good follow-up question might be "What do you understand by good?". Common project metrics include 
+ * Schedule - estimated/targeted delivery date and slippage in days
+ * Cost - actual budget versus original budget
+ * Resources - what resources and much of them are we using (people, time, equipment...)
 
+Using Scrum allows quick (bi-weekly to monthly) inspection of these, and adapting.
+
+[http://en.wikipedia.org/wiki/Performance_indicator Key Performance Indicators] give us more specific indicators on how we stand on areas important to our project. Some of the Culture Shows KPIs are:
+ * visitors of the landing page
+ * users signing in
+ * users scheduling performances
+ * 3rd party sites displaying performances
+ * active theaters (having regular performances)
+
+[http://en.wikipedia.org/wiki/Net_Promoter Net Promoter Score] is a relatively recent and simple metric for [http://en.wikipedia.org/wiki/Customer_satisfaction customer satisfaction].
+
+*Additional resources*
+[http://www.theultimatequestion.com/theultimatequestion/measuring_netpromoter.asp?groupcode=2 Measuring Net Promoter Score]
 
 = User interface =
 
 
 = Software design =
 
+peer reviews
 
 design spec
 pseudocode
