@@ -94,11 +94,17 @@ Careful on how much QA is invested in initial 1.0 *code*. Just did a major redes
 
 
 == Static code analysis tools ==
+[http://en.wikipedia.org/wiki/Static_code_analysis Static code analysis] tools scan code and report various possible issues, from code formatting style to bugs. Go through [http://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis#Java the list of Java tools] and see what would benefit you most. Setup the tools to run as part of the build process, after every commit (you are using [http://en.wikipedia.org/wiki/Continuous_integration continuous integration], right?).
 
-http://sonar.codehaus.org
-Checkstyle, PMD, Findbugs, Clover, Cobertura.
+Running PMD on Culture Shows code found nothing. !FindBugs though discovered these small issues:
+ * Constants.manageActionType should start with an uppercase letter
+ * Main.logger should be final
+ * Dead store to local variable in !GetUserInfo, the value is not read or used in any subsequent instruction:
+{{{
+memberKey = datastore.store(member);
+}}}
+and several false positives (the tool gives more details, but copy-pasting exact issue report doesn't work (!)).
 
-JavaNCSS, and JDepend,
 
 == Code reviews ==
 Effective [http://en.wikipedia.org/wiki/Code_review code reviews] are one of the most handy methods to increase code quality. [http://www.google.com/search?sourceid=chrome&ie=UTF-8&q=code+review+code.google Code review tools] ease the interaction between engineers and offer integrated comments and defects tracking.
@@ -123,6 +129,8 @@ Here are more details about what [http://en.wikipedia.org/wiki/Software_testing 
 == Unit testing ==
 
 http://arcbees.wordpress.com/2010/09/19/unit-testing-for-dummies/
+
+mockito
 
 == UI testing ==
 Selenium
