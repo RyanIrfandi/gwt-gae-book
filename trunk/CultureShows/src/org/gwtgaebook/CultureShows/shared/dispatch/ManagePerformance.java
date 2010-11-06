@@ -12,7 +12,7 @@ import com.gwtplatform.annotation.Out;
 @GenDispatch(isSecure = false)
 public class ManagePerformance {
 	@In(1)
-	Constants.manageActionType actionType;
+	Constants.ManageActionType actionType;
 
 	@In(2)
 	Performance performance;

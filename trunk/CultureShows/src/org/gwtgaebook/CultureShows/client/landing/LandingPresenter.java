@@ -199,7 +199,7 @@ public class LandingPresenter extends
 				p.theaterKey = clientState.currentTheaterKey;
 
 				dispatcher.execute(new ManagePerformanceAction(
-						Constants.manageActionType.CREATE, p),
+						Constants.ManageActionType.CREATE, p),
 						new DispatchCallback<ManagePerformanceResult>() {
 							@Override
 							public void onSuccess(ManagePerformanceResult result) {
@@ -258,7 +258,7 @@ public class LandingPresenter extends
 		p.theaterKey = clientState.currentTheaterKey;
 
 		dispatcher.execute(new ManagePerformanceAction(
-				Constants.manageActionType.UPDATE, p),
+				Constants.ManageActionType.UPDATE, p),
 				new DispatchCallback<ManagePerformanceResult>() {
 					@Override
 					public void onSuccess(ManagePerformanceResult result) {
@@ -283,7 +283,7 @@ public class LandingPresenter extends
 		p.theaterKey = clientState.currentTheaterKey;
 
 		dispatcher.execute(new ManagePerformanceAction(
-				Constants.manageActionType.DELETE, p),
+				Constants.ManageActionType.DELETE, p),
 				new DispatchCallback<ManagePerformanceResult>() {
 					@Override
 					public void onSuccess(ManagePerformanceResult result) {

@@ -3,7 +3,7 @@ package org.gwtgaebook.CultureShows.server.dispatch;
 import java.util.List;
 
 import org.gwtgaebook.CultureShows.shared.Constants;
-import org.gwtgaebook.CultureShows.shared.Constants.manageActionType;
+import org.gwtgaebook.CultureShows.shared.Constants.ManageActionType;
 import org.gwtgaebook.CultureShows.shared.dispatch.ManagePerformanceAction;
 import org.gwtgaebook.CultureShows.shared.dispatch.ManagePerformanceResult;
 import org.gwtgaebook.CultureShows.shared.model.Location;
@@ -189,7 +189,7 @@ public class ManagePerformanceHandler extends
 		logger.info("Current member " + KeyFactory.keyToString(memberKey));
 		logger.info("Current theater " + KeyFactory.keyToString(theaterKey));
 
-		if (action.getActionType() == manageActionType.DELETE) {
+		if (action.getActionType() == ManageActionType.DELETE) {
 			datastore.delete(performance);
 			return new ManagePerformanceResult("", null);
 		}

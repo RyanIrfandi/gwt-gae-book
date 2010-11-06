@@ -8,7 +8,7 @@ import com.gwtplatform.mvp.client.*;
 public class Main implements EntryPoint {
 
 	public final MainGinjector ginjector = GWT.create(MainGinjector.class);
-	public static Logger logger = Logger.getLogger("");
+	public static final Logger logger = Logger.getLogger("");
 
 	public void onModuleLoad() {
 

@@ -13,7 +13,7 @@ public class Constants {
 	public static final Integer visibleRangeStart = 0;
 	public static final Integer visibleRangeLength = 50;
 
-	public enum manageActionType {
+	public enum ManageActionType {
 		CREATE, READ, UPDATE, DELETE
 	};
 
