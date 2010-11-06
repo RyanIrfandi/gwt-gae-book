@@ -23,11 +23,13 @@ When defining [http://en.wikipedia.org/wiki/Persona_(marketing) user personae], 
 *Additional resources*
  * [http://www.designstamp.com/downloads/DesignStamp_PersonaProcess.pdf The Persona Process]
 
-=  User stories =
+= User stories =
 Having a good idea of personae life goals, experience goals and end goals, we can start [SoYouHaveAnIdea defining user stories] that contribute to accomplishing those goals.
 
 One of the best ways to validate stories and prioritization is to share them with personae representatives. List all the stories (removing "As Persona") and ask them to rate their importance. Discuss why they rated it that way. The lowest rated stories should probably be completely removed from your backlog.
-Ask what's missing to help them accomplish their goals, and rate the importance of those stories too.
+Ask what's missing to help them accomplish their goals, and rate the importance of those stories too. 
+
+Rather than having a huge list of features demanded by all potential users you talk to, try to determine the minimum feature set required to get early customers. [http://www.businessweek.com/magazine/content/07_26/b4040436.htm Fail fast, fail cheap].
 
 *Additional resources*
  * [http://www.slideshare.net/craigwbrown/invest-in-good-user-stories-presentation INVEST in user stories]
