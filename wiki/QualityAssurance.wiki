@@ -55,7 +55,11 @@ Using Scrum allows quick (bi-weekly to monthly) inspection of these, and adaptin
  * [http://www.theultimatequestion.com/theultimatequestion/measuring_netpromoter.asp?groupcode=2 Measuring Net Promoter Score]
 
 = User interface =
+We've already covered [VisualizingYourApp building mockups] and getting feedback on them. 
 
+A fast and cheap technique for [http://en.wikipedia.org/wiki/Usability_testing usability testing] is to print all the mocked screens of the app, then going with prints to potential users. After giving a basic context, present the landing page print asking questions such as "what do you think this is", "what would you do next", "how would you do that". Be careful to avoid direct instructions such as "Now please schedule a performance".
+
+According to their actions, present the corresponding print. If they want to fill out fields, ask them to do that with a pen. Investing a few days in preparing and performing this research will save weeks later.
 
 *Additional resources*
  * <a href="http://www.amazon.com/gp/product/0321344758?ie=UTF8&tag=gwtgaebook-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0321344758">Don't Make Me Think: A Common Sense Approach to Web Usability</a><img src="http://www.assoc-amazon.com/e/ir?t=gwtgaebook-20&l=as2&o=1&a=0321344758" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> (great book)
@@ -64,10 +68,13 @@ Using Scrum allows quick (bi-weekly to monthly) inspection of these, and adaptin
 
 = Software design =
 
+design spec (arch, testability, performance,...)
+
 peer reviews
 
-design spec
-pseudocode
+
+I might be old school, but I still like doing pseudocode first for complex functionality. [Authentication#Design_of_handling_both_anonymous_and_authenticated_users We saw] how this saved us from investing into actual code writing, debugging and testing which would have been thrown away later. Pseudocode also gives a higher-level overview on how various components works. Keep it updated as the project develops, to be used later as a reference by you and others.
+
 
 = Code =
 
@@ -85,6 +92,10 @@ is client first load waiting for server to say if signed in or not? Assume no an
 
 == More ways to increase software quality ==
 findbugs tool
+
+*Additional resources*
+ * <a href="http://www.amazon.com/gp/product/020161622X?ie=UTF8&tag=gwtgaebook-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=020161622X">The Pragmatic Programmer: From Journeyman to Master</a><img src="http://www.assoc-amazon.com/e/ir?t=gwtgaebook-20&l=as2&o=1&a=020161622X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+
 
 = Deployment =
 
