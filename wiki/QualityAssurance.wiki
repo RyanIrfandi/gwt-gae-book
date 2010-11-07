@@ -127,9 +127,9 @@ Here are more details about what [http://en.wikipedia.org/wiki/Software_testing 
 
 As we'll keep adding and changing features, how can we know if we break existing functionality? This is where automated tests, such as [http://en.wikipedia.org/wiki/Unit_testing unit testing], come in. 
 
-Another benefit is that we'll accomplish a better design of our code just by making it unit testable. For example, [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] has now one big method doing everything, which is harder to follow and debug. `createPerformance()` and `onUserInfoAvailable()` in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=584 LandingPresenter] access cookies directly from browser, making it harder to switch cookie storage with something else, say [http://diveintohtml5.org/storage.html HTML5 storage], and impossible to run tests from command line where we don't have a browser.
+Another benefit is that we'll accomplish a better design of our code just by making it unit testable. For example, [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] has now one big method doing everything, which is harder to follow and debug. `createPerformance()` and `onUserInfoAvailable()` in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=584 LandingPresenter] access cookies directly from browser, so we can't switch cookie storage with something else, say [http://diveintohtml5.org/storage.html HTML5 storage], or run tests from command line where we don't have a browser.
 
-Unit testing focus only on the smallest, independent units of our code. [http://en.wikipedia.org/wiki/Proton Protons] and [http://en.wikipedia.org/wiki/Neutron neutrons] you say? Well, not _that_ small. We need to look at parts which have logic which could be tested. If they interact with other system parts, such as storage, we need to replace those parts with [http://en.wikipedia.org/wiki/Mock_object mock objects]. Methods suitable for unit testing should take an input, do something with out, and provide an output. We'll test them by providing known inputs and checking if outputs match what we expected.
+Unit testing focus only on the smallest, independent units of our code. [http://en.wikipedia.org/wiki/Proton Protons] and [http://en.wikipedia.org/wiki/Neutron neutrons] you say? Well, not _that_ small. We need to look at parts which have logic which could be tested. If they interact with other components, such as storage, we need to replace those parts with [http://en.wikipedia.org/wiki/Mock_object mock objects]. Methods suitable for unit testing should take an input, do something with it, and provide an output. We'll test them by providing known inputs and checking if outputs match what we expected.
 
 === Exercise ===
 Review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=584 LandingPresenter], and identify parts which should be unit tested. Remember we are testing the logic of these parts. A simple block of code which just stores an object in the datastore and returns it doesn't have anything to be meaningfully unit tested.
@@ -179,6 +179,17 @@ mockito
 == Integration testing ==
 
 After we unit tested parts of functionality, [http://en.wikipedia.org/wiki/Integration_testing integration testing] checks if these parts work together.
+
+
+public void delete(String performanceKey)
+validateKey(performanceKey)
+memberKey = getMember() 
+//how to do this in a clear, performance/cachable, secure way? 
+//passing memberKey string means we'll check it again for validity when we know it came from app engine. UserInfo should be mockable, or when passing member to private methods skip checking??
+
+
+
+performance.load(key).filter(belongs to a theater owned by member)
 
 
 == UI testing ==
