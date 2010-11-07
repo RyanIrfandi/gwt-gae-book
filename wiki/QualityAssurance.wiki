@@ -228,6 +228,7 @@ We'll come back to !LandingPresenter in a later chapter.
 
 *Additional resources*
  * [http://www.vogella.de/articles/JUnit/article.html JUnit tutorial]
+ * [http://code.google.com/webtoolkit/articles/testing_methodologies_using_gwt.html GWT testing methodologies]
  * [http://www.youtube.com/watch?v=T_CLzgEL7FA GWT testing best practices]
  * [http://code.google.com/p/gwt-platform/wiki/UnitTesting gwt-platform unit testing introduction]
  * [http://www.c2.com/cgi/wiki?CodingJavaUnitExceptionTests Coding Java Unit Exception Tests]
@@ -240,15 +241,6 @@ We'll come back to !LandingPresenter in a later chapter.
 After we unit tested parts of functionality, [http://en.wikipedia.org/wiki/Integration_testing integration testing] checks if these parts work together.
 
 
-public void delete(String performanceKey)
-validateKey(performanceKey)
-memberKey = getMember() 
-//how to do this in a clear, performance/cachable, secure way? 
-//passing memberKey string means we'll check it again for validity when we know it came from app engine. UserInfo should be mockable, or when passing member to private methods skip checking??
-
-
-
-performance.load(key).filter(belongs to a theater owned by member)
 
 
 == UI testing ==
@@ -283,9 +275,11 @@ http://code.google.com/webtoolkit/articles/dynamic_host_page.html
 
 *Additional resources*
 
-
 == Manual test cases  ==
 Finally, there are situations when automating some tests isn't cost effective. These [http://en.wikipedia.org/wiki/Test_case test cases] should be documented so one can run them whenever needed.
+
+== Scenario testing ==
+If all tests above work, brief [http://en.wikipedia.org/wiki/Scenario_testing scenario testing] makes sure all the system works. After a deploy, we'll just manually test a few major workflows: scheduling a performance and then deleting it.
 
 
 == Additional resources ==
@@ -297,9 +291,6 @@ Finally, there are situations when automating some tests isn't cost effective. T
 
 = Other areas =
 Quality should be considered in all project areas, not just software development. These include deployment, data centers management (monitoring availability, performance), support, marketing.
-
-
-
 
 
 
