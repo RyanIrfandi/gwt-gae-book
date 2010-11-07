@@ -220,25 +220,20 @@ Here are the [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureS
 }}}
 
 
-and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=591 the slightly refactored code].
+and [http://code.google.com/p/gwt-gae-book/source/diff?spec=svn591&r=591&format=side&path=/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java&old_path=/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java&old=584 the slightly refactored code].
 
-=== Exercise ===
-Review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=584 LandingPresenter] and identify parts which should be unit tested.
+We'll come back to !LandingPresenter in a later chapter.
 
-=== Exercise solution ===
-
-
-
-
-mockito
 
 
 *Additional resources*
  * [http://www.vogella.de/articles/JUnit/article.html JUnit tutorial]
+ * [http://www.youtube.com/watch?v=T_CLzgEL7FA GWT testing best practices]
  * [http://code.google.com/p/gwt-platform/wiki/UnitTesting gwt-platform unit testing introduction]
  * [http://www.c2.com/cgi/wiki?CodingJavaUnitExceptionTests Coding Java Unit Exception Tests]
  * [http://en.wikipedia.org/wiki/Test-driven_development Test-driven development]
  * http://misko.hevery.com/presentations/
+ * [http://code.google.com/p/mockito/ Mockito mocking framework]
 
 == Integration testing ==
 
