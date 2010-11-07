@@ -2,27 +2,28 @@
 
 Here are some sections I'd like to add, as time allows:
 
-
+ * Managing shows
  * Exposing functionality to 3rd parties via REST APIs 
   * requiring OpenID authentication, API keys...
   * API bestpractices (presentations; versioning, paging, filtering, DOS attacks)
   * microformats
- * Working with REST APIs from GWT 
- * Managing theaters and preferences
- * Managing shows, locations, performances
  * Exposing read-only data to 3rd parties
-  * jsonp
+  * jsonp, caching... YQL
  * Displaying schedule on theater websites
 
+ * Managing locations (with REST APIs)
+ * Working with REST APIs from GWT 
+ * Managing theaters and preferences
 
  * [CommunicationEnhancements Client-server communication enhancements]
  * Analytics
   * defining key metrics, monitoring workflows, A-B testing
  * Offering support for users
  * Enabling offline usage
+ * Scheduling tasks, sending email
  * Integration with social networks 
   * Google & FB places, twitter, FB events
- * Opening up to more theater members (adding actors, assistants)
+ * Opening up to more theater members (actors, assistants)
  * Allowing public to browse our data
  * Advertise with !AdSense
  * Making reservations
