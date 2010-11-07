@@ -125,17 +125,30 @@ Here are more details about what [http://en.wikipedia.org/wiki/Software_testing 
 
 == Unit testing ==
 
-http://arcbees.wordpress.com/2010/09/19/unit-testing-for-dummies/
+As we'll keep adding and changing features, how can we know if we break existing functionality? This is where automated tests, such as [http://en.wikipedia.org/wiki/Unit_testing unit testing], come in. 
+
+Another benefit is that we'll accomplish a better design of our code just by making it unit testable. For example, [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] has now one big method doing everything, which is harder to follow and debug. [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=584 LandingPresenter] accesses cookies directly from browser, making it harder to switch cookie storage with something else, say [http://diveintohtml5.org/storage.html HTML5 storage], and impossible to run tests from command line where we don't have a browser.
+
 
 mockito
+
+
+*Additional resources*
+ * [http://code.google.com/p/gwt-platform/wiki/UnitTesting gwt-platform unit testing introduction]
+ * http://misko.hevery.com/presentations/
+
 
 == UI testing ==
 Selenium
 http://www.opensourcetesting.org/
 
+*Additional resources*
+
 == API testing ==
 
 !jMeter
+
+*Additional resources*
 
 == Performance testing ==
 is client first load waiting for server to say if signed in or not? Assume no and update UI when response received. 
@@ -155,6 +168,7 @@ http://code.google.com/webtoolkit/articles/dynamic_host_page.html
 
 
 
+*Additional resources*
 
 
 == Manual test cases  ==
