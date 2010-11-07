@@ -222,7 +222,7 @@ Here are the [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureS
 
 and [http://code.google.com/p/gwt-gae-book/source/diff?spec=svn591&r=591&format=side&path=/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java&old_path=/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java&old=584 the slightly refactored code].
 
-We'll come back to !LandingPresenter in a later chapter.
+We'll come back to !LandingPresenter in a later chapter. As with real projects, we are balancing the investment in testing with the rest of the project needs, like getting customers and becoming profitable.
 
 
 
