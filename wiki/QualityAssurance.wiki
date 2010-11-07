@@ -159,12 +159,68 @@ If we're trying to update or delete a performance, we expect to be given valid t
 
 This is something we could isolate in a separate method
 {{{
-void validateKey(String key)
+	public static Key getValidDSKey(String key)
 }}}
 which would throw an exception when the key is null, empty or invalid. Why not [http://tutorials.jenkov.com/java-exception-handling/validation-throw-exception-or-return-false.html return an error] or [http://download.oracle.com/javase/6/docs/technotes/guides/language/assert.html use asserts]? As [http://download.oracle.com/javase/6/docs/technotes/guides/language/assert.html preconditions checking] advise, the keys are passed to the `public execute()` as part of the input, so we should enforce the argument checks in a way understandable by the caller of this method.
 
+Here are the [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/util/Validation.java validation method]
+{{{
+	public static Key getValidDSKey(String key) {
+		if (Strings.isNullOrEmpty(key)) {
+			throw new IllegalArgumentException("Null or empty key");
+		}
+
+		Key dsKey;
+		try {
+			dsKey = KeyFactory.stringToKey(key);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Invalid key " + key);
+		}
+		
+		return dsKey;
+	}
+}}}
+
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/test/org/gwtgaebook/CultureShows/server/util/ValidationTest.java the test]
+{{{
+	@Test
+	public final void getValidDSKeyTest() throws Exception {
+		try {
+			Validation.getValidDSKey(null);
+			fail("Null key was considered valid");
+		} catch (IllegalArgumentException expected) {
+			// exception thrown, we're good, nothing else to check here
+		}
+
+		try {
+			Validation.getValidDSKey("");
+			fail("Empty key was considered valid");
+		} catch (IllegalArgumentException expected) {
+			// exception thrown, we're good, nothing else to check here
+		}
+
+		final String invalidKey = "invalidKey";
+		try {
+			Validation.getValidDSKey(invalidKey);
+			fail("Invalid key " + invalidKey + " was considered valid");
+		} catch (IllegalArgumentException expected) {
+			assertTrue("Exception message doesn't mention " + invalidKey,
+					expected.getMessage().indexOf(invalidKey) >= 0);
+		}
+
+		// any appengine key will work
+		final String validKey = "agxjdWx0dXJlc2hvd3NyDgsSB1RoZWF0ZXIY4V0M";
+		Key dsKey;
+		dsKey = Validation.getValidDSKey(validKey);
+		assertTrue("Returned key is null", null != dsKey);
+		assertTrue("Returned key " + dsKey.toString() + " is not equal to "
+				+ validKey, dsKey.equals(KeyFactory.stringToKey(validKey)));
+
+	}
+}}}
 
 
+and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=591 the slightly refactored code].
 
 
 
@@ -173,7 +229,10 @@ mockito
 
 
 *Additional resources*
+ * [http://www.vogella.de/articles/JUnit/article.html JUnit tutorial]
  * [http://code.google.com/p/gwt-platform/wiki/UnitTesting gwt-platform unit testing introduction]
+ * [http://www.c2.com/cgi/wiki?CodingJavaUnitExceptionTests Coding Java Unit Exception Tests]
+ * [http://en.wikipedia.org/wiki/Test-driven_development Test-driven development]
  * http://misko.hevery.com/presentations/
 
 == Integration testing ==
