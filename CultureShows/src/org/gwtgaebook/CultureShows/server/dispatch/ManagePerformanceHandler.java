@@ -2,6 +2,7 @@ package org.gwtgaebook.CultureShows.server.dispatch;
 
 import java.util.List;
 
+import org.gwtgaebook.CultureShows.server.util.Validation;
 import org.gwtgaebook.CultureShows.shared.Constants;
 import org.gwtgaebook.CultureShows.shared.Constants.ManageActionType;
 import org.gwtgaebook.CultureShows.shared.dispatch.ManagePerformanceAction;
@@ -85,14 +86,24 @@ public class ManagePerformanceHandler extends
 		}
 
 		// setup theater
-		if (!Strings.isNullOrEmpty(action.getPerformance().theaterKey)) {
-			// theaterKey sent by client is not empty
-			try {
-				theaterKey = KeyFactory
-						.stringToKey(action.getPerformance().theaterKey);
-			} catch (Exception e) {
-				// invalid key, ignore it
+
+		switch (action.getActionType()) {
+		case CREATE:
+			if (!Strings.isNullOrEmpty(action.getPerformance().theaterKey)) {
+				// theaterKey sent by client is not empty
+				theaterKey = Validation
+						.getValidDSKey(action.getPerformance().theaterKey);
 			}
+			break;
+
+		case UPDATE:
+		case DELETE:
+			theaterKey = Validation
+					.getValidDSKey(action.getPerformance().theaterKey);
+			break;
+		default:
+			return new ManagePerformanceResult("Invalid action type: "
+					+ action.getActionType(), null);
 		}
 
 		if (null != theaterKey) {
@@ -153,23 +164,8 @@ public class ManagePerformanceHandler extends
 
 		case UPDATE:
 		case DELETE:
-			if (null == theaterKey) {
-				return new ManagePerformanceResult("Invalid theater key", null);
-			}
-
-			if (!Strings.isNullOrEmpty(action.getPerformance().performanceKey)) {
-				try {
-					performanceKey = KeyFactory.stringToKey(action
-							.getPerformance().performanceKey);
-				} catch (Exception e) {
-					// invalid key, ignore it
-				}
-			}
-
-			if (null == performanceKey) {
-				return new ManagePerformanceResult("Invalid performance key",
-						null);
-			}
+			performanceKey = Validation
+					.getValidDSKey(action.getPerformance().performanceKey);
 
 			performance = datastore.load(performanceKey);
 
