@@ -25,8 +25,11 @@ loading indicator
 TODO
 
 
-=  Generic error handling =
+= Generic error handling =
 TODO
 
-=  Caching =
+= Client caching =
+TODO
+
+= Server caching =
 TODO
