@@ -240,8 +240,8 @@ We'll come back to !LandingPresenter in a later chapter. As with real projects, 
 
 After we unit tested parts of functionality, [http://en.wikipedia.org/wiki/Integration_testing integration testing] checks if these parts work together.
 
-
-
+*Additional resources*
+ * [http://code.google.com/appengine/docs/java/tools/localunittesting.html AppEngine unit testing]
 
 == UI testing ==
 Selenium
