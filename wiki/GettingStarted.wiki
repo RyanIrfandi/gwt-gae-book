@@ -50,6 +50,7 @@ To get you started, I've setup  [http://gwt-gae-book.googlecode.com/svn/trunk/Cu
  * [http://code.google.com/p/gwtquery/ gwtquery]
  * [http://code.google.com/p/piriti/ piriti]
  * [http://code.google.com/p/twig-persist/ twig-persist]
+ * [http://mockito.org/ mockito]
 
 Visit these project sites to find out more about them. Come back to their documentation whenever needed as we progress with our application.
 
