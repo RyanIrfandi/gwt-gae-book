@@ -239,19 +239,103 @@ We'll come back to !LandingPresenter in a later chapter. As with real projects, 
 == Integration testing ==
 
 After we unit tested parts of functionality, [http://en.wikipedia.org/wiki/Integration_testing integration testing] checks if these parts work together.
+We'll proceed with a bottom-up testing approach, starting from App Engine storage and our entities.
+
+=== Exercise ===
+Learn about [http://code.google.com/appengine/docs/java/tools/localunittesting.html AppEngine unit testing]. Then review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] and write the tests for it. Consider you have the real storage available (not mocked) and test for correct functionality of `ManagePerformanceHandler`.
+
+=== Exercise solution ===
+On an empty datastore, we could perform the following tests:
+{{{
+p1 = createPerformance(date, showName, locationName);
+check that theater, show, location and performance entities have been created
+
+p2 = createPerformance(anotherDate, showName, locationName);
+check that no new theater, show, location entities have been created
+check performance entity has been created
+
+p2.showName = existingShowName;
+update(p2)
+check performance has been updated
+
+p2.showName = inexistingShowName;
+update(p2)
+check performance has been updated and new show entity has been created
+
+delete show
+check performance has also been deleted
+
+update a show name in show entity
+check performance denormalized data (showName) has also been updated
+
+delete existing performance
+check performance doesn't exist anymore
+}}}
+
+Are these integration tests complete? We can tell from the very first test: no. We are checking if a theater, show and location have been created as a side effect of creating a performance, but we should also check if these can be created individually. We have a lot of work ahead, since this functionality doesn't even exist yet :)
+
+=== Redesigning performance management for testability ===
+
+We see a common theme for datastore entities: we need basic [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD] functionality available for each of them, with some variations. Let's introduce a [http://en.wikipedia.org/wiki/Data_access_object data access object] (DAO) for each entity. Since there's a lot of common functionality, we can have entity DAOs inherit from an abstract class:
+DAO
+{{{
+..
+
+}}}
+
+TheaterDAO is as simple as
+{{{
+
+}}}
+
+and here's how we test it
+{{{
+
+}}}
+
+
+Here's what tests we could run for ShowDAO 
+{{{
+
+}}}
+
+
+and this is the implementation that passes all of these
+{{{
+
+}}}
+
+
+==== Exercise ====
+Implement DAOs for the rest of data models, and tests for Location and Performance.
+
+
+==== Exercise solution ====
+
+
+==== Exercise ====
+Update  [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] to use DAOs we just implemented.
+
+
+==== Exercise solution ====
+
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] 
+
+
 
 *Additional resources*
- * [http://code.google.com/appengine/docs/java/tools/localunittesting.html AppEngine unit testing]
 
-== UI testing ==
-Selenium
-http://www.opensourcetesting.org/
-
-*Additional resources*
 
 == API testing ==
 
 !jMeter
+
+*Additional resources*
+
+
+== UI testing ==
+Selenium
+http://www.opensourcetesting.org/
 
 *Additional resources*
 
