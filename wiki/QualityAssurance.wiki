@@ -262,11 +262,11 @@ p2.showName = inexistingShowName;
 update(p2)
 check performance has been updated and new show entity has been created
 
-delete show
-check performance has also been deleted
+delete show/location
+should be allowed only if there are no future performances with that show/location
 
-update a show name in show entity
-check performance denormalized data (showName) has also been updated
+update a show/location name in show/location entities
+check performance denormalized data has also been updated
 
 delete existing performance
 check performance doesn't exist anymore
