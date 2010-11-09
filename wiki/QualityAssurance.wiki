@@ -322,6 +322,24 @@ Update  [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/
 [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] 
 
 
+Since we have several classes to test now, let's create a test suite with all of them. We can simply run this suite when making changes to tested classes to see if we broke something. If you're using a build system, running tests should be part of the build.
+
+{{{
+@RunWith(Suite.class)
+@Suite.SuiteClasses({ ValidationTest.class, TheaterDAOTest.class,
+		ShowDAOTest.class, LocationDAOTest.class, PerformanceDAOTest.class })
+public class AllTests {
+
+	public static Test suite() {
+		TestSuite suite = new TestSuite(AllTests.class.getName());
+		// $JUnit-BEGIN$
+
+		// $JUnit-END$
+		return suite;
+	}
+
+}
+}}}
 
 *Additional resources*
 
