@@ -341,6 +341,11 @@ public class AllTests {
 }
 }}}
 
+
+Let's review again [http://code.google.com/appengine/docs/java/tools/localunittesting.html AppEngine unit testing]. Then review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] before updating it to use the new DAOs. Notice how we always relate a performance to a theater. Rather than having `theaterKey` as a separate field part of Performance, let's consider a one-to-many relationship between Theater and Performances, which would be stored in the Performance key, similar to shows and locations. We should also require Theater to exist before managing performances (this will make even more sense later we learn about REST). Since all members need to have at least a theater, let's create one during sign in if needed.
+
+
+
 *Additional resources*
 
 
