@@ -11,9 +11,7 @@ TODO
 
 
 = Data validation =
-TODO Waiting for gwt 2.1.x/2.2 to finish data validation support
-
-= Form fields auto-completion =
+TODO Waiting for gwt 2.1.x/2.2 to finish data validation support.
 
 
 = Remembering last used location =
@@ -49,6 +47,8 @@ P
 								getView().setDefaultValues();
 	}
 }}}
+
+= Form fields auto-completion =
 
 
 = Giving users feedback on action results =
