@@ -175,7 +175,7 @@ public class Show {
 }}}
 
 
-We'll also [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/MainHandlerModule.java shorten kind names], which means less stored data and increases readability in datastore viewer.
+We'll also [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/AnnotationObjectDatastoreProvider.java shorten kind names], which means less stored data and increases readability in datastore viewer.
 
 Since we'll use the show name in case-insensitive queries, we're storing a copy of name property which is always trimmed and lowercased. 
 
