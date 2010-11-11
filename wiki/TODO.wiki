@@ -3,14 +3,14 @@
 Here are some sections I'd like to add, as time allows:
 
  * Managing shows
- * Exposing functionality to 3rd parties via REST APIs 
-  * requiring OpenID authentication, API keys...
-  * API bestpractices (presentations; versioning, paging, filtering, DOS attacks)
-  * microformats
  * Exposing read-only data to 3rd parties
   * jsonp, caching... YQL
  * Displaying schedule on theater websites
 
+ * Exposing functionality to 3rd parties via REST APIs 
+  * requiring OpenID authentication, API keys...
+  * API bestpractices (presentations; versioning, paging, filtering, DOS attacks)
+  * microformats
  * Managing locations (with REST APIs)
  * Working with REST APIs from GWT 
  * Managing theaters and preferences
