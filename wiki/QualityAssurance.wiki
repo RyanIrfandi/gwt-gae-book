@@ -403,11 +403,11 @@ public class AllTests {
 The GWT client is using web services such as !GetPerformances which we implemented in App Engine. These services could be used by other clients too. We should ensure their functionality, backwards-compatibility and response time with automated web services tests. There are various tools available, one of them being [http://jakarta.apache.org/jmeter/ JMeter]. We will come back to automated web service tests after we implement REST web services, which are easier to test.
 
 *Additional resources*
-[http://www.cs.colorado.edu/~kena/classes/7818/f06/lectures/WebTest.pdf Web Services Testing lecture]
-[http://googletesting.blogspot.com/2007/09/testing-applications-and-apis.html Testing Applications and APIs]
+ * [http://www.cs.colorado.edu/~kena/classes/7818/f06/lectures/WebTest.pdf Web Services Testing lecture]
+ * [http://googletesting.blogspot.com/2007/09/testing-applications-and-apis.html Testing Applications and APIs]
 
 == UI testing ==
-[Selenium http://seleniumhq.org/] is a suite of tools which helps automating complete application tests, which are usually done manually. We will invest in these tests later.
+[http://seleniumhq.org/ Selenium] is a suite of tools which helps automating complete application tests, which are usually done manually. We will invest in these tests later.
 
 *Additional resources*
  * [http://code.google.com/webtoolkit/doc/latest/DevGuideTestingRemoteTesting.html GWT Remote Testing]
