@@ -312,6 +312,61 @@ Implement DAOs for the rest of data models, and tests for Location and Performan
 
 ==== Exercise solution ====
 
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dao/ DAOs] 
+
+
+Let's review again [http://code.google.com/appengine/docs/java/tools/localunittesting.html AppEngine unit testing]. Then review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] before updating it to use the new DAOs. Notice how we always relate a performance to a theater. Rather than having `theaterKey` as a separate field part of Performance, let's consider a one-to-many relationship between Theater and Performances, which would be stored in the Performance key, similar to shows and locations. We should also require Theater to exist before managing performances (this will make even more sense later we learn about REST). Since all members need to have at least a theater, let's create one during sign in if needed:
+
+{{{
+
+		if (userInfo.isSignedIn) {
+			userInfo.signOutURL = userService.createLogoutURL(action
+					.getRequestURI());
+
+			// check if user has a Member record, create one if not
+			Member member = null;
+			Key memberKey = null;
+
+			member = memberDAO.readByUserId(userInfo.userId);
+
+			if (null == member) {
+				// first signin, create new member
+				member = new Member();
+				member.userId = userInfo.userId;
+				member.email = userInfo.email;
+				member.signUpDate = new Date();
+				memberDAO.create(member);
+
+			}
+			memberKey = memberDAO.getKey(member);
+
+			theaters = tmjDAO.readbyMember(KeyFactory.keyToString(memberKey));
+
+			if (0 == theaters.size()) {
+				// create a theater and give member access to it
+				Theater theater = new Theater();
+				theater.name = Constants.defaultTheaterName;
+				Key theaterKey = theaterDAO.create(theater);
+				theater.theaterKey = KeyFactory.keyToString(theaterKey);
+				theaters.add(theater);
+
+				// assign member to theater
+				TheaterMemberJoin tmj = new TheaterMemberJoin();
+				tmj.theaterKey = KeyFactory.keyToString(theaterKey);
+				tmj.memberKey = KeyFactory.keyToString(memberKey);
+				tmj.role = Role.ADMINISTRATOR;
+
+				tmj.theaterName = theater.name;
+				tmj.memberEmail = member.email;
+				tmj.memberName = member.name;
+
+				tmjDAO.create(tmj);
+			}
+
+		}
+}}}
+
+
 
 ==== Exercise ====
 Update  [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] to use DAOs we just implemented.
@@ -319,7 +374,7 @@ Update  [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/
 
 ==== Exercise solution ====
 
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] 
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler using DAOs] 
 
 
 Since we have several classes to test now, let's create a test suite with all of them. We can simply run this suite when making changes to tested classes to see if we broke something. If you're using a build system, running tests should be part of the build.
@@ -342,45 +397,34 @@ public class AllTests {
 }}}
 
 
-Let's review again [http://code.google.com/appengine/docs/java/tools/localunittesting.html AppEngine unit testing]. Then review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] before updating it to use the new DAOs. Notice how we always relate a performance to a theater. Rather than having `theaterKey` as a separate field part of Performance, let's consider a one-to-many relationship between Theater and Performances, which would be stored in the Performance key, similar to shows and locations. We should also require Theater to exist before managing performances (this will make even more sense later we learn about REST). Since all members need to have at least a theater, let's create one during sign in if needed.
 
+== Web services testing ==
 
-
-*Additional resources*
-
-
-== API testing ==
-
-!jMeter
+The GWT client is using web services such as !GetPerformances which we implemented in App Engine. These services could be used by other clients too. We should ensure their functionality, backwards-compatibility and response time with automated web services tests. There are various tools available, one of them being [http://jakarta.apache.org/jmeter/ JMeter]. We will come back to automated web service tests after we implement REST web services, which are easier to test.
 
 *Additional resources*
-
+[http://www.cs.colorado.edu/~kena/classes/7818/f06/lectures/WebTest.pdf Web Services Testing lecture]
+[http://googletesting.blogspot.com/2007/09/testing-applications-and-apis.html Testing Applications and APIs]
 
 == UI testing ==
-Selenium
-http://www.opensourcetesting.org/
+[Selenium http://seleniumhq.org/] is a suite of tools which helps automating complete application tests, which are usually done manually. We will invest in these tests later.
 
 *Additional resources*
+ * [http://code.google.com/webtoolkit/doc/latest/DevGuideTestingRemoteTesting.html GWT Remote Testing]
 
 == Performance testing ==
-is client first load waiting for server to say if signed in or not? Assume no and update UI when response received. 
+With all the tests above we made sure everything functions as expected. We also need to set performance expectations, such as initial loading time, response time duration from user initiating an action until it's completed, and how many concurrent users we can support until performance starts degrading.
 
+[http://code.google.com/webtoolkit/speedtracer/ Google Speed Tracer] is one of the tools which can be used for performance testing.
 
-http://www.uselessapplications.com/en/Application/FirefoxThrottle.aspx
-chrome Speed Tracer are asta?
+To see how an application performs on a slow connection, limit the bandwidth using [http://www.uselessapplications.com/en/Application/FirefoxThrottle.aspx Firefox Throttle].
 
-
-
-webpagetest.org
-
-generate from server a page containing ClientState obj?
-http://code.google.com/webtoolkit/articles/dynamic_host_page.html
-
-
-
+We can check how fast a website loads from various locations using [http://webpagetest.org webpagetest.org]. Right now, on the first access, Culture Shows landing page takes 1.3s to fully load. 
 
 
 *Additional resources*
+ * [http://code.google.com/webtoolkit/articles/dynamic_host_page.html Using a Dynamic Host Page for Authentication and Initialization]
+ * [http://arcbees.wordpress.com/2010/09/29/how-i-made-my-gwtappengine-application-appear-to-load-quicker/ How I made my GWT/AppEngine application appear to load quicker]
 
 == Manual test cases  ==
 Finally, there are situations when automating some tests isn't cost effective. These [http://en.wikipedia.org/wiki/Test_case test cases] should be documented so one can run them whenever needed.
