@@ -425,6 +425,9 @@ We can check how fast a website loads from various locations using [http://webpa
 *Additional resources*
  * [http://code.google.com/webtoolkit/articles/dynamic_host_page.html Using a Dynamic Host Page for Authentication and Initialization]
  * [http://arcbees.wordpress.com/2010/09/29/how-i-made-my-gwtappengine-application-appear-to-load-quicker/ How I made my GWT/AppEngine application appear to load quicker]
+ * [https://addons.mozilla.org/en-US/firefox/addon/6647/ HttpFox] monitors and analyzes HTTP traffic
+ * [http://code.google.com/speed/page-speed/ Google Page Speed]
+ * [http://developer.yahoo.com/yslow/ YSlow]
 
 == Manual test cases  ==
 Finally, there are situations when automating some tests isn't cost effective. These [http://en.wikipedia.org/wiki/Test_case test cases] should be documented so one can run them whenever needed.
