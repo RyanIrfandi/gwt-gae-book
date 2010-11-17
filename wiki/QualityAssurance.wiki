@@ -277,33 +277,250 @@ Are these integration tests complete? We can tell from the very first test: no. 
 === Redesigning performance management for testability ===
 
 We see a common theme for datastore entities: we need basic [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD] functionality available for each of them, with some variations. Let's introduce a [http://en.wikipedia.org/wiki/Data_access_object data access object] (DAO) for each entity. Since there's a lot of common functionality, we can have entity DAOs inherit from an abstract class:
-DAO
-{{{
-..
 
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dao/DAO.java DAO]
+{{{
+public abstract class DAO<T> {
+	protected Class<T> tClass;
+	protected final ObjectDatastore datastore;
+
+	protected static final Logger logger = Logger
+			.getLogger(DAO.class.getName());
+
+	protected DAO(Class<T> tClass, final ObjectDatastore datastore) {
+		this.tClass = tClass;
+		this.datastore = datastore;
+	}
+
+	public void validateKeySameAsClass(Key key) {
+		// getCanonicalName().replaceAll("\\.", "_")
+		String name = tClass.getName();
+		if (name.lastIndexOf('.') > 0) {
+			name = name.substring(name.lastIndexOf('.') + 1);
+		}
+		if (!name.equals(key.getKind())) {
+			throw new IllegalArgumentException("Key kind " + key.getKind()
+					+ " != class " + name);
+		}
+	}
+
+	public Key getKey(T entity) {
+		return datastore.associatedKey(entity);
+	}
+
+	public Key create(T entity) {
+		// store creates a Key in the datastore and keeps it in the
+		// ObjectDatastore associated with this theater instance.
+		// Basically, every OD has a Map<Object, Key> which is used to look up
+		// the Key for every operation.
+		return datastore.store(entity);
+	}
+
+	public T read(Key key) {
+		validateKeySameAsClass(key);
+		return datastore.load(key);
+	}
+
+	public T read(String key) {
+		return read(Validation.getValidDSKey(key));
+	}
+
+	public void update(T entity, Key key) {
+		validateKeySameAsClass(key);
+		datastore.associate(entity, key);
+		datastore.update(entity);
+	}
+
+	public void delete(Key key) {
+		validateKeySameAsClass(key);
+		// workaround for
+		// http://code.google.com/p/twig-persist/issues/detail?id=47
+		T entity = datastore.load(key);
+		datastore.getService().delete(key);
+		datastore.disassociate(entity);
+	}
+
+}
 }}}
 
-TheaterDAO is as simple as
+Each entity DAO will inherit it, introducing the necessary variations or extra functionality. [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dao/TheaterDAO.java TheaterDAO] is as simple as
 {{{
+public class TheaterDAO extends DAO<Theater> {
 
+	@Inject
+	public TheaterDAO(final ObjectDatastore datastore) {
+		super(Theater.class, datastore);
+	}
+
+	@Override
+	public void delete(Key key) {
+		// TODO need to check associated entities, such as shows. Will do later
+		// when needed
+		super.delete(key);
+	}
+
+}
 }}}
 
-and here's how we test it
+and here's [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/test/org/gwtgaebook/CultureShows/server/dao/TheaterDAOTest.java how we test it]
 {{{
+public class TheaterDAOTest extends LocalDatastoreTestCase {
 
+	public static class Module extends AutomockingModule {
+		@Override
+		protected void configureTest() {
+			bind(ObjectDatastore.class).toProvider(
+					AnnotationObjectDatastoreProvider.class).in(
+					TestScope.SINGLETON);
+			bind(TheaterDAO.class);
+		}
+	}
+
+	@Inject
+	TheaterDAO theaterDAO;
+
+	Theater t1, t2;
+	Key t1Key, t2Key;
+
+	@Before
+	public void setUp() {
+		super.setUp();
+	}
+
+	@After
+	public void tearDown() {
+		super.tearDown();
+	}
+
+	@Test
+	public final void testTheaters() {
+		t1 = new Theater();
+		t1.name = UUID.randomUUID().toString();
+		t1Key = theaterDAO.create(t1);
+		t2 = theaterDAO.read(t1Key);
+		assertEquals("created theater doesn't match", t1, t2);
+
+		t1.name = t1.name + "updated";
+		theaterDAO.update(t1, t1Key);
+		t2 = theaterDAO.read(t1Key);
+		assertEquals("updated theater doesn't match", t1, t2);
+
+		theaterDAO.delete(t1Key);
+		t2 = theaterDAO.read(t1Key);
+		assertEquals("deleted theater still exists", null, t2);
+
+		t1 = new Theater();
+		t1Key = theaterDAO.create(t1);
+		theaterDAO.delete(t1Key);
+		t2 = theaterDAO.read(t1Key);
+		assertEquals("deleted theater still exists", null, t2);
+
+	}
+}
 }}}
 
 
-Here's what tests we could run for ShowDAO 
+Here's what tests we could run for [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/test/org/gwtgaebook/CultureShows/server/dao/ShowDAOTest.java ShowDAO]
 {{{
+	@Before
+	public void setUp() {
+		super.setUp();
 
+		t1 = new Theater();
+		t1.name = UUID.randomUUID().toString();
+		t1Key = theaterDAO.create(t1);
+
+		l1 = new Location();
+		l1.setName(UUID.randomUUID().toString());
+		l1Key = locationDAO.create(t1, l1);
+
+	}
+
+	@After
+	public void tearDown() {
+		theaterDAO.delete(t1Key);
+
+		super.tearDown();
+	}
+
+	@Test
+	public final void testShows() {
+
+		s1 = new Show();
+		s1.setName(UUID.randomUUID().toString());
+
+		try {
+			s1Key = showDAO.create(s1);
+			fail("show created without an associated theater");
+		} catch (IllegalArgumentException expected) {
+			assertTrue("Exception message doesn't mention " + s1.getName(),
+					expected.getMessage().indexOf(s1.getName()) >= 0);
+		}
+		s1Key = showDAO.create(t1, s1);
+
+		s2 = showDAO.read(s1Key);
+		assertEquals("created show doesn't match", s1, s2);
+
+		Date date = new Date(new java.util.Date().getTime()
+				+ Constants.oneDayMiliseconds);
+
+		Performance p = new Performance();
+		p.date = date;
+		p.showKey = KeyFactory.keyToString(s1Key);
+		p.locationKey = KeyFactory.keyToString(l1Key);
+		performanceDAO.create(t1, p);
+
+		s1.setName(s1.getName() + "updated");
+		showDAO.update(s1, s1Key);
+		s2 = showDAO.read(s1Key);
+		assertEquals("updated show doesn't match", s1, s2);
+
+		List<Performance> plist = performanceDAO.readByShow(KeyFactory
+				.keyToString(s1Key));
+		assertEquals("performance show wasn't updated", s1.getName(),
+				plist.get(0).showName);
+
+	}
+
+	@Test
+	public final void testReferentialIntegrity() {
+
+		s1 = new Show();
+		s1.setName(UUID.randomUUID().toString());
+		s1Key = showDAO.create(t1, s1);
+
+		Date date = new Date(new java.util.Date().getTime()
+				+ Constants.oneDayMiliseconds);
+
+		p1 = new Performance();
+		p1.date = date;
+		p1.showKey = KeyFactory.keyToString(s1Key);
+		p1.locationKey = KeyFactory.keyToString(l1Key);
+
+		p1Key = performanceDAO.create(t1, p1);
+
+		try {
+			showDAO.delete(s1Key);
+			fail("show with associated performances deleted");
+		} catch (IllegalArgumentException expected) {
+		}
+
+		s2 = showDAO.read(s1Key);
+		assertEquals(
+				"show was deleted although performances with refences to it exist",
+				s1, s2);
+
+		performanceDAO.delete(p1Key);
+
+		showDAO.delete(s1Key);
+		s2 = showDAO.read(s1Key);
+		assertEquals("deleted show still exists", null, s2);
+
+	}
 }}}
 
 
-and this is the implementation that passes all of these
-{{{
-
-}}}
+and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dao/ShowDAO.java this is the implementation] that passes all of these.
 
 
 ==== Exercise ====
@@ -312,7 +529,7 @@ Implement DAOs for the rest of data models, and tests for Location and Performan
 
 ==== Exercise solution ====
 
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dao/ DAOs] 
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dao/ All DAOs] 
 
 
 Let's review again [http://code.google.com/appengine/docs/java/tools/localunittesting.html AppEngine unit testing]. Then review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] before updating it to use the new DAOs. Notice how we always relate a performance to a theater. Rather than having `theaterKey` as a separate field part of Performance, let's consider a one-to-many relationship between Theater and Performances, which would be stored in the Performance key, similar to shows and locations. We should also require Theater to exist before managing performances (this will make even more sense later we learn about REST). Since all members need to have at least a theater, let's create one during sign in if needed:
@@ -374,7 +591,7 @@ Update  [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/
 
 ==== Exercise solution ====
 
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler using DAOs] 
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java ManagePerformanceHandler using DAOs]. It's so easy to read now, we don't even need to maintain the pseudocode associated to it.
 
 
 Since we have several classes to test now, let's create a test suite with all of them. We can simply run this suite when making changes to tested classes to see if we broke something. If you're using a build system, running tests should be part of the build.
