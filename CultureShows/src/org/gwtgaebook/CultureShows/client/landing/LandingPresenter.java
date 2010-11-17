@@ -144,22 +144,22 @@ public class LandingPresenter extends
 		if (clientState.userInfo.isSignedIn) {
 			// Strings.isNullOrEmpty(Cookies.getCookie(Constants.PerformanceDateCookieName))
 			if (!(null == Cookies
-					.getCookie(Constants.PerformanceDateCookieName) || Cookies
-					.getCookie(Constants.PerformanceDateCookieName).isEmpty())) {
+					.getCookie(Constants.performanceDateCookieName) || Cookies
+					.getCookie(Constants.performanceDateCookieName).isEmpty())) {
 
 				DateTimeFormat dateFormat = DateTimeFormat
 						.getFormat(Constants.defaultDateFormat);
 
 				Date date;
 				date = dateFormat.parse(Cookies
-						.getCookie(Constants.PerformanceDateCookieName));
+						.getCookie(Constants.performanceDateCookieName));
 				// TODO handle parse errors
 				createPerformance(
 						date,
-						Cookies.getCookie(Constants.PerformanceShowNameCookieName),
-						Cookies.getCookie(Constants.PerformanceLocationNameCookieName));
-				Cookies.removeCookie(Constants.PerformanceDateCookieName);
-				Cookies.removeCookie(Constants.PerformanceShowNameCookieName);
+						Cookies.getCookie(Constants.performanceShowNameCookieName),
+						Cookies.getCookie(Constants.performanceLocationNameCookieName));
+				Cookies.removeCookie(Constants.performanceDateCookieName);
+				Cookies.removeCookie(Constants.performanceShowNameCookieName);
 				// Cookies.removeCookie(Constants.PerformanceLocationNameCookieName);
 
 			}
@@ -196,9 +196,9 @@ public class LandingPresenter extends
 				p.date = date;
 				p.showName = showName;
 				p.locationName = locationName;
-				p.theaterKey = clientState.currentTheaterKey;
 
 				dispatcher.execute(new ManagePerformanceAction(
+						clientState.currentTheaterKey,
 						Constants.ManageActionType.CREATE, p),
 						new DispatchCallback<ManagePerformanceResult>() {
 							@Override
@@ -208,13 +208,11 @@ public class LandingPresenter extends
 									Window.alert(result.getErrorText());
 									return;
 								}
-								clientState.currentTheaterKey = result
-										.getPerformanceOut().theaterKey;
 								// getView().addPerformance(
 								// result.getPerformance());
 								// remember last used location
 								Cookies.setCookie(
-										Constants.PerformanceLocationNameCookieName,
+										Constants.performanceLocationNameCookieName,
 										result.getPerformanceOut().locationName);
 								getView().setDefaultValues();
 								getView().refreshPerformances();
@@ -228,11 +226,11 @@ public class LandingPresenter extends
 				// use
 				DateTimeFormat dateFormat = DateTimeFormat
 						.getFormat(Constants.defaultDateFormat);
-				Cookies.setCookie(Constants.PerformanceDateCookieName,
+				Cookies.setCookie(Constants.performanceDateCookieName,
 						dateFormat.format(date));
-				Cookies.setCookie(Constants.PerformanceShowNameCookieName,
+				Cookies.setCookie(Constants.performanceShowNameCookieName,
 						showName);
-				Cookies.setCookie(Constants.PerformanceLocationNameCookieName,
+				Cookies.setCookie(Constants.performanceLocationNameCookieName,
 						locationName);
 				// ask user to sign in instead of making the server request
 				requestSignIn();
@@ -255,9 +253,9 @@ public class LandingPresenter extends
 		p.date = date;
 		p.showName = showName;
 		p.locationName = locationName;
-		p.theaterKey = clientState.currentTheaterKey;
 
 		dispatcher.execute(new ManagePerformanceAction(
+				clientState.currentTheaterKey,
 				Constants.ManageActionType.UPDATE, p),
 				new DispatchCallback<ManagePerformanceResult>() {
 					@Override
@@ -280,9 +278,9 @@ public class LandingPresenter extends
 
 		Performance p = new Performance();
 		p.performanceKey = performanceKey;
-		p.theaterKey = clientState.currentTheaterKey;
 
 		dispatcher.execute(new ManagePerformanceAction(
+				clientState.currentTheaterKey,
 				Constants.ManageActionType.DELETE, p),
 				new DispatchCallback<ManagePerformanceResult>() {
 					@Override

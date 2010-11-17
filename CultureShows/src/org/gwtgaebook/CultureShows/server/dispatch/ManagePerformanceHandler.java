@@ -2,6 +2,12 @@ package org.gwtgaebook.CultureShows.server.dispatch;
 
 import java.util.List;
 
+import org.gwtgaebook.CultureShows.server.dao.LocationDAO;
+import org.gwtgaebook.CultureShows.server.dao.MemberDAO;
+import org.gwtgaebook.CultureShows.server.dao.PerformanceDAO;
+import org.gwtgaebook.CultureShows.server.dao.ShowDAO;
+import org.gwtgaebook.CultureShows.server.dao.TheaterDAO;
+import org.gwtgaebook.CultureShows.server.dao.TheaterMemberJoinDAO;
 import org.gwtgaebook.CultureShows.server.util.Validation;
 import org.gwtgaebook.CultureShows.shared.Constants;
 import org.gwtgaebook.CultureShows.shared.Constants.ManageActionType;
@@ -31,6 +37,19 @@ public class ManagePerformanceHandler extends
 		DispatchActionHandler<ManagePerformanceAction, ManagePerformanceResult> {
 
 	@Inject
+	MemberDAO memberDAO;
+	@Inject
+	TheaterMemberJoinDAO tmjDAO;
+	@Inject
+	TheaterDAO theaterDAO;
+	@Inject
+	ShowDAO showDAO;
+	@Inject
+	LocationDAO locationDAO;
+	@Inject
+	PerformanceDAO performanceDAO;
+
+	@Inject
 	public ManagePerformanceHandler(final Provider<UserInfo> userInfoProvider,
 			final ObjectDatastore datastore) {
 		super(userInfoProvider, datastore);
@@ -39,8 +58,9 @@ public class ManagePerformanceHandler extends
 	@Override
 	public ManagePerformanceResult execute(ManagePerformanceAction action,
 			ExecutionContext context) throws ActionException {
-
-		UserInfo userInfo = userInfoProvider.get();
+		// if show or location do not exist yet, this will create them
+		// TODO client should send show&location keys if they already exist;
+		// check if are valid, permissions
 
 		// TODO Verify that the input is valid.
 		// if (!FieldVerifier.isValidName(input)) {
@@ -50,18 +70,14 @@ public class ManagePerformanceHandler extends
 		// throw new ActionException(
 		// "Name must be at least 4 characters long");
 		// }
+
+		UserInfo userInfo = userInfoProvider.get();
+
 		Member member = null;
-		Key memberKey = null;
 
 		Theater theater = null;
 		Key theaterKey = null;
-
-		TheaterMemberJoin tmj = null;
-
-		Key showKey = null;
 		Show show = null;
-
-		Key locationKey = null;
 		Location location = null;
 
 		Key performanceKey = null;
@@ -72,180 +88,130 @@ public class ManagePerformanceHandler extends
 			return new ManagePerformanceResult("Not signed in", null);
 		}
 
-		// load member record, exception if it does not exist
-		// TODO setup a reusable, testable provider for this
-		List<Member> members = datastore.find().type(Member.class)
-				.addFilter("userId", FilterOperator.EQUAL, userInfo.userId)
-				.returnAll().now();
-		if (members.size() > 0) {
-			// TODO log error if size != 1
-			member = members.get(0);
-			memberKey = datastore.associatedKey(member);
-		} else {
-			return new ManagePerformanceResult("Member doesn't exist", null);
+		member = memberDAO.readByUserId(userInfo.userId);
+		theaterKey = Validation.getValidDSKey(action.getTheaterKey());
+
+		// TODO ActionValidator
+		if (!tmjDAO.memberHasAccessToTheater(
+				KeyFactory.keyToString(memberDAO.getKey(member)),
+				KeyFactory.keyToString(theaterKey))) {
+			return new ManagePerformanceResult(
+					"You don't have access to this theater", null);
+
 		}
 
-		// setup theater
+		theater = theaterDAO.read(theaterKey);
 
 		switch (action.getActionType()) {
 		case CREATE:
-			if (!Strings.isNullOrEmpty(action.getPerformance().theaterKey)) {
-				// theaterKey sent by client is not empty
-				theaterKey = Validation
-						.getValidDSKey(action.getPerformance().theaterKey);
-			}
-			break;
-
-		case UPDATE:
-		case DELETE:
-			theaterKey = Validation
-					.getValidDSKey(action.getPerformance().theaterKey);
-			break;
-		default:
-			return new ManagePerformanceResult("Invalid action type: "
-					+ action.getActionType(), null);
-		}
-
-		if (null != theaterKey) {
-			theater = datastore.load(theaterKey);
-			if (null == theater) {
-				theaterKey = null;
-			} else {
-				// verify member has access to theater with role allowing
-				// managing performances
-				List<TheaterMemberJoin> tmjs = datastore
-						.find()
-						.type(TheaterMemberJoin.class)
-						.addFilter("theaterKey", FilterOperator.EQUAL,
-								KeyFactory.keyToString(theaterKey))
-						.addFilter("memberKey", FilterOperator.EQUAL,
-								KeyFactory.keyToString(memberKey)).returnAll()
-						.now();
-				if (tmjs.size() > 0) {
-					// has access
-				} else {
-					return new ManagePerformanceResult(
-							"You don't have access to this theater", null);
-				}
-
-			}
-		}
-
-		switch (action.getActionType()) {
-		case CREATE:
-			// create theater instance
-			if (null == theaterKey) {
-				theater = new Theater();
-
-				theater.name = Constants.defaultTheaterName;
-				// store creates a Key in the datastore and keeps it in the
-				// ObjectDatastore associated with this theater instance.
-				// Basically,
-				// every OD has a Map<Object, Key> which is used to look up the
-				// Key
-				// for every operation.
-				theaterKey = datastore.store(theater);
-
-				// assign member to theater
-				tmj = new TheaterMemberJoin();
-				tmj.theaterKey = KeyFactory.keyToString(theaterKey);
-				tmj.memberKey = KeyFactory.keyToString(memberKey);
-				tmj.role = Role.ADMINISTRATOR;
-
-				tmj.theaterName = theater.name;
-				tmj.memberEmail = member.email;
-				tmj.memberName = member.name;
-
-				datastore.store(tmj);
-			}
-
 			performance = action.getPerformance();
+			show = createOrReadShow(theater, action.getPerformance().showName);
+			location = createOrReadLocation(theater,
+					action.getPerformance().locationName);
+
+			// set/update performance data
+			performance.date = action.getPerformance().date;
+			performance.showKey = KeyFactory.keyToString(showDAO.getKey(show));
+			performance.locationKey = KeyFactory.keyToString(locationDAO
+					.getKey(location));
+
+			performance.showName = show.getName();
+			performance.showWebsiteURL = show.websiteURL;
+			performance.locationName = location.getName();
+			performanceKey = performanceDAO.create(theater, performance);
+
 			break;
 
 		case UPDATE:
+			performanceKey = Validation
+					.getValidDSKey(action.getPerformance().performanceKey);
+
+			// check performance belongs to given theaterKey
+			if (!KeyFactory.keyToString(performanceKey.getParent()).equals(
+					KeyFactory.keyToString(theaterKey))) {
+				return new ManagePerformanceResult(
+						"Performance doesn't belong to given theater", null);
+			}
+
+			performance = performanceDAO.read(performanceKey);
+
+			show = createOrReadShow(theater, action.getPerformance().showName);
+			location = createOrReadLocation(theater,
+					action.getPerformance().locationName);
+
+			// set/update performance data
+			performance.date = action.getPerformance().date;
+			performance.showKey = KeyFactory.keyToString(showDAO.getKey(show));
+			performance.locationKey = KeyFactory.keyToString(locationDAO
+					.getKey(location));
+
+			performance.showName = show.getName();
+			performance.showWebsiteURL = show.websiteURL;
+			performance.locationName = location.getName();
+
+			performanceDAO.update(performance, performanceKey);
+
+			break;
+
 		case DELETE:
 			performanceKey = Validation
 					.getValidDSKey(action.getPerformance().performanceKey);
 
-			performance = datastore.load(performanceKey);
-
-			// check performance belongs to given theaterKey, exception if not
-			if (!performance.theaterKey.equals(KeyFactory
-					.keyToString(theaterKey))) {
+			// check performance belongs to given theaterKey
+			if (!KeyFactory.keyToString(performanceKey.getParent()).equals(
+					KeyFactory.keyToString(theaterKey))) {
 				return new ManagePerformanceResult(
-						"Performance doesn't belong to given Theater", null);
+						"Performance doesn't belong to given theater", null);
 			}
-			break;
+			performanceDAO.delete(performanceKey);
+			return new ManagePerformanceResult("", null);
 
 		default:
 			return new ManagePerformanceResult("Invalid action type: "
 					+ action.getActionType(), null);
 		}
 
-		logger.info("Current member " + KeyFactory.keyToString(memberKey));
-		logger.info("Current theater " + KeyFactory.keyToString(theaterKey));
-
-		if (action.getActionType() == ManageActionType.DELETE) {
-			datastore.delete(performance);
-			return new ManagePerformanceResult("", null);
-		}
-
-		// setup show
-		// does show already exist?
-		show = new Show();
-		show.setName(action.getPerformance().showName);
-
-		List<Show> shows = datastore.find().type(Show.class).ancestor(theater)
-				.addFilter("nameQuery", FilterOperator.EQUAL, show.nameQuery)
-				.returnAll().now();
-		if (shows.size() > 0) {
-			// TODO log error if size != 1
-			show = shows.get(0);
-			showKey = datastore.associatedKey(show);
-		} else {
-			// store show belonging to a theater
-			showKey = datastore.store().instance(show).parent(theater).now();
-		}
-		logger.info("Current show " + KeyFactory.keyToString(showKey));
-
-		// setup location
-		// does location already exist?
-		location = new Location();
-		location.setName(action.getPerformance().locationName);
-
-		List<Location> locations = datastore
-				.find()
-				.type(Location.class)
-				.ancestor(theater)
-				.addFilter("nameQuery", FilterOperator.EQUAL,
-						location.nameQuery).returnAll().now();
-		if (locations.size() > 0) {
-			// TODO log error if size != 1
-			location = locations.get(0);
-			locationKey = datastore.associatedKey(location);
-		} else {
-			// store show belonging to a theater
-			locationKey = datastore.store().instance(location).parent(theater)
-					.now();
-		}
-		logger.info("Current location " + KeyFactory.keyToString(locationKey));
-
-		// set/update performance data
-		performance.date = action.getPerformance().date;
-		performance.showKey = KeyFactory.keyToString(showKey);
-		performance.locationKey = KeyFactory.keyToString(locationKey);
-
-		performance.theaterKey = KeyFactory.keyToString(theaterKey);
-		performance.showName = show.getName();
-		performance.showWebsiteURL = show.websiteURL;
-		performance.locationName = location.getName();
-		datastore.storeOrUpdate(performance);
-
-		performanceKey = datastore.associatedKey(performance);
 		performance.performanceKey = KeyFactory.keyToString(performanceKey);
-
-		// TODO testability, break in smaller methods
 
 		return new ManagePerformanceResult("", performance);
 	}
+
+	Show createOrReadShow(Theater theater, String showName) {
+		// setup show
+		// does show already exist?
+		Show show = new Show();
+		show.setName(showName);
+
+		List<Show> shows = showDAO.readByName(theater, showName);
+		if (shows.size() > 0) {
+			show = shows.get(0);
+		} else {
+			showDAO.create(theater, show);
+		}
+		logger.info("Current show "
+				+ KeyFactory.keyToString(showDAO.getKey(show)));
+
+		return show;
+	}
+
+	Location createOrReadLocation(Theater theater, String locationName) {
+		// setup location
+		// does location already exist?
+		Location location = new Location();
+		location.setName(locationName);
+
+		List<Location> locations = locationDAO
+				.readByName(theater, locationName);
+		if (locations.size() > 0) {
+			location = locations.get(0);
+		} else {
+			locationDAO.create(theater, location);
+		}
+
+		logger.info("Current location "
+				+ KeyFactory.keyToString(locationDAO.getKey(location)));
+
+		return location;
+	}
+
 }

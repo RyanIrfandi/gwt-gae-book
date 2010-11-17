@@ -1,7 +1,5 @@
 package org.gwtgaebook.CultureShows.shared.dispatch;
 
-import java.util.Date;
-
 import org.gwtgaebook.CultureShows.shared.Constants;
 import org.gwtgaebook.CultureShows.shared.model.Performance;
 
@@ -12,9 +10,12 @@ import com.gwtplatform.annotation.Out;
 @GenDispatch(isSecure = false)
 public class ManagePerformance {
 	@In(1)
-	Constants.ManageActionType actionType;
+	String theaterKey;
 
 	@In(2)
+	Constants.ManageActionType actionType;
+
+	@In(3)
 	Performance performance;
 
 	@Out(1)
