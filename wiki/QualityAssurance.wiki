@@ -94,7 +94,6 @@ I might be old school, but I like doing pseudocode first for complex functionali
 
 = Code =
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/morning_tea_4.jpg" border="0"  align="left" />
 
 == Static code analysis tools ==
 [http://en.wikipedia.org/wiki/Static_code_analysis Static code analysis] tools scan code and report various possible issues, from code formatting style to bugs. Go through [http://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis#Java the list of Java tools] and see what would benefit you most. Setup the tools to run as part of the build process, after every commit (you are using [http://en.wikipedia.org/wiki/Continuous_integration continuous integration], right?).
@@ -123,6 +122,8 @@ Effective [http://en.wikipedia.org/wiki/Code_review code reviews] are one of the
 Here are more details about what [http://en.wikipedia.org/wiki/Software_testing testing] can be performed. We'll focus only on a few of these.
 
 [http://en.wikipedia.org/wiki/Software_peer_review Peer reviews] should again be used in the areas below to discover where testing could be improved.
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/morning_tea_4.jpg" border="0"  align="left" />
 
 
 == Unit testing ==
