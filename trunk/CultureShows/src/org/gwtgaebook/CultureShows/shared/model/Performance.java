@@ -27,8 +27,6 @@ public class Performance implements Serializable {
 	public String locationKey;
 
 	// denormalized
-	@Index
-	public String theaterKey;
 	public String showName;
 	public String showWebsiteURL;
 	public String locationName;

@@ -1,24 +1,40 @@
 package org.gwtgaebook.CultureShows.server.dispatch;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import com.google.inject.*;
+import org.gwtgaebook.CultureShows.server.dao.MemberDAO;
+import org.gwtgaebook.CultureShows.server.dao.TheaterDAO;
+import org.gwtgaebook.CultureShows.server.dao.TheaterMemberJoinDAO;
+import org.gwtgaebook.CultureShows.shared.Constants;
+import org.gwtgaebook.CultureShows.shared.dispatch.GetUserAction;
+import org.gwtgaebook.CultureShows.shared.dispatch.GetUserResult;
+import org.gwtgaebook.CultureShows.shared.model.Member;
+import org.gwtgaebook.CultureShows.shared.model.Theater;
+import org.gwtgaebook.CultureShows.shared.model.TheaterMemberJoin;
+import org.gwtgaebook.CultureShows.shared.model.TheaterMemberJoin.Role;
+import org.gwtgaebook.CultureShows.shared.model.UserInfo;
+
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.api.users.*;
-
-import com.gwtplatform.dispatch.server.*;
-import com.gwtplatform.dispatch.shared.*;
-import com.google.code.twig.*;
-
-import org.gwtgaebook.CultureShows.server.UserInfoProvider;
-import org.gwtgaebook.CultureShows.shared.Constants;
-import org.gwtgaebook.CultureShows.shared.dispatch.*;
-import org.gwtgaebook.CultureShows.shared.model.*;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+import com.google.code.twig.ObjectDatastore;
+import com.google.inject.Inject;
+import com.google.inject.Provider;
+import com.gwtplatform.dispatch.server.ExecutionContext;
+import com.gwtplatform.dispatch.shared.ActionException;
 
 public class GetUserHandler extends
 		DispatchActionHandler<GetUserAction, GetUserResult> {
+
+	@Inject
+	MemberDAO memberDAO;
+	@Inject
+	TheaterDAO theaterDAO;
+	@Inject
+	TheaterMemberJoinDAO tmjDAO;
 
 	@Inject
 	public GetUserHandler(final Provider<UserInfo> userInfoProvider,
@@ -45,35 +61,40 @@ public class GetUserHandler extends
 			Member member = null;
 			Key memberKey = null;
 
-			List<Member> members = datastore.find().type(Member.class)
-					.addFilter("userId", FilterOperator.EQUAL, userInfo.userId)
-					.returnAll().now();
-			if (members.size() > 0) {
-				// TODO log error if size != 1
-				member = members.get(0);
-				memberKey = datastore.associatedKey(member);
+			member = memberDAO.readByUserId(userInfo.userId);
 
-				// get theaters member has access to
-				List<TheaterMemberJoin> tmjs = datastore
-						.find()
-						.type(TheaterMemberJoin.class)
-						.addFilter("memberKey", FilterOperator.EQUAL,
-								KeyFactory.keyToString(memberKey)).returnAll()
-						.now();
-				for (int i = 0; i < tmjs.size(); i++) {
-					Theater t = new Theater();
-					t.theaterKey = tmjs.get(i).theaterKey;
-					t.name = tmjs.get(i).theaterName;
-					theaters.add(t);
-				}
-
-			} else {
-				// store member
+			if (null == member) {
+				// first signin, create new member
 				member = new Member();
 				member.userId = userInfo.userId;
 				member.email = userInfo.email;
 				member.signUpDate = new Date();
-				datastore.store(member);
+				memberDAO.create(member);
+
+			}
+			memberKey = memberDAO.getKey(member);
+
+			theaters = tmjDAO.readbyMember(KeyFactory.keyToString(memberKey));
+
+			if (0 == theaters.size()) {
+				// create a theater and give member access to it
+				Theater theater = new Theater();
+				theater.name = Constants.defaultTheaterName;
+				Key theaterKey = theaterDAO.create(theater);
+				theater.theaterKey = KeyFactory.keyToString(theaterKey);
+				theaters.add(theater);
+
+				// assign member to theater
+				TheaterMemberJoin tmj = new TheaterMemberJoin();
+				tmj.theaterKey = KeyFactory.keyToString(theaterKey);
+				tmj.memberKey = KeyFactory.keyToString(memberKey);
+				tmj.role = Role.ADMINISTRATOR;
+
+				tmj.theaterName = theater.name;
+				tmj.memberEmail = member.email;
+				tmj.memberName = member.name;
+
+				tmjDAO.create(tmj);
 			}
 
 		} else {

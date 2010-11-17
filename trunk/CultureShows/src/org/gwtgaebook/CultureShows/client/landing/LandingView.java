@@ -160,9 +160,9 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 		date.setValue(null);
 		show.setValue("");
 		if (null != Cookies
-				.getCookie(Constants.PerformanceLocationNameCookieName)) {
+				.getCookie(Constants.performanceLocationNameCookieName)) {
 			location.setValue(Cookies
-					.getCookie(Constants.PerformanceLocationNameCookieName));
+					.getCookie(Constants.performanceLocationNameCookieName));
 		} else {
 			location.setValue("");
 		}

@@ -3,9 +3,9 @@ package org.gwtgaebook.CultureShows.shared;
 public class Constants {
 	public static final String securityCookieName = "security";
 	public static final String defaultDateFormat = "yyyy-MM-dd hh:mm a";
-	public static final String PerformanceDateCookieName = "performanceDate";
-	public static final String PerformanceShowNameCookieName = "performanceShow";
-	public static final String PerformanceLocationNameCookieName = "performanceLocation";
+	public static final String performanceDateCookieName = "performanceDate";
+	public static final String performanceShowNameCookieName = "performanceShow";
+	public static final String performanceLocationNameCookieName = "performanceLocation";
 
 	public static final String anonymousUserPrefix = "anonymous-";
 	public static final String defaultTheaterName = "My Theater";
@@ -17,4 +17,5 @@ public class Constants {
 		CREATE, READ, UPDATE, DELETE
 	};
 
+	public static long oneDayMiliseconds = 24 * 60 * 60 * 1000;
 }
