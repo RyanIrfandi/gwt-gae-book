@@ -32,9 +32,6 @@ public class TheaterDAOTest extends LocalDatastoreTestCase {
 		}
 	}
 
-	// @Inject
-	// Provider<TheaterDAO> theaterDAOProvider;
-
 	@Inject
 	TheaterDAO theaterDAO;
 
@@ -44,7 +41,6 @@ public class TheaterDAOTest extends LocalDatastoreTestCase {
 	@Before
 	public void setUp() {
 		super.setUp();
-		// theaterDAO = theaterDAOProvider.get();
 	}
 
 	@After

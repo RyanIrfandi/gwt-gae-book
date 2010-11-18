@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.google.code.twig.annotation.Index;
 import com.google.code.twig.annotation.Store;
+import com.google.gson.annotations.Expose;
 import com.google.gwt.view.client.ProvidesKey;
 
 // needs to be Serializable to be sent over GWT-RPC as part of action/result
@@ -20,6 +21,7 @@ public class Performance implements Serializable {
 	public String performanceKey;
 
 	@Index
+	@Expose
 	public Date date;
 	@Index
 	public String showKey;
@@ -30,4 +32,13 @@ public class Performance implements Serializable {
 	public String showName;
 	public String showWebsiteURL;
 	public String locationName;
+
+	@Store(false)
+	@Expose
+	public transient Show show;
+
+	@Store(false)
+	@Expose
+	public transient Location location;
+
 }

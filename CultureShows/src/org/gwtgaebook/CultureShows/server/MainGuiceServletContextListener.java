@@ -9,6 +9,6 @@ public class MainGuiceServletContextListener extends
 	@Override
 	protected Injector getInjector() {
 		return Guice.createInjector(new MainHandlerModule(),
-				new DispatchServletModule());
+				new DispatchServletModule(), new APIModule());
 	}
 }

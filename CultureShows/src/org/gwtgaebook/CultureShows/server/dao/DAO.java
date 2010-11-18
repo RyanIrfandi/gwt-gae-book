@@ -42,10 +42,8 @@ public abstract class DAO<T> {
 	public Key create(T entity) {
 		// store creates a Key in the datastore and keeps it in the
 		// ObjectDatastore associated with this theater instance.
-		// Basically,
-		// every OD has a Map<Object, Key> which is used to look up the
-		// Key
-		// for every operation.
+		// Basically, every OD has a Map<Object, Key> which is used to look up
+		// the Key for every operation.
 		return datastore.store(entity);
 	}
 
