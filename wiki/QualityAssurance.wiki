@@ -225,8 +225,7 @@ Here are the [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureS
 
 and [http://code.google.com/p/gwt-gae-book/source/diff?spec=svn591&r=591&format=side&path=/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java&old_path=/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java&old=584 the slightly refactored code].
 
-We'll come back to !LandingPresenter in a later chapter. As with real projects, we are balancing the investment in testing with the rest of the project needs, like getting customers and becoming profitable.
-
+We'll come back to !LandingPresenter in a later chapter. As with real projects, we are balancing the investment in testing with the rest of the project needs, like getting customers and becoming profitable. Therefore, we won't set a specific [http://en.wikipedia.org/wiki/Code_coverage code coverage] target, but consider [http://googletesting.blogspot.com/2010/07/code-coverage-goal-80-and-no-less.html what makes sense] on a case by case basis.
 
 
 *Additional resources*
@@ -238,6 +237,7 @@ We'll come back to !LandingPresenter in a later chapter. As with real projects, 
  * [http://en.wikipedia.org/wiki/Test-driven_development Test-driven development]
  * http://misko.hevery.com/presentations/
  * [http://code.google.com/p/mockito/ Mockito mocking framework]
+ * [http://bit.ly/thewayoftestivus The Way of Testivus]
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/quijote2.jpg" border="0"  />
 
