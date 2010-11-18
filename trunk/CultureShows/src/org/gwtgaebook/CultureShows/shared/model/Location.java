@@ -1,19 +1,25 @@
 package org.gwtgaebook.CultureShows.shared.model;
 
 import com.google.code.twig.annotation.Index;
+import com.google.gson.annotations.Expose;
 
 public class Location {
+	@Expose
 	private String name;
 
 	@Index
 	public String nameQuery;
 	// used in queries. It's always trim and lowercase
 
+	@Expose
 	public String websiteURL;
+	@Expose
 	public String phone;
+	@Expose
 	public String contactInfo;
 
 	// http://microformats.org/wiki/adr
+	@Expose
 	public String streetAddress;
 	public String extendedAddress;
 	@Index

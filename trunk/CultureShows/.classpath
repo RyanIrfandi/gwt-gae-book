@@ -19,6 +19,12 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/guava-r07.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-testing.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-stubs.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.restlet.ext.servlet.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.restlet.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/taoki-0.3.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.restlet.ext.json.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gson-1.5.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/json.jar"/>
 	<classpathentry kind="src" path=".apt_generated">
 		<attributes>
 			<attribute name="optional" value="true"/>
