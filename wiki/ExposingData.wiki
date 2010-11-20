@@ -184,7 +184,7 @@ On a [http://cultureshows.appspot.com/yql/performances.html test website], we ca
 
 	<script type='text/javascript'>
 	var theaterKey = 'agxjdWx0dXJlc2hvd3NyDwsSB1RoZWF0ZXIY8asBDA';
-	var yqlUrl = 'http://query.yahooapis.com/v1/public/yql?q=USE%20%22http%3A%2F%2Fcultureshows.appspot.com%2Fyql%2Fperformances.xml%22%3B%0ASELECT%20*%20FROM%20performances%20WHERE%20theaterKey%3D%22' + theaterKey + '%22%3B%0A&format=json&_maxage=3600';
+	var yqlUrl = 'http://query.yahooapis.com/v1/public/yql?q=...&format=json&_maxage=3600';
 
 	$.getJSON(yqlUrl, function(data) {
 	  // loop through the items
@@ -219,9 +219,6 @@ Additional resources
 
 
 
-
-= Summary =
-To recap, we are done planning and implementing a GWT/GAE application for managing performances schedule for a theater, with reasonable quality. Theater owners are authenticating with !OpenID and are scheduling performances, which are displayed on their own websites.
 
 
 
