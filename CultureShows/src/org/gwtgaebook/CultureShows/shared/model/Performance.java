@@ -18,13 +18,16 @@ public class Performance implements Serializable {
 	};
 
 	@Store(false)
+	@Expose
 	public String performanceKey;
 
 	@Index
 	@Expose
 	public Date date;
+
 	@Index
 	public String showKey;
+
 	@Index
 	public String locationKey;
 

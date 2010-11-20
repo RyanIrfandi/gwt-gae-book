@@ -1,20 +1,18 @@
 package org.gwtgaebook.CultureShows.server.dispatch;
 
-import java.util.*;
-
-import com.google.inject.*;
-
-import com.gwtplatform.dispatch.server.*;
-import com.gwtplatform.dispatch.shared.*;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.repackaged.com.google.common.base.Strings;
-import com.google.code.twig.*;
+import java.util.List;
 
 import org.gwtgaebook.CultureShows.server.dao.PerformanceDAO;
-import org.gwtgaebook.CultureShows.shared.dispatch.*;
-import org.gwtgaebook.CultureShows.shared.model.*;
+import org.gwtgaebook.CultureShows.shared.dispatch.GetPerformancesAction;
+import org.gwtgaebook.CultureShows.shared.dispatch.GetPerformancesResult;
+import org.gwtgaebook.CultureShows.shared.model.Performance;
+import org.gwtgaebook.CultureShows.shared.model.UserInfo;
+
+import com.google.code.twig.ObjectDatastore;
+import com.google.inject.Inject;
+import com.google.inject.Provider;
+import com.gwtplatform.dispatch.server.ExecutionContext;
+import com.gwtplatform.dispatch.shared.ActionException;
 
 public class GetPerformancesHandler extends
 		DispatchActionHandler<GetPerformancesAction, GetPerformancesResult> {
@@ -36,14 +34,6 @@ public class GetPerformancesHandler extends
 
 		List<Performance> performances = performanceDAO.readByTheater(action
 				.getTheaterKey());
-
-		// add key to model, so it can be sent to client
-		Performance p;
-		for (int i = 0; i < performances.size(); i++) {
-			p = performances.get(i);
-			p.performanceKey = KeyFactory.keyToString(performanceDAO.getKey(p));
-			performances.set(i, p);
-		}
 
 		return new GetPerformancesResult("", performances);
 	}

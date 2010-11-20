@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+  <meta>
+    <sampleQuery>select * from {table} where theaterKey='abc';</sampleQuery>
+  </meta>
+  <bindings>
+    <select itemPath="" produces="JSON">
+      <urls>
+        <url></url>
+      </urls>
+      <inputs>
+        <key id='theaterKey' type='xs:string' paramType='variable' required='true' />
+      </inputs>
+
+      <execute><![CDATA[
+y.use('http://cultureshows.appspot.com/yql/performances.xml', 'performances');
+y.use('http://cultureshows.appspot.com/yql/shows.xml', 'shows');
+var q;
+q = 'select * from performances where theaterKey=@theaterKey';
+var performances = y.query(q, {theaterKey: theaterKey.replace("'","\'")}).results.performances;
+
+
+for each (var p in performances) {
+	p.showName = 'a';
+}
+var respdata = <performances/>;
+
+for each (var p in performances) {
+respdata.node += <performance>
+	<date>{p.date}</date>
+</performance>;
+}
+
+//q = 'select * from shows where theaterKey=@theaterKey';
+//var shows = y.query(q, {theaterKey: theaterKey.replace("'","\'")}).results.results;
+
+
+//response.maxAge = 3600; //cache in seconds
+response.object = performances;
+      ]]></execute>
+
+    </select>
+  </bindings>
+</table>

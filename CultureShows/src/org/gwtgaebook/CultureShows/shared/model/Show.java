@@ -4,6 +4,10 @@ import com.google.code.twig.annotation.*;
 import com.google.gson.annotations.Expose;
 
 public class Show {
+	@Store(false)
+	@Expose
+	public String showKey;
+
 	@Expose
 	private String name;
 
@@ -13,8 +17,10 @@ public class Show {
 
 	@Expose
 	public String websiteURL;
+
 	@Expose
 	public int minuteDuration;
+
 	@Expose
 	public String posterURL;
 
