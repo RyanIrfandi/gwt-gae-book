@@ -14,6 +14,8 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 public class ShowDAO extends DAO<Show> {
+	@Inject
+	Provider<TheaterDAO> theaterDAOProvider;
 
 	@Inject
 	Provider<PerformanceDAO> performanceDAOProvider;
@@ -37,7 +39,25 @@ public class ShowDAO extends DAO<Show> {
 		return datastore.store().instance(show).parent(theater).now();
 	}
 
-	public List<Show> readAll(Theater theater) {
+	public List<Show> readByTheater(String theaterKey) {
+		TheaterDAO theaterDAO = theaterDAOProvider.get();
+		Theater theater = theaterDAO.read(theaterKey);
+
+		List<Show> shows = datastore.find().type(Show.class).ancestor(theater)
+				.returnAll().now();
+
+		// set key
+		Show s;
+		for (int i = 0; i < shows.size(); i++) {
+			s = shows.get(i);
+			s.showKey = KeyFactory.keyToString(getKey(s));
+			shows.set(i, s);
+		}
+
+		return shows;
+	}
+
+	public List<Show> readByTheater(Theater theater) {
 		List<Show> shows = datastore.find().type(Show.class).ancestor(theater)
 				.returnAll().now();
 
@@ -58,8 +78,8 @@ public class ShowDAO extends DAO<Show> {
 
 		// update denormalized data in future performances
 		PerformanceDAO performanceDAO = performanceDAOProvider.get();
-		List<Performance> performances = performanceDAO
-				.readByShow(KeyFactory.keyToString(key));
+		List<Performance> performances = performanceDAO.readByShow(KeyFactory
+				.keyToString(key));
 		for (Performance p : performances) {
 			p.showName = show.getName();
 			performanceDAO.update(p, performanceDAO.getKey(p));
@@ -69,8 +89,8 @@ public class ShowDAO extends DAO<Show> {
 	public void delete(Key key) {
 		// allowed only if there are no future associated performances
 		PerformanceDAO performanceDAO = performanceDAOProvider.get();
-		List<Performance> performances = performanceDAO
-				.readByShow(KeyFactory.keyToString(key));
+		List<Performance> performances = performanceDAO.readByShow(KeyFactory
+				.keyToString(key));
 
 		if (0 < performances.size()) {
 			throw new IllegalArgumentException(

@@ -4,21 +4,12 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.gwtgaebook.CultureShows.server.dao.LocationDAOTest;
-import org.gwtgaebook.CultureShows.server.dao.PerformanceDAO;
 import org.gwtgaebook.CultureShows.server.dao.PerformanceDAOTest;
 import org.gwtgaebook.CultureShows.server.dao.ShowDAOTest;
 import org.gwtgaebook.CultureShows.server.dao.TheaterDAOTest;
 import org.gwtgaebook.CultureShows.server.util.ValidationTest;
-import org.gwtgaebook.CultureShows.shared.model.Location;
-import org.gwtgaebook.CultureShows.shared.model.Member;
-import org.gwtgaebook.CultureShows.shared.model.Performance;
-import org.gwtgaebook.CultureShows.shared.model.Show;
-import org.gwtgaebook.CultureShows.shared.model.Theater;
-import org.gwtgaebook.CultureShows.shared.model.TheaterMemberJoin;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-
-import com.google.code.twig.configuration.DefaultConfiguration;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ ValidationTest.class, TheaterDAOTest.class,

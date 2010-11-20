@@ -17,6 +17,7 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/google-collections-1.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/twig-persist-2.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/guava-r07.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/mockito-all-1.8.5.jar"/>
 	<classpathentry kind="src" path=".apt_generated">
 		<attributes>
 			<attribute name="optional" value="true"/>

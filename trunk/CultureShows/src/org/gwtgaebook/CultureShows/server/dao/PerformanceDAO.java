@@ -72,6 +72,14 @@ public class PerformanceDAO extends DAO<Performance> {
 				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, date)
 				.addSort("date").returnAll().now();
 
+		// add key to model, so it can be sent to client
+		Performance p;
+		for (int i = 0; i < performances.size(); i++) {
+			p = performances.get(i);
+			p.performanceKey = KeyFactory.keyToString(getKey(p));
+			performances.set(i, p);
+		}
+
 		return performances;
 	}
 

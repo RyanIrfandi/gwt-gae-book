@@ -1,6 +1,5 @@
 package org.gwtgaebook.CultureShows.server.api;
 
-import java.lang.reflect.Modifier;
 import java.util.List;
 
 import org.gwtgaebook.CultureShows.server.dao.LocationDAO;
@@ -13,10 +12,9 @@ import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 import com.google.inject.Inject;
 
-//ServerResource
 public class PerformancesResource extends ServerResource {
 
 	@Inject
@@ -25,6 +23,13 @@ public class PerformancesResource extends ServerResource {
 	ShowDAO showDAO;
 	@Inject
 	LocationDAO locationDAO;
+	@Inject
+	Gson gson;
+
+	public class PerformancesGET {
+		@Expose
+		List<Performance> performances;
+	}
 
 	@Get("json")
 	public Representation get() {
@@ -39,14 +44,11 @@ public class PerformancesResource extends ServerResource {
 			performances.set(i, p);
 		}
 
-		// TODO inject
-		Gson gson = new GsonBuilder()
-				.excludeFieldsWithModifiers(Modifier.STATIC)
-				.excludeFieldsWithoutExposeAnnotation().create();
+		PerformancesGET get = new PerformancesGET();
+		get.performances = performances;
 		JsonRepresentation representation = new JsonRepresentation(
-				gson.toJson(performances));
+				gson.toJson(get));
 
 		return representation;
 	}
-
 }

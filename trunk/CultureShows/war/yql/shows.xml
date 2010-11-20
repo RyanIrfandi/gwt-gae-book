@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+  <meta>
+    <sampleQuery>select * from {table} where theaterKey='abc';</sampleQuery>
+  </meta>
+  <bindings>
+    <select itemPath="json.shows" produces="JSON">
+      <urls>
+        <url>http://cultureshows.appspot.com/api/v1/theaters/{theaterKey}/shows</url>
+      </urls>
+      <inputs>
+        <key id='theaterKey' type='xs:string' paramType='path' required='true' />
+      </inputs>
+    </select>
+  </bindings>
+</table>
