@@ -14,13 +14,60 @@ Note the introduction of Performances and Shows navigation at the top.
 
 = Adding a new package =
 
+
+*Pre-requisites*
+ * [http://code.google.com/p/gwt-platform/wiki/GettingStarted?tm=6#Blocking_some_presenters GWTP gatekeepers]
+
+
 We'll basically duplicate [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/  the landing package] structure. Here are the steps:
- * add a new "shows" [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/NameTokens.java name token]
  * create a `shows` package, with the same files as in `landing`, and change the class names
+ * add a new "shows" [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/NameTokens.java name token]
+ * [update HeaderView] to add Performances and Shows navigation
+{{{
+		<g:InlineHyperlink ui:field="performances" addStyleNames="{style.anchor}" visible="false"
+			targetHistoryToken="{nameTokens.getLanding}">>Performances</g:InlineHyperlink>
+		<g:InlineHyperlink ui:field="shows" addStyleNames="{style.anchor}" visible="false"
+			targetHistoryToken="{nameTokens.getShows}">>Shows</g:InlineHyperlink>
+}}}
 
 
+Since accessing the Shows view requires to be signed in, we can also add a [gatekeeper]:
+{{{
+public class SignedInGatekeeper implements Gatekeeper {
+
+	@Inject
+	private ClientState clientState;
+
+	@Override
+	public boolean canReveal() {
+
+		if (null != clientState.userInfo) {
+			if (clientState.userInfo.isSignedIn) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+}
+}}}
 
 
+As shows view isn't needed on the very first access of the landing page, we'll also [http://code.google.com/p/google-web-toolkit/wiki/CodeSplitting split its code] into separate files, to be loaded by GWT on demand, with `@ProxyCodeSplit` annotation:
+{{{
+public class ShowPresenter extends
+		Presenter<ShowPresenter.MyView, ShowPresenter.MyProxy> implements
+		ShowUiHandlers {
+
+	@ProxyCodeSplit
+	@NameToken(NameTokens.shows)
+	@UseGatekeeper(SignedInGatekeeper.class)
+	public interface MyProxy extends ProxyPlace<ShowPresenter> {
+	}
+
+	...
+}
+}}}
 
 
 
