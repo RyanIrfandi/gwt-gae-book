@@ -72,6 +72,15 @@ public class ShowPresenter extends
 }
 }}}
 
+This requires using an [http://code.google.com/p/google-gin/source/browse/trunk/src/com/google/gwt/inject/client/AsyncProvider.java AsyncProvider] for `ShowPresenter` in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/MainGinjector.java MainGinjector]
+{{{
+AsyncProvider<ShowPresenter> getShowPresenter();
+}}}
+
+
+
+action validator
+
 
 
 <wiki:comment>NAV_START</wiki:comment>
