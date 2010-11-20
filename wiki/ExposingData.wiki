@@ -3,6 +3,16 @@
 <wiki:toc max_depth="2" />
 
 
+*Pre-requisites*
+[http://code.google.com/p/google-gson/ Converting Java Objects into JSON representation]
+[http://www.restlet.org/ Restlet, a RESTful web framework for Java]
+[http://www.2048bits.com/2008/06/creating-simple-web-service-with.html Creating a simple web service with Restlet]
+[http://code.google.com/p/taoki Taoki, small library to use Restlet with Guice] and [http://code.google.com/p/taoki/wiki/Configuration user guide]
+
+
+
+
+
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
 <img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />
