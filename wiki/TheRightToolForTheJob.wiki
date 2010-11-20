@@ -181,7 +181,7 @@ GWT has many 3rd party libraries, covering areas such as widgets, validation, lo
 = Appendix: GWT apps at Google =
 http://adwords.google.com/
 
-http://www.google.com/adsense [http://www.youtube.com/watch?v=WMjra3sIhDM video]
+http://www.google.com/adsense ([http://www.youtube.com/watch?v=WMjra3sIhDM video])
 
 http://www.google.com/profiles
 
