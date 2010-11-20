@@ -1,6 +1,29 @@
 #summary Managing shows
 
+So far, we have a reasonable quality web app which can be fully manage a theater performances schedule. Next, we'll implement managing shows.
+
 <wiki:toc max_depth="2" />
+
+= Mockup =
+
+Here's how managing shows UI could look
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/shows.png" border="2" style="border: 2;" />
+
+Note the introduction of Performances and Shows navigation at the top.
+
+= Adding a new package =
+
+We'll basically duplicate [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/  the landing package] structure. Here are the steps:
+ * add a new "shows" [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/NameTokens.java name token]
+ * create a `shows` package, with the same files as in `landing`, and change the class names
+
+
+
+
+
+
+
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
 <img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />
