@@ -7,6 +7,7 @@
 
 Displaying performances on theater websites
 
+jsonp, caching... YQL
 
 [http://developer.yahoo.net/forum/?showtopic=2506&hl=join&endsession=1 YQL doesn't support inner joins]
 
