@@ -48,7 +48,6 @@ To get you started, I've setup  [http://gwt-gae-book.googlecode.com/svn/trunk/Cu
  * [http://code.google.com/p/gwt-platform/ gwt-platform]
  * [http://code.google.com/p/gwt-dnd/ gwt-dnd]
  * [http://code.google.com/p/gwtquery/ gwtquery]
- * [http://code.google.com/p/google-gson/ google-gson]
  * [http://code.google.com/p/twig-persist/ twig-persist]
  * [http://mockito.org/ mockito]
 
