@@ -8,6 +8,7 @@ Here are some sections I'd like to add, as time allows:
   * microformats
  * Working with REST APIs from GWT 
  * Managing locations (with REST APIs)
+ * Minimizing code duplication for entities CRUD
  * Managing theaters and preferences
 
  * [LandingEnhancements Landing page enhancements]
