@@ -141,23 +141,47 @@
   * [ManagingPerformances#Client_presenter Client presenter] <br/>
 
 === [QualityAssurance Quality assurance] ===
- * [QualityAssurance#Introduction Introduction] <br/>
- * [QualityAssurance#Client_unit_testing Client unit testing] <br/>
- * [QualityAssurance#UI_testing UI testing] <br/>
- * [QualityAssurance#Server_testing Server testing] <br/>
- * [QualityAssurance#Performance_testing Performance testing] <br/>
- * [QualityAssurance#More_ways_to_increase_software_quality More ways to increase software quality] <br/>
+ * [QualityAssurance#Pre-requisites Pre-requisites] <br/>
+ * [QualityAssurance#When_should_QA_start? When should QA start?] <br/>
+ * [QualityAssurance#Personae Personae] <br/>
+ * [QualityAssurance#User_stories User stories] <br/>
+ * [QualityAssurance#Metrics_and_KPIs Metrics and KPIs] <br/>
+ * [QualityAssurance#User_interface User interface] <br/>
+ * [QualityAssurance#Functional_specifications Functional specifications] <br/>
+ * [QualityAssurance#Design/technical_specifications Design/technical specifications] <br/>
+ * [QualityAssurance#Code Code] <br/>
+  * [QualityAssurance#Static_code_analysis_tools Static code analysis tools] <br/>
+  * [QualityAssurance#Code_reviews Code reviews] <br/>
+ * [QualityAssurance#Testing Testing] <br/>
+  * [QualityAssurance#Unit_testing Unit testing] <br/>
+   * [QualityAssurance#Exercise Exercise] <br/>
+   * [QualityAssurance#Exercise_solution Exercise solution] <br/>
+  * [QualityAssurance#Integration_testing Integration testing] <br/>
+   * [QualityAssurance#Exercise Exercise] <br/>
+   * [QualityAssurance#Exercise_solution Exercise solution] <br/>
+   * [QualityAssurance#Redesigning_performance_management_for_testability Redesigning performance management for testability] <br/>
+    * [QualityAssurance#Exercise Exercise] <br/>
+    * [QualityAssurance#Exercise_solution Exercise solution] <br/>
+    * [QualityAssurance#Exercise Exercise] <br/>
+    * [QualityAssurance#Exercise_solution Exercise solution] <br/>
+  * [QualityAssurance#Web_services_testing Web services testing] <br/>
+  * [QualityAssurance#UI_testing UI testing] <br/>
+  * [QualityAssurance#Performance_testing Performance testing] <br/>
+  * [QualityAssurance#Manual_test_cases Manual test cases] <br/>
+  * [QualityAssurance#Scenario_testing Scenario testing] <br/>
+  * [QualityAssurance#Additional_resources Additional resources] <br/>
+ * [QualityAssurance#Other_areas Other areas] <br/>
 
-=== [LandingEnhancements Landing page enhancements] ===
- * [LandingEnhancements#Internationalization Internationalization] <br/>
- * [LandingEnhancements#Data_validation Data validation] <br/>
- * [LandingEnhancements#Form_fields_auto-completion Form fields auto-completion] <br/>
- * [LandingEnhancements#Remembering_last_used_location Remembering last used location] <br/>
- * [LandingEnhancements#Giving_users_feedback_on_action_results Giving users feedback on action results] <br/>
+=== [ManagingShows Managing shows] ===
+
+=== [ExposingData Exposing read-only data to 3rd parties] ===
+
+=== [UsingExposedData Using exposed data on 3rd party websites] ===
 
 === [AdditionalResources Additional  resources] ===
  * [AdditionalResources#Discussion_groups Discussion groups] <br/>
  * [AdditionalResources#Blogs Blogs] <br/>
+ * [AdditionalResources#Open_source_applications_using_GWT/GAE Open source applications using GWT/GAE] <br/>
  * [AdditionalResources#Miscellaneous Miscellaneous] <br/>
 
 === [TODO Planned upcoming chapters] ===

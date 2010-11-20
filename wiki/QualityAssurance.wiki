@@ -675,5 +675,5 @@ Quality should be considered in all project areas, not just software development
 <img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />
 <a href='http://code.google.com/p/gwt-gae-book/wiki/ManagingPerformances'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' title='Previous chapter: Updating and deleting performances' /></a>
 <a href='http://code.google.com/p/gwt-gae-book/wiki/TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' title='Table Of Contents' /></a>
-<a href='http://code.google.com/p/gwt-gae-book/wiki/LandingEnhancements'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: Landing page enhancements' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/wiki/ManagingShows'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: Managing shows' /></a>
 <wiki:comment>NAV_END</wiki:comment>

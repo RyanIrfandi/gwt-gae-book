@@ -14,7 +14,9 @@ $docs = array(
 	"Authentication",
 	"ManagingPerformances",
 	"QualityAssurance",
-	"LandingEnhancements",
+	"ManagingShows",
+	"ExposingData",
+	"UsingExposedData",
 	"AdditionalResources",
 	"TODO"
 );
