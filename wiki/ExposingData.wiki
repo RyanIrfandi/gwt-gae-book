@@ -6,7 +6,7 @@ So far we have the possibility to manage performances and shows. The purpose we 
 
 = Exposing performances data as JSON =
 
-First, [http://code.google.com/p/gwt-gae-book/source/checkout Checkout the latest version of the CultureShows code] and go through the reading list below.
+First, [http://code.google.com/p/gwt-gae-book/source/checkout checkout the latest version of the CultureShows code] and go through the reading list below.
 
 *Pre-requisites*
  * [http://en.wikipedia.org/wiki/JSON JSON]
@@ -17,9 +17,9 @@ First, [http://code.google.com/p/gwt-gae-book/source/checkout Checkout the lates
 
 Ideally, we would want to have an URL like
 {{{
-http://cultureshows.appspot.com/api/v1/theaters/agxjdWx0dXJlc2hvd3NyDwsSB1RoZWF0ZXIY8asBDA/performances
+http://cultureshows.appspot.com/api/v1/theaters/theaterKey/performances
 }}}
-which would list all the upcoming performances for the theater key given in the path. To reduce the number of web service calls required, we could include `Show` and `Location` entities in the `Performance` data.
+which would list all the upcoming performances for the theater key given in the path. We will include `Show` and `Location` entities in the `Performance` data too, the reason being shown later in this chapter.
 
 
 Let's setup the infrastructure to use restlet with taoki, as described in the [http://code.google.com/p/taoki/wiki/Configuration taoki user guide]:
@@ -119,7 +119,7 @@ public class Performance implements Serializable {
 }
 }}}
 
-The [http://en.wikibooks.org/wiki/Java_Programming/Keywords/transient Java transient keyword] was used in order to prevent `Show` and `Location` to be serialized when transferring data between GWT client to !AppEngine server.
+The [http://en.wikibooks.org/wiki/Java_Programming/Keywords/transient Java transient keyword] was used in order to prevent `Show` and `Location` to be serialized when transferring data between GWT client to App Engine server.
 
 
 [http://cultureshows.appspot.com/api/v1/theaters/agxjdWx0dXJlc2hvd3NyDwsSB1RoZWF0ZXIY8asBDA/performances The result] looks like this
@@ -131,6 +131,59 @@ JSON
 
 
 = Consuming data on 3rd party websites =
+
+How do we get performances to be displayed on a theater website? We can parse the JSON data exposed earlier and just generate some HTML using jQuery. 
+
+We need to consider making the data available in a [http://en.wikipedia.org/wiki/JSON#JSONP JSON with padding format], [http://blog.listry.com/2010/10/app-engine-warm-up-requests-death-of.html performance] and [http://code.google.com/appengine/docs/billing.html cost], since each 3rd party website request translates to CPU and bandwidth usage on App Engine.
+To reduce the impact of all these, let's use [http://developer.yahoo.com/yql/ Yahoo! Query Language (YQL)] to fetch and cache the data for us. See [http://developer.yahoo.com/yql/guide YQL  Guide] to understand how it works.
+
+== Setting up YQL ==
+
+Ideally, we would setup three open data tables for Shows, Locations and Performances, and then perform a join on all these. As [http://developer.yahoo.net/forum/?showtopic=2506&hl=join&endsession=1 YQL doesn't support inner joins] easily, we'll go with embedding needed data into Performance entity, as we already did.
+
+The [http://cultureshows.appspot.com/yql/performances.xml performances table] is defined as follows
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+  <meta>
+    <sampleQuery>select * from {table} where theaterKey='abc';</sampleQuery>
+  </meta>
+  <bindings>
+    <select itemPath="json.performances" produces="JSON">
+      <urls>
+        <url>http://cultureshows.appspot.com/api/v1/theaters/{theaterKey}/performances</url>
+      </urls>
+      <inputs>
+        <key id='theaterKey' type='xs:string' paramType='path' required='true' />
+      </inputs>
+    </select>
+  </bindings>
+</table>
+}}}
+
+and we can use it from [http://developer.yahoo.com/yql/console/ YQL console] like this
+{{{
+USE "http://cultureshows.appspot.com/yql/performances.xml";
+SELECT * FROM performances WHERE theaterKey="agxjdWx0dXJlc2hvd3NyDwsSB1RoZWF0ZXIY8asBDA";
+}}}
+
+== Displaying data on a test website ==
+
+
+
+
+== Displaying data on a real website ==
+
+
+
+
+
+Additional resources
+ * [http://www.kyle-jensen.com/proxy-caching-on-google-appengine Proxy caching on Google App Engine]
+
+
+= Summary =
+To recap, we are done implementing a GWT/GAE application for managing performances schedule for a theater.  ...
 
 
 
