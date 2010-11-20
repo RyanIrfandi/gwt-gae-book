@@ -78,7 +78,7 @@ public class LandingView extends ViewWithUiHandlers<LandingUiHandlers>
 	}
 
 	interface PerformancesResources extends CellList.Resources {
-		@Source(value = { CellList.Style.DEFAULT_CSS, "Performances.css" })
+		@Source(value = { CellList.Style.DEFAULT_CSS, "../resources/cell.css" })
 		CellList.Style cellListStyle();
 	}
 
