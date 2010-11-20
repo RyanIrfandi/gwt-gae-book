@@ -175,8 +175,12 @@
 === [ManagingShows Managing shows] ===
 
 === [ExposingData Exposing read-only data to 3rd parties] ===
-
-=== [UsingExposedData Using exposed data on 3rd party websites] ===
+ * [ExposingData#Exposing_performances_data_as_JSON Exposing performances data as JSON] <br/>
+ * [ExposingData#Consuming_data_on_3rd_party_websites Consuming data on 3rd party websites] <br/>
+  * [ExposingData#Setting_up_YQL Setting up YQL] <br/>
+  * [ExposingData#Displaying_data_on_a_test_website Displaying data on a test website] <br/>
+  * [ExposingData#Displaying_data_on_a_real_website Displaying data on a real website] <br/>
+ * [ExposingData#Summary Summary] <br/>
 
 === [AdditionalResources Additional  resources] ===
  * [AdditionalResources#Discussion_groups Discussion groups] <br/>

@@ -30,8 +30,6 @@
 
 [ExposingData Exposing read-only data to 3rd parties]
 
-[UsingExposedData Using exposed data on 3rd party websites]
-
 [AdditionalResources Additional  resources]
 
 [TODO Planned upcoming chapters]
