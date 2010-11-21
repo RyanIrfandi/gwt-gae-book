@@ -9,7 +9,6 @@ So far, we have a reasonable quality web app which can be fully manage a theater
 Here's how managing shows UI could look
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/shows.png" border="2" style="border: 2;" />
-
 Note the introduction of Performances and Shows navigation at the top.
 
 = Client side functionality =
@@ -19,7 +18,7 @@ Note the introduction of Performances and Shows navigation at the top.
  * [http://code.google.com/p/gwt-platform/wiki/GettingStarted?tm=6#Blocking_some_presenters GWTP gatekeepers]
 
 
-Since accessing the Shows view requires to be signed in, let's add a [gatekeeper]:
+Since accessing the Shows view requires to be signed in, let's add a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/SignedInGatekeeper.java gatekeeper]:
 {{{
 public class SignedInGatekeeper implements Gatekeeper {
 
@@ -43,17 +42,16 @@ public class SignedInGatekeeper implements Gatekeeper {
 
 We'll basically duplicate [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/  the landing package] structure. Here are the steps:
  * create a `shows` package, with the same files as in `landing`, and change the class names
- * add [ShowModule] to the [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/MainGinjector.java Gin Injector]
+ * add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/shows/ShowModule.java ShowModule] to the [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/MainGinjector.java Gin Injector]
  * add `SignedInGatekeeper` and `ShowPresenter` to [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/MainGinjector.java MainGinjector]
  * add a new "shows" [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/NameTokens.java name token]
- * [update HeaderView] to add Performances and Shows navigation
+ * update [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/client/widget HeaderView] to add Performances and Shows navigation
 {{{
 		<g:InlineHyperlink ui:field="performances" addStyleNames="{style.anchor}" visible="false"
 			targetHistoryToken="{nameTokens.getLanding}">Performances</g:InlineHyperlink>
 		<g:InlineHyperlink ui:field="shows" addStyleNames="{style.anchor}" visible="false"
 			targetHistoryToken="{nameTokens.getShows}">Shows</g:InlineHyperlink>
 }}}
-
 
 
 As shows view isn't needed on the very first access of the landing page, we'll also [http://code.google.com/p/google-web-toolkit/wiki/CodeSplitting split its code] into separate files, to be loaded by GWT on demand, with `@ProxyCodeSplit` annotation:
@@ -74,7 +72,7 @@ public class ShowPresenter extends
 
 This requires using an [http://code.google.com/p/google-gin/source/browse/trunk/src/com/google/gwt/inject/client/AsyncProvider.java AsyncProvider] for `ShowPresenter` in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/MainGinjector.java MainGinjector]
 {{{
-AsyncProvider<ShowPresenter> getShowPresenter();
+	AsyncProvider<ShowPresenter> getShowPresenter();
 }}}
 
 
