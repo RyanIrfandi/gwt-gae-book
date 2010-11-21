@@ -44,15 +44,20 @@ public class ShowView extends ViewWithUiHandlers<ShowUiHandlers> implements
 				return;
 			}
 
+			sb.append(SafeHtmlUtils
+					.fromTrustedString("<div class='showPosterContainer'>"));
 			if (null != show.posterURL) {
 				sb.append(SafeHtmlUtils
-						.fromTrustedString("<img style='showPoster' src='"));
+						.fromTrustedString("<img class='showPoster' src='"));
 				sb.appendEscaped(show.posterURL);
 				sb.append(SafeHtmlUtils.fromTrustedString("' />"));
 			}
+			sb.append(SafeHtmlUtils.fromTrustedString("</div>"));
 
 			sb.append(SafeHtmlUtils
-					.fromTrustedString("<a target='_blank' href='"));
+					.fromTrustedString("<div class='showPosterContainer'>"));
+			sb.append(SafeHtmlUtils
+					.fromTrustedString("<a class='showWebsite' target='_blank' href='"));
 			if (null == show.websiteURL || show.websiteURL.isEmpty()) {
 				sb.append(SafeHtmlUtils
 						.fromTrustedString("http://www.google.com/search?q="
@@ -62,9 +67,10 @@ public class ShowView extends ViewWithUiHandlers<ShowUiHandlers> implements
 			}
 			sb.append(SafeHtmlUtils.fromTrustedString("'>"));
 			sb.appendEscaped(show.getName());
-			sb.append(SafeHtmlUtils.fromTrustedString("</a> "));
+			sb.append(SafeHtmlUtils.fromTrustedString("</a><br/>"));
 
 			sb.appendEscaped(Misc.minutesToHHMM(show.minuteDuration));
+			sb.append(SafeHtmlUtils.fromTrustedString("</div>"));
 		}
 	}
 
