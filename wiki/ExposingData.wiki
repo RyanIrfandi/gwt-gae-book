@@ -124,8 +124,36 @@ The [http://en.wikibooks.org/wiki/Java_Programming/Keywords/transient Java trans
 
 [http://cultureshows.appspot.com/api/v1/theaters/agxjdWx0dXJlc2hvd3NyDwsSB1RoZWF0ZXIY8asBDA/performances The result] looks like this
 {{{
-JSON
-
+{
+   "performances":[
+      {
+         "performanceKey":"agxjdWx0dXJlc2hvd3NyIQsSB1RoZWF0ZXIY8asBDAsSC1BlcmZvcm1hbmNlGIknDA",
+         "date":"2010-12-10 10:00",
+         "show":{
+            "name":"Vis",
+            "websiteURL":"",
+            "minuteDuration":75,
+            "posterURL":"http://www.passe-partoutdp.ro/images/vis.jpg"
+         },
+         "location":{
+            "name":"Rapsodia"
+         }
+      },
+      {
+         "performanceKey":"agxjdWx0dXJlc2hvd3NyIQsSB1RoZWF0ZXIY8asBDAsSC1BlcmZvcm1hbmNlGNEPDA",
+         "date":"2010-12-25 10:00",
+         "show":{
+            "name":"Made in Romania",
+            "websiteURL":"",
+            "minuteDuration":120,
+            "posterURL":"http://www.passe-partoutdp.ro/images/made_thumb.jpg"
+         },
+         "location":{
+            "name":"Rapsodia"
+         }
+      }
+   ]
+}
 }}}
 
 
