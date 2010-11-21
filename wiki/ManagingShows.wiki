@@ -18,6 +18,7 @@ Note the introduction of Performances and Shows navigation at the top.
 *Pre-requisites*
  * [http://code.google.com/p/gwt-platform/wiki/GettingStarted?tm=6#Blocking_some_presenters GWTP gatekeepers]
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/venetian_mask_female.jpg" border="0"  align="right" />
 
 Since accessing the Shows view requires to be signed in, let's add a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/SignedInGatekeeper.java gatekeeper]:
 {{{
@@ -40,7 +41,6 @@ public class SignedInGatekeeper implements Gatekeeper {
 }
 }}}
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/venetian_mask_female.jpg" border="0"  align="right" />
 
 We'll basically duplicate [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/  the landing package] structure. Here are the steps:
  * create a `shows` package, with the same files as in `landing`, and change the class names
