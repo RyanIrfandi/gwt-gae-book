@@ -12,7 +12,7 @@ Here's how managing shows UI could look
 
 Note the introduction of Performances and Shows navigation at the top.
 
-= Adding a new package =
+= Client side functionality =
 
 
 *Pre-requisites*
@@ -79,7 +79,19 @@ AsyncProvider<ShowPresenter> getShowPresenter();
 
 
 
-action validator
+= Server side functionality =
+
+We'll also use the `GetPerformances` and `ManagePerformance` as a reference on server-side. To implement the `Show` equivalent of these:
+ * create [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/shared/dispatch Action/Result generators]
+ * create [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/server/dispatch Action handlers]
+ * bind handlers to actions in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/MainHandlerModule.java MainHandlerModule]
+
+
+And here's the result
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/manageShows.png" border="0" />
+
+We have some code duplicated for Shows and Performances both for client and server. In a later chapter, we'll work on minimizing this.
 
 
 
