@@ -1,18 +1,24 @@
 package org.gwtgaebook.CultureShows.client;
 
-import com.google.inject.*;
-import com.google.gwt.inject.client.*;
-import com.gwtplatform.dispatch.client.gin.*;
-import com.gwtplatform.mvp.client.*;
-import com.gwtplatform.mvp.client.annotations.*;
-import com.gwtplatform.mvp.client.proxy.*;
+import org.gwtgaebook.CultureShows.client.landing.LandingModule;
+import org.gwtgaebook.CultureShows.client.landing.LandingPresenter;
+import org.gwtgaebook.CultureShows.client.resources.Resources;
+import org.gwtgaebook.CultureShows.client.resources.Translations;
+import org.gwtgaebook.CultureShows.client.shows.ShowModule;
+import org.gwtgaebook.CultureShows.client.shows.ShowPresenter;
+import org.gwtgaebook.CultureShows.client.widget.WidgetModule;
 
-import org.gwtgaebook.CultureShows.client.resources.*;
-import org.gwtgaebook.CultureShows.client.widget.*;
-import org.gwtgaebook.CultureShows.client.landing.*;
+import com.google.gwt.inject.client.AsyncProvider;
+import com.google.gwt.inject.client.GinModules;
+import com.google.gwt.inject.client.Ginjector;
+import com.google.inject.Provider;
+import com.gwtplatform.dispatch.client.gin.DispatchAsyncModule;
+import com.gwtplatform.mvp.client.EventBus;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.gwtplatform.mvp.client.proxy.ProxyFailureHandler;
 
 @GinModules({ DispatchAsyncModule.class, MainModule.class, WidgetModule.class,
-		LandingModule.class })
+		LandingModule.class, ShowModule.class })
 public interface MainGinjector extends Ginjector {
 	EventBus getEventBus();
 
@@ -24,8 +30,12 @@ public interface MainGinjector extends Ginjector {
 
 	Translations getTranslations();
 
+	SignedInGatekeeper getSignedInGatekeeper();
+
 	Provider<MainPresenter> getMainPresenter();
 
 	Provider<LandingPresenter> getLandingPresenter();
+
+	AsyncProvider<ShowPresenter> getShowPresenter();
 
 }

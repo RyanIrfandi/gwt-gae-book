@@ -1,6 +1,5 @@
 package org.gwtgaebook.CultureShows.client.widget;
 
-import org.gwtgaebook.CultureShows.client.event.SignInEvent;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
 
 import com.google.gwt.core.client.GWT;
@@ -10,10 +9,10 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.InlineHyperlink;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.inject.Inject;
-import com.gwtplatform.mvp.client.*;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
 public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements
 		HeaderPresenter.MyView {
@@ -31,9 +30,13 @@ public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements
 	@UiField
 	Anchor signIn;
 	@UiField
-	Anchor signOut;
-	@UiField
 	InlineLabel username;
+	@UiField
+	InlineHyperlink performances;
+	@UiField
+	InlineHyperlink shows;
+	@UiField
+	Anchor signOut;
 
 	private UserInfo userInfo;
 
@@ -51,6 +54,8 @@ public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements
 		if (userInfo.isSignedIn) {
 			username.setText(userInfo.email);
 			nav.setWidgetVisible(username, true);
+			nav.setWidgetVisible(performances, true);
+			nav.setWidgetVisible(shows, true);
 			nav.setWidgetVisible(signOut, true);
 		} else {
 			nav.setWidgetVisible(signIn, true);

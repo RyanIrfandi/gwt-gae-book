@@ -104,7 +104,6 @@ public class ManagePerformanceHandler extends
 					action.getPerformance().locationName);
 
 			// set/update performance data
-			performance.date = action.getPerformance().date;
 			performance.showKey = KeyFactory.keyToString(showDAO.getKey(show));
 			performance.locationKey = KeyFactory.keyToString(locationDAO
 					.getKey(location));
