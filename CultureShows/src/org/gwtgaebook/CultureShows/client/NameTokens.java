@@ -34,4 +34,10 @@ public class NameTokens {
 		return signOut;
 	}
 
+	public static final String shows = "!shows";
+
+	public static String getShows() {
+		return shows;
+	}
+
 }

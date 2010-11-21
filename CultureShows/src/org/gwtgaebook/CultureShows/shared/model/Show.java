@@ -1,9 +1,19 @@
 package org.gwtgaebook.CultureShows.shared.model;
 
+import java.io.Serializable;
+
 import com.google.code.twig.annotation.*;
 import com.google.gson.annotations.Expose;
+import com.google.gwt.view.client.ProvidesKey;
 
-public class Show {
+@SuppressWarnings("serial")
+public class Show implements Serializable {
+	public static final ProvidesKey<Show> KEY_PROVIDER = new ProvidesKey<Show>() {
+		public Object getKey(Show s) {
+			return (null == s) ? null : s.showKey;
+		}
+	};
+
 	@Store(false)
 	@Expose
 	public String showKey;

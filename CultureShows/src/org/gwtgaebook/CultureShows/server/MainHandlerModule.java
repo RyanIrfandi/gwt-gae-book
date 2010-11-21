@@ -7,11 +7,15 @@ import org.gwtgaebook.CultureShows.server.dao.ShowDAO;
 import org.gwtgaebook.CultureShows.server.dao.TheaterDAO;
 import org.gwtgaebook.CultureShows.server.dao.TheaterMemberJoinDAO;
 import org.gwtgaebook.CultureShows.server.dispatch.GetPerformancesHandler;
+import org.gwtgaebook.CultureShows.server.dispatch.GetShowsHandler;
 import org.gwtgaebook.CultureShows.server.dispatch.GetUserHandler;
 import org.gwtgaebook.CultureShows.server.dispatch.ManagePerformanceHandler;
+import org.gwtgaebook.CultureShows.server.dispatch.ManageShowHandler;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetPerformancesAction;
+import org.gwtgaebook.CultureShows.shared.dispatch.GetShowsAction;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetUserAction;
 import org.gwtgaebook.CultureShows.shared.dispatch.ManagePerformanceAction;
+import org.gwtgaebook.CultureShows.shared.dispatch.ManageShowAction;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
 
 import com.google.code.twig.ObjectDatastore;
@@ -36,10 +40,12 @@ public class MainHandlerModule extends HandlerModule {
 		bind(TheaterMemberJoinDAO.class);
 
 		// bind Actions to ActionHandlers and ActionValidators
+		bindHandler(GetUserAction.class, GetUserHandler.class);
+		bindHandler(GetPerformancesAction.class, GetPerformancesHandler.class);
 		bindHandler(ManagePerformanceAction.class,
 				ManagePerformanceHandler.class);
-		bindHandler(GetPerformancesAction.class, GetPerformancesHandler.class);
-		bindHandler(GetUserAction.class, GetUserHandler.class);
+		bindHandler(GetShowsAction.class, GetShowsHandler.class);
+		bindHandler(ManageShowAction.class, ManageShowHandler.class);
 
 	}
 }
