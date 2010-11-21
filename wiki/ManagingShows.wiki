@@ -9,6 +9,7 @@ So far, we have a reasonable quality web app which can be fully manage a theater
 Here's how managing shows UI could look
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/shows.png" border="2" style="border: 2;" />
+
 Note the introduction of Performances and Shows navigation at the top.
 
 = Client side functionality =
