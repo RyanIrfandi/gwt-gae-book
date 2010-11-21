@@ -13,6 +13,7 @@ Here are some sections I'd like to add, as time allows:
 
  * [LandingEnhancements Landing page enhancements]
  * [CommunicationEnhancements Client-server communication enhancements]
+ * Generating RSS Atom feeds
  * Analytics
   * defining key metrics, monitoring workflows, A-B testing
  * Offering support for users
