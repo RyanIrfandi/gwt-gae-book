@@ -173,6 +173,9 @@
  * [QualityAssurance#Other_areas Other areas] <br/>
 
 === [ManagingShows Managing shows] ===
+ * [ManagingShows#Mockup Mockup] <br/>
+ * [ManagingShows#Client_side_functionality Client side functionality] <br/>
+ * [ManagingShows#Server_side_functionality Server side functionality] <br/>
 
 === [ExposingData Exposing read-only data to 3rd parties] ===
  * [ExposingData#Exposing_performances_data_as_JSON Exposing performances data as JSON] <br/>
@@ -180,7 +183,6 @@
   * [ExposingData#Setting_up_YQL Setting up YQL] <br/>
   * [ExposingData#Displaying_data_on_a_test_website Displaying data on a test website] <br/>
   * [ExposingData#Displaying_data_on_a_real_website Displaying data on a real website] <br/>
- * [ExposingData#Summary Summary] <br/>
 
 === [AdditionalResources Additional  resources] ===
  * [AdditionalResources#Discussion_groups Discussion groups] <br/>
@@ -188,4 +190,4 @@
  * [AdditionalResources#Open_source_applications_using_GWT/GAE Open source applications using GWT/GAE] <br/>
  * [AdditionalResources#Miscellaneous Miscellaneous] <br/>
 
-=== [TODO Planned upcoming chapters] ===
+=== [TODO Possible upcoming chapters] ===
