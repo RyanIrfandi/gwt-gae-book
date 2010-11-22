@@ -1,5 +1,7 @@
 #summary Getting started
 
+We discussed about [SoYouHaveAnIdea putting an application ideas in writing] and [VisualizingYourApp how to further clarify stories] we plan to implement. [TheRightToolForTheJob Having settled on GWT/GAE], we'll look briefly at how to get started with development environment.
+
 <wiki:toc max_depth="2" />
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/race_day_2.jpg" border="0"  align="right" />
