@@ -1,12 +1,15 @@
 #summary Additional  resources
 
-<wiki:toc max_depth="2" />
-
-We are done planning and implementing a GWT/GAE [http://cultureshows.appspot.com/ application] for managing performances schedule for a theater, with reasonable quality. Theater owners are authenticating with OpenID and are scheduling performances, which are displayed on their own websites with the help of an YQL mashup.
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. We built  [BuildingLandingPage a landing page] which [ManagingPerformances manages performances schedule] for [Authentication OpenID authenticated members], resulting in [http://cultureshows.appspot.com/ a sample application] with [QualityAssurance reasonable quality]. We've also added [ManagingShows theater show management]
+and enabled theater owners to [ExposingData display performances on their own websites] with the help of an YQL mashup.
 
 The full source code developed along the book [http://code.google.com/p/gwt-gae-book/source/checkout is available] under [http://www.apache.org/foundation/licence-FAQ.html#WhatDoesItMEAN Apache license].
 
 Hopefully, this is just the start of a great journey for you. Here are more places to travel to :)
+
+
+<wiki:toc max_depth="2" />
+
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/air_travel.jpg" border="0"  align="right" />
 
