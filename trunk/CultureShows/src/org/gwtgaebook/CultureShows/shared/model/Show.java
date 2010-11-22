@@ -31,6 +31,10 @@ public class Show implements Serializable {
 	@Expose
 	public int minuteDuration;
 
+	@Store(false)
+	@Expose
+	public String duration; // hh:mm
+
 	@Expose
 	public String posterURL;
 
