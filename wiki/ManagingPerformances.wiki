@@ -1,6 +1,6 @@
 #summary Updating and deleting performances
 
-We covered scheduling performances, listing performances and authentication. In this chapter, we'll look at updating and deleting performances, in order to have a complete [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD].
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. We built  [BuildingLandingPage a landing page] which [StoringData saves] and [ListingSchedule lists] performances schedule for [Authentication OpenID authenticated members]. In this chapter, we'll look at updating and deleting performances, in order to have a complete [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD].
 
 <wiki:toc max_depth="2" />
 
