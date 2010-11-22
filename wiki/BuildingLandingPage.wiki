@@ -1,5 +1,7 @@
 #summary Building the landing page
 
+We discussed about [SoYouHaveAnIdea putting an application ideas in writing],  [GettingStarted setting up the development environment], and [DataModeling data modeling]. Coding time!
+
 <wiki:toc max_depth="2" />
 
 Download and unpack [http://gwt-gae-book.googlecode.com/svn/trunk/CultureShows-0.1.tgz the basic project] already setup for you and do `File > Import > Existing Projects` from Eclipse. Run it to make sure it's working.
