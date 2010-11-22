@@ -158,6 +158,9 @@ The [http://en.wikibooks.org/wiki/Java_Programming/Keywords/transient Java trans
 
 
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/images/romania_inventar.jpg" border="0"  />
+
+
 = Consuming data on 3rd party websites =
 
 How do we get performances to be displayed on a theater website? We can parse the JSON data exposed earlier and just generate some HTML using jQuery. 
