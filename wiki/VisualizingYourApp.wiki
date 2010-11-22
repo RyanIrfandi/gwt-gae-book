@@ -1,8 +1,10 @@
 #summary Visualizing your application in action
 
+We discussed about [SoYouHaveAnIdea putting an application ideas in writing], personae and user stories. Next, we'll see what other steps we can do to further clarify stories we plan to implement.
+
 <wiki:toc max_depth="2" />
 
-You have a clear product backlog. Coding time, right? Let's do an imagination exercise first. Pretend all those user stories are already implemented. How would your application functionality look? Will it actually satisfy your personae's needs?
+You now have a clear product backlog. Coding time, right? Let's do an imagination exercise first. Pretend all those user stories are already implemented. How would your application functionality look? Will it actually satisfy your personae's needs?
 
 = Mockups =
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/grasping_the_sun.jpg" border="0"  align="right" />
