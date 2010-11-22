@@ -210,9 +210,13 @@ public class ShowView extends ViewWithUiHandlers<ShowUiHandlers> implements
 
 	@UiHandler("create")
 	void onCreateShowClicked(ClickEvent event) {
-		// TODO int validation
-		getUiHandlers().create(name.getValue(), websiteURL.getValue(),
-				Integer.parseInt(minuteDuration.getValue()),
+		int mD;
+		try {
+			mD = Integer.parseInt(minuteDuration.getValue());
+		} catch (NumberFormatException nfe) {
+			mD = 0;
+		}
+		getUiHandlers().create(name.getValue(), websiteURL.getValue(), mD,
 				posterURL.getValue());
 	}
 

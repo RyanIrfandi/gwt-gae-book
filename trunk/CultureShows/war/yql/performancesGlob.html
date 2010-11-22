@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Performances listing</title>
+	<style type='text/css'>
+	ul {
+		margin-left: 0;
+		padding-left: 0;
+		list-style-type: none;
+	}
+
+	ul li:nth-child(2n) {
+		padding: 0.5em 0em; 
+	}
+	ul li:nth-child(2n+1) {
+		padding: 0.5em 0em; 
+	}
+
+	.showPosterContainer {
+		display: inline-block;
+		padding: 0em 1em;
+		min-width: 150px;
+		vertical-align: text-top;
+	}
+
+
+	.showPoster {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.showWebsite {
+		clear: both;
+	}
+	</style>
+
+	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+	<script type="text/javascript" language="javascript" src="http://ajax.microsoft.com/ajax/jquery.glob/beta1/jquery.glob.min.js"></script>
+	<script type="text/javascript" language="javascript" src="http://ajax.microsoft.com/ajax/jquery.glob/beta1/globinfo/jQuery.glob.ro-RO.min.js"></script>
+
+
+	<script type='text/javascript'>
+	var theaterKey = 'agxjdWx0dXJlc2hvd3NyDwsSB1RoZWF0ZXIY8asBDA';
+	//var displayDateFormat = 'ddd, MMM d, hh:mm tt';
+	$.preferCulture("ro-RO");
+	var displayDateFormat = 'dddd, d MMM, HH:mm';
+
+	var serverDateFormat = "yyyy-MM-dd HH:mm";
+	var yqlUrl = 'http://query.yahooapis.com/v1/public/yql?q=USE%20%22http%3A%2F%2Fcultureshows.appspot.com%2Fyql%2Fperformances.xml%22%3B%0ASELECT%20*%20FROM%20performances%20WHERE%20theaterKey%3D%22' + theaterKey + '%22%3B%0A&format=json&_maxage=86401';
+
+	$.getJSON(yqlUrl, function(data) {
+		//format date for display
+		for (i=0; i<data.query.results.performances.length; i++) {
+			date = $.parseDate(data.query.results.performances[i].date, serverDateFormat);
+			data.query.results.performances[i].date = $.format(date, displayDateFormat);
+		}
+
+		$("#performanceTemplate").tmpl(data.query.results.performances).appendTo( "#performances" );
+	});
+
+	</script>
+
+	<script id="performanceTemplate" type="text/html">
+	<li>
+		<div class='showPosterContainer'>
+		<img class='showPoster' src='${show.posterURL}'/>
+		</div>
+
+		<div class='showPosterContainer'>
+		<a class='showWebsite' href='${show.websiteURL}'>${show.name}</a><br/>
+		${date}<br/>
+		${location.name}<br/>
+		Durata: ${show.duration}
+		</div>
+	</li>
+	</script>
+
+
+</head>
+<body>
+	<ul id='performances'></ul>
+</body>
+</html>
+
