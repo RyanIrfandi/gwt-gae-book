@@ -206,13 +206,15 @@ On a [http://cultureshows.appspot.com/yql/performances.html test website], we ca
 <head>
 	<title>Performances listing</title>
 
-	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-	<script type="text/javascript" language="javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+	<script type="text/javascript" language="javascript" 
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript" 
+		src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 
 	<script type='text/javascript'>
 	var theaterKey = 'agxjdWx0dXJlc2hvd3NyDwsSB1RoZWF0ZXIYqcMBDA';
 
-	var yqlUrl = 'http://query.yahooapis.com/v1/public/yql?q=USE%20%22http%3A%2F%2Fcultureshows.appspot.com%2Fyql%2Fperformances.xml%22%3B%0ASELECT%20*%20FROM%20performances%20WHERE%20theaterKey%3D%22' + theaterKey + '%22%3B%0A&format=json&_maxage=86400';
+	var yqlUrl = 'http://query.yahooapis.com/v1/public/yql?q=...&format=json&_maxage=86400';
 	$.getJSON(yqlUrl, function(data) {
 		$("#performanceTemplate").tmpl(data.query.results.performances).appendTo( "#performances" );
 	});
