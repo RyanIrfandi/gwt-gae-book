@@ -1,5 +1,7 @@
 #summary Saving schedule in datastore
 
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code],  [GettingStarted setting up the development environment]. Having built  [BuildingLandingPage a landing page] which [ClientServer interacts with the server back-end], let's see how to save the performances schedule on !AppEngine server.
+
 <wiki:toc max_depth="2" />
 
 Time to add some functionality! 
