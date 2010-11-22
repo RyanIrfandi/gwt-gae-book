@@ -1,5 +1,7 @@
 #summary Authentication with OpenID
 
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. Having built  [BuildingLandingPage a landing page] which [StoringData saves] and [ListingSchedule lists] performances schedule, we'll implement next authentication for our users.
+
 <wiki:toc max_depth="2" />
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/vintage_keys.jpg" border="0"  align="right" />
