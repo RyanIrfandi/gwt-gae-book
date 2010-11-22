@@ -1,5 +1,8 @@
 #summary Data modeling
 
+We discussed about [SoYouHaveAnIdea putting an application ideas in writing] and [VisualizingYourApp how to further clarify stories] we plan to implement. [GettingStarted With the development environment setup], we'll think about how to model the data entities used by our application.
+
+
 <wiki:toc max_depth="2" />
 
 
