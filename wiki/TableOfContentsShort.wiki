@@ -18,7 +18,7 @@
 
 [StoringData Saving schedule in datastore]
 
-[ListingSchedule Listing saved schedule]
+[ListingSchedule Listing saved performances]
 
 [Authentication Authentication with OpenID]
 

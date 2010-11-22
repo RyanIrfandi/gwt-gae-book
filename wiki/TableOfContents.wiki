@@ -97,7 +97,7 @@
  * [StoringData#Exercise_solution Exercise solution] <br/>
  * [StoringData#Additional_resources Additional resources] <br/>
 
-=== [ListingSchedule Listing saved schedule] ===
+=== [ListingSchedule Listing saved performances] ===
  * [ListingSchedule#A_quick,_basic_solution A quick, basic solution] <br/>
   * [ListingSchedule#Exercise Exercise] <br/>
   * [ListingSchedule#Exercise_solution Exercise solution] <br/>
