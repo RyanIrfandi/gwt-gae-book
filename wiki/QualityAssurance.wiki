@@ -1,6 +1,8 @@
 #summary Quality assurance
 
-So far we developed a [http://cultureshows.appspot.com/ basic app], which allows signing in with OpenID and managing performances schedule. Before we add more features, we need to look more at quality.
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. We built  [BuildingLandingPage a landing page] which [ManagingPerformances manages performances schedule] for [Authentication OpenID authenticated members], resulting in  [http://cultureshows.appspot.com/ a sample application]. 
+
+Before we add more features, we need to take a closer look at quality.
 
 <wiki:toc max_depth="2" />
 
