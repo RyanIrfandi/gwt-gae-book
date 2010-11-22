@@ -1,5 +1,7 @@
 #summary Are you using the right tool for the job?
 
+We discussed about [SoYouHaveAnIdea putting an application ideas in writing] and [VisualizingYourApp how to further clarify stories] we plan to implement. Next, we'll look at evaluating alternatives which bet fit our project.
+
 <wiki:toc max_depth="2" />
 
 = Evaluating alternatives = 
