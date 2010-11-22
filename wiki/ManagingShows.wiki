@@ -1,6 +1,8 @@
 #summary Managing shows
 
-So far, we have a reasonable quality web app which can be fully manage a theater performances schedule. Next, we'll implement managing shows.
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. We built  [BuildingLandingPage a landing page] which [ManagingPerformances manages performances schedule] for [Authentication OpenID authenticated members], resulting in [http://cultureshows.appspot.com/ a sample application] with [QualityAssurance reasonable quality].
+
+In this chapter we'll implement managing theater shows.
 
 <wiki:toc max_depth="2" />
 
