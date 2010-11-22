@@ -199,42 +199,50 @@ Additional resources
  * [http://www.kyle-jensen.com/proxy-caching-on-google-appengine Proxy caching on Google App Engine]
 
 == Displaying data on a test website ==
-On a [http://cultureshows.appspot.com/yql/performances.html test website], we can display performances data like this
+On a [http://cultureshows.appspot.com/yql/performances.html test website], we can now easily display performances data using [http://api.jquery.com/jquery.tmpl/ jquery.tmpl]
 {{{
 <!doctype html>
 <html>
 <head>
 	<title>Performances listing</title>
-	<style type='text/css'>
-	</style>
 
 	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 
 	<script type='text/javascript'>
-	var theaterKey = 'agxjdWx0dXJlc2hvd3NyDwsSB1RoZWF0ZXIY8asBDA';
-	var yqlUrl = 'http://query.yahooapis.com/v1/public/yql?q=...&format=json&_maxage=3600';
+	var theaterKey = 'agxjdWx0dXJlc2hvd3NyDwsSB1RoZWF0ZXIYqcMBDA';
 
+	var yqlUrl = 'http://query.yahooapis.com/v1/public/yql?q=USE%20%22http%3A%2F%2Fcultureshows.appspot.com%2Fyql%2Fperformances.xml%22%3B%0ASELECT%20*%20FROM%20performances%20WHERE%20theaterKey%3D%22' + theaterKey + '%22%3B%0A&format=json&_maxage=86400';
 	$.getJSON(yqlUrl, function(data) {
-	  // loop through the items
-	  $.each(data.query.results.performances, function(index, p) {
-	    // process each item here
-		$('#performances')
-	    	.append(
-	      	$('<p/>').append(p.date + " " + p.show.name)
-	      	);
-	  });
+		$("#performanceTemplate").tmpl(data.query.results.performances).appendTo( "#performances" );
 	});
+
 	</script>
+
+	<script id="performanceTemplate" type="text/html">
+	<li>
+		<div class='showPosterContainer'>
+		<img class='showPoster' src='${show.posterURL}'/>
+		</div>
+
+		<div class='showPosterContainer'>
+		<a class='showWebsite' href='${show.websiteURL}'>${show.name}</a><br/>
+		${date}<br/>
+		${location.name}<br/>
+		Duration: ${show.duration}
+		</div>
+	</li>
+	</script>
+
 
 </head>
 <body>
-	<div id='performances'></div>
+	<ul id='performances'></ul>
 </body>
 </html>
-
 }}}
 
-Note the `_maxage=3600` query parameter, which tells YQL to fetch this data from its cache for the next hour, rather than reading it from App Engine.
+Note the `_maxage=86400` query parameter, which tells YQL to fetch this data from its cache for the next day, rather than reading it from App Engine.
 
 Additional resources
  * [http://www.ibm.com/developerworks/web/library/wa-aj-jsonp2/index.html Building mashups with JSONP, jQuery, and Yahoo! Query Language]
