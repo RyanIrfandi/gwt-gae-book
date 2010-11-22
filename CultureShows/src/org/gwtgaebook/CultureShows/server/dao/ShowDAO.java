@@ -65,9 +65,11 @@ public class ShowDAO extends DAO<Show> {
 	}
 
 	public List<Show> readByName(Theater theater, String name) {
+		Show s = new Show();
+		s.setName(name);
 		List<Show> shows = datastore.find().type(Show.class).ancestor(theater)
-				.addFilter("nameQuery", FilterOperator.EQUAL, name).returnAll()
-				.now();
+				.addFilter("nameQuery", FilterOperator.EQUAL, s.nameQuery)
+				.returnAll().now();
 
 		return shows;
 	}

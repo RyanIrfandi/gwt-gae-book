@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.gwtgaebook.CultureShows.shared.model.Location;
 import org.gwtgaebook.CultureShows.shared.model.Performance;
-import org.gwtgaebook.CultureShows.shared.model.Show;
 import org.gwtgaebook.CultureShows.shared.model.Theater;
 
 import com.google.appengine.api.datastore.Key;
@@ -45,10 +44,12 @@ public class LocationDAO extends DAO<Location> {
 	}
 
 	public List<Location> readByName(Theater theater, String name) {
+		Location l = new Location();
+		l.setName(name);
 		List<Location> locations = datastore.find().type(Location.class)
 				.ancestor(theater)
-				.addFilter("nameQuery", FilterOperator.EQUAL, name).returnAll()
-				.now();
+				.addFilter("nameQuery", FilterOperator.EQUAL, l.nameQuery)
+				.returnAll().now();
 
 		return locations;
 	}

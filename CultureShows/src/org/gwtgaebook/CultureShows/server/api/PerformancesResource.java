@@ -5,6 +5,7 @@ import java.util.List;
 import org.gwtgaebook.CultureShows.server.dao.LocationDAO;
 import org.gwtgaebook.CultureShows.server.dao.PerformanceDAO;
 import org.gwtgaebook.CultureShows.server.dao.ShowDAO;
+import org.gwtgaebook.CultureShows.shared.Misc;
 import org.gwtgaebook.CultureShows.shared.model.Performance;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
@@ -40,6 +41,7 @@ public class PerformancesResource extends ServerResource {
 		for (int i = 0; i < performances.size(); i++) {
 			p = performances.get(i);
 			p.show = showDAO.read(p.showKey);
+			p.show.duration = Misc.minutesToHHMM(p.show.minuteDuration);
 			p.location = locationDAO.read(p.locationKey);
 			performances.set(i, p);
 		}
