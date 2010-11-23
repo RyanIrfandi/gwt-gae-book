@@ -34,6 +34,12 @@ public class NameTokens {
 		return signOut;
 	}
 
+	public static final String guide = "!guide";
+
+	public static String getGuide() {
+		return guide;
+	}
+
 	public static final String shows = "!shows";
 
 	public static String getShows() {

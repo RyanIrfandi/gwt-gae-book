@@ -50,9 +50,9 @@
 
 
     <g:HTMLPanel ui:field="container" addStyleNames="{style.container}">
-	Lorem ipsum dolor sit amet, yacht doctoral private gentlemen, expensive
-blissfull a noble cultered, career affluent. Becoming delegate pedigree
-elegant philanthropic silk portfolio gem.
+	Schedule theater performances and other events, and easily embed them on your website, blog or plain HTML homepage. For free.
+<g:InlineHyperlink ui:field="guide"
+			targetHistoryToken="{nameTokens.getGuide}">Learn how</g:InlineHyperlink>
 
 		<g:HTMLPanel>
 		    <g:HTMLPanel addStyleNames="{style.mainContent}">
@@ -78,12 +78,12 @@ elegant philanthropic silk portfolio gem.
 		</g:HTMLPanel>
 
 		<g:HTMLPanel addStyleNames="{style.shows}">
-			<h4>Scheduled shows</h4>
+			<h4>Scheduled performances</h4>
 	    	<gcell:CellList ui:field="performancesCL" />
 		</g:HTMLPanel>
 
     	<br/>
-		<g:Anchor href="" addStyleNames="{res.style.anchor} {res.style.block}">Learn how to list show schedule directly on your theater website</g:Anchor>
+
 
 
 

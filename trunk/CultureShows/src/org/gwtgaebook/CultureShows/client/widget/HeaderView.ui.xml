@@ -21,13 +21,16 @@
 
 	<!-- by default, all widgets are hidden. View will enable them depending on userInfo -->
 	<w:TokenSeparatedList token="&nbsp;|&nbsp;" ui:field="nav">
-		<g:Anchor ui:field="signIn" addStyleNames="{style.anchor}" visible="false">Sign In</g:Anchor>
 
 		<g:InlineLabel ui:field="username" addStyleNames="{style.username}" visible="false"/>
 		<g:InlineHyperlink ui:field="performances" addStyleNames="{style.anchor}" visible="false"
 			targetHistoryToken="{nameTokens.getLanding}">Performances</g:InlineHyperlink>
 		<g:InlineHyperlink ui:field="shows" addStyleNames="{style.anchor}" visible="false"
 			targetHistoryToken="{nameTokens.getShows}">Shows</g:InlineHyperlink>
+
+		<g:InlineHyperlink ui:field="guide" addStyleNames="{style.anchor}"
+			targetHistoryToken="{nameTokens.getGuide}">3 Step Guide</g:InlineHyperlink>
+		<g:Anchor ui:field="signIn" addStyleNames="{style.anchor}" visible="false">Sign In</g:Anchor>
 		<g:Anchor ui:field="signOut" addStyleNames="{style.anchor}" visible="false">Sign out</g:Anchor>
 	</w:TokenSeparatedList>
 

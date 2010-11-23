@@ -1,5 +1,7 @@
 package org.gwtgaebook.CultureShows.client;
 
+import org.gwtgaebook.CultureShows.client.guide.GuideModule;
+import org.gwtgaebook.CultureShows.client.guide.GuidePresenter;
 import org.gwtgaebook.CultureShows.client.landing.LandingModule;
 import org.gwtgaebook.CultureShows.client.landing.LandingPresenter;
 import org.gwtgaebook.CultureShows.client.resources.Resources;
@@ -18,7 +20,7 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyFailureHandler;
 
 @GinModules({ DispatchAsyncModule.class, MainModule.class, WidgetModule.class,
-		LandingModule.class, ShowModule.class })
+		LandingModule.class, ShowModule.class, GuideModule.class })
 public interface MainGinjector extends Ginjector {
 	EventBus getEventBus();
 
@@ -35,6 +37,8 @@ public interface MainGinjector extends Ginjector {
 	Provider<MainPresenter> getMainPresenter();
 
 	Provider<LandingPresenter> getLandingPresenter();
+
+	AsyncProvider<GuidePresenter> getGuidePresenter();
 
 	AsyncProvider<ShowPresenter> getShowPresenter();
 
