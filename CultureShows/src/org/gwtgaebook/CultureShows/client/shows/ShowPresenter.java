@@ -84,11 +84,6 @@ public class ShowPresenter extends
 		requestShows();
 	}
 
-	@Override
-	protected void onBind() {
-		super.onBind();
-	}
-
 	public void requestShows() {
 		// Strings.isNullOrEmpty(clientState.currentTheaterKey)
 		// TODO move this check to gatekeeper

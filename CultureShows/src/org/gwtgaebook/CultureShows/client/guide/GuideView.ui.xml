@@ -1,0 +1,65 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:gcell="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:gdp="urn:import:com.google.gwt.user.datepicker.client"
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
+	ui:generateLocales="default">
+
+	<ui:with type="org.gwtgaebook.CultureShows.client.NameTokens" field="nameTokens" />
+	<ui:with field='res' type='org.gwtgaebook.CultureShows.client.resources.Resources' />
+
+	<ui:image field="pp" src="../resources/passepartout.jpg" />
+
+
+	<ui:style>
+
+	.code {
+		font-style: italic;
+	}
+
+
+	.container {
+	}
+
+
+
+	</ui:style>
+
+
+
+    <g:HTMLPanel ui:field="container" addStyleNames="{style.container}">
+	<h3>3 Step Guide</h3>
+	Ask your site designer to perform this one-time setup:
+
+	<h4>1. Copy-paste <g:Anchor target="_blank" href="http://cultureshows.appspot.com/yql/performances.html.txt">this sample code</g:Anchor> in your HTML page</h4>
+
+	<h4>2. Replace the line...</h4>
+		<g:Label addStyleNames="{style.code}">var theaterKey = 'agxjdWx0dXJlc2hvd3NyDwsSB1RoZWF0ZXIYqcMBDA';</g:Label>
+		<p>with your free theater key</p>
+		<g:InlineLabel addStyleNames="{style.code}">var theaterKey = '</g:InlineLabel>
+		<g:InlineLabel ui:field="theaterKey" addStyleNames="{style.code}"></g:InlineLabel>
+		<g:InlineLabel addStyleNames="{style.code}">';</g:InlineLabel>
+
+
+	<h4>3. (optional) Customize the <g:Anchor target="_blank" href="http://cultureshows.appspot.com/yql/performances.html">default markup and styling</g:Anchor> as you see fit</h4>
+		Here is <g:Anchor target="_blank" href="http://cultureshows.appspot.com/yql/performances.html">another HTML sample</g:Anchor>. Embedded in a site, it resulted in...
+	<p>
+	<g:Image altText="Sample site" resource="{pp}" />
+	</p>
+
+
+	That's it!
+	<h4><g:InlineHyperlink ui:field="guide"
+			targetHistoryToken="{nameTokens.getLanding}">Start scheduling performances or events</g:InlineHyperlink></h4>
+
+	<h3>Quick Q&amp;A</h3>
+	<p>
+	<i>How come it's free? And you don't have any ads either.</i><br/>
+	The main reason is that running this application doesn't cost us anything. Another reason is that we love theater plays :)
+	</p>
+
+    </g:HTMLPanel>
+
+</ui:UiBinder>

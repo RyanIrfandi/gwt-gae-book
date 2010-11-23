@@ -138,7 +138,7 @@ public class LandingPresenter extends
 	}
 
 	public void onUserInfoAvailable(UserInfo userInfo) {
-		clientState.userInfo = userInfo;
+		// clientState.userInfo = userInfo;
 		getView().setSignInOut(clientState.userInfo);
 
 		if (clientState.userInfo.isSignedIn) {
