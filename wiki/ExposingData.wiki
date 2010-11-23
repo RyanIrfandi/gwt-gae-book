@@ -257,7 +257,9 @@ Additional resources
 
 == Displaying data on a real website ==
 
+Starting from the HTML page above, we can add [http://jquery-howto.blogspot.com/2010/10/jquery-globalization-plugin.html i18n support] and customize the template as desired. Here's how performances listing look on a real website:
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/passepartout.png" border="0"  />
 
 
 
