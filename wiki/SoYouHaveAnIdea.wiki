@@ -53,8 +53,8 @@ You did actually try to do this by yourself first, right? Go on, this chapter wi
 
 = Culture Shows product backlog (for real) =
 || *User story* || *Estimate* (story points) ||
-|| As Violeta, I want to add/edit/delete the list of shows so that I can schedule them || 8 ||
-|| As Violeta, I want to add shows to the schedule so that the world is aware about them || 5 ||
+|| As Violeta, I want to schedule show performances so that the world is aware about them  || 13 ||
+|| As Violeta, I want to create/update/delete shows so I can specify show details || 5 ||
 || As Violeta, I want to schedule shows in various locations so that I use the best location for a show or do tours || 5 ||
 || As Violeta, I want to display a show schedule on the theater website as soon as I define it so that I don't waste time asking somebody else to edit it|| 13 ||
 || As Violeta, I want to edit existing scheduled shows so that I can correct any mistakes I might have done || 2 ||
