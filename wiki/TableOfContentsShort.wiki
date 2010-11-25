@@ -34,4 +34,4 @@
 
 [TODO Possible upcoming chapters]
 
-<wiki:gadget url="http://gwt-gae-book.googlecode.com/svn/wiki/assets/gadget_like.xml" width="270" height="35" frameborder="0"/>
+<wiki:gadget url="http://gwt-gae-book.googlecode.com/svn/wiki/assets/gadget_like.xml" width="250" height="35" frameborder="0"/>
