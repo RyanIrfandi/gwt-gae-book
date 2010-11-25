@@ -73,6 +73,7 @@ foreach ($docs as $doc) {
 
 }
 
+$tocShort .= "\n<wiki:gadget url='http://gwt-gae-book.googlecode.com/svn/wiki/assets/gadget_like.xml' width='250' height='35' frameborder='0'/>\n";
 echo $tocShort;
 $f = fopen("TableOfContentsShort.wiki", "w");
 fwrite($f, $tocShort);
