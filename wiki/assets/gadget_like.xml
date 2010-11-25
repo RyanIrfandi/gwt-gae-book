@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+  <ModulePrefs title="" />
+  <Content type="url" href="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fcode.google.com%2Fp%2Fgwt-gae-book%2F&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" />
+</Module>
+
+<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fcode.google.com%2Fp%2Fgwt-gae-book%2F&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
