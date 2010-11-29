@@ -9,10 +9,12 @@ Here are some sections I'd like to add, as time allows:
  * Working with REST APIs from GWT 
  * Managing locations (with REST APIs)
  * Minimizing code duplication for entities CRUD
- * Managing theaters and preferences
-
- * [LandingEnhancements Landing page enhancements]
+ * [LandingEnhancements autocompletion, i18n]
  * [CommunicationEnhancements Client-server communication enhancements]
+
+Nice to haves
+ * Managing theaters and preferences 
+  * get language from OpenID
  * Generating RSS Atom feeds
  * Analytics
   * defining key metrics, monitoring workflows, A-B testing
@@ -21,20 +23,16 @@ Here are some sections I'd like to add, as time allows:
  * Scheduling tasks, sending email
  * Integration with social networks 
   * Google & FB places, twitter, FB events
- * Opening up to more theater members (actors, assistants)
  * Allowing public to browse our data
- * Advertise with !AdSense
  * Making reservations
  * Charging money
-  * Google checkout
+  * Google checkout ([http://aralbalkan.com/1504 not supported on AppEngine by default]), Paypal?
  * Enhanced multi-device support
   * native vs web app
  * Developing Flex clients with Spring Roo (depends on [https://jira.springsource.org/browse/ROOFLEX-19 bug])
 
 
-What else would you like to see covered?
-
-Feel free to contribute with <a href="http://code.google.com/p/gwt-gae-book/issues/entry">code</a> or [https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZYVQ36QASGH2W&lc=RO&item_name=GWT%20GAE%20online%20book&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted a donation].
+Feel free to contribute with <a href="http://code.google.com/p/gwt-gae-book/issues/entry">feedback, contents and code</a> or [https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZYVQ36QASGH2W&lc=RO&item_name=GWT%20GAE%20online%20book&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted a donation].
 
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
