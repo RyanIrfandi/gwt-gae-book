@@ -4,6 +4,13 @@ We discussed about [SoYouHaveAnIdea putting an application ideas in writing] and
 
 <wiki:toc max_depth="2" />
 
+
+= Google Web Toolkit (GWT) =
+[http://code.google.com/webtoolkit/ Google Web Toolkit] is a development toolkit for building and optimizing complex browser-based applications.
+
+= Google App Engine (GAE) =
+[http://code.google.com/appengine/ Google App Engine] enables you to build and host web apps on the same systems that power Google applications.
+
 = Evaluating alternatives = 
 Before settling on GWT and GAE, ask yourself if they are the best fit for your project. 
  * What are your needs? 
