@@ -55,10 +55,10 @@ You did actually try to do this by yourself first, right? Go on, this chapter wi
 || *User story* || *Estimate* (story points) ||
 || As Violeta, I want to schedule show performances so that the world is aware about them  || 13 ||
 || As Violeta, I want to create/update/delete shows so I can specify show details || 5 ||
-|| As Violeta, I want to schedule shows in various locations so that I use the best location for a show or do tours || 5 ||
+|| As Violeta, I want to schedule show performances in various locations so that I use the best location for a show or do tours || 5 ||
 || As Violeta, I want to display a show schedule on the theater website as soon as I define it so that I don't waste time asking somebody else to edit it|| 13 ||
-|| As Violeta, I want to edit existing scheduled shows so that I can correct any mistakes I might have done || 2 ||
-|| As Violeta, I want to delete existing scheduled shows so that I can handle cancellations || 1 ||
+|| As Violeta, I want to edit existing scheduled performances so that I can correct any mistakes I might have done || 2 ||
+|| As Violeta, I want to delete existing scheduled performances so that I can handle cancellations || 1 ||
 || As Stefan, I want to enable various websites to display my company's shows schedule so that more people find out about it|| 13 ||
 || As Violeta, I want to restrict access to scheduling shows so that only authorized persons manage it|| 13 ||
 || As Violeta, I want to use Culture Shows in my own language so that I don't have to learn English || 5 ||
