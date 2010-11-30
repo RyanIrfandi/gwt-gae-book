@@ -204,29 +204,32 @@ You can switch different Presenter and View implementations without any worries 
 Now review all files in the template project. Do they make full sense? 
 
 == Exercise ==
-Using what you learned above, start implementing saving a show when "Schedule show" button is clicked. For now, it should just log a message in Presenter with the date, location and show name.
+Using what you learned above, create a new "performances" package, with [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/client/performances a View and a Presenter], and start implementing saving a performance when "Schedule performance" button is clicked. For now, it should just log a message in Presenter with the date, location and show name.
 
 == Exercise solution ==
 
-In !LandingUiHandlers, the Presenter commits to offer some functionality:
+In [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/PerformanceUiHandlers.java PerformanceUiHandlers], the Presenter commits to offer some functionality:
 {{{
-public interface LandingUiHandlers extends UiHandlers {
-	void scheduleShow(Date date, String showName, String locationName);
+public interface PerformanceUiHandlers extends UiHandlers {
+	public void createPerformance(Date date, String showName,
+			String locationName);
 }
 }}}
 
-After you save this, notice there is an error on !LandingPresenter:
+After you save this, notice there is an error in !PerformancePresenter:
 {{{
-The type LandingPresenter must implement the inherited abstract method
-LandingUiHandlers.scheduleShow(Date, String, String)
+The type PerformancePresenter must implement the inherited abstract method
+PerformanceUiHandlers.createPerformance(Date, String, String)
 }}}
 
 Let's actually keep our commitment and implement this:
 {{{
 	@Override
-	public void scheduleShow(Date date, String showName, String locationName) {
-		Main.logger.info("Presenter scheduling on " + date.toString() + " the show "
-				+ showName + " at location " + locationName);
+	public void createPerformance(Date date, String showName,
+			String locationName) {
+		Main.logger.info("Requested performance scheduling on "
+				+ date.toString() + ": show " + showName + " at location "
+				+ locationName);
 	}
 }}}
 
@@ -239,19 +242,16 @@ Here's how it's used by the View
 	@UiField
 	DateBox date;
 
-	@UiField
-	Button scheduleShow;
-
-	@UiHandler("scheduleShow")
-	void onScheduleShowClicked(ClickEvent event) {
-		getUiHandlers().scheduleShow(date.getValue(), show.getValue(),
+	@UiHandler("createPerformance")
+	void onCreatePerformanceClicked(ClickEvent event) {
+		getUiHandlers().createPerformance(date.getValue(), show.getValue(),
 				location.getValue());
 	}
 }}}
 
 Run and test this functionality. In Development Mode Eclipse tab you'll see
 {{{
-... [INFO ] Presenter scheduling on Fri Oct 22 12:00:00 EEST 2010 the show Dream at location Rapsodia
+... [INFO ] Requested performance scheduling on Fri Oct 22 12:00:00 EEST 2010: show Dream at location Rapsodia
 }}}
 
 Note there are no widgets or other UI elements from View exposed in Presenter. The Presenter should not care about UI elements, only about data the View exposes. You can have different Views for different devices, or mocked Views for unit tests.
