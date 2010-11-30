@@ -43,7 +43,7 @@ Here's a proposed UI:
 
 
 = Get feedback =
-You can usually find target personae among your friends, if you don't have access to direct customers yet. Get them to provide feedback about your ideas and do [http://en.wikipedia.org/wiki/Usability_testing usability testing] using mockups you developed. Changes are much cheaper to do now than once the code is written, tested and released.
+You can usually find target personae among your friends, if you don't have access to possible customers yet. Get them to provide feedback about your ideas and do [http://en.wikipedia.org/wiki/Usability_testing usability testing] using mockups you developed. Changes are much cheaper to do now than once the code is written, tested and released.
 
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
