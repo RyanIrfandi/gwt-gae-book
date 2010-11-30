@@ -19,7 +19,7 @@ First, [http://code.google.com/p/gwt-gae-book/source/checkout checkout the lates
 
 Ideally, we would want to have an URL like
 {{{
-http://cultureshows.appspot.com/api/v1/theaters/theaterKey/performances
+http://cultureshows.appspot.com/api/v1/theaters/{theaterKey}/performances
 }}}
 which would list all the upcoming performances for the theater key given in the path. We will include `Show` and `Location` entities in the `Performance` data too, the reason being shown later in this chapter.
 
