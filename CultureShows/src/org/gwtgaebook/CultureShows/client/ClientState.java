@@ -12,7 +12,7 @@ public class ClientState {
 	public UserInfo userInfo;
 
 	// theaters user has access to; key/name
-	List<Theater> theaters = new ArrayList<Theater>();
+	public List<Theater> theaters = new ArrayList<Theater>();
 
 	public String currentTheaterKey;
 }

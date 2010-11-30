@@ -1,5 +1,6 @@
 package org.gwtgaebook.CultureShows.client.event;
 
+import org.gwtgaebook.CultureShows.client.ClientState;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
 
 import com.google.gwt.event.shared.EventHandler;
@@ -35,20 +36,20 @@ public class UserInfoAvailableEvent extends
 		handler.onHasUserInfoAvailable(this);
 	}
 
-	public static void fire(HasHandlers source, UserInfo userInfo) {
+	public static void fire(HasHandlers source, ClientState clientState) {
 		if (TYPE != null) {
-			source.fireEvent(new UserInfoAvailableEvent(userInfo));
+			source.fireEvent(new UserInfoAvailableEvent(clientState));
 		}
 	}
 
-	private UserInfo userInfo;
+	private ClientState clientState;
 
-	public UserInfoAvailableEvent(UserInfo userInfo) {
-		this.userInfo = userInfo;
+	public UserInfoAvailableEvent(ClientState clientState) {
+		this.clientState = clientState;
 	}
 
-	public UserInfo getUserInfo() {
-		return this.userInfo;
+	public ClientState getClientState() {
+		return this.clientState;
 	}
 
 }

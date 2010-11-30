@@ -8,6 +8,7 @@ import org.gwtgaebook.CultureShows.client.Main;
 import org.gwtgaebook.CultureShows.client.MainPresenter;
 import org.gwtgaebook.CultureShows.client.NameTokens;
 import org.gwtgaebook.CultureShows.client.SignedInGatekeeper;
+import org.gwtgaebook.CultureShows.client.page.PagePresenter;
 import org.gwtgaebook.CultureShows.shared.Constants;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetShowsAction;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetShowsResult;
@@ -79,7 +80,7 @@ public class ShowPresenter extends
 
 	@Override
 	protected void revealInParent() {
-		RevealContentEvent.fire(this, MainPresenter.TYPE_RevealMainContent,
+		RevealContentEvent.fire(this, PagePresenter.TYPE_RevealSpecificContent,
 				this);
 		requestShows();
 	}

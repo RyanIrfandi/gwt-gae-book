@@ -1,8 +1,9 @@
 package org.gwtgaebook.CultureShows.client.guide;
 
 import org.gwtgaebook.CultureShows.client.ClientState;
-import org.gwtgaebook.CultureShows.client.MainPresenter;
 import org.gwtgaebook.CultureShows.client.NameTokens;
+import org.gwtgaebook.CultureShows.client.SignedInGatekeeper;
+import org.gwtgaebook.CultureShows.client.page.PagePresenter;
 
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.client.DispatchAsync;
@@ -12,6 +13,7 @@ import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
+import com.gwtplatform.mvp.client.annotations.UseGatekeeper;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.client.proxy.RevealContentEvent;
@@ -22,6 +24,7 @@ public class GuidePresenter extends
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.guide)
+	@UseGatekeeper(SignedInGatekeeper.class)
 	public interface MyProxy extends ProxyPlace<GuidePresenter> {
 	}
 
@@ -48,7 +51,7 @@ public class GuidePresenter extends
 
 	@Override
 	protected void revealInParent() {
-		RevealContentEvent.fire(this, MainPresenter.TYPE_RevealMainContent,
+		RevealContentEvent.fire(this, PagePresenter.TYPE_RevealSpecificContent,
 				this);
 	}
 

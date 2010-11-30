@@ -4,6 +4,10 @@ import org.gwtgaebook.CultureShows.client.guide.GuideModule;
 import org.gwtgaebook.CultureShows.client.guide.GuidePresenter;
 import org.gwtgaebook.CultureShows.client.landing.LandingModule;
 import org.gwtgaebook.CultureShows.client.landing.LandingPresenter;
+import org.gwtgaebook.CultureShows.client.page.PageModule;
+import org.gwtgaebook.CultureShows.client.page.PagePresenter;
+import org.gwtgaebook.CultureShows.client.performances.PerformanceModule;
+import org.gwtgaebook.CultureShows.client.performances.PerformancePresenter;
 import org.gwtgaebook.CultureShows.client.resources.Resources;
 import org.gwtgaebook.CultureShows.client.resources.Translations;
 import org.gwtgaebook.CultureShows.client.shows.ShowModule;
@@ -20,7 +24,8 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyFailureHandler;
 
 @GinModules({ DispatchAsyncModule.class, MainModule.class, WidgetModule.class,
-		LandingModule.class, ShowModule.class, GuideModule.class })
+		LandingModule.class, PageModule.class, PerformanceModule.class,
+		ShowModule.class, GuideModule.class })
 public interface MainGinjector extends Ginjector {
 	EventBus getEventBus();
 
@@ -37,6 +42,10 @@ public interface MainGinjector extends Ginjector {
 	Provider<MainPresenter> getMainPresenter();
 
 	Provider<LandingPresenter> getLandingPresenter();
+
+	Provider<PagePresenter> getContentPresenter();
+
+	Provider<PerformancePresenter> getPerformancePresenter();
 
 	AsyncProvider<GuidePresenter> getGuidePresenter();
 

@@ -52,7 +52,7 @@
 
 	That's it!
 	<h4><g:InlineHyperlink ui:field="guide"
-			targetHistoryToken="{nameTokens.getLanding}">Start scheduling performances or events</g:InlineHyperlink></h4>
+			targetHistoryToken="{nameTokens.getPerformances}">Start scheduling performances or events</g:InlineHyperlink></h4>
 
 	<h3>Quick Q&amp;A</h3>
 	<p>

@@ -1,7 +1,6 @@
 package org.gwtgaebook.CultureShows.client.guide;
 
 import org.gwtgaebook.CultureShows.client.ClientState;
-import org.restlet.Client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -21,7 +20,6 @@ public class GuideView extends ViewWithUiHandlers<GuideUiHandlers> implements
 			.create(GuideViewUiBinder.class);
 
 	public final Widget widget;
-	// private ClientState clientState;
 
 	@UiField
 	Label theaterKey;
