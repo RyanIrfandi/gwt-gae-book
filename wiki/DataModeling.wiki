@@ -30,7 +30,7 @@ A member is part of a theater with a role (administrator, artist, assistant). Sa
 
 A theater has shows and locations. A performance consists of a show held in a location at a date and time.
 
-For simplicity, we won't handle the case when a location is shared by more theaters (say a bar or concert hall, or theater might go on tour). For these cases, the theater owner will have to add locations to her theater, even though these locations might be already defined somewhere. (one idea could be to use Google Places instead of locations, but Places API doesn't have search by address / name, just by geo-location).
+For simplicity, we won't handle the case when a location is shared by more theaters (say a bar or concert hall, or theater which goes on tour). For these cases, the theater owner will have to add locations to her theater, even though these locations might be already defined somewhere. (one idea could be to use Google Places instead of locations, but Places API doesn't have search by address / name yet, just by geo-location).
 
 A theater has contact info. Locations also may have contact info (if they are not owned by theater but rather rented, or a theater might have two locations in different city areas, each with it's own phone to make ticket reservations).
 
