@@ -21,7 +21,7 @@ public class MainView extends ViewWithUiHandlers<MainUiHandlers> implements
 	SimplePanel headerNav;
 
 	@UiField
-	SimplePanel main;
+	SimplePanel pageContent;
 
 	public MainView() {
 		widget = uiBinder.createAndBindUi(this);
@@ -38,9 +38,9 @@ public class MainView extends ViewWithUiHandlers<MainUiHandlers> implements
 		if (slot == MainPresenter.TYPE_RevealHeaderContent) {
 			headerNav.clear();
 			headerNav.add(content);
-		} else if (slot == MainPresenter.TYPE_RevealMainContent) {
-			main.clear();
-			main.add(content);
+		} else if (slot == MainPresenter.TYPE_RevealPageContent) {
+			pageContent.clear();
+			pageContent.add(content);
 		} else {
 			super.setInSlot(slot, content);
 		}

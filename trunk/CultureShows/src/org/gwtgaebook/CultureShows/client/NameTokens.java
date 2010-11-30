@@ -40,6 +40,12 @@ public class NameTokens {
 		return guide;
 	}
 
+	public static final String performances = "!performances";
+
+	public static String getPerformances() {
+		return performances;
+	}
+
 	public static final String shows = "!shows";
 
 	public static String getShows() {

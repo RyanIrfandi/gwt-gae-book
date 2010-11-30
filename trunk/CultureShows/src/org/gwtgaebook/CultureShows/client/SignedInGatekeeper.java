@@ -10,7 +10,6 @@ public class SignedInGatekeeper implements Gatekeeper {
 
 	@Override
 	public boolean canReveal() {
-
 		if (null != clientState.userInfo) {
 			if (clientState.userInfo.isSignedIn) {
 				return true;

@@ -8,7 +8,12 @@ import com.gwtplatform.mvp.client.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 
+import org.gwtgaebook.CultureShows.client.ClientState;
+import org.gwtgaebook.CultureShows.client.Main;
+import org.gwtgaebook.CultureShows.client.NameTokens;
 import org.gwtgaebook.CultureShows.client.event.SignInEvent;
 import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent;
 import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent.UserInfoAvailableHandler;
@@ -17,13 +22,19 @@ public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView>
 		implements HeaderUiHandlers {
 
 	public interface MyView extends View, HasUiHandlers<HeaderUiHandlers> {
-		public void setUserInfo(UserInfo userInfo);
+		public void setClientState(ClientState clientState);
 	}
 
+	private final PlaceManager placeManager;
+	private ClientState clientState;
+
 	@Inject
-	public HeaderPresenter(final EventBus eventBus, final MyView view) {
+	public HeaderPresenter(final EventBus eventBus, final MyView view,
+			final PlaceManager placeManager) {
 		super(eventBus, view);
 		getView().setUiHandlers(this);
+
+		this.placeManager = placeManager;
 	}
 
 	@Override
@@ -35,17 +46,22 @@ public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView>
 					@Override
 					public void onHasUserInfoAvailable(
 							UserInfoAvailableEvent event) {
-						setSignInOut(event.getUserInfo());
+						onUserInfoAvailable(event.getClientState());
 
 					}
 				});
 	}
 
-	public void setSignInOut(UserInfo userInfo) {
-		getView().setUserInfo(userInfo);
+	@Override
+	public void onReveal() {
+		super.onReveal();
+		Main.logger.info("HeaderPresenter onReveal");
 	}
 
-	public void requestSignIn() {
-		SignInEvent.fire(this);
+	public void onUserInfoAvailable(ClientState clientState) {
+		this.clientState = clientState;
+		getView().setClientState(clientState);
+		// TODO set theaters
 	}
+
 }

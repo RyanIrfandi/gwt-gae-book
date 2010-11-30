@@ -1,17 +1,19 @@
 package org.gwtgaebook.CultureShows.client.widget;
 
-import org.gwtgaebook.CultureShows.shared.model.UserInfo;
+import org.gwtgaebook.CultureShows.client.ClientState;
+import org.gwtgaebook.CultureShows.client.NameTokens;
+import org.gwtgaebook.CultureShows.client.resources.Resources;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.InlineHyperlink;
-import com.google.gwt.user.client.ui.InlineLabel;
+import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
 public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements
@@ -24,24 +26,37 @@ public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements
 			.create(HeaderViewUiBinder.class);
 	private final Widget widget;
 
-	@UiField
-	TokenSeparatedList nav;
+	private ClientState clientState;
+
+	@Inject
+	Resources resources;
 
 	@UiField
-	Anchor signIn;
+	MenuBar headerMenu;
 	@UiField
-	InlineLabel username;
+	MenuItem accountItem;
 	@UiField
-	InlineHyperlink performances;
+	MenuItem accountHelpItem;
 	@UiField
-	InlineHyperlink shows;
-	@UiField
-	Anchor signOut;
-
-	private UserInfo userInfo;
+	MenuItem accountSignOutItem;
 
 	public HeaderView() {
 		widget = uiBinder.createAndBindUi(this);
+
+		// menu commands
+		accountSignOutItem.setCommand(new Command() {
+			public void execute() {
+				Window.Location.replace(clientState.userInfo.signOutURL);
+
+			}
+		});
+
+		accountHelpItem.setCommand(new Command() {
+			public void execute() {
+				History.newItem(NameTokens.guide);
+			}
+		});
+
 	}
 
 	@Override
@@ -49,27 +64,15 @@ public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements
 		return widget;
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
-		this.userInfo = userInfo;
-		if (userInfo.isSignedIn) {
-			username.setText(userInfo.email);
-			nav.setWidgetVisible(username, true);
-			nav.setWidgetVisible(performances, true);
-			nav.setWidgetVisible(shows, true);
-			nav.setWidgetVisible(signOut, true);
+	public void setClientState(ClientState clientState) {
+		this.clientState = clientState;
+		if (null != clientState.userInfo && clientState.userInfo.isSignedIn) {
+			headerMenu.setVisible(true);
+			accountItem.setHTML(clientState.userInfo.email + " <img src=\""
+					+ resources.menuBarDownIcon().getURL()
+					+ "\" style=\"vertical-align: middle\" />");
 		} else {
-			nav.setWidgetVisible(signIn, true);
 		}
 
-	}
-
-	@UiHandler("signIn")
-	void onSignInClicked(ClickEvent event) {
-		getUiHandlers().requestSignIn();
-	}
-
-	@UiHandler("signOut")
-	void onSignOutClicked(ClickEvent event) {
-		Window.Location.replace(userInfo.signOutURL);
 	}
 }

@@ -15,7 +15,7 @@ Various code samples/functionality were taken from libraries, blogs, discussion 
 
 Notes
 Generate resource styles list with
-java -cp ~/.eclipse/155965261/plugins/com.google.gwt.eclipse.sdkbundle.2.0.4_2.0.4.v201006301254/gwt-2.0.4/gwt-dev.jar:~/.eclipse/155965261/plugins/com.google.gwt.eclipse.sdkbundle.2.0.4_2.0.4.v201006301254/gwt-2.0.4/gwt-user.jar com.google.gwt.resources.css.InterfaceGenerator typeName Style -css src/org/gwtgaebook/CultureShows/client/resources/main.css
+java -cp gwt-dev.jar:gwt-user.jar com.google.gwt.resources.css.InterfaceGenerator -standalone -typeName org.gwtgaebook.CultureShows.client.resources -css src/org/gwtgaebook/CultureShows/client/resources/main.css
 
 
 

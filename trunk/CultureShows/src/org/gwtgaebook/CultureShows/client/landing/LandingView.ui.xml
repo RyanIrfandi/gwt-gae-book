@@ -12,26 +12,20 @@
 	<ui:with field='res' type='org.gwtgaebook.CultureShows.client.resources.Resources' />
 
 
+	<ui:image field="google" src="../resources/google.png" />
+	<ui:image field="yahoo" src="../resources/yahoo.png" />
+
+
 	<ui:style>
 
-	.mainContent {
-		float: left;
-		max-width: 37em;
-		padding: 0.5em;
-	}
-
-	.sidebar {
+	.sideNavContent {
 		float: right;
-		max-width: 10em;
-		margin: 0em;
-		padding: 1em;
-	}
+		width: 25%;
+		margin-top: 1em;
+		padding: 1em 1em;
+		word-wrap: break-word;
 
-
-	.shows {
-		clear:both;
-		padding: 0 0.25em;
-		background-color: #eeeeee;
+		background-color: #e8f0de;
 		-webkit-border-radius: .5em;
 		-moz-border-radius: .5em;
 		border-radius: .5em;
@@ -40,54 +34,66 @@
 		box-shadow: 0 1px 2px rgba(0,0,0,.2);
 	}
 
-	.container {
+
+	.specificContent {
+		float: left;
+		width: 65%;
+		padding: 3em 0 0 1em;
 	}
 
 
 
+	.specificContent::after {
+		clear: both;
+		display: block;
+	}
+
+	.center {
+	    margin: 1em auto;
+	    text-align: center;
+
+	}
+
+	.provider {
+		cursor: pointer;
+	    margin: 1em auto;
+		display: block;
+		-webkit-border-radius: .5em;
+		-moz-border-radius: .5em;
+		border-radius: .5em;
+		-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		border: solid 1px #538312;
+		/* TODO padding doesn't work, image is always top-left */
+	}
+
 	</ui:style>
 
+    <g:HTMLPanel ui:field="container">
 
+	    <g:HTMLPanel addStyleNames="{style.specificContent}">
+		Schedule theater performances and other events, and easily embed them on your website, blog or plain HTML homepage. For free.
 
-    <g:HTMLPanel ui:field="container" addStyleNames="{style.container}">
-	Schedule theater performances and other events, and easily embed them on your website, blog or plain HTML homepage. For free.
-<g:InlineHyperlink ui:field="guide"
-			targetHistoryToken="{nameTokens.getGuide}">Learn how</g:InlineHyperlink>
+		<ul>
+			<li>real time updates: your website reflects any changes automatically</li>
+			<li>be independent from other persons: no need to ask somebody else to publish your updates</li>
+		</ul>
+	    </g:HTMLPanel>
 
-		<g:HTMLPanel>
-		    <g:HTMLPanel addStyleNames="{style.mainContent}">
-				<g:Label ui:field="dateLbl" visible="false" addStyleNames="{res.style.fieldLabel}">Date and time</g:Label>
-				<gdp:DateBox ui:field="date" title="Date and time" addStyleNames="{res.style.block} {res.style.medium}"></gdp:DateBox>
+	    <g:HTMLPanel ui:field="signInContainer" addStyleNames="{style.sideNavContent}" visible="false">
+			<g:HTMLPanel addStyleNames="{style.center}">
+			<b>Sign in</b><br/>with your existing account
+				<g:Image ui:field="googleSignIn" altText="Google" addStyleNames="{style.provider}" resource="{google}" />
+				<g:Image ui:field="yahooSignIn" altText="Yahoo" addStyleNames="{style.provider}" resource="{yahoo}" />
+			</g:HTMLPanel>
 
-			    <g:Label ui:field="showLbl" visible="false" addStyleNames="{res.style.fieldLabel}">Show name</g:Label>
-			    <g:TextBox ui:field="show" title="Show name" addStyleNames="{res.style.block} {res.style.medium}"></g:TextBox>
+			<g:HTMLPanel addStyleNames="{style.center}">
+				<a href="https://www.google.com/accounts/NewAccount" target="_blank">Create an account</a>
+			</g:HTMLPanel>
 
-			    <g:Label ui:field="locationLbl" visible="false" addStyleNames="{res.style.fieldLabel}">Location</g:Label>
-			    <g:TextBox ui:field="location" title="Location" addStyleNames="{res.style.block} {res.style.medium}"></g:TextBox>
-
-			    <g:Button ui:field="createPerformance" addStyleNames="{res.style.button} {res.style.green} {res.style.medium}">Schedule performance</g:Button>
-			    <g:Button ui:field="updatePerformance" visible="false" addStyleNames="{res.style.button} {res.style.blue} {res.style.small}">Update</g:Button>
-			    <g:Button ui:field="deletePerformance" visible="false" addStyleNames="{res.style.button} {res.style.blue} {res.style.small}">Delete</g:Button>
-		    </g:HTMLPanel>
-
-		    <g:HTMLPanel ui:field="sidebar" addStyleNames="{style.sidebar}" visible="false">
-				<g:Button ui:field="signIn" addStyleNames="{res.style.button} {res.style.green} {res.style.small} {res.style.block}">Sign In</g:Button>
-				<br/> to permanently save shows,
-				locations, schedule and more
-		    </g:HTMLPanel>
 		</g:HTMLPanel>
-
-		<g:HTMLPanel addStyleNames="{style.shows}">
-			<h4>Scheduled performances</h4>
-	    	<gcell:CellList ui:field="performancesCL" />
-		</g:HTMLPanel>
-
-    	<br/>
-
-
-
 
     </g:HTMLPanel>
-
 
 </ui:UiBinder>
