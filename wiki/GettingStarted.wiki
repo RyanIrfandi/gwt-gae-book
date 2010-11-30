@@ -31,10 +31,10 @@ Go through
 
 See you in a few days :)
 
-= Book source code =
+= Application source code =
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/digital_dreams.jpg" border="0"  align="right" />
 
-Feel free to [http://code.google.com/p/gwt-gae-book/source/checkout checkout the latest source code] for this book. 
+Feel free to [http://code.google.com/p/gwt-gae-book/source/checkout checkout the latest source code] for the application developed along the book. 
 
 <wiki:comment>
 
