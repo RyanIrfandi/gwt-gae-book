@@ -8,7 +8,13 @@ Download and unpack [http://gwt-gae-book.googlecode.com/svn/trunk/CultureShows-0
 
 For now we'll focus on building the landing page only, feel free to ignore the rest of the files in the template project. We'll cover them later.
 
-There is some reading you have to do in advance for each section, but it's worth it.
+= Mockup =
+
+Here's how the landing page might look
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing.png" border="1"  />
+
+There is some reading you have to do in advance for each section below, but it's worth it.
 
 = Page Layout =
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/grunge.jpg" border="0"  align="right" />
