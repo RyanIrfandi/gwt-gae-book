@@ -23,8 +23,6 @@ Make a few drafts of the UI by yourself before going further. Consider
  * user acquisition
  * [http://en.wikipedia.org/wiki/Usability usability]
 
-== Managing performances ==
-
 After a first draft of mockup you're happy with, brainstorm about it. For example:
  * Should fields in the grid be editable, so we avoid edit buttons? 
   * unintuitive to use and harder to implement
@@ -33,6 +31,9 @@ After a first draft of mockup you're happy with, brainstorm about it. For exampl
  * Show and location: text entry with auto-completion or combo boxes? 
  * Need to edit shows to specify more details (summary, link to show homepage, actors). Could do via a "Manage shows" page
  * Is this UI fully usable on touch-based devices?
+
+
+== Managing performances ==
 
 Here's a proposed UI:
 
