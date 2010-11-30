@@ -47,9 +47,8 @@ Open `LandingView.ui.xml` and try to implement the mocked up UI. No need to impl
 = Implementation =
 
 
-Here's [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml LandingView.ui.xml]
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml LandingView.ui.xml]
 
- `LandingView.ui.xml`
 {{{
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
@@ -170,15 +169,14 @@ If you are looking for jQuery-like functionality in GWT, there's [http://code.go
 
 Again, use the best tool for the job. Therefore an important criteria selection for your tool set should be allowing easy inter-operating with other tools.
 
-Here's a sample early version of the Landing page which used a !jQuery HTML5 placeholder plugin for form fields. 
- * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/war/main.html?r=372 main.html] contains the jQuery plugin, and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java?r=184 the view] adds HTML5 placeholder attributes and activates jQuery plugin via [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JSNI]. This code was later removed.
+An early version of the Landing page used a !jQuery HTML5 placeholder plugin for form fields. [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/war/main.html?r=372 main.html] contained the jQuery plugin, and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java?r=184 the view] added HTML5 placeholder attributes and activates jQuery plugin via [http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsJSNI.html JSNI]. This functionality was later removed.
 
 
 = Mobile, tablets, TV and other devices =
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/quijote1.jpg" border="0"  align="right" />
 
-Sometimes, you might want to have different views for different screen sizes. The styling above is liquid (resize browser window to try it out) and it works for now. We could have used [http://www.webdesignerwall.com/tutorials/css3-media-queries/ CSS3 media queries] to hide completely the signup sidebar on a small screen. See [http://www.smashingmagazine.com/2010/07/19/how-to-use-css3-media-queries-to-create-a-mobile-version-of-your-website/ another tutorial]. Media queries support [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/86047ca5c364679f/2871b1e5e35be0d1 is still missing] from GWT.
+Sometimes, you might want to have different views for different screen sizes. The styling above is liquid (resize browser window to try it out) and it works for now. We could have used [http://www.webdesignerwall.com/tutorials/css3-media-queries/ CSS3 media queries] to hide completely some information on small screens. See [http://www.smashingmagazine.com/2010/07/19/how-to-use-css3-media-queries-to-create-a-mobile-version-of-your-website/ another tutorial]. Media queries support [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/86047ca5c364679f/2871b1e5e35be0d1 is still missing] from GWT.
 
 
 = Model-View-Presenter (MVP) =
@@ -198,7 +196,7 @@ Besides the few files we worked with so far, the template project contains sever
 Think of !UiHandlers as a contract signed by Presenter: this is what Presenter has to offer, usable by others (usually Views). The Presenter also requires Views to offer something:
 {{{
 	public interface MyView extends View, HasUiHandlers<LandingUiHandlers> {
-		void resetAndFocus();
+		public void setUserInfo(UserInfo userInfo);
 	}
 }}}
 You can switch different Presenter and View implementations without any worries as long as they respect these contracts.
