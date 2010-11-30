@@ -42,7 +42,7 @@ Here's  [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShow
 
 </wiki:comment>
 
-= What's inside the template project =
+= A starter project =
 To get you started, I've setup  [http://gwt-gae-book.googlecode.com/svn/trunk/CultureShows-0.1.tgz a basic Eclipse project]. It contains one page and the most common libraries we'll use:
  * [http://code.google.com/p/guava-libraries/ guava]
  * [http://code.google.com/p/google-guice/ guice] 
