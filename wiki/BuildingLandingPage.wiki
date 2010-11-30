@@ -126,7 +126,7 @@ Here's [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/s
     <g:HTMLPanel ui:field="container">
 
 	    <g:HTMLPanel addStyleNames="{style.specificContent}">
-		Schedule theater performances and other events, and easily embed them on your website, blog or plain HTML homepage. For free.
+		Schedule theater performances and other events, and easily embed them on your website, blog or plain HTML homepage. 
 
 		<ul>
 			<li>real time updates: your website reflects any changes automatically</li>
