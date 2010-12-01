@@ -184,11 +184,8 @@ which will be fired by [http://code.google.com/p/gwt-gae-book/source/browse/trun
 {{{
 	public void onGetUserSuccess() {
 		...
-
 		UserInfoAvailableEvent.fire(this, clientState);
-
 		...
-
 	}
 }}}
 
@@ -263,159 +260,8 @@ The Handler constructors will be called only once per instance, not once per req
 		...
 	}
 }}}
-
-
-== Design of handling both anonymous and authenticated users ==
-
-We'll need to change `GetUserHandler` to handle anonymous users, authenticated users and migrating data from anonymous to authenticated if needed. We'll let the client always set whatever `UserToken` is returned by `GetUserHandler` and have the logic for setting it on the server.
-
-We also need to update `LandingPresenter` to get performances both on presenter reveal (e.g. returning to landing page from another place in app) and on `UserInfoAvailableEvent`. Scheduling performances is pretty much ok as it is now, since we designed with this use case in mind.
-
-So what are the use cases which need to handled by `GetUserHandler`?
- * anonymous user: preserve token if given, otherwise generate a token
- * returning anonymous user, has performances - need to know theaterKey (assuming it won't be in cookie anymore)
- * anonymous user which has performances, but is also registered and has performances as registered member too
- * user signed in with `UserToken` set (need to update member data)
- * user signed in, without `UserToken` set
-
-
-With this in mind, the pseudocode for `GetUserHandler` could be like this:
-{{{
-userTokenOut = null
-
-if userToken not empty
-	find member where userId = "anonymous" + userToken
-	if member exists
-		// has a member record from anonymous usage
-		// does he have a previous registered member too? if yes, merge anonymous data into registered
-		if isSignedIn
-			find signedInMember
-			if found
-				update tmjs to signedInMember
-				delete anonymousMember
-			else
-				update member set userId
-
-
-if isSignedIn && null = member
-	find member by userId
-	
-
-if (null != member)
-	get theaters member has access to		
-
-if (!isSignedIn)
-	if userToken
-		userTokenOut = userToken
-	else
-		userTokenOut = random
-}}}
-
-
-What do think? Yep, it starts getting messy and very prone to bugs. Just like real-life projects :) You need to continuously watch out for situations like this. It's good we realize the complexity from pseudocode, rather than from written and debugged code. Rather than getting absorbed in delivering, let's step back for a moment and see if we can [http://en.wikipedia.org/wiki/KISS_principle keep it simple].
-
-== Refactoring of... requirements! ==
-To simplify, we need to introduce some constraints.
-
-=== Exercise two ===
-Think what constraints can we introduce in our requirements.
-
-=== Exercise two solution ===
-We could simplify a little by always having a Member record for signed in users. Maybe we could have all the `UserToken` logic in `ScheduleShowHandler`, since we don't need it if there are no performances saved, right? Or we could move all the anonymous user handling on the client, and on signing in just save the data. Still not simple enough.
-
-What was the reason we let Violeta schedule shows without being signed in? To lower the user entry barrier. Well, with OpenID, that barrier is just two mouse clicks high: sign in and authorize our app. Let's do this:
- * allow only signed in users to schedule shows
- * let anonymous users fill the landing page data, but on 'Schedule show' prompt them to sign in. When coming back to app after signing in, save the data for them.
  
-= Updated application design =
-So our first approach wasn't the best possible. Probably this re-design isn't perfect either, but as long as it's better than the initial one, we're good. Let's create [http://code.google.com/p/gwt-gae-book/source/browse/#svn/branches/CultureShows-allow-anonymous-scheduling/CultureShows a branch] with old code, [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShows-0.2-allow-anonymous-scheduling.tgz an archive], and move on! All stories in our [http://code.google.com/p/gwt-gae-book/wiki/SoYouHaveAnIdea#Culture_Shows_product_backlog_(for_real) backlog] remain valid.
 
-
-== !GetUserHandler pseudocode ==
-{{{
-get userInfo
-if isSignedIn
-	get signOutURL
-	check if user has a Member record, create one if not
-	get theaters member has access to
-else
-	get signInURLs
-}}}
-
-== !MainPresenter pseudocode ==
-{{{
-request GetUser
-
-on GetUserSuccess
-	set UserInfo, including 
-		theaters member has access to
-		currentTheaterKey (first from the list)
-	UserInfoAvailableEvent.fire
-}}}
-
-
-== !LandingPresenter pseudocode ==
-{{{
-on ScheduleShow request
-	if isSignedIn
-		make the server request
-	else
-		save Performance data in cookie so it is available on user return 
-		ask user to sign in instead of making the server request
-
-onUserInfoAvailable
-	getView.setSignInOut
-
-	if user isSignedIn
-		if Performance data exists in cookie
-			request ScheduleShow //it will add to currentTheaterKey if set
-			remove Performance data in cookie
-		if theaterKey is set
-			request GetPerformances
-
-on ScheduleShowSuccess
-	set theaterKey returned by server
-}}}
-
-
-
-== !ScheduleShowHandler pseudocode ==
-{{{
-//called only when user isSignedIn
-//data received from client: theaterKey (may be empty), date, showName, locationName
-
-load member record, exception if it does not exist
-
-// setup theater
-if (theaterKey is not empty) {
-	load theater //might not exist, key may be invalid
-	if (null == theater) {
-		theaterKey = null	
-	} else {
-		verify memberKey has access to theater, exception if not
-	}
-}
-
-if (theaterKey is empty) {
-	create theater instance
-	theaterKey = store(theater)
-	assign member to theater with role administrator
-}
-
-// setup show
-showKey = find(showName assigned to theaterKey)
-if (showKey is empty) {
-	create and store show with parent=theater 
-}
-
-// setup location...
-
-store(performance)
-
-return theaterKey, performance
-}}}
-
-For implementation, see [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/ latest source code].
 
 
 
