@@ -128,7 +128,7 @@ public class PerformancePresenter extends
 	public void createPerformance(Date date, String showName,
 			String locationName) {
 		Main.logger.info("Requested performance scheduling on "
-				+ date.toString() + " the show " + showName + " at location "
+				+ date.toString() + ": show " + showName + " at location "
 				+ locationName + " for theater "
 				+ clientState.currentTheaterKey);
 		Performance p = new Performance();

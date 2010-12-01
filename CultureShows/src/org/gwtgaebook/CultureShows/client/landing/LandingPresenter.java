@@ -8,9 +8,12 @@ import org.gwtgaebook.CultureShows.client.NameTokens;
 import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetUserAction;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetUserResult;
+import org.gwtgaebook.CultureShows.shared.dispatch.GetUserSampleAction;
+import org.gwtgaebook.CultureShows.shared.dispatch.GetUserSampleResult;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
 
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.client.DispatchAsync;
 import com.gwtplatform.mvp.client.EventBus;
@@ -88,6 +91,23 @@ public class LandingPresenter extends
 
 					}
 				});
+
+		// dispatcher.execute(new
+		// GetUserSampleAction(Window.Location.getHref()),
+		// new AsyncCallback<GetUserSampleResult>() {
+		//
+		// @Override
+		// public void onFailure(Throwable caught) {
+		// Main.logger.severe("GetUserSample call failed "
+		// + caught.getMessage());
+		// }
+		//
+		// @Override
+		// public void onSuccess(GetUserSampleResult result) {
+		// Main.logger.info("GetUserSample result: "
+		// + result.getResponse());
+		// }
+		// });
 
 	}
 
