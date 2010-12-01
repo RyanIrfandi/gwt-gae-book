@@ -470,181 +470,34 @@ Next, let's start a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/C
 
 == Hey client, remember me? ==
 
-We need the GWT client to remember the current theater and send it with each request, so we avoid creating a new theater for every show. The theater will either be sent from server when it's created, or chosen by Violeta to work on, if she will have multiple theaters.
+We need the GWT client to remember the current theater and send it with each request, so we avoid creating a new theater for every show. The theater will be chosen by Violeta to work on, if she will have multiple theaters.
 
 There are a few possibilities to store data in GWT client as a session:
- * [http://stackoverflow.com/questions/1382088/session-id-cookie-in-gwt-rpc use server sessions], and persist sessions among requests. [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/268ec2887bec95d2/ full sample]
- * use a static variable. It will be lost when users refresh page.
  * use HTML5 web storage
  * use cookies
+ * [http://stackoverflow.com/questions/1382088/session-id-cookie-in-gwt-rpc use server sessions], and persist sessions among requests. [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/268ec2887bec95d2/ full sample]
+ * use a static variable. It will be lost when users refresh page.
+ * use an equivalent of a static variable: a [http://en.wikipedia.org/wiki/Singleton_pattern singleton]. It has the advantage of being injected by Gin rather than having a global scope, so it can easily be replaced with another implementation when doing testing if needed.
 
-For remembering the current theater, we'll go with simplest solution: a cookie. We'll use the same solution to remember the anonymous users between server calls.
-
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java?r=519 ScheduleShow] Action and Result generator
+We'll go with the last solution: a
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/ClientState.java ClientState class]
 {{{
-public class ScheduleShow {
-	@In(1)
-	String userToken;
+public class ClientState {
+	public UserInfo userInfo;
 
-	@In(2)
-	String theaterKey;
+	// theaters user has access to; key/name
+	public List<Theater> theaters = new ArrayList<Theater>();
 
-	@In(3)
-	String showName;
-
-	@Out(1)
-	String errorText; // empty if success
-
-	@Out(2)
-	String theaterKeyOut;
-
+	public String currentTheaterKey;
 }
 }}}
 
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=519 LandingPresenter]
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/MainModule.java binded as a singleton] 
 {{{
-		dispatcher.execute(new ScheduleShowAction(Cookies
-				.getCookie(Constants.userTokenCookieName), Cookies
-				.getCookie(Constants.theaterCookieName), showName),
-				new DispatchCallback<ScheduleShowResult>() {
-					@Override
-					public void onSuccess(ScheduleShowResult result) {
-						...
-						Cookies.setCookie(Constants.theaterCookieName, result
-								.getTheaterKeyOut());
-					}
-				});
-
-}}}
-
-= Implementation =
-
-Here are the relevant parts from [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java?r=519 ScheduleShowHandler]
-{{{
-		// authentication
-		// TODO anonymous = (AppEngineUser is not signed in)
-
-		if (anonymous) {
-			userId = "anonymous-" + action.getUserToken();
-			// prefix prevents client setting valid user IDs and overwriting
-			// their data
-			// issue: client can overwrite any anonymous user data by setting a
-			// matching RandomToken. That's ok.
-		} else {
-			// TODO set userId
-		}
-
-		// setup member
-		// does this member already exist?
-		List<Member> members = datastore.find().type(Member.class).addFilter(
-				"userId", FilterOperator.EQUAL, userId).returnAll().now();
-		if (members.size() > 0) {
-			// TODO log error if size != 1
-			member = members.get(0);
-			memberKey = datastore.associatedKey(member);
-		} else {
-			// store member
-			// TODO if signed in, fill email, language...
-			member = new Member();
-			member.userId = userId;
-			memberKey = datastore.store(member);
-
-		}
-
-		// setup theater
-		if (!(null == action.getTheaterKey() || action.getTheaterKey()
-				.isEmpty())) {
-			// theaterKey sent by client is not empty
-			try {
-				theaterKey = KeyFactory.stringToKey(action.getTheaterKey());
-			} catch (Exception e) {
-				// invalid key, ignore it
-			}
-		}
-
-		if (null != theaterKey) {
-			theater = datastore.load(theaterKey);
-			if (null == theater) {
-				theaterKey = null;
-			} else {
-				// verify member has access to theater with role allowing
-				// performance scheduling
-				List<TheaterMemberJoin> tmjs = datastore.find().type(
-						TheaterMemberJoin.class).addFilter("theaterKey",
-						FilterOperator.EQUAL,
-						KeyFactory.keyToString(theaterKey)).addFilter(
-						"memberKey", FilterOperator.EQUAL,
-						KeyFactory.keyToString(memberKey)).returnAll().now();
-				if (tmjs.size() > 0) {
-					// has access
-				} else {
-					return new ScheduleShowResult(
-							"You don't have access to this theater", "");
-				}
-
-			}
-		}
-
-		if (null == theaterKey) {
-			theater = new Theater();
-
-			theater.name = "My Theater";
-			// store creates a Key in the datastore and keeps it in the
-			// ObjectDatastore associated with this theater instance. Basically,
-			// every OD has a Map<Object, Key> which is used to look up the Key
-			// for every operation.
-			theaterKey = datastore.store(theater);
-
-			// assign member to theater
-			tmj = new TheaterMemberJoin();
-			tmj.theaterKey = KeyFactory.keyToString(theaterKey);
-			tmj.memberKey = KeyFactory.keyToString(memberKey);
-			tmj.role = Role.ADMINISTRATOR;
-
-			tmj.theaterName = theater.name;
-			tmj.memberEmail = member.email;
-			tmj.memberName = member.name;
-
-			datastore.store(tmj);
-		}
-
-		// setup show
-		// does show already exist?
-		show = new Show();
-		show.setName(action.getShowName());
-
-		List<Show> shows = datastore.find().type(Show.class).ancestor(theater)
-				.addFilter("nameQuery", FilterOperator.EQUAL, show.nameQuery)
-				.returnAll().now();
-		if (shows.size() > 0) {
-			// TODO log error if size != 1
-			show = shows.get(0);
-			showKey = datastore.associatedKey(show);
-		} else {
-			// store show belonging to a theater
-			showKey = datastore.store().instance(show).parent(theater).now();
-		}
-
-		// TODO setup location
-
-		// setup performance
-		performance = new Performance();
-
-		performance.showKey = KeyFactory.keyToString(showKey);
-
-		performance.theaterKey = KeyFactory.keyToString(theaterKey);
-		performance.showName = show.getName();
-		performance.showWebsiteURL = show.websiteURL;
-		performanceKey = datastore.store(performance);
-
+		bind(ClientState.class).in(Singleton.class);
 }}}
 
 
-= Exercise =
-Enhance performances to store not only shows, but also locations and date. 
-
-= Exercise solution =
-See [http://code.google.com/p/gwt-gae-book/source/detail?r=304 adding location source revision].
 
 
 = Additional resources =
