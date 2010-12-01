@@ -137,11 +137,6 @@
   * [QualityAssurance#Integration_testing Integration testing] <br/>
    * [QualityAssurance#Exercise Exercise] <br/>
    * [QualityAssurance#Exercise_solution Exercise solution] <br/>
-   * [QualityAssurance#Redesigning_performance_management_for_testability Redesigning performance management for testability] <br/>
-    * [QualityAssurance#Exercise Exercise] <br/>
-    * [QualityAssurance#Exercise_solution Exercise solution] <br/>
-    * [QualityAssurance#Exercise Exercise] <br/>
-    * [QualityAssurance#Exercise_solution Exercise solution] <br/>
   * [QualityAssurance#Web_services_testing Web services testing] <br/>
   * [QualityAssurance#UI_testing UI testing] <br/>
   * [QualityAssurance#Performance_testing Performance testing] <br/>
