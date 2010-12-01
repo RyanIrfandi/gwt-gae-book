@@ -164,6 +164,9 @@ The Handler constructors will be called only once per instance, not once per req
  
 
 
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/vis_3.jpg" border="0"  align="right" />
+
+
 = Custom widgets & events =
 *Pre-requisites*
  * [http://code.google.com/p/gwt-platform/wiki/GettingStarted?tm=6#Presenter_widgets Presenter widgets]
@@ -255,12 +258,6 @@ Interested parties can listen to this event and handle it as desired. For exampl
 	}
 
 }}}
-
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/vis_3.jpg" border="0"  align="right" />
-
-
-
 
 
 
