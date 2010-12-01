@@ -109,6 +109,17 @@ public class LandingPresenter extends
 		// }
 		// });
 
+		// dispatcher.execute(new
+		// GetUserSampleAction(Window.Location.getHref()),
+		// new DispatchCallback<GetUserSampleResult>() {
+		//
+		// @Override
+		// public void onSuccess(GetUserSampleResult result) {
+		// Main.logger.info("GetUserSample result: "
+		// + result.getResponse());
+		// }
+		// });
+
 	}
 
 	public void onGetUserSuccess() {
