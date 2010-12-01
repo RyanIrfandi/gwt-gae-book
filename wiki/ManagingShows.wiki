@@ -86,7 +86,7 @@ We'll also use the `GetPerformances` and `ManagePerformance` as a reference on s
 
 And here's the result
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/manageShows.png" border="0" />
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/showsApp.png" border="0" />
 
 We have some code duplicated for Shows and Performances both for client and server. In a later chapter, we'll work on minimizing this.
 
