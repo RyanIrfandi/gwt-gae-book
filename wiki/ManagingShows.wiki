@@ -46,8 +46,8 @@ public class SignedInGatekeeper implements Gatekeeper {
 }}}
 
 
-We'll basically duplicate [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/  the landing package] structure. Here are the steps:
- * create a `shows` package, with the same files as in `landing`, and change the class names
+We'll basically duplicate [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/  the performances package] structure. Here are the steps:
+ * create a `shows` package, with the same files as in `performances`, and change the class names
  * add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/shows/ShowModule.java ShowModule] to the [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/MainGinjector.java Gin Injector]
  * add `SignedInGatekeeper` and `ShowPresenter` to [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/MainGinjector.java MainGinjector]
  * add a new "shows" [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/NameTokens.java name token]
