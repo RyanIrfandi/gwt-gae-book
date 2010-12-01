@@ -1,6 +1,6 @@
 #summary Authentication with OpenID
 
-We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. Having built  [BuildingLandingPage a landing page] which [StoringData saves] and [ListingSchedule lists] performances schedule, we'll implement next authentication for our users.
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. Having built  [BuildingLandingPage a landing page] which [ClientServer communicates with App Engine back-end], we'll work next on authentication for our users.
 
 <wiki:toc max_depth="2" />
 
@@ -17,7 +17,7 @@ Although it's possible to develop App Engine applications with custom authentica
 
 Here are the steps to add authentication support
  # define [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/UserInfo.java UserInfo] model, used to send user information from server to client 
- # define !GetUser [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetUser.java action/result generator] and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetUserHandler.java handler], [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/MainHandlerModule.java bind them]. !GetUserHandler.java contains
+ # define [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetUser.java GetUser action/result generator] and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetUserHandler.java handler], [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/MainHandlerModule.java bind them]. The handler contains
 {{{
 	public GetUserResult execute(GetUserAction action, ExecutionContext context)
 			throws ActionException {
@@ -44,7 +44,7 @@ Here are the steps to add authentication support
 		return new GetUserResult("", userInfo);
 }
 }}}
- # in `LandingPage` presenter, get user info from server
+ # in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter], get user info from server
 {{{
 		dispatcher.execute(new GetUserAction(Window.Location.getHref()),
 				new DispatchCallback<GetUserResult>() {
@@ -55,42 +55,52 @@ Here are the steps to add authentication support
 							Window.alert(result.getErrorText());
 							return;
 						}
-						setUserInfo(result.getUserInfo());
+						clientState.userInfo = result.getUserInfo();
+						onGetUserSuccess();
 					}
 				});
-...
+	...
+
+	public void onGetUserSuccess() {
+		Main.logger.info("onGetUserSuccess: User isSignedIn "
+				+ clientState.userInfo.isSignedIn.toString() + " with email "
+				+ clientState.userInfo.email + " username "
+				+ clientState.userInfo.userId);
+
+		if (clientState.userInfo.isSignedIn) {
+			...
+		} else {
+			getView().setUserInfo(clientState.userInfo);
+		}
+	}
+}}}
+ # in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingPage]`  have an UI for signing in
+{{{
+	private UserInfo userInfo;
 
 	public void setUserInfo(UserInfo userInfo) {
 		this.userInfo = userInfo;
-		getView().setSignInOut(userInfo);
-	}
-}}}
- # in `LandingPage` View have a basic UI for signing in/out
-{{{
-	@UiField
-	HTML signInOut;
-
-	public void setSignInOut(UserInfo userInfo) {
-		String html;
-		if (userInfo.isSignedIn) {
-			html = userInfo.email + " | " + "<a href='" + userInfo.signOutURL
-					+ "'>Sign Out</a>";
-		} else {
-			html = "<a href='" + userInfo.signInURLs.get("Google")
-					+ "'>Sign In with Google</a>" + " | " + "<a href='"
-					+ userInfo.signInURLs.get("Yahoo")
-					+ "'>Sign In with Yahoo</a>";
-
+		if (!userInfo.isSignedIn) {
+			signInContainer.setVisible(true);
 		}
-		signInOut.setHTML(html);
+	}
 
+	@UiHandler("googleSignIn")
+	void onGoogleSignInClicked(ClickEvent event) {
+		Main.logger.info("redirecting to " + userInfo.signInURLs.get("Google"));
+		Window.Location.replace(userInfo.signInURLs.get("Google"));
+	}
+
+	@UiHandler("yahooSignIn")
+	void onYahooSignInClicked(ClickEvent event) {
+		Window.Location.replace(userInfo.signInURLs.get("Yahoo"));
 	}
 }}}
 
 It's really that easy. The result?
 
 _Signed out_ <br/>
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signedOut.png" border="1"  />
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landingApp.png" border="1"  />
 
 -----
 
@@ -99,18 +109,10 @@ _Signing in with Google_ <br/>
 
 -----
 
-_Signed in with Google_ <br/>
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signedInG.png" border="1"  />
-
------
-
 _Signing in with Yahoo_ <br/>
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signingInY.png" border="1"  />
 
 -----
-
-_Signed in with Yahoo_ <br/>
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signedInY.png" border="1"  />
 
 
 App Engine supports more !OpenID providers. To keep the UI usable, we'll limit the options to the most popular two.
