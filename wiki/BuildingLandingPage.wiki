@@ -4,10 +4,6 @@ We discussed about [SoYouHaveAnIdea putting an application ideas in writing],  [
 
 <wiki:toc max_depth="2" />
 
-Download and unpack [http://gwt-gae-book.googlecode.com/svn/trunk/CultureShows-0.1.tgz the basic project] already setup for you and do `File > Import > Existing Projects` from Eclipse. Run it to make sure it's working.
-
-For now we'll focus on building the landing page only, feel free to ignore the rest of the files in the template project. We'll cover them later.
-
 = Mockup =
 
 Here's how the landing page might look
@@ -181,7 +177,7 @@ Sometimes, you might want to have different views for different screen sizes. Th
 
 = Model-View-Presenter (MVP) =
 
-Besides the few files we worked with so far, the template project contains several more. Let's learn about
+Let's learn about
 
  * [http://code.google.com/webtoolkit/articles/mvp-architecture.html MVP architecture]
  * [http://code.google.com/p/gwt-platform/wiki/GettingStarted Getting started with gwt-platform]
@@ -207,8 +203,6 @@ Note we are using [http://code.google.com/p/gwt-platform/wiki/GettingStarted?tm=
  * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/client/page Page] Presenter/View provides the logic/content for the `pageContent` placeholder, while leaving a `specificContent` widget to be filled in by other presenters
  * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/client/landing Landing] Presenter/View is an example of `specificContent`
 
-
-Now review all files in the template project. Do they make full sense? 
 
 == Exercise ==
 Using what you learned above, create a new "performances" package, with [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/client/performances a View and a Presenter], and start implementing saving a performance when "Schedule performance" button is clicked. For now, it should just log a message in Presenter with the date, location and show name.
