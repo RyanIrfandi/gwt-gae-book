@@ -284,7 +284,7 @@ and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/t
 
 }}}
 
-...and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter]
+...and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/PerformancePresenter.java PerformancePresenter]
 {{{
 
 	public void requestPerformances() {
@@ -354,7 +354,7 @@ In [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/o
 
 }}}
 
-and in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter] just log this for now
+and in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/PerformancePresenter.java PerformancePresenter] just log this for now
 {{{
 	public void onPerformanceSelected(Performance p) {
 		Main.logger.info("Selected performance " + p.performanceKey
