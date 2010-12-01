@@ -25,9 +25,12 @@
  * [VisualizingYourApp#Mockups Mockups] <br/>
   * [VisualizingYourApp#Exercise Exercise] <br/>
   * [VisualizingYourApp#Landing_page Landing page] <br/>
+  * [VisualizingYourApp#Managing_performances Managing performances] <br/>
  * [VisualizingYourApp#Get_feedback Get feedback] <br/>
 
 === [TheRightToolForTheJob Are you using the right tool for the job?] ===
+ * [TheRightToolForTheJob#Google_Web_Toolkit_(GWT) Google Web Toolkit (GWT)] <br/>
+ * [TheRightToolForTheJob#Google_App_Engine_(GAE) Google App Engine (GAE)] <br/>
  * [TheRightToolForTheJob#Evaluating_alternatives Evaluating alternatives] <br/>
  * [TheRightToolForTheJob#Analysis_of_using_GWT_for_a_large_application Analysis of using GWT for a large application] <br/>
  * [TheRightToolForTheJob#Project_background Project background] <br/>
@@ -52,8 +55,8 @@
   * [GettingStarted#Useful_Eclipse_plugins Useful Eclipse plugins] <br/>
   * [GettingStarted#Useful_Eclipse_preferences Useful Eclipse preferences] <br/>
  * [GettingStarted#Getting_Started Getting Started] <br/>
- * [GettingStarted#Book_source_code Book source code] <br/>
- * [GettingStarted#What's_inside_the_template_project What's inside the template project] <br/>
+ * [GettingStarted#Application_source_code Application source code] <br/>
+ * [GettingStarted#Useful_libraries Useful libraries] <br/>
  * [GettingStarted#Useful_tools Useful tools] <br/>
 
 === [DataModeling Data modeling] ===
@@ -63,10 +66,10 @@
   * [DataModeling#Notes Notes] <br/>
 
 === [BuildingLandingPage Building the landing page] ===
+ * [BuildingLandingPage#Mockup Mockup] <br/>
  * [BuildingLandingPage#Page_Layout Page Layout] <br/>
  * [BuildingLandingPage#Exercise:_build_the_mocked_up_UI Exercise: build the mocked up UI] <br/>
- * [BuildingLandingPage#Widgets Widgets] <br/>
- * [BuildingLandingPage#Styling Styling] <br/>
+ * [BuildingLandingPage#Implementation Implementation] <br/>
  * [BuildingLandingPage#Using_native_JavaScript Using native JavaScript] <br/>
  * [BuildingLandingPage#Mobile,_tablets,_TV_and_other_devices Mobile, tablets, TV and other devices] <br/>
  * [BuildingLandingPage#Model-View-Presenter_(MVP) Model-View-Presenter (MVP)] <br/>
@@ -82,19 +85,21 @@
  * [ClientServer#More_code_cleanup More code cleanup] <br/>
  * [ClientServer#Summary Summary] <br/>
 
-=== [StoringData Saving schedule in datastore] ===
- * [StoringData#Coding_our_data_model Coding our data model] <br/>
- * [StoringData#Basic_data_storage Basic data storage] <br/>
- * [StoringData#Preparing_for_full_implementation Preparing for full implementation] <br/>
-  * [StoringData#Exercise Exercise] <br/>
+=== [Authentication Authentication with OpenID] ===
+ * [Authentication#Signing_in_using_OpenID Signing in using OpenID] <br/>
+ * [Authentication#Getting_user_info_in_server_handlers Getting user info in server handlers] <br/>
+ * [Authentication#Custom_widgets_&_events Custom widgets & events] <br/>
+
+=== [StoringData Stories entities in App Engine datastore] ===
+ * [StoringData#Exercise:_build_manage_performances_client_side Exercise: build manage performances client side] <br/>
   * [StoringData#Exercise_solution Exercise solution] <br/>
-  * [StoringData#Datastore_setup Datastore setup] <br/>
+ * [StoringData#Coding_our_data_model Coding our data model] <br/>
+ * [StoringData#Datastore_setup Datastore setup] <br/>
   * [StoringData#One-to-Many_relationships One-to-Many relationships] <br/>
   * [StoringData#Many-to-Many_relationships Many-to-Many relationships] <br/>
+ * [StoringData#Basic_data_storage Basic data storage] <br/>
+ * [StoringData#Creating_members_and_theaters Creating members and theaters] <br/>
   * [StoringData#Hey_client,_remember_me? Hey client, remember me?] <br/>
- * [StoringData#Implementation Implementation] <br/>
- * [StoringData#Exercise Exercise] <br/>
- * [StoringData#Exercise_solution Exercise solution] <br/>
  * [StoringData#Additional_resources Additional resources] <br/>
 
 === [ListingSchedule Listing saved performances] ===
@@ -108,37 +113,10 @@
  * [ListingSchedule#Styling_data_presentation_widgets Styling data presentation widgets] <br/>
  * [ListingSchedule#Additional_resources Additional resources] <br/>
 
-=== [Authentication Authentication with OpenID] ===
- * [Authentication#Signing_in_using_OpenID Signing in using OpenID] <br/>
- * [Authentication#Updating_UI_to_accommodate_authentication Updating UI to accommodate authentication] <br/>
-  * [Authentication#Goals Goals] <br/>
-  * [Authentication#Refactoring Refactoring] <br/>
-  * [Authentication#Custom_widgets_&_events Custom widgets & events] <br/>
-   * [Authentication#Exercise Exercise] <br/>
-   * [Authentication#Exercise_solution Exercise solution] <br/>
- * [Authentication#Enhancing_sign_in_experience Enhancing sign in experience] <br/>
- * [Authentication#Code_splitting Code splitting] <br/>
- * [Authentication#Migrating_stored_anonymous_data_to_signed_in_users Migrating stored anonymous data to signed in users] <br/>
-  * [Authentication#Guice_Providers Guice Providers] <br/>
-  * [Authentication#Design_of_handling_both_anonymous_and_authenticated_users Design of handling both anonymous and authenticated users] <br/>
-  * [Authentication#Refactoring_of..._requirements Refactoring of... requirements] <br/>
-   * [Authentication#Exercise_two Exercise two] <br/>
-   * [Authentication#Exercise_two_solution Exercise two solution] <br/>
- * [Authentication#Updated_application_design Updated application design] <br/>
-  * [Authentication#GetUserHandler_pseudocode GetUserHandler pseudocode] <br/>
-  * [Authentication#MainPresenter_pseudocode MainPresenter pseudocode] <br/>
-  * [Authentication#LandingPresenter_pseudocode LandingPresenter pseudocode] <br/>
-  * [Authentication#ScheduleShowHandler_pseudocode ScheduleShowHandler pseudocode] <br/>
-
 === [ManagingPerformances Updating and deleting performances] ===
- * [ManagingPerformances#Updated_mockups Updated mockups] <br/>
- * [ManagingPerformances#Design Design] <br/>
-  * [ManagingPerformances#Exercise Exercise] <br/>
-  * [ManagingPerformances#ManagePerformanceHandler_pseudocode ManagePerformanceHandler pseudocode] <br/>
- * [ManagingPerformances#Implementation Implementation] <br/>
-  * [ManagingPerformances#Server_handler Server handler] <br/>
-  * [ManagingPerformances#Client_view Client view] <br/>
-  * [ManagingPerformances#Client_presenter Client presenter] <br/>
+ * [ManagingPerformances#Server_handler Server handler] <br/>
+ * [ManagingPerformances#Client_view Client view] <br/>
+ * [ManagingPerformances#Client_presenter Client presenter] <br/>
 
 === [QualityAssurance Quality assurance] ===
  * [QualityAssurance#Pre-requisites Pre-requisites] <br/>

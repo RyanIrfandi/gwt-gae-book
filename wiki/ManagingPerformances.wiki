@@ -234,7 +234,7 @@ Next, we'll look at how can we increase the quality of what we've got so far.
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
 <img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />
-<a href='http://code.google.com/p/gwt-gae-book/wiki/Authentication'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' title='Previous chapter: Authentication with OpenID' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/wiki/ListingSchedule'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' title='Previous chapter: Listing saved performances' /></a>
 <a href='http://code.google.com/p/gwt-gae-book/wiki/TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' title='Table Of Contents' /></a>
 <a href='http://code.google.com/p/gwt-gae-book/wiki/QualityAssurance'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: Quality assurance' /></a>
 <wiki:comment>NAV_END</wiki:comment>

@@ -16,11 +16,11 @@
 
 [ClientServer Client-server communication]
 
-[StoringData Saving schedule in datastore]
+[Authentication Authentication with OpenID]
+
+[StoringData Stories entities in App Engine datastore]
 
 [ListingSchedule Listing saved performances]
-
-[Authentication Authentication with OpenID]
 
 [ManagingPerformances Updating and deleting performances]
 

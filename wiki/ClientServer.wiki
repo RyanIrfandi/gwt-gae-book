@@ -233,5 +233,5 @@ To make a call from client to server, you need these parts
 <img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />
 <a href='http://code.google.com/p/gwt-gae-book/wiki/BuildingLandingPage'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' title='Previous chapter: Building the landing page' /></a>
 <a href='http://code.google.com/p/gwt-gae-book/wiki/TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' title='Table Of Contents' /></a>
-<a href='http://code.google.com/p/gwt-gae-book/wiki/StoringData'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: Saving schedule in datastore' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/wiki/Authentication'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: Authentication with OpenID' /></a>
 <wiki:comment>NAV_END</wiki:comment>
