@@ -10,7 +10,7 @@ Until now, we used the local datastore viewer to see what data is saved. Well, i
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/rencontres_1.jpg" border="0"  align="right" />
 
 = A quick, basic solution =
-Our basic need is to have a client doing [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD] operations on Performance entity items. We just covered Create, moving on to Read.
+Our basic need is to have a client doing [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD] operations on Performance entity items. We just covered Create, moving on to Read now.
 
 In order to quickly get the latest schedule data and display it on client, we can 
  # get all items when page loads
@@ -23,7 +23,7 @@ Implement listing added performances. Hints:
  * use a HTMLPanel to display data. We'll enhance this later
 
 == Exercise solution ==
-Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetPerformances.java?r=519 GetPerformances] Action/Result generator.
+Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetPerformances.java GetPerformances] Action/Result generator.
 {{{
 public class GetPerformances {
 	@In(1)
@@ -37,10 +37,13 @@ public class GetPerformances {
 }
 }}}
 
-Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java?r=519 GetPerformancesHandler]
+Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetPerformancesHandler.java GetPerformancesHandler]
 {{{
 public class GetPerformancesHandler extends
 		DispatchActionHandler<GetPerformancesAction, GetPerformancesResult> {
+
+	@Inject
+	PerformanceDAO performanceDAO;
 
 	@Inject
 	public GetPerformancesHandler(final Provider<UserInfo> userInfoProvider,
@@ -52,55 +55,18 @@ public class GetPerformancesHandler extends
 	public GetPerformancesResult execute(GetPerformancesAction action,
 			ExecutionContext context) throws ActionException {
 
-		Key theaterKey = null;
-
-		// by default, get only future performances
-		Date date = new java.util.Date();
-
-		// check key
-		if (!Strings.isNullOrEmpty(action.getTheaterKey())) {
-			// theaterKey sent by client is not empty
-			try {
-				theaterKey = KeyFactory.stringToKey(action.getTheaterKey());
-			} catch (Exception e) {
-				// invalid key, ignore it
-			}
-		}
-
-		if (null == theaterKey) {
-			return new GetPerformancesResult("Empty or invalid theater", null);
-		}
-
 		// no need to check access, performances are public
 
-		// query for shows belonging to a theater instance
-		List<Performance> performances = datastore.find().type(
-				Performance.class).addFilter("theaterKey",
-				FilterOperator.EQUAL, KeyFactory.keyToString(theaterKey))
-				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, date)
-				.addSort("date").returnAll().now();
+		List<Performance> performances = performanceDAO.readByTheater(action
+				.getTheaterKey());
 
 		return new GetPerformancesResult("", performances);
 	}
 }
 }}}
 
-Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java?r=519 ScheduleShow] to return newly added performance data, so it can be displayed on the client after being saved:
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ScheduleShow.java?r=519 ScheduleShow]
-{{{
-public class ScheduleShow {
-	...
-	@Out(3)
-	Performance performance;
-}
-}}}
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ScheduleShowHandler.java?r=519 ScheduleShowHandler]
-{{{
-		return new ScheduleShowResult("", KeyFactory.keyToString(theaterKey),
-				performance);
-}}}
 
-Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java?r=519 LandingView] to display performances...
+Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/PerformanceView.java PerformanceView] to display performances...
 {{{
 	@UiField
 	HTML performancesContainer;
@@ -122,9 +88,10 @@ Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/
 	}
 }}}
 
-...as instructed by [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=519 LandingPresenter]
+...as instructed by [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/PerformancePresenter.java PerformancePresenter]
 {{{
 	public void requestPerformances() {
+		// Strings.isNullOrEmpty(clientState.currentTheaterKey)
 		if (!(null == clientState.currentTheaterKey || clientState.currentTheaterKey
 				.isEmpty())) {
 			dispatcher.execute(new GetPerformancesAction(
@@ -132,10 +99,6 @@ Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/
 					new DispatchCallback<GetPerformancesResult>() {
 						@Override
 						public void onSuccess(GetPerformancesResult result) {
-							if (!result.getErrorText().isEmpty()) {
-								Window.alert(result.getErrorText());
-								return;
-							}
 							getView().setPerformances(
 									result.getPerformances());
 						}
@@ -145,27 +108,14 @@ Enhance [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/
 	}
 
 
+
 	@Override
 	protected void revealInParent() {
-		RevealContentEvent.fire(this, MainPresenter.TYPE_RevealMainContent,
+		RevealContentEvent.fire(this, PagePresenter.TYPE_RevealSpecificContent,
 				this);
 		requestPerformances();
 	}
 
-	@Override
-	public void scheduleShow(Date date, String showName, String locationName) {
-		...
-				dispatcher.execute(new ScheduleShowAction(
-				...
-							public void onSuccess(ScheduleShowResult result) {
-								...
-								getView().addPerformance(
-										result.getPerformance());
-							}
-						});
-
-		...
-	}
 }}}
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/made_in_romania7.jpg" border="0"  align="right" />
