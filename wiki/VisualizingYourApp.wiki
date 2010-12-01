@@ -33,16 +33,16 @@ After a first draft of mockup you're happy with, brainstorm about it. For exampl
  * Is this UI fully usable on touch-based devices?
 
 
-== Managing performances ==
-
 Here's a proposed UI:
 
-Landing page
+
+== Landing page ==
+
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing.png" border="1" style="border: 1;" />
 
 
-Managing performances
+== Managing performances ==
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/performances.png" border="1" style="border: 1;" />
 
