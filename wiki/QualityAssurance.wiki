@@ -253,7 +253,7 @@ We'll proceed with a bottom-up testing approach, starting from App Engine storag
 Learn about [http://code.google.com/appengine/docs/java/tools/localunittesting.html AppEngine unit testing]. Then review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/server/dao DAOs] and write the tests for them. Consider you have the real storage available (not mocked).
 
 === Exercise solution ===
-See [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/test/org/gwtgaebook/CultureShows/server/dao/TheaterDAOTest.java TheaterDAOTest]
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/test/org/gwtgaebook/CultureShows/server/dao/TheaterDAOTest.java TheaterDAOTest]
 {{{
 public class TheaterDAOTest extends LocalDatastoreTestCase {
 
@@ -410,6 +410,8 @@ Here's what tests we could run for [http://code.google.com/p/gwt-gae-book/source
 	}
 }}}
 
+
+See [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/test/org/gwtgaebook/CultureShows/server/dao/ all integration tests].
 
 Since we have several classes to test now, let's create a test suite with all of them. We can simply run this suite when making changes to tested classes to see if we broke something. If you're using a build system, running tests should be part of the build.
 
