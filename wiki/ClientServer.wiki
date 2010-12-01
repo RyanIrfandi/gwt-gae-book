@@ -43,7 +43,8 @@ public class GetUserSampleAction extends
 		return requestURI;
 	}
 
-}}}}
+}
+}}}
 
 [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetUserSampleResult.java GetUserSampleResult]
 {{{
@@ -66,7 +67,8 @@ public class GetUserSampleResult implements Result {
 		return response;
 	}
 
-}}}}
+}
+}}}
 
 
 The server handler, which receives an `Action` and sends back a `Result`
