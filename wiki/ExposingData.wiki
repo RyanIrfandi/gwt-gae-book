@@ -1,6 +1,6 @@
 #summary Exposing read-only data to 3rd parties
 
-We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. We built  [BuildingLandingPage a landing page] which [ManagingPerformances manages performances schedule] for [Authentication OpenID authenticated members], resulting in [http://cultureshows.appspot.com/ a sample application] with [QualityAssurance reasonable quality]. We've also just added [ManagingShows theater show management].
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. We built [BuildingLandingPage a landing page] which [ClientServer communicates with App Engine back-end] and [Authentication authenticates members], and implemented [ManagingPerformances managing performances schedule], resulting in [http://cultureshows.appspot.com/ a sample application] with [QualityAssurance reasonable quality]. We've also just added [ManagingShows theater show management].
 
 The primary purpose of starting this application was to be able to display this data on various theater websites, and this what we'll do next.
 
