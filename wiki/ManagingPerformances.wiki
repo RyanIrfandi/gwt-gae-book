@@ -1,347 +1,75 @@
 #summary Updating and deleting performances
 
-We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. We built  [BuildingLandingPage a landing page] which [StoringData saves] and [ListingSchedule lists] performances schedule for [Authentication OpenID authenticated members]. In this chapter, we'll look at updating and deleting performances, in order to have a complete [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD].
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. We built [BuildingLandingPage a landing page] which [ClientServer communicates with App Engine back-end] and [Authentication authenticates members]. We also covered [StoringData storing] and [ListingSchedule listing] performances schedule. In this chapter, we'll look at updating and deleting performances, in order to have a complete [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD].
 
 <wiki:toc max_depth="2" />
 
 
-= Updated mockups =
-
-[VisualizingYourApp#Landing_page We discussed] it might be best to use the same fields for updating performances schedule. Let's update the mockups before implementing the code.
-
-*Initial landing page*
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing.png" border="2" style="border: 2;" />
-
-*Landing page with a performance selected*
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landingperformanceselected.png" border="2" style="border: 2;" />
-
-Clicking on a performance would enable Update and Delete buttons, while filling in the form fields with the selected entity data.
-
-= Design =
-We could implement two new handlers for these, but we'd duplicate some common functionality between them. Instead, let's create a new `ManagePerformanceHandler` handler based on `ScheduleShowHandler`, which should handle Create, Update and Delete.
-
-By now you know the drill :) What next?
-
-== Exercise ==
-Update the [Authentication#ScheduleShowHandler_pseudocode ScheduleShowHandler pseudocode] to handle Create, Update and Delete.
-
-== !ManagePerformanceHandler pseudocode  ==
+= Server handler =
+Let's update [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java ManagePerformanceHandler] to include update and create functionality:
 {{{
-//called only when user isSignedIn
-//data received from client: actionType (Create, Update, Delete), performance
-
-load member record, exception if it does not exist
-
-// setup theater
-if (theaterKey is not empty) {
-	load theater //might not exist, key may be invalid
-	if (null == theater) {
-		theaterKey = null	
-	} else {
-		verify memberKey has access to theater, exception if not
-	}
-}
-
-switch(actionType) {
-case CREATE:
-	if (theaterKey is empty) {
-		create theater instance
-		theaterKey = store(theater)
-		assign member to theater with role administrator
-	}
-	performance = action.performance
-
-case UPDATE:
-case DELETE:
-	if (theaterKey is empty) {
-		exception: invalid key
-	}
-
-	performance = load(performanceKey)
-	check oldPerformance belongs to given theaterKey, exception if not
-}
-
-if (D == actionType) {
-	delete(performanceKey)
-	return null;
-}
-
-// setup show
-showKey = find(showName assigned to theaterKey)
-if (showKey is empty) {
-	create and store show with parent=theater 
-}
-
-// setup location...
-
-set/update performance data
-storeOrUpdate(performance)
-
-return performance
-}}}
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/calendar_series_4.jpg" border="0"  align="right" />
-
-= Implementation  =
-
-== Server handler ==
-Let's create an action/result generator
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/ManagePerformance.java ManagePerformance]
-{{{
-public class ManagePerformance {
-	@In(1)
-	Constants.manageActionType actionType;
-
-	@In(2)
-	Performance performance;
-
-	@Out(1)
-	String errorText; // empty if success
-
-	@Out(2)
-	Performance performanceOut;
-}
-}}}
-
-and the handler, as designed above
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java ManagePerformanceHandler]
-{{{
-// handle CUD action types
-public class ManagePerformanceHandler extends
-		DispatchActionHandler<ManagePerformanceAction, ManagePerformanceResult> {
-
-	@Inject
-	public ManagePerformanceHandler(final Provider<UserInfo> userInfoProvider,
-			final ObjectDatastore datastore) {
-		super(userInfoProvider, datastore);
-	}
-
-	@Override
 	public ManagePerformanceResult execute(ManagePerformanceAction action,
 			ExecutionContext context) throws ActionException {
-
-		UserInfo userInfo = userInfoProvider.get();
-
-		// TODO Verify that the input is valid.
-		// if (!FieldVerifier.isValidName(input)) {
-		// // If the input is not valid, throw an IllegalArgumentException
-		// // back to
-		// // the client.
-		// throw new ActionException(
-		// "Name must be at least 4 characters long");
-		// }
-		Member member = null;
-		Key memberKey = null;
-
-		Theater theater = null;
-		Key theaterKey = null;
-
-		TheaterMemberJoin tmj = null;
-
-		Key showKey = null;
-		Show show = null;
-
-		Key locationKey = null;
-		Location location = null;
-
-		Key performanceKey = null;
-		Performance performance = null;
-
-		if (!userInfo.isSignedIn) {
-			// TODO ActionValidator
-			return new ManagePerformanceResult("Not signed in", null);
-		}
-
-		// load member record, exception if it does not exist
-		// TODO setup a reusable, testable provider for this
-		List<Member> members = datastore.find().type(Member.class)
-				.addFilter("userId", FilterOperator.EQUAL, userInfo.userId)
-				.returnAll().now();
-		if (members.size() > 0) {
-			// TODO log error if size != 1
-			member = members.get(0);
-			memberKey = datastore.associatedKey(member);
-		} else {
-			return new ManagePerformanceResult("Member doesn't exist", null);
-		}
-
-		// setup theater
-		if (!Strings.isNullOrEmpty(action.getPerformance().theaterKey)) {
-			// theaterKey sent by client is not empty
-			try {
-				theaterKey = KeyFactory
-						.stringToKey(action.getPerformance().theaterKey);
-			} catch (Exception e) {
-				// invalid key, ignore it
-			}
-		}
-
-		if (null != theaterKey) {
-			theater = datastore.load(theaterKey);
-			if (null == theater) {
-				theaterKey = null;
-			} else {
-				// verify member has access to theater with role allowing
-				// managing performances
-				List<TheaterMemberJoin> tmjs = datastore
-						.find()
-						.type(TheaterMemberJoin.class)
-						.addFilter("theaterKey", FilterOperator.EQUAL,
-								KeyFactory.keyToString(theaterKey))
-						.addFilter("memberKey", FilterOperator.EQUAL,
-								KeyFactory.keyToString(memberKey)).returnAll()
-						.now();
-				if (tmjs.size() > 0) {
-					// has access
-				} else {
-					return new ManagePerformanceResult(
-							"You don't have access to this theater", null);
-				}
-
-			}
-		}
-
+		...
 		switch (action.getActionType()) {
-		case CREATE:
-			// create theater instance
-			if (null == theaterKey) {
-				theater = new Theater();
-
-				theater.name = Constants.defaultTheaterName;
-				// store creates a Key in the datastore and keeps it in the
-				// ObjectDatastore associated with this theater instance.
-				// Basically,
-				// every OD has a Map<Object, Key> which is used to look up the
-				// Key
-				// for every operation.
-				theaterKey = datastore.store(theater);
-
-				// assign member to theater
-				tmj = new TheaterMemberJoin();
-				tmj.theaterKey = KeyFactory.keyToString(theaterKey);
-				tmj.memberKey = KeyFactory.keyToString(memberKey);
-				tmj.role = Role.ADMINISTRATOR;
-
-				tmj.theaterName = theater.name;
-				tmj.memberEmail = member.email;
-				tmj.memberName = member.name;
-
-				datastore.store(tmj);
-			}
-
-			performance = action.getPerformance();
-			break;
-
 		case UPDATE:
-		case DELETE:
-			if (null == theaterKey) {
-				return new ManagePerformanceResult("Invalid theater key", null);
-			}
+			performanceKey = Validation
+					.getValidDSKey(action.getPerformance().performanceKey);
 
-			if (!Strings.isNullOrEmpty(action.getPerformance().performanceKey)) {
-				try {
-					performanceKey = KeyFactory.stringToKey(action
-							.getPerformance().performanceKey);
-				} catch (Exception e) {
-					// invalid key, ignore it
-				}
-			}
-
-			if (null == performanceKey) {
-				return new ManagePerformanceResult("Invalid performance key",
-						null);
-			}
-
-			performance = datastore.load(performanceKey);
-
-			// check performance belongs to given theaterKey, exception if not
-			if (!performance.theaterKey.equals(KeyFactory
-					.keyToString(theaterKey))) {
+			// check performance belongs to given theaterKey
+			if (!KeyFactory.keyToString(performanceKey.getParent()).equals(
+					KeyFactory.keyToString(theaterKey))) {
 				return new ManagePerformanceResult(
-						"Performance doesn't belong to given Theater", null);
+						"Performance doesn't belong to given theater", null);
 			}
+
+			performance = performanceDAO.read(performanceKey);
+
+			show = createOrReadShow(theater, action.getPerformance().showName);
+			location = createOrReadLocation(theater,
+					action.getPerformance().locationName);
+
+			// set/update performance data
+			performance.date = action.getPerformance().date;
+			performance.showKey = KeyFactory.keyToString(showDAO.getKey(show));
+			performance.locationKey = KeyFactory.keyToString(locationDAO
+					.getKey(location));
+
+			performance.showName = show.getName();
+			performance.showWebsiteURL = show.websiteURL;
+			performance.locationName = location.getName();
+
+			performanceDAO.update(performance, performanceKey);
+
 			break;
 
-		default:
-			return new ManagePerformanceResult("Invalid action type: "
-					+ action.getActionType(), null);
-		}
+		case DELETE:
+			performanceKey = Validation
+					.getValidDSKey(action.getPerformance().performanceKey);
 
-		logger.info("Current member " + KeyFactory.keyToString(memberKey));
-		logger.info("Current theater " + KeyFactory.keyToString(theaterKey));
-
-		if (action.getActionType() == manageActionType.DELETE) {
-			datastore.delete(performance);
+			// check performance belongs to given theaterKey
+			if (!KeyFactory.keyToString(performanceKey.getParent()).equals(
+					KeyFactory.keyToString(theaterKey))) {
+				return new ManagePerformanceResult(
+						"Performance doesn't belong to given theater", null);
+			}
+			performanceDAO.delete(performanceKey);
 			return new ManagePerformanceResult("", null);
+		...
 		}
 
-		// setup show
-		// does show already exist?
-		show = new Show();
-		show.setName(action.getPerformance().showName);
-
-		List<Show> shows = datastore.find().type(Show.class).ancestor(theater)
-				.addFilter("nameQuery", FilterOperator.EQUAL, show.nameQuery)
-				.returnAll().now();
-		if (shows.size() > 0) {
-			// TODO log error if size != 1
-			show = shows.get(0);
-			showKey = datastore.associatedKey(show);
-		} else {
-			// store show belonging to a theater
-			showKey = datastore.store().instance(show).parent(theater).now();
-		}
-		logger.info("Current show " + KeyFactory.keyToString(showKey));
-
-		// setup location
-		// does location already exist?
-		location = new Location();
-		location.setName(action.getPerformance().locationName);
-
-		List<Location> locations = datastore
-				.find()
-				.type(Location.class)
-				.ancestor(theater)
-				.addFilter("nameQuery", FilterOperator.EQUAL,
-						location.nameQuery).returnAll().now();
-		if (locations.size() > 0) {
-			// TODO log error if size != 1
-			location = locations.get(0);
-			locationKey = datastore.associatedKey(location);
-		} else {
-			// store show belonging to a theater
-			locationKey = datastore.store().instance(location).parent(theater)
-					.now();
-		}
-		logger.info("Current location " + KeyFactory.keyToString(locationKey));
-
-		// set/update performance data
-		performance.date = action.getPerformance().date;
-		performance.showKey = KeyFactory.keyToString(showKey);
-		performance.locationKey = KeyFactory.keyToString(locationKey);
-
-		performance.theaterKey = KeyFactory.keyToString(theaterKey);
-		performance.showName = show.getName();
-		performance.showWebsiteURL = show.websiteURL;
-		performance.locationName = location.getName();
-		datastore.storeOrUpdate(performance);
-
-		performanceKey = datastore.associatedKey(performance);
 		performance.performanceKey = KeyFactory.keyToString(performanceKey);
 
 		return new ManagePerformanceResult("", performance);
 	}
-}
 }}}
 
 
-== Client view ==
-The landing page has two additional buttons, initially hidden
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.ui.xml LandingView.ui.xml]
+
+= Client view =
+The Performances page has two buttons, initially hidden
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/PerformanceView.ui.xml PerformanceView.ui.xml]
 {{{
-<g:Button ui:field="createPerformance" 
-    addStyleNames="{res.style.button} {res.style.green} {res.style.medium}"
-    >Schedule performance</g:Button>
 <g:Button ui:field="updatePerformance" visible="false" 
     addStyleNames="{res.style.button} {res.style.blue} {res.style.small}"
     >Update</g:Button>
@@ -353,13 +81,13 @@ The landing page has two additional buttons, initially hidden
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/theatre_and_performance.jpg" border="0" align="right"  />
 
 The view shows/hides these when a performance is selected, and calls the appropriate presenter methods
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingView]
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/PerformanceView.java PerformanceView]
 {{{
 	@UiField
 	Button updatePerformance;
 	@UiField
 	Button deletePerformance;
-...
+	...
 	@Override
 	public void setDefaultValues() {
 		date.setValue(null);
@@ -370,7 +98,7 @@ The view shows/hides these when a performance is selected, and calls the appropr
 	public void resetAndFocus() {
 		setDefaultValues();
 	}
-...
+	...
 
 	public void setIsPerformanceSelected(Boolean selected) {
 		updatePerformance.setVisible(selected);
@@ -414,13 +142,7 @@ The view shows/hides these when a performance is selected, and calls the appropr
 
 		cl.setSelectionModel(selectionModel);
 	}
-
-	@UiHandler("createPerformance")
-	void onCreatePerformanceClicked(ClickEvent event) {
-		getUiHandlers().createPerformance(date.getValue(), show.getValue(),
-				location.getValue());
-	}
-
+	...
 	@UiHandler("updatePerformance")
 	void onUpdatePerformanceClicked(ClickEvent event) {
 		final SingleSelectionModel<Performance> selectionModel =
@@ -442,62 +164,10 @@ The view shows/hides these when a performance is selected, and calls the appropr
 
 == Client presenter ==
 
-The presenter will handle the create, update and delete actions. `createPerformance()` is the former `scheduleShow()`.
+The presenter will handle the create, update and delete actions.
 
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter]
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/PerformancePresenter.java PerformancePresenter]
 {{{
-
-	@Override
-	public void createPerformance(Date date, String showName,
-			String locationName) {
-		Main.logger.info("Requested performance scheduling on "
-				+ date.toString() + " the show " + showName + " at location "
-				+ locationName + " for theater "
-				+ clientState.currentTheaterKey);
-		if (null != clientState.userInfo) {
-			if (clientState.userInfo.isSignedIn) {
-				// make the server request
-				Performance p = new Performance();
-				p.date = date;
-				p.showName = showName;
-				p.locationName = locationName;
-				p.theaterKey = clientState.currentTheaterKey;
-
-				dispatcher.execute(new ManagePerformanceAction(
-						Constants.manageActionType.CREATE, p),
-						new DispatchCallback<ManagePerformanceResult>() {
-							@Override
-							public void onSuccess(ManagePerformanceResult result) {
-								clientState.currentTheaterKey = result
-										.getPerformanceOut().theaterKey;
-								// remember last used location
-								Cookies.setCookie(
-										Constants.PerformanceLocationNameCookieName,
-										result.getPerformanceOut().locationName);
-								getView().setDefaultValues();
-								getView().refreshPerformances();
-							}
-						});
-
-			} else {
-				// save Performance data in cookie so it is available on user
-				// return
-				// this date format shouldn't be i18n'ed, it's only for internal
-				// use
-				DateTimeFormat dateFormat = DateTimeFormat
-						.getFormat(Constants.defaultDateFormat);
-				Cookies.setCookie(Constants.PerformanceDateCookieName,
-						dateFormat.format(date));
-				Cookies.setCookie(Constants.PerformanceShowNameCookieName,
-						showName);
-				Cookies.setCookie(Constants.PerformanceLocationNameCookieName,
-						locationName);
-				// ask user to sign in instead of making the server request
-				requestSignIn();
-			}
-		}
-	}
-
 	@Override
 	public void updatePerformance(String performanceKey, Date date,
 			String showName, String locationName) {
@@ -511,13 +181,18 @@ The presenter will handle the create, update and delete actions. `createPerforma
 		p.date = date;
 		p.showName = showName;
 		p.locationName = locationName;
-		p.theaterKey = clientState.currentTheaterKey;
 
 		dispatcher.execute(new ManagePerformanceAction(
-				Constants.manageActionType.UPDATE, p),
+				clientState.currentTheaterKey,
+				Constants.ManageActionType.UPDATE, p),
 				new DispatchCallback<ManagePerformanceResult>() {
 					@Override
 					public void onSuccess(ManagePerformanceResult result) {
+						if (!result.getErrorText().isEmpty()) {
+							// TODO have a general handler for this
+							Window.alert(result.getErrorText());
+							return;
+						}
 						getView().setDefaultValues();
 						getView().refreshPerformances();
 					}
@@ -531,13 +206,18 @@ The presenter will handle the create, update and delete actions. `createPerforma
 
 		Performance p = new Performance();
 		p.performanceKey = performanceKey;
-		p.theaterKey = clientState.currentTheaterKey;
 
 		dispatcher.execute(new ManagePerformanceAction(
-				Constants.manageActionType.DELETE, p),
+				clientState.currentTheaterKey,
+				Constants.ManageActionType.DELETE, p),
 				new DispatchCallback<ManagePerformanceResult>() {
 					@Override
 					public void onSuccess(ManagePerformanceResult result) {
+						if (!result.getErrorText().isEmpty()) {
+							// TODO have a general handler for this
+							Window.alert(result.getErrorText());
+							return;
+						}
 						getView().setDefaultValues();
 						getView().refreshPerformances();
 					}
@@ -546,7 +226,7 @@ The presenter will handle the create, update and delete actions. `createPerforma
 	}
 }}}
 
-Next, we'll look at how can we test what we've got so far.
+Next, we'll look at how can we increase the quality of what we've got so far.
 
 
 <wiki:comment>NAV_START</wiki:comment>
