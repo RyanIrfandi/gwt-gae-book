@@ -74,7 +74,7 @@ Here are the steps to add authentication support
 		}
 	}
 }}}
- # in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingPage]  have an UI for signing in
+ # in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingPage]`  have an UI for signing in
 {{{
 	private UserInfo userInfo;
 
@@ -117,59 +117,82 @@ _Signing in with Yahoo_ <br/>
 
 App Engine supports more !OpenID providers. To keep the UI usable, we'll limit the options to the most popular two.
 
-= Updating UI to accommodate authentication =
-
-As you keep adding functionality, you also need to consider what are the final goals you need to reach with your app and consider refactoring in order to better support those goals (be careful not to [http://en.wikipedia.org/wiki/Overengineering overengineer] it).
-
-== Goals ==
-What are the goals we're trying to accomplish?
- * have multiple places (such as Landing page), each with the same header
-  * some accessible by anonymous users (e.g. Landing page, About Culture Shows)
-  * some restricted to signed in users, and maybe with some specific permissions
- * sometimes content depends on user signed in state or permissions (e.g. header will show Sign In or Sign Out links)
- * app can be initialized from any place, not just the default (if somebody bookmarked it or hits browser refresh)
- * sign in/out can be triggered from any place, should return to that place 
  
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/architecture.jpg" border="0"  align="right" />
 
-== Refactoring ==
 
-Let's introduce a Main presenter, which will contain a Header widget and a Main content placeholder. All relevant contents from Landing are moved to these new entities, leaving here just show scheduling.
-Here's the [http://code.google.com/p/gwt-gae-book/source/detail?spec=svn372&r=372 full refactoring changelist].
-
-== Custom widgets & events ==
+= Custom widgets & events =
 *Pre-requisites*
+ * [http://code.google.com/p/gwt-platform/wiki/GettingStarted?tm=6#Presenter_widgets Presenter widgets]
  * [http://arcbees.wordpress.com/2010/08/24/gwt-platform-event-best-practice/ Custom events with gwt-platform]
 
-We were already getting user info and setting the header depending on user state. There are more places though which depend on it, e.g. Sign In button on the right of Landing page. We'll let Main presenter initiate getting user info, and when that's received fire a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/event/UserInfoAvailableEvent.java UserInfoAvailableEvent] :
+We are getting user info in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter], but once the user info is available we need to notify other places, such as [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/widget/HeaderPresenter.java HeaderPresenter]. Our header is empty by default, but when it receives a notification with user info, it will set the appropriate content, such as username.
+
+Therefore, let's define a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/event/UserInfoAvailableEvent.java UserInfoAvailableEvent] :
 
 {{{
+public class UserInfoAvailableEvent extends
+		GwtEvent<UserInfoAvailableEvent.UserInfoAvailableHandler> {
 
-	@Override
-	protected void onBind() {
-		super.onBind();
-
-		dispatcher.execute(new GetUserAction(Window.Location.getHref()),
-				new DispatchCallback<GetUserResult>() {
-					@Override
-					public void onSuccess(GetUserResult result) {
-						if (!result.getErrorText().isEmpty()) {
-							Window.alert(result.getErrorText());
-							return;
-						}
-						setUserInfo(result.getUserInfo());
-					}
-				});
-
+	public interface HasUserInfoAvailableHandlers extends HasHandlers {
+		HandlerRegistration addUserInfoAvailableHandler(
+				UserInfoAvailableHandler handler);
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
-		this.userInfo = userInfo;
-		UserInfoAvailableEvent.fire(this, userInfo);
+	public interface UserInfoAvailableHandler extends EventHandler {
+		void onHasUserInfoAvailable(UserInfoAvailableEvent event);
+	}
+
+	private static Type<UserInfoAvailableHandler> TYPE = new Type<UserInfoAvailableHandler>();
+
+	public static Type<UserInfoAvailableHandler> getType() {
+		return TYPE;
+	}
+
+	@Override
+	public Type<UserInfoAvailableHandler> getAssociatedType() {
+		return TYPE;
+	}
+
+	@Override
+	protected void dispatch(UserInfoAvailableHandler handler) {
+		handler.onHasUserInfoAvailable(this);
+	}
+
+	public static void fire(HasHandlers source, ClientState clientState) {
+		if (TYPE != null) {
+			source.fireEvent(new UserInfoAvailableEvent(clientState));
+		}
+	}
+
+	private ClientState clientState;
+
+	public UserInfoAvailableEvent(ClientState clientState) {
+		this.clientState = clientState;
+	}
+
+	public ClientState getClientState() {
+		return this.clientState;
+	}
+
+}
+}}}
+
+
+which will be fired by [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter] when user info is received:
+
+{{{
+	public void onGetUserSuccess() {
+		...
+
+		UserInfoAvailableEvent.fire(this, clientState);
+
+		...
+
 	}
 }}}
 
-Interested parties can listen to this event and handle it as desired. For example, the Header will do
+Interested parties can listen to this event and handle it as desired. For example, [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/widget/HeaderPresenter.java HeaderPresenter] widget will do
 {{{
 	@Override
 	protected void onBind() {
@@ -180,14 +203,15 @@ Interested parties can listen to this event and handle it as desired. For exampl
 					@Override
 					public void onHasUserInfoAvailable(
 							UserInfoAvailableEvent event) {
-						setSignInOut(event.getUserInfo());
+						onUserInfoAvailable(event.getClientState());
 
 					}
 				});
 	}
 
-	public void setSignInOut(UserInfo userInfo) {
-		getView().setSignInOut(userInfo);
+	public void onUserInfoAvailable(ClientState clientState) {
+		this.clientState = clientState;
+		getView().setClientState(clientState);
 	}
 
 }}}
@@ -195,106 +219,11 @@ Interested parties can listen to this event and handle it as desired. For exampl
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/vis_3.jpg" border="0"  align="right" />
 
-=== Exercise ===
-Change Landing so it displays Sign In button only if user is not signed in.
-
-=== Exercise solution ===
-[http://code.google.com/p/gwt-gae-book/source/detail?spec=svn376&r=376 Changelist]
-
-= Enhancing sign in experience =
-Here are some goals for a better sign in experience:
- * have a nice Sign In dialog
- * allow triggering Sign In from various places
- * ideally, load Sign In code & images only when required, in order to keep the initial download size small 
-
-We'll achieve this by
- * introducing a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/widget/ Sign In widget]
- * introducing a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/event/SignInEvent.java Sign In event], handled by `MainPresenter`
-{{{
-		addRegisteredHandler(SignInEvent.getType(), new SignInHandler() {
-			@Override
-			public void onHasSignIn(SignInEvent event) {
-				showSignInDialog();
-
-			}
-		});
-...
-	public void showSignInDialog() {
-		signInPresenter.setUserInfo(userInfo);
-		RevealRootPopupContentEvent.fire(this, signInPresenter);
-	}
-
-}}}
- * making the Header and Landing fire the Sign In event on user request, e.g.
-{{{
-@UiHandler("signIn")
-        void onSignInClicked(ClickEvent event) {
-                getUiHandlers().requestSignIn();
-        }
-...
-	public void requestSignIn() {
-		SignInEvent.fire(this);
-	}
-
-}}}
-
-Here's the result:
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/signInWidget.png" border="0" />
-
-TODO: somebody please style the !SignIn widget to look better and send your changes to be included here.
-
-See [http://code.google.com/p/gwt-gae-book/source/detail?spec=svn400&r=400 full changelist].
-
-= Code splitting =
-*Pre-requisites*
- * [http://code.google.com/webtoolkit/doc/latest/DevGuideCodeSplitting.html Code splitting]
- * [http://jcheng.wordpress.com/2010/02/16/elegant-code-splitting-with-gwt/ Elegant code splitting]
 
 
-Loading Sign In code & images separately can be done in a basic way with these changes to `MainPresenter` :
 
-{{{
-	private final AsyncProvider<SignInPresenter> signInPresenterAP;
-
-	@Inject
-	public MainPresenter(... ,
-		final AsyncProvider<SignInPresenter> signInPresenterAP) {
-		...
-		this.signInPresenterAP = signInPresenterAP;
-
-	}
-
-	public void showSignInDialog() {
-
-		signInPresenterAP.get(new AsyncCallback<SignInPresenter>() {
-
-			@Override
-			public void onSuccess(SignInPresenter signInPresenter) {
-				showSignInDialogNow(signInPresenter);
-			}
-
-			@Override
-			public void onFailure(Throwable reason) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-	}
-
-	public void showSignInDialogNow(SignInPresenter signInPresenter) {
-		setUserInfo(userInfo);
-		RevealRootPopupContentEvent.fire(this, signInPresenter);
-	}
-
-}}}
-
-This reduced the initial download from 76kb to 71kb, downloading in a second phase another 10kb. The savings are not that big, so we'll leave this optimization out for now.
-
-= Migrating stored anonymous data to signed in users =
-
-== Guice Providers == 
-Since we'll start needing user info on more calls on server, we'll introduce a [http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/Provider.html Guice Provider] for it :
+= Getting user info on server handlers =
+Since we'll start needing user info on more calls on server, we'll introduce a [http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/Provider.html Guice Provider] for it: [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/UserInfoProvider.java UserInfoProvider]
 {{{
 public class UserInfoProvider implements Provider<UserInfo> {
 
@@ -318,7 +247,7 @@ public class UserInfoProvider implements Provider<UserInfo> {
 
 }}}
 
-The Handler constructors will be called only once per instance, not once per request. Since we need fresh user info on each request to see if the user is actually signed in or not, unlike !ObjectDatastore, we'll inject the provider this time and get user info manually in execute() :
+The Handler constructors will be called only once per instance, not once per request. Since we need fresh user info on each request to see if the user is actually signed in or not, we'll inject the provider and get user info manually in execute() :
 {{{
 	@Inject
 	public GetUserHandler(final Provider<UserInfo> userInfoProvider,
@@ -337,7 +266,6 @@ The Handler constructors will be called only once per instance, not once per req
 
 
 == Design of handling both anonymous and authenticated users ==
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/daisy_in_the_sun.jpg" border="0"  align="right" />
 
 We'll need to change `GetUserHandler` to handle anonymous users, authenticated users and migrating data from anonymous to authenticated if needed. We'll let the client always set whatever `UserToken` is returned by `GetUserHandler` and have the logic for setting it on the server.
 
@@ -488,6 +416,8 @@ return theaterKey, performance
 }}}
 
 For implementation, see [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/ latest source code].
+
+
 
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
