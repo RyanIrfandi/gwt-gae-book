@@ -120,6 +120,49 @@ App Engine supports more !OpenID providers. To keep the UI usable, we'll limit t
  
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/architecture.jpg" border="0"  align="right" />
 
+= Getting user info in server handlers =
+Since we'll start needing user info in multiple server handlers, we'll introduce a [http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/Provider.html Guice Provider] for it: [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/UserInfoProvider.java UserInfoProvider]
+{{{
+public class UserInfoProvider implements Provider<UserInfo> {
+
+	public UserInfo get() {
+		UserInfo userInfo = new UserInfo();
+
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+
+		if (user != null) {
+			userInfo.isSignedIn = true;
+			userInfo.email = user.getEmail();
+			userInfo.userId = user.getUserId();
+		} else {
+			userInfo.isSignedIn = false;
+		}
+
+		return userInfo;
+	}
+}
+
+}}}
+
+The Handler constructors will be called only once per instance, not once per request. Since we need fresh user info on each request to see if the user is actually signed in or not, we'll inject the provider and get user info manually in execute() :
+{{{
+	@Inject
+	public GetUserHandler(final Provider<UserInfo> userInfoProvider,
+			final ObjectDatastore datastore) {
+		super(userInfoProvider, datastore);
+	}
+
+	@Override
+	public GetUserResult execute(GetUserAction action, ExecutionContext context)
+			throws ActionException {
+
+		UserInfo userInfo = userInfoProvider.get();
+		...
+	}
+}}}
+ 
+
 
 = Custom widgets & events =
 *Pre-requisites*
@@ -219,48 +262,6 @@ Interested parties can listen to this event and handle it as desired. For exampl
 
 
 
-= Getting user info on server handlers =
-Since we'll start needing user info on more calls on server, we'll introduce a [http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/Provider.html Guice Provider] for it: [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/UserInfoProvider.java UserInfoProvider]
-{{{
-public class UserInfoProvider implements Provider<UserInfo> {
-
-	public UserInfo get() {
-		UserInfo userInfo = new UserInfo();
-
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
-
-		if (user != null) {
-			userInfo.isSignedIn = true;
-			userInfo.email = user.getEmail();
-			userInfo.userId = user.getUserId();
-		} else {
-			userInfo.isSignedIn = false;
-		}
-
-		return userInfo;
-	}
-}
-
-}}}
-
-The Handler constructors will be called only once per instance, not once per request. Since we need fresh user info on each request to see if the user is actually signed in or not, we'll inject the provider and get user info manually in execute() :
-{{{
-	@Inject
-	public GetUserHandler(final Provider<UserInfo> userInfoProvider,
-			final ObjectDatastore datastore) {
-		super(userInfoProvider, datastore);
-	}
-
-	@Override
-	public GetUserResult execute(GetUserAction action, ExecutionContext context)
-			throws ActionException {
-
-		UserInfo userInfo = userInfoProvider.get();
-		...
-	}
-}}}
- 
 
 
 
