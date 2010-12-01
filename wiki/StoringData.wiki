@@ -293,7 +293,8 @@ public class TheaterDAO extends DAO<Theater> {
 }}}
 
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/rencontres-2.jpg" border="0"  align="left" />
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/rencontres-2.jpg" border="0" />
+
 
 = Creating members and theaters =
 Shows belong to Theaters. In a regular app, we would have asked Violeta to perform the following steps after signing in:
