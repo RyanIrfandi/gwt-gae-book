@@ -8,9 +8,14 @@ We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] a
 = Exercise: build manage performances client side =
 With a [VisualizingYourApp mockup for managing performances UI], build the View & Presenter needed to schedule performances. Ignore update/delete and listing for now.
 
-== Exercise solution ==
-See [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/client/performances].
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/performances.png" border="1" style="border: 1;" />
 
+
+== Exercise solution ==
+See [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/client/performances]. The result:
+
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/performancesApp.png" border="1" style="border: 1;" />
 
 = Coding our data model =
 *Pre-requisites*
