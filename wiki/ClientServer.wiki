@@ -4,7 +4,7 @@ We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code], 
 
 <wiki:toc max_depth="2" />
 
-Time to add some functionality! There is some reading you have to do in advance for each section, but it's worth it.
+When users initially access our application, we'd like the GWT client to check with App Engine back-end if they are signed in or not. 
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/chair_theater.jpg" border="0"  align="right" />
 
@@ -15,49 +15,43 @@ Time to add some functionality! There is some reading you have to do in advance 
  * [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch Client-server communication with gwt-platform]
 
 = Exercise =
-Using what you learned above, start implementing saving performances. Pass the data from client to server and write an `ActionHandler` which just logs a message with the show name.
+Using what you learned above, start implementing checking if the current user is signed in or not. Pass the current application URI from client to server and write a `GetUserSampleHandler` which just logs a message for now and returns a String.
 
 = Exercise solution =
 
-`shared/dispatch/ScheduleShowAction.java`
+Action/Result pair
+
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetUserSampleAction.java GetUserSampleAction]
 {{{
-package org.gwtgaebook.CultureShows.shared.dispatch;
+public class GetUserSampleAction extends
+		UnsecuredActionImpl<GetUserSampleResult> {
 
-import com.gwtplatform.dispatch.shared.*;
+	private String requestURI;
 
-public class ScheduleShowAction extends UnsecuredActionImpl<ScheduleShowResult> {
-
-	private String showName;
-
-	public ScheduleShowAction(final String showName) {
-		this.showName = showName;
+	public GetUserSampleAction(final String requestURI) {
+		this.requestURI = requestURI;
 	}
 
 	/**
 	 * For serialization only.
 	 */
 	@SuppressWarnings("unused")
-	private ScheduleShowAction() {
+	private GetUserSampleAction() {
 	}
 
-	public String getShowName() {
-		return showName;
+	public String getRequestURI() {
+		return requestURI;
 	}
 
-}
-}}}
+}}}}
 
-`shared/dispatch/ScheduleShowResult.java`
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetUserSampleResult.java GetUserSampleResult]
 {{{
-package org.gwtgaebook.CultureShows.shared.dispatch;
-
-import com.gwtplatform.dispatch.shared.*;
-
-public class ScheduleShowResult implements Result {
+public class GetUserSampleResult implements Result {
 
 	private String response;
 
-	public ScheduleShowResult(final String response) {
+	public GetUserSampleResult(final String response) {
 		this.response = response;
 	}
 
@@ -65,103 +59,104 @@ public class ScheduleShowResult implements Result {
 	 * For serialization only.
 	 */
 	@SuppressWarnings("unused")
-	private ScheduleShowResult() {
+	private GetUserSampleResult() {
 	}
 
 	public String getResponse() {
 		return response;
 	}
 
-}
-}}}
+}}}}
 
-`server/dispatch/ScheduleShowHandler.java` 
+
+The server handler, which receives an `Action` and sends back a `Result`
+
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetUserSampleHandler.java GetUserSampleHandler]
 {{{
-package org.gwtgaebook.CultureShows.server.dispatch;
-
-import com.google.inject.*;
-
-import com.gwtplatform.dispatch.server.*;
-import com.gwtplatform.dispatch.server.actionhandler.*;
-import com.gwtplatform.dispatch.shared.*;
-
-import org.gwtgaebook.CultureShows.shared.dispatch.*;
-
-public class ScheduleShowHandler implements
-		ActionHandler<ScheduleShowAction, ScheduleShowResult> {
+public class GetUserSampleHandler implements
+		ActionHandler<GetUserSampleAction, GetUserSampleResult> {
 
 	@Override
-	public ScheduleShowResult execute(ScheduleShowAction action,
+	public GetUserSampleResult execute(GetUserSampleAction action,
 			ExecutionContext context) throws ActionException {
 
-		System.out.println("Handler scheduling show " + action.getShowName());
+		System.out.println("Client URI: " + action.getRequestURI());
 
-		return new ScheduleShowResult("");
+		return new GetUserSampleResult("not signed in");
 	}
 
 	@Override
-	public Class<ScheduleShowAction> getActionType() {
-		return ScheduleShowAction.class;
+	public Class<GetUserSampleAction> getActionType() {
+		return GetUserSampleAction.class;
 	}
 
 	@Override
-	public void undo(ScheduleShowAction action, ScheduleShowResult result,
+	public void undo(GetUserSampleAction action, GetUserSampleResult result,
 			ExecutionContext context) throws ActionException {
 		// Not undoable
 	}
 
-}
-}}}
+}}}}
 
-`server/MainHandlerModule.java`
+bindings in 
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/MainHandlerModule.java MainHandlerModule]
 {{{
-import org.gwtgaebook.CultureShows.shared.dispatch.*;
-import org.gwtgaebook.CultureShows.server.dispatch.*;
 ...
 		// bind Actions to ActionHandlers and ActionValidators
-		bindHandler(ScheduleShowAction.class, ScheduleShowHandler.class);
+		bindHandler(GetUserSampleAction.class, GetUserSampleHandler.class);
 }}}
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/made1.jpg" border="0" align="middle" />
 
-`LandingPresenter.java`
+And the client call in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java LandingPresenter]
 {{{
-...
-import com.google.gwt.user.client.rpc.*;
-import com.gwtplatform.dispatch.client.*;
-import org.gwtgaebook.CultureShows.shared.dispatch.*;
 ...
        private final DispatchAsync dispatcher;
 
 	@Inject
 	public LandingPresenter(EventBus eventBus, MyView view, MyProxy proxy,
-			PlaceManager placeManager, DispatchAsync dispatcher) {
+			final PlaceManager placeManager, DispatchAsync dispatcher,
+			final ClientState clientState) {
 		super(eventBus, view, proxy);
-		this.placeManager = placeManager;
-		this.dispatcher = dispatcher;
 		getView().setUiHandlers(this);
 
+		this.placeManager = placeManager;
+		this.dispatcher = dispatcher;
+		this.clientState = clientState;
 	}
 
 	@Override
-	public void scheduleShow(Date date, String showName, String locationName) {
-		Main.logger.info("Presenter scheduling on " + date.toString() + " the show "
-				+ showName + " at location " + locationName);
-		dispatcher.execute(new ScheduleShowAction(showName),
-				new AsyncCallback<ScheduleShowResult>() {
+	protected void onBind() {
+		super.onBind();
+
+		dispatcher.execute(new GetUserSampleAction(Window.Location.getHref()),
+				new AsyncCallback<GetUserSampleResult>() {
+
 					@Override
 					public void onFailure(Throwable caught) {
-						Main.logger.severe("Scheduleing show failed "
+						Main.logger.severe("GetUserSample call failed "
 								+ caught.getMessage());
 					}
 
 					@Override
-					public void onSuccess(ScheduleShowResult result) {
-						Main.logger.info("Scheduled show");
+					public void onSuccess(GetUserSampleResult result) {
+						Main.logger.info("GetUserSample result: "
+								+ result.getResponse());
 					}
 				});
-	}
 
+	}
+}}}
+
+When running this, the server will log
+{{{
+INFO: GetUserSample result: 
+Client URI: http://127.0.0.1:8888/main.html?gwt.codesvr=127.0.0.1:9997#!landing
+}}}
+
+and the client will log in browser console
+{{{
+INFO: GetUserSample result: not signed in
 }}}
 
 It works, but it's a lot of code to write just to get a string from client to server, isn't it?
