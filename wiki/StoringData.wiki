@@ -1,10 +1,15 @@
 #summary Saving schedule in datastore
 
-We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. Having built  [BuildingLandingPage a landing page] which [ClientServer interacts with the server back-end], let's see how to save the performances schedule on !AppEngine server.
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. Having built  [BuildingLandingPage a landing page] which [ClientServer interacts with the server back-end] and [Authentication authenticates users], let's see how to save the performances schedule on !AppEngine server.
 
 <wiki:toc max_depth="2" />
 
-Time to add some functionality! 
+
+= Exercise: build manage performances client side =
+With a [VisualizingYourApp mockup for managing performances UI], build the View & Presenter needed to schedule performances. Ignore update/delete and listing for now.
+
+== Exercise solution ==
+See [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/client/performances].
 
 
 = Coding our data model =
@@ -19,7 +24,7 @@ Time to add some functionality!
 
 Remember [DataModeling our data modeling] ? Let's code it!
 
-*Theater.java*
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/Theater.java Theater]
 {{{
 package org.gwtgaebook.CultureShows.shared.model;
 
@@ -35,7 +40,7 @@ public class Theater {
 }
 }}}
 
-*Show.java* 
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/Show.java Show]
 {{{
 package org.gwtgaebook.CultureShows.shared.model;
 
@@ -49,109 +54,14 @@ public class Show {
 
 Here are [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/ complete data models], explained in more detail below.
 
-= Basic data storage =
-In our server handler, we'll do
-{{{
-import com.google.appengine.api.datastore.Key;
-import com.google.code.twig.*;
-import com.google.code.twig.annotation.*;
-...
-		Show show = new Show();
-		show.name = action.getShowName();
-
-		ObjectDatastore ds = new AnnotationObjectDatastore();
-		Key showKey = datastore.store(show);
-}}}
-
-After scheduling a show, go to [http://127.0.0.1:8888/_ah/admin your local datastore viewer] and check that it has been saved. Besides data model fields (name, websiteURL), you'll see two more fields, [http://code.google.com/appengine/docs/python/datastore/keysandentitygroups.html Key and ID/Name].
-
-= Preparing for full implementation =
-Shows belong to Theaters. In a regular app, we would have asked Violeta to perform the following steps:
- * sign up
- * create a theater and specify theater details such as name, website URL
- * define shows and locations assigned to the theater defined above
- * and at last, schedule a show performance
-
-We can do better! We're simply asking Violeta to schedule a show. If she decides to sign in, we'll preserve the data for her. We'll take care of the details behind the scenes (pun intended :-), even though that's more work for us, the engineers.
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/rencontres-2.jpg" border="0"  align="left" />
-
-== Exercise ==
-
-Think for 5 minutes how we can make this work.
-
-
-== Exercise solution ==
-
-One solution would be to store all data on the client until Violeta signs in. One way to store it would be directly in GWT, but we'd lose it all on a page refresh. Another way to store it would be using [http://php-html.net/tutorials/html5-local-storage-guide/ HTML5 web storage] or even cookies since the data amount is small.
-
-Another alternative would be to store data on server by creating entities as soon as they are needed, e.g. create a Member entity with a random user id. We would use a cookie to link server stored data to current anonymous user session. On sign in, assign these entities to the authenticated user.
-
-We'll go with the server solution, as we need to write that code anyway. It will also work on older browsers. We need to be careful to have a script ran periodically which cleans up saved data assigned to anonymous users.
-
-Let us write down some [http://en.wikipedia.org/wiki/Pseudocode pseudocode] of how `ScheduleShowHandler` would work when we'll have full functionality:
-
-
-{{{
-//data received from client: userToken, theaterKey, date, showName, locationName
-//userToken - random token set by client for users not signed it
-
-anonymous = (AppEngineUser is not signed in)
-
-if (anonymous) {
-	userId = "anonymous-" + userToken
-	//prefix prevents client setting valid user IDs and overwriting their data
-	//issue: client can overwrite any anonymous user data by setting a matching RandomToken. That's ok. 
-} else {
-	userId = AppEngineUser.getId()
-}
-
-// setup member
-if there are existing members with userId {
-	load member
-} else {
-	store new member
-}
-
-// setup theater
-if (theaterKey is not empty) {
-	load theater //might not exist, key may be invalid
-	if (null == theater) {
-		theaterKey = null	
-	} else {
-		verify memberKey has access to theater, exception if not
-	}
-}
-
-if (theaterKey is empty) {
-	create theater instance
-	theaterKey = store(theater)
-	assign member to theater with role administrator
-}
-
-// setup show
-showKey = find(showName assigned to theaterKey)
-if (showKey is empty) {
-	create and store show with parent=theater 
-}
-
-//same with location
-
-store(performance)
-
-return theaterKey, ...
-}}}
-
-
-
 Before going the rest of the code, let's talk about...
 
-== Datastore setup ==
+= Datastore setup =
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/road_home.jpg" border="0"  align="right" />
 
 By default, twig creates indexes for every entity property, which makes it very usable with no configuration. We'll follow the [http://code.google.com/p/twig-persist/wiki/Performance twig performance advice] and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/AnnotationObjectDatastoreProvider.java set properties to be un-indexed by default], specifically annotating each desired property to be indexed. Our updated data model looks like this
 
-`Show.java`
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/model/Show.java Show]
 {{{
 public class Show {
 	private String name;
@@ -285,6 +195,270 @@ Hopefully we'll have lots of read requests for Performances, so there too we'll 
 
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/quijote3.jpg" border="0"  align="right" />
+
+
+
+= Basic data storage =
+
+We see a common theme for datastore entities: we need basic [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD] functionality available for each of them, with some variations. Let's introduce a [http://en.wikipedia.org/wiki/Data_access_object data access object] (DAO) for each entity. Since there's a lot of common functionality, we can have entity DAOs inherit from an abstract class:
+
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dao/DAO.java DAO]
+{{{
+public abstract class DAO<T> {
+	protected Class<T> tClass;
+	protected final ObjectDatastore datastore;
+
+	protected static final Logger logger = Logger
+			.getLogger(DAO.class.getName());
+
+	protected DAO(Class<T> tClass, final ObjectDatastore datastore) {
+		this.tClass = tClass;
+		this.datastore = datastore;
+	}
+
+	public void validateKeySameAsClass(Key key) {
+		// getCanonicalName().replaceAll("\\.", "_")
+		String name = tClass.getName();
+		if (name.lastIndexOf('.') > 0) {
+			name = name.substring(name.lastIndexOf('.') + 1);
+		}
+		if (!name.equals(key.getKind())) {
+			throw new IllegalArgumentException("Key kind " + key.getKind()
+					+ " != class " + name);
+		}
+	}
+
+	public Key getKey(T entity) {
+		return datastore.associatedKey(entity);
+	}
+
+	public Key create(T entity) {
+		// store creates a Key in the datastore and keeps it in the
+		// ObjectDatastore associated with this theater instance.
+		// Basically, every OD has a Map<Object, Key> which is used to look up
+		// the Key for every operation.
+		return datastore.store(entity);
+	}
+
+	public T read(Key key) {
+		validateKeySameAsClass(key);
+		return datastore.load(key);
+	}
+
+	public T read(String key) {
+		return read(Validation.getValidDSKey(key));
+	}
+
+	public void update(T entity, Key key) {
+		validateKeySameAsClass(key);
+		datastore.associate(entity, key);
+		datastore.update(entity);
+	}
+
+	public void delete(Key key) {
+		validateKeySameAsClass(key);
+		// workaround for
+		// http://code.google.com/p/twig-persist/issues/detail?id=47
+		T entity = datastore.load(key);
+		datastore.getService().delete(key);
+		datastore.disassociate(entity);
+	}
+
+}
+}}}
+
+Each entity DAO will inherit this, introducing the necessary variations or extra functionality. [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dao/TheaterDAO.java TheaterDAO] is as simple as
+{{{
+public class TheaterDAO extends DAO<Theater> {
+
+	@Inject
+	public TheaterDAO(final ObjectDatastore datastore) {
+		super(Theater.class, datastore);
+	}
+
+	@Override
+	public void delete(Key key) {
+		// TODO need to check associated entities, such as shows. Will do later
+		// when needed
+		super.delete(key);
+	}
+
+}
+}}}
+
+
+= Creating members and theaters =
+Shows belong to Theaters. In a regular app, we would have asked Violeta to perform the following steps after signing in:
+ * create a theater and specify theater details such as name, website URL
+ * define shows and locations assigned to the theater defined above
+ * and at last, schedule a show performance
+
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/rencontres-2.jpg" border="0"  align="left" />
+
+We can do better! We'll simply asking Violeta to schedule a performance. We'll take care of the details behind the scenes (pun intended :-), even though that's more work for us,  engineers.
+
+
+The first detail we need to take care of is creating member entities on signing in, if they don't exist already. We'll do this in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/GetUserHandler.java GetUserHandler] :
+{{{
+	@Override
+	public GetUserResult execute(GetUserAction action, ExecutionContext context)
+			throws ActionException {
+
+		UserInfo userInfo = userInfoProvider.get();
+
+		UserService userService = UserServiceFactory.getUserService();
+
+		// theaters user has access to; key/name
+		List<Theater> theaters = new ArrayList<Theater>();
+
+		if (userInfo.isSignedIn) {
+			userInfo.signOutURL = userService.createLogoutURL(action
+					.getRequestURI());
+
+			// check if user has a Member record, create one if not
+			Member member = null;
+			Key memberKey = null;
+
+			member = memberDAO.readByUserId(userInfo.userId);
+
+			if (null == member) {
+				// first signin, create new member
+				member = new Member();
+				member.userId = userInfo.userId;
+				member.email = userInfo.email;
+				member.signUpDate = new Date();
+				memberDAO.create(member);
+
+			}
+			memberKey = memberDAO.getKey(member);
+
+			theaters = tmjDAO.readbyMember(KeyFactory.keyToString(memberKey));
+
+			if (0 == theaters.size()) {
+				// create a theater and give member access to it
+				Theater theater = new Theater();
+				theater.name = Constants.defaultTheaterName;
+				Key theaterKey = theaterDAO.create(theater);
+				theater.theaterKey = KeyFactory.keyToString(theaterKey);
+				theaters.add(theater);
+
+				// assign member to theater
+				TheaterMemberJoin tmj = new TheaterMemberJoin();
+				tmj.theaterKey = KeyFactory.keyToString(theaterKey);
+				tmj.memberKey = KeyFactory.keyToString(memberKey);
+				tmj.role = Role.ADMINISTRATOR;
+
+				tmj.theaterName = theater.name;
+				tmj.memberEmail = member.email;
+				tmj.memberName = member.name;
+
+				tmjDAO.create(tmj);
+			}
+
+		} else {
+			userInfo.signInURLs.put("Google", userService.createLoginURL(
+					action.getRequestURI(), null, "google.com/accounts/o8/id",
+					null));
+			userInfo.signInURLs.put("Yahoo", userService.createLoginURL(
+					action.getRequestURI(), null, "yahoo.com", null));
+		}
+
+		return new GetUserResult("", userInfo, theaters);
+	}
+}}}
+
+
+After signing in now in your development environment, go to [http://127.0.0.1:8888/_ah/admin your local datastore viewer] and check that Member and Theater entities have been created. Besides the fields we declared in our data model, you'll see two more:  [http://code.google.com/appengine/docs/python/datastore/keysandentitygroups.html Key and ID/Name].
+
+
+
+
+Next, let's start a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java ManagePerformance server handler], which stores performances, if the current member is signed in and has access to the given Theater:
+
+{{{
+
+	@Override
+	public ManagePerformanceResult execute(ManagePerformanceAction action,
+			ExecutionContext context) throws ActionException {
+
+		UserInfo userInfo = userInfoProvider.get();
+
+		Member member = null;
+
+		Theater theater = null;
+		Key theaterKey = null;
+		Show show = null;
+		Location location = null;
+
+		Key performanceKey = null;
+		Performance performance = null;
+
+		if (!userInfo.isSignedIn) {
+			return new ManagePerformanceResult("Not signed in", null);
+		}
+
+		member = memberDAO.readByUserId(userInfo.userId);
+		theaterKey = Validation.getValidDSKey(action.getTheaterKey());
+
+		if (!tmjDAO.memberHasAccessToTheater(
+				KeyFactory.keyToString(memberDAO.getKey(member)),
+				KeyFactory.keyToString(theaterKey))) {
+			return new ManagePerformanceResult(
+					"You don't have access to this theater", null);
+
+		}
+
+		theater = theaterDAO.read(theaterKey);
+
+		switch (action.getActionType()) {
+		case CREATE:
+			performance = action.getPerformance();
+			show = createOrReadShow(theater, action.getPerformance().showName);
+			location = createOrReadLocation(theater,
+					action.getPerformance().locationName);
+
+			// set/update performance data
+			performance.showKey = KeyFactory.keyToString(showDAO.getKey(show));
+			performance.locationKey = KeyFactory.keyToString(locationDAO
+					.getKey(location));
+
+			performance.showName = show.getName();
+			performance.showWebsiteURL = show.websiteURL;
+			performance.locationName = location.getName();
+			performanceKey = performanceDAO.create(theater, performance);
+
+			break;
+
+		...
+
+		}
+
+		performance.performanceKey = KeyFactory.keyToString(performanceKey);
+
+		return new ManagePerformanceResult("", performance);
+	}
+
+	Show createOrReadShow(Theater theater, String showName) {
+		// setup show
+		// does show already exist?
+		Show show = new Show();
+		show.setName(showName);
+
+		List<Show> shows = showDAO.readByName(theater, showName);
+		if (shows.size() > 0) {
+			show = shows.get(0);
+		} else {
+			showDAO.create(theater, show);
+		}
+		logger.info("Current show "
+				+ KeyFactory.keyToString(showDAO.getKey(show)));
+
+		return show;
+	}
+}}}
+
+
+
 
 == Hey client, remember me? ==
 
