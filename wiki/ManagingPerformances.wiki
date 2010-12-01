@@ -68,6 +68,7 @@ Let's update [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureS
 
 = Client view =
 The Performances page has two buttons, initially hidden
+
 [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/PerformanceView.ui.xml PerformanceView.ui.xml]
 {{{
 <g:Button ui:field="updatePerformance" visible="false" 
@@ -81,6 +82,7 @@ The Performances page has two buttons, initially hidden
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/theatre_and_performance.jpg" border="0" align="right"  />
 
 The view shows/hides these when a performance is selected, and calls the appropriate presenter methods
+
 [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/PerformanceView.java PerformanceView]
 {{{
 	@UiField
@@ -162,7 +164,7 @@ The view shows/hides these when a performance is selected, and calls the appropr
 
 }}}
 
-== Client presenter ==
+= Client presenter =
 
 The presenter will handle the create, update and delete actions.
 
