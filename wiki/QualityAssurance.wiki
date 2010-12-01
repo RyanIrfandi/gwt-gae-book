@@ -240,6 +240,7 @@ We'll come back to !LandingPresenter in a later chapter. As with real projects, 
  * http://misko.hevery.com/presentations/
  * [http://code.google.com/p/mockito/ Mockito mocking framework]
  * [http://bit.ly/thewayoftestivus The Way of Testivus]
+ * be careful on [http://en.wikipedia.org/wiki/Overengineering overengineering] 
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/quijote2.jpg" border="0"  />
 
