@@ -74,7 +74,7 @@ Here are the steps to add authentication support
 		}
 	}
 }}}
- # in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingPage]`  have an UI for signing in
+ # in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingView.java LandingPage]  have an UI for signing in
 {{{
 	private UserInfo userInfo;
 
