@@ -386,7 +386,7 @@ Let's overwrite the default styling by extending [http://google-web-toolkit.goog
 
 And here's the result
 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/landing_cell_style.png" />
+<img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/performancesAppListing.png" />
 
 TODO: Would anybody please contribute an implementation which avoids re-reading all performances on each create/update/delete? Consider
 * filtering/sorting/paginating - the newly added entity might not be in the current view
