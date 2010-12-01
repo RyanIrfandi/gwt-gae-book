@@ -34,7 +34,7 @@ See you in a few days :)
 = Application source code =
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/digital_dreams.jpg" border="0"  align="right" />
 
-Feel free to [http://code.google.com/p/gwt-gae-book/source/checkout checkout the latest source code] for the application developed along the book. 
+[http://code.google.com/p/gwt-gae-book/source/checkout Checkout the latest source code] for the application developed along the book. We'll go along building the whole app together, so it's ok if not all the code makes sense now :)
 
 <wiki:comment>
 
