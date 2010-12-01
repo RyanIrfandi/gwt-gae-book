@@ -98,7 +98,8 @@ public class GetUserSampleHandler implements
 		// Not undoable
 	}
 
-}}}}
+}
+}}}
 
 bindings in 
 [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/MainHandlerModule.java MainHandlerModule]
