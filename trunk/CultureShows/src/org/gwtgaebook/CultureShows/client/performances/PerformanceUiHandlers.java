@@ -7,7 +7,6 @@ import org.gwtgaebook.CultureShows.shared.model.Performance;
 import com.gwtplatform.mvp.client.UiHandlers;
 
 public interface PerformanceUiHandlers extends UiHandlers {
-	// public void requestSignIn();
 
 	public void onRangeOrSizeChanged(Integer visibleRangeStart,
 			Integer visibleRangeLength);

@@ -9,11 +9,13 @@ import org.gwtgaebook.CultureShows.server.dao.TheaterMemberJoinDAO;
 import org.gwtgaebook.CultureShows.server.dispatch.GetPerformancesHandler;
 import org.gwtgaebook.CultureShows.server.dispatch.GetShowsHandler;
 import org.gwtgaebook.CultureShows.server.dispatch.GetUserHandler;
+import org.gwtgaebook.CultureShows.server.dispatch.GetUserSampleHandler;
 import org.gwtgaebook.CultureShows.server.dispatch.ManagePerformanceHandler;
 import org.gwtgaebook.CultureShows.server.dispatch.ManageShowHandler;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetPerformancesAction;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetShowsAction;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetUserAction;
+import org.gwtgaebook.CultureShows.shared.dispatch.GetUserSampleAction;
 import org.gwtgaebook.CultureShows.shared.dispatch.ManagePerformanceAction;
 import org.gwtgaebook.CultureShows.shared.dispatch.ManageShowAction;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
@@ -40,6 +42,7 @@ public class MainHandlerModule extends HandlerModule {
 		bind(TheaterMemberJoinDAO.class);
 
 		// bind Actions to ActionHandlers and ActionValidators
+		bindHandler(GetUserSampleAction.class, GetUserSampleHandler.class);
 		bindHandler(GetUserAction.class, GetUserHandler.class);
 		bindHandler(GetPerformancesAction.class, GetPerformancesHandler.class);
 		bindHandler(ManagePerformanceAction.class,
