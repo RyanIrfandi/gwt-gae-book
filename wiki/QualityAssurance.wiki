@@ -1,6 +1,6 @@
 #summary Quality assurance
 
-We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. We built  [BuildingLandingPage a landing page] which [ManagingPerformances manages performances schedule] for [Authentication OpenID authenticated members], resulting in  [http://cultureshows.appspot.com/ a sample application]. 
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. We built [BuildingLandingPage a landing page] which [ClientServer communicates with App Engine back-end] and [Authentication authenticates members], and implemented [ManagingPerformances managing performances schedule].
 
 Before we add more features, we need to take a closer look at quality.
 
@@ -132,12 +132,12 @@ Here are more details about what [http://en.wikipedia.org/wiki/Software_testing 
 
 As we'll keep adding and changing features, how can we know if we break existing functionality? This is where automated tests, such as [http://en.wikipedia.org/wiki/Unit_testing unit testing], come in. 
 
-Another benefit is that we'll accomplish a better design of our code just by making it unit testable. For example, [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] has now one big method doing everything, which is harder to follow and debug. `createPerformance()` and `onUserInfoAvailable()` in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/landing/LandingPresenter.java?r=584 LandingPresenter] access cookies directly from browser, so we can't switch cookie storage with something else, say [http://diveintohtml5.org/storage.html HTML5 storage], or run tests from command line where we don't have a browser.
+Another benefit is that we'll accomplish a better design of our code just by making it unit testable. For example, [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] initially had one big method doing everything, which was harder to follow and debug. 
 
-Unit testing focus only on the smallest, independent units of our code. [http://en.wikipedia.org/wiki/Proton Protons] and [http://en.wikipedia.org/wiki/Neutron neutrons] you say? Well, not _that_ small. We need to look at parts which have logic which could be tested. If they interact with other components, such as storage, we need to replace those parts with [http://en.wikipedia.org/wiki/Mock_object mock objects]. Methods suitable for unit testing should take an input, do something with it, and provide an output. We'll test them by providing known inputs and checking if outputs match what we expected.
+Unit testing focuses only on the smallest, independent units of our code. [http://en.wikipedia.org/wiki/Proton Protons] and [http://en.wikipedia.org/wiki/Neutron neutrons] you say? Well, not _that_ small. We need to look at parts which have logic which could be tested. If they interact with other components, such as storage, we need to replace those parts with [http://en.wikipedia.org/wiki/Mock_object mock objects]. Methods suitable for unit testing should take an input, do something with it, and provide an output. We'll test them by providing known inputs and checking if outputs match what we expected.
 
 === Exercise ===
-Review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] and identify parts which should be unit tested. Remember we are testing the logic of these parts. A simple block of code which just stores an object in the datastore and returns it doesn't have anything to be meaningfully unit tested.
+Review [an older version of http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] and identify parts which should be unit tested. Remember we are testing the logic of these parts. A simple block of code which just stores an object in the datastore and returns it doesn't have anything to be meaningfully unit tested.
 
 === Exercise solution ===
 If we're trying to update or delete a performance, we expect to be given valid theater and performance keys:
@@ -227,7 +227,7 @@ Here are the [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureS
 
 and [http://code.google.com/p/gwt-gae-book/source/diff?spec=svn591&r=591&format=side&path=/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java&old_path=/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java&old=584 the slightly refactored code].
 
-We'll come back to !LandingPresenter in a later chapter. As with real projects, we are balancing the investment in testing with the rest of the project needs, like getting customers and becoming profitable. Therefore, we won't set a specific [http://en.wikipedia.org/wiki/Code_coverage code coverage] target, but consider [http://googletesting.blogspot.com/2010/07/code-coverage-goal-80-and-no-less.html what makes sense] on a case by case basis.
+We might come back to !PerformancePresenter in a later chapter. As with real projects, we are balancing the investment in testing with the rest of the project needs, like getting customers and becoming profitable. Therefore, we won't set a specific [http://en.wikipedia.org/wiki/Code_coverage code coverage] target, but consider [http://googletesting.blogspot.com/2010/07/code-coverage-goal-80-and-no-less.html what makes sense] on a case by case basis.
 
 
 *Additional resources*
@@ -250,42 +250,10 @@ After we unit tested parts of functionality, [http://en.wikipedia.org/wiki/Integ
 We'll proceed with a bottom-up testing approach, starting from App Engine storage and our entities.
 
 === Exercise ===
-Learn about [http://code.google.com/appengine/docs/java/tools/localunittesting.html AppEngine unit testing]. Then review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] and write the tests for it. Consider you have the real storage available (not mocked) and test for correct functionality of `ManagePerformanceHandler`.
+Learn about [http://code.google.com/appengine/docs/java/tools/localunittesting.html AppEngine unit testing]. Then review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/server/dao DAOs] and write the tests for them. Consider you have the real storage available (not mocked).
 
 === Exercise solution ===
-On an empty datastore, we could perform the following tests:
-{{{
-p1 = createPerformance(date, showName, locationName);
-check that theater, show, location and performance entities have been created
-
-p2 = createPerformance(anotherDate, showName, locationName);
-check that no new theater, show, location entities have been created
-check performance entity has been created
-
-p2.showName = existingShowName;
-update(p2)
-check performance has been updated
-
-p2.showName = inexistingShowName;
-update(p2)
-check performance has been updated and new show entity has been created
-
-delete show/location
-should be allowed only if there are no future associated performances 
-
-update a show/location name in show/location entities
-check performance denormalized data has also been updated
-
-delete existing performance
-check performance doesn't exist anymore
-}}}
-
-Are these integration tests complete? We can tell from the very first test: no. We are checking if a theater, show and location have been created as a side effect of creating a performance, but we should also check if these can be created individually. We have a lot of work ahead, since this functionality doesn't even exist yet :)
-
-=== Redesigning performance management for testability ===
-
-
-and here's [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/test/org/gwtgaebook/CultureShows/server/dao/TheaterDAOTest.java how we test it]
+See [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/test/org/gwtgaebook/CultureShows/server/dao/TheaterDAOTest.java TheaterDAOTest]
 {{{
 public class TheaterDAOTest extends LocalDatastoreTestCase {
 
@@ -443,80 +411,6 @@ Here's what tests we could run for [http://code.google.com/p/gwt-gae-book/source
 }}}
 
 
-and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dao/ShowDAO.java this is the implementation] that passes all of these.
-
-
-==== Exercise ====
-Implement DAOs for the rest of data models, and tests for Location and Performance.
-
-
-==== Exercise solution ====
-
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dao/ All DAOs] 
-
-
-Let's review again [http://code.google.com/appengine/docs/java/tools/localunittesting.html AppEngine unit testing]. Then review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] before updating it to use the new DAOs. Notice how we always relate a performance to a theater. Rather than having `theaterKey` as a separate field part of Performance, let's consider a one-to-many relationship between Theater and Performances, which would be stored in the Performance key, similar to shows and locations. We should also require Theater to exist before managing performances (this will make even more sense later we learn about REST). Since all members need to have at least a theater, let's create one during sign in if needed:
-
-{{{
-
-		if (userInfo.isSignedIn) {
-			userInfo.signOutURL = userService.createLogoutURL(action
-					.getRequestURI());
-
-			// check if user has a Member record, create one if not
-			Member member = null;
-			Key memberKey = null;
-
-			member = memberDAO.readByUserId(userInfo.userId);
-
-			if (null == member) {
-				// first signin, create new member
-				member = new Member();
-				member.userId = userInfo.userId;
-				member.email = userInfo.email;
-				member.signUpDate = new Date();
-				memberDAO.create(member);
-
-			}
-			memberKey = memberDAO.getKey(member);
-
-			theaters = tmjDAO.readbyMember(KeyFactory.keyToString(memberKey));
-
-			if (0 == theaters.size()) {
-				// create a theater and give member access to it
-				Theater theater = new Theater();
-				theater.name = Constants.defaultTheaterName;
-				Key theaterKey = theaterDAO.create(theater);
-				theater.theaterKey = KeyFactory.keyToString(theaterKey);
-				theaters.add(theater);
-
-				// assign member to theater
-				TheaterMemberJoin tmj = new TheaterMemberJoin();
-				tmj.theaterKey = KeyFactory.keyToString(theaterKey);
-				tmj.memberKey = KeyFactory.keyToString(memberKey);
-				tmj.role = Role.ADMINISTRATOR;
-
-				tmj.theaterName = theater.name;
-				tmj.memberEmail = member.email;
-				tmj.memberName = member.name;
-
-				tmjDAO.create(tmj);
-			}
-
-		}
-}}}
-
-
-
-==== Exercise ====
-Update  [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] to use DAOs we just implemented.
-
-
-==== Exercise solution ====
-
-[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java ManagePerformanceHandler using DAOs]. It's so easy to read now, we don't even need to maintain the pseudocode associated to it.
-
-
 Since we have several classes to test now, let's create a test suite with all of them. We can simply run this suite when making changes to tested classes to see if we broke something. If you're using a build system, running tests should be part of the build.
 
 {{{
@@ -559,7 +453,7 @@ With all the tests above we made sure everything functions as expected. We also 
 
 To see how an application performs on a slow connection, limit the bandwidth using [http://www.uselessapplications.com/en/Application/FirefoxThrottle.aspx Firefox Throttle].
 
-We can check how fast a website loads from various locations using [http://webpagetest.org webpagetest.org]. Right now, on the first access, Culture Shows landing page takes 1.3s to fully load. 
+We can check how fast a website loads from various locations using [http://webpagetest.org webpagetest.org]. Right now, on the first access, Culture Shows landing page takes 1.2s to fully load. 
 
 
 *Additional resources*
