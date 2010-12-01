@@ -201,6 +201,13 @@ Think of !UiHandlers as a contract signed by Presenter: this is what Presenter h
 }}}
 You can switch different Presenter and View implementations without any worries as long as they respect these contracts.
 
+
+Note we are using [http://code.google.com/p/gwt-platform/wiki/GettingStarted?tm=6#Nested_presenters nested presenters] :
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/ Main] Presenter/View contains a `pageContent` placeholder, besides the header
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/client/page Page] Presenter/View provides the logic/content for the `pageContent` placeholder, while leaving a `specificContent` widget to be filled in by other presenters
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/client/landing Landing] Presenter/View is an example of `specificContent`
+
+
 Now review all files in the template project. Do they make full sense? 
 
 == Exercise ==
