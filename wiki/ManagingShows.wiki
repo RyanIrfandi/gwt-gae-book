@@ -51,16 +51,9 @@ We'll basically duplicate [http://code.google.com/p/gwt-gae-book/source/browse/t
  * add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/shows/ShowModule.java ShowModule] to the [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/MainGinjector.java Gin Injector]
  * add `SignedInGatekeeper` and `ShowPresenter` to [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/MainGinjector.java MainGinjector]
  * add a new "shows" [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/NameTokens.java name token]
- * update [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/#CultureShows/client/widget HeaderView] to add Performances and Shows navigation
-{{{
-		<g:InlineHyperlink ui:field="performances" addStyleNames="{style.anchor}" visible="false"
-			targetHistoryToken="{nameTokens.getLanding}">Performances</g:InlineHyperlink>
-		<g:InlineHyperlink ui:field="shows" addStyleNames="{style.anchor}" visible="false"
-			targetHistoryToken="{nameTokens.getShows}">Shows</g:InlineHyperlink>
-}}}
 
 
-As shows view isn't needed on the very first access of the landing page, we'll also [http://code.google.com/p/google-web-toolkit/wiki/CodeSplitting split its code] into separate files, to be loaded by GWT on demand, with `@ProxyCodeSplit` annotation:
+As shows view isn't needed on the very first access of the landing page, we'll also [http://code.google.com/webtoolkit/doc/latest/DevGuideCodeSplitting.html split its code] into separate files, to be loaded by GWT on demand, with `@ProxyCodeSplit` annotation:
 {{{
 public class ShowPresenter extends
 		Presenter<ShowPresenter.MyView, ShowPresenter.MyProxy> implements
@@ -97,6 +90,8 @@ And here's the result
 
 We have some code duplicated for Shows and Performances both for client and server. In a later chapter, we'll work on minimizing this.
 
+*Additional resources*
+ * [http://jcheng.wordpress.com/2010/02/16/elegant-code-splitting-with-gwt/ Elegant code splitting]
 
 
 <wiki:comment>NAV_START</wiki:comment>
