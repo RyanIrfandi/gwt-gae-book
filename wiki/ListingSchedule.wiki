@@ -389,8 +389,8 @@ And here's the result
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/performancesAppListing.png" />
 
 TODO: Would anybody please contribute an implementation which avoids re-reading all performances on each create/update/delete? Consider
-* filtering/sorting/paginating - the newly added entity might not be in the current view
-* other users might simultaneously add data - how to reflect this? reread only current page view or server push?
+ * filtering/sorting/paginating - the newly added entity might not be in the current view
+ * other users might simultaneously add data - how to reflect this? reread only current page view or server push?
 
 
 
@@ -398,7 +398,7 @@ TODO: Would anybody please contribute an implementation which avoids re-reading 
 = Additional resources =
 
  * Learn more about [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/6c17bb1825685564 Cell styling]
-* [http://code.google.com/p/google-web-toolkit/source/browse/trunk/samples/expenses/#expenses/src/main/java/com/google/gwt/sample/expenses/client%3Fstate%3Dclosed Sample app with cell styling]
+ * [http://code.google.com/p/google-web-toolkit/source/browse/trunk/samples/expenses/#expenses/src/main/java/com/google/gwt/sample/expenses/client%3Fstate%3Dclosed Sample app with cell styling]
 
 
 <wiki:comment>
