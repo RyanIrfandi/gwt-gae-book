@@ -137,7 +137,7 @@ Another benefit is that we'll accomplish a better design of our code just by mak
 Unit testing focuses only on the smallest, independent units of our code. [http://en.wikipedia.org/wiki/Proton Protons] and [http://en.wikipedia.org/wiki/Neutron neutrons] you say? Well, not _that_ small. We need to look at parts which have logic which could be tested. If they interact with other components, such as storage, we need to replace those parts with [http://en.wikipedia.org/wiki/Mock_object mock objects]. Methods suitable for unit testing should take an input, do something with it, and provide an output. We'll test them by providing known inputs and checking if outputs match what we expected.
 
 === Exercise ===
-Review [an older version of http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 ManagePerformanceHandler] and identify parts which should be unit tested. Remember we are testing the logic of these parts. A simple block of code which just stores an object in the datastore and returns it doesn't have anything to be meaningfully unit tested.
+Review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/dispatch/ManagePerformanceHandler.java?r=584 an older version of ManagePerformanceHandler] and identify parts which should be unit tested. Remember we are testing the logic of these parts. A simple block of code which just stores an object in the datastore and returns it doesn't have anything to be meaningfully unit tested.
 
 === Exercise solution ===
 If we're trying to update or delete a performance, we expect to be given valid theater and performance keys:
