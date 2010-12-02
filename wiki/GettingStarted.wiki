@@ -36,7 +36,7 @@ See you in a few days :)
 
 [http://code.google.com/p/gwt-gae-book/source/checkout Checkout the latest source code] for the application developed along the book, or [http://code.google.com/p/gwt-gae-book/downloads/list download an archive]. We'll go along building the whole app together, so it's ok if not all the code makes sense now :)
 
-Known issue: Eclipse shows an error on HeaderView.ui.xml, [http://code.google.com/p/google-web-toolkit/issues/detail?id=5453 this is a known GWT bug]. The project compiles and runs fine though.
+Known issue: Eclipse shows an error on `HeaderView.ui.xml`, [http://code.google.com/p/google-web-toolkit/issues/detail?id=5453 this is a known GWT bug]. The project compiles and runs fine though.
 
 <wiki:comment>
 
