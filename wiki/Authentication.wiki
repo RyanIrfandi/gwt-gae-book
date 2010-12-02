@@ -145,7 +145,7 @@ public class UserInfoProvider implements Provider<UserInfo> {
 
 }}}
 
-The Handler constructors will be called only once per instance, not once per request. Since we need fresh user info on each request to see if the user is actually signed in or not, we'll inject the provider and get user info manually in execute() :
+The Handler constructors will be called only once per instance, not once per request. As we need fresh user info on each request to see if the user is actually signed in or not, we'll inject the provider and get user info manually in execute() :
 {{{
 	@Inject
 	public GetUserHandler(final Provider<UserInfo> userInfoProvider,
