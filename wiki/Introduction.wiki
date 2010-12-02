@@ -16,7 +16,7 @@ By free education (even in the form of this small book), anybody has the choice 
 I personally avoid traditional technical books as
  * Technology moves fast. A well prepared, printed material will usually be partially outdated by the time you purchase it. Fact: there is no GWT 2.0 traditional book almost one year later after GWT 2.0 release.
  * Much of the contents which make up a technical book already exist online, in the form of product documentation, tutorials, code samples, blog posts, group discussions.
- * authors usually [http://askville.amazon.com/profit-make-book-published/AnswerViewer.do?requestId=4387206 get less than 10% from book sales]. If you found this book useful, please [https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZYVQ36QASGH2W&lc=RO&item_name=GWT%20GAE%20online%20book&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted make a donation].
+ * Authors usually [http://askville.amazon.com/profit-make-book-published/AnswerViewer.do?requestId=4387206 get less than 10% from book sales]. If you found this book useful, please [https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZYVQ36QASGH2W&lc=RO&item_name=GWT%20GAE%20online%20book&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted make a donation].
 
 = How to read this book =
 
