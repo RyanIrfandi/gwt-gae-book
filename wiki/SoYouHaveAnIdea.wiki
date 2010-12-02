@@ -5,7 +5,7 @@
 So you have a great idea about a new web application? Cool! Sometimes it might be best to simply jump and code it. Some other times you might want to flesh it out before you start implementing it.
 
 = Putting ideas in writing =
-Let's consider this idea: there is a small theater company in your city which has great shows. They also have a website which presents the group to the public and has the shows schedule. You'd like to enable somebody in the theater company to easily update the shows schedule on the website. Once you implement this functionality, you'd like to make it available to other theater companies across the world. Let's call this application Culture Shows.
+Let's consider this idea: there is a small theater company in your city which has great shows. They also have a website which presents the group to the public and has the show performances schedule. You'd like to enable somebody in the theater company to easily update the shows schedule on the website. Once you implement this functionality, you'd like to make it available to other theater companies across the world. Let's call this application Culture Shows.
 
 You've just identified somebody's need that you could solve. "Somebody" is usually a human, which in software design is referred to as [http://en.wikipedia.org/wiki/Persona_(marketing) persona].
 
