@@ -142,7 +142,6 @@ Review [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/s
 === Exercise solution ===
 If we're trying to update or delete a performance, we expect to be given valid theater and performance keys:
 {{{
-		case UPDATE:
 		case DELETE:
 			...
 			if (!Strings.isNullOrEmpty(action.getPerformance().performanceKey)) {
