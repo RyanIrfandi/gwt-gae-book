@@ -13,14 +13,14 @@ Until now, we used the local datastore viewer to see what data is saved. Well, i
 Our basic need is to have a client doing [http://en.wikipedia.org/wiki/Create,_read,_update_and_delete CRUD] operations on Performance entity items. We just covered Create, moving on to Read now.
 
 In order to quickly get the latest performances and display them on client, we can 
- # get all items when page loads
- # when adding/updating/deleting items, read again all performances from server and refresh the display
+ # Get all items when page loads
+ # When adding/updating/deleting items, read again all performances from server and refresh the display
 
 == Exercise ==
 Implement listing added performances. Hints:
- * remember [ClientServer#Summary client-server communication]
- * no need to check access, performances are public
- * use a HTMLPanel to display data. We'll enhance this later
+ * Remember [ClientServer#Summary client-server communication]
+ * No need to check access, performances are public
+ * Use a HTMLPanel to display data. We'll enhance this later
 
 == Exercise solution ==
 Add [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/shared/dispatch/GetPerformances.java GetPerformances] Action/Result generator.
