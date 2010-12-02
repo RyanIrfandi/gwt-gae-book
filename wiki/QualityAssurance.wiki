@@ -89,7 +89,7 @@ A functional specification might include details about user interface (UI), beha
  * what would I find helpful if I come back to this project/functionality after six months
  * if I was a new team member, what would help me getting ready for changing existing features or implementing new ones
 
-I might be old school, but I like doing pseudocode first for complex functionality. [Authentication#Design_of_handling_both_anonymous_and_authenticated_users We saw] how this saved us from investing into actual code writing, debugging and testing which would have been thrown away later. Pseudocode also gives a higher-level overview on how various components works. Keep it updated as the project develops, to be used later as a reference by you and others.
+I might be old school, but I like doing [http://en.wikipedia.org/wiki/Pseudocode pseudocode] first for complex functionality. Pseudocode gives a higher-level overview on how various components works. Keep it updated as the project develops, to be used later as a reference by you and others.
 
 [http://en.wikipedia.org/wiki/Software_peer_review Peer reviews] with fellow engineers  are extremely useful for early defect discovery. Keeping a history of found defects and spent time helps balancing the allocated review time for best return of investment. If reviews find almost no defects, the author is either a great engineer, or the reviews aren't effective.
 
