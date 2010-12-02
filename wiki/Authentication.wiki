@@ -115,7 +115,7 @@ _Signing in with Yahoo_ <br/>
 -----
 
 
-App Engine supports more !OpenID providers. To keep the UI usable, we'll limit the options to the most popular two.
+App Engine supports more OpenID providers. To keep the UI usable, we'll limit the options to the most popular two.
 
  
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/architecture.jpg" border="0"  align="right" />
