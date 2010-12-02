@@ -31,7 +31,7 @@ There are also some exercises. Give your best shot at solving them rather than j
 = Acknowledgements =
 These materials are not by far built from scratch. Most of them are usually adapted from or referencing existing online materials. Many thanks to the countless people which produced them. In particular, I'd like to thank for their contributions to GWT/GAE, guidance and help to Philippe Beaudoin, Christian Goudreau, John Patterson, Zack Grossbart.
 
-The images used inside the book and project are taken from [http://www.openclipart.org Open Clip Art Library],  [http://www.sxc.hu/ Stock.XCHNG] and [http://www.passe-partoutdp.ro/ Passe-Partout DP]. All images are copyrighted and they are the properties of respective owners.
+The images used inside the book and application are taken from [http://www.openclipart.org Open Clip Art Library],  [http://www.sxc.hu/ Stock.XCHNG] and [http://www.passe-partoutdp.ro/ Passe-Partout DP]. All images are copyrighted and they are the properties of respective owners.
 
 
 = About the author =
