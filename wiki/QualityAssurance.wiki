@@ -63,7 +63,7 @@ Using Scrum allows quick (bi-weekly to monthly) inspection of these, and adaptin
 = User interface =
 We've already covered [VisualizingYourApp building mockups] and getting feedback on them. 
 
-A fast and cheap technique for [http://en.wikipedia.org/wiki/Usability_testing usability testing] is to print all the mocked screens of the app, then going with prints to potential users. After giving a basic context, present the landing page print asking questions such as "what do you think this is", "what would you do next", "how would you do that". Be careful to avoid direct instructions such as "Now please schedule a performance" (the button is obvious).
+A fast and cheap technique for [http://en.wikipedia.org/wiki/Usability_testing usability testing] is to print all the mocked screens of the app, then going with prints to potential users. After giving a basic context, present the landing page print, asking questions such as "what do you think this is", "what would you do next", "how would you do that". Be careful to avoid direct instructions such as "Now please schedule a performance" (the button is obvious).
 
 According to their actions, present the corresponding screen print. If they want to fill out form fields, ask them to do that with a pen, and fill it yourself too on the next screen where that data appears. Investing a few days in preparing and performing this research will save weeks later.
 
