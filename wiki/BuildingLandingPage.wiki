@@ -172,7 +172,7 @@ An early version of the Landing page used a !jQuery HTML5 placeholder plugin for
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/quijote1.jpg" border="0"  align="right" />
 
-Sometimes, you might want to have different views for different screen sizes. The styling above is liquid (resize browser window to try it out) and it works for now. We could have used [http://www.webdesignerwall.com/tutorials/css3-media-queries/ CSS3 media queries] to hide completely some information on small screens. See [http://www.smashingmagazine.com/2010/07/19/how-to-use-css3-media-queries-to-create-a-mobile-version-of-your-website/ another tutorial]. Media queries support [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/86047ca5c364679f/2871b1e5e35be0d1 is still missing] from GWT.
+Sometimes, you might want to have different views for different screen sizes. The styling above is liquid (resize browser window to try it out) and it works for now. We could have used [http://www.webdesignerwall.com/tutorials/css3-media-queries/ CSS3 media queries] to hide completely some information on small screens. Media queries support [http://groups.google.com/group/google-web-toolkit/browse_thread/thread/86047ca5c364679f/2871b1e5e35be0d1 is still missing] from GWT.
 
 
 = Model-View-Presenter (MVP) =
@@ -260,19 +260,21 @@ Note there are no widgets or other UI elements from View exposed in Presenter. T
 [http://code.google.com/p/gwt-gae-book/source/browse/#svn/trunk/CultureShows Browse the full source code]
 
 = Additional resources =
-[http://www.openclipart.org Open Clip Art Library]
+ * [http://www.openclipart.org Open Clip Art Library]
 
-[http://www.sxc.hu/ Stock.XCHNG free stock photos] 
+ * [http://www.sxc.hu/ Stock.XCHNG free stock photos] 
 
-[http://www.smashingmagazine.com Smashing Magazine]
+ * [http://www.smashingmagazine.com Smashing Magazine]
 
-[http://www.alistapart.com/articles/fluidgrids/ Fluid grids] 
+ * [http://www.alistapart.com/articles/fluidgrids/ Fluid grids] 
 
-[http://www.webdesignerwall.com/tutorials/css3-gradient-buttons/ Gradient buttons]
+ * [http://www.webdesignerwall.com/tutorials/css3-gradient-buttons/ Gradient buttons]
 
-[http://www.mezzoblue.com/zengarden/resources/ CSS Zen Garden resources]
+ * [http://www.mezzoblue.com/zengarden/resources/ CSS Zen Garden resources]
 
-[http://www.colorcombos.com/combolibrary.html Color combos]
+ * [http://www.colorcombos.com/combolibrary.html Color combos]
+
+ * [http://www.smashingmagazine.com/2010/07/19/how-to-use-css3-media-queries-to-create-a-mobile-version-of-your-website/ How To Use CSS3 Media Queries To Create a Mobile Version of Your Website]
 
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
