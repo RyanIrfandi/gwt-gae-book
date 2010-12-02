@@ -5,7 +5,7 @@ We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] a
 <wiki:toc max_depth="2" />
 
 
-= Exercise: build manage performances client side =
+= Exercise: build Manage Performances client side =
 With a [VisualizingYourApp mockup for managing performances UI], build the View & Presenter needed to schedule performances. Ignore update/delete and listing for now.
 
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/assets/performances.png" border="1" style="border: 1;" />
