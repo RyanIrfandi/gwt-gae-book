@@ -1,9 +1,9 @@
 #summary Introduction
 
 Rather than writing a full book, gwt-gae-book complements existing online materials in a logical, structured, easy to follow way. With the help of community, this set of guides and samples intends to 
- * introduce engineers to GWT and GAE
- * show by example best practices and how to best achieve a desired functionality
- * complement and heavily reference existing online materials, rather than duplicating existing contents
+ * Introduce engineers to GWT and GAE
+ * Show by example best practices for implementing common functionality
+ * Complement and heavily reference existing online materials, rather than duplicating existing contents
 
 
 = Why a free, online book? =
