@@ -30,7 +30,7 @@ We'll go with the first, standards-based approach. You will use your existing CS
  * [http://www.w3schools.com/css/default.asp CSS Tutorial]
  * [http://csstipsandtricks.com CSS Tips & Tricks]
 
-First, let's add [http://code.google.com/p/gwt-gae-book/source/browse/#svn/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/resources an image] in Resources.java
+First, let's add [http://code.google.com/p/gwt-gae-book/source/browse/#svn/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/resources an image] in [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/resources/Resources.java Resources]
 {{{
 	@Source("Theatre_Masks.png")
 	ImageResource logo();
