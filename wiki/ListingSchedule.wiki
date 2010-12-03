@@ -390,7 +390,7 @@ And here's the result
 
 TODO: Would anybody please contribute an implementation which avoids re-reading all performances on each create/update/delete? Consider
  * filtering/sorting/paginating - the newly added entity might not be in the current view
- * other users might simultaneously add data - how to reflect this? reread only current page view or server push?
+ * other users might simultaneously add data - how to reflect this? reread only current page view or server push (channel API, comet...) ?
 
 
 
