@@ -1,0 +1,46 @@
+#summary Building a REST GWT client
+
+= Goals =
+* support JSON-only APIs
+* support custom headers for each call (use cases: Authorization, pagination, XSRF...)
+* caching, batching, centralized failure handling, undo/redo and XSRF protection, similar to [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch gwtp dispatch]
+
+
+To perform a call, client should do just
+
+{{{
+dispatcher.execute(method, URL, headers, new GetShowsAction(inVar1, inVar2), new Callback(
+   onSuccess(GetShowsResult result) {
+      callMethod(result.outVar1, result.outVar2);
+   })
+);
+
+@GenRESTModel
+class GetShowsAction {
+   String inVar1;
+   Show inVar2;
+};
+
+@GenRESTModel
+class GetShowsResult {
+   String outVar1;
+   Show outVar2;
+};
+
+@GenRESTModel
+class Show {
+   String name;
+}
+
+}}}
+
+
+
+= Details =
+
+* how to login using openid?
+
+= References =
+http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/client/RequestBuilder.html
+
+http://code.google.com/p/piriti/
