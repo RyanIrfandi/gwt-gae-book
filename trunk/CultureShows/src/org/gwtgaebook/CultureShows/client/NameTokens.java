@@ -52,4 +52,10 @@ public class NameTokens {
 		return shows;
 	}
 
+	public static final String locations = "!locations";
+
+	public static String getLocations() {
+		return locations;
+	}
+
 }

@@ -57,11 +57,11 @@ public class ShowDAO extends DAO<Show> {
 		return shows;
 	}
 
+	// TODO remove ?
 	public List<Show> readByTheater(Theater theater) {
-		List<Show> shows = datastore.find().type(Show.class).ancestor(theater)
-				.returnAll().now();
+		TheaterDAO theaterDAO = theaterDAOProvider.get();
+		return readByTheater(KeyFactory.keyToString(theaterDAO.getKey(theater)));
 
-		return shows;
 	}
 
 	public List<Show> readByName(Theater theater, String name) {

@@ -1,11 +1,13 @@
 package org.gwtgaebook.CultureShows.client;
 
+import org.gwtgaebook.CultureShows.client.locations.LocationsHandlerRegistry;
 import org.gwtgaebook.CultureShows.client.resources.Resources;
 import org.gwtgaebook.CultureShows.client.resources.Translations;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Singleton;
+import com.gwtplatform.dispatch.client.gin.DispatchAsyncModule;
 import com.gwtplatform.mvp.client.DefaultProxyFailureHandler;
 import com.gwtplatform.mvp.client.RootPresenter;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
@@ -33,6 +35,10 @@ public class MainModule extends AbstractPresenterModule {
 
 		bindPresenter(MainPresenter.class, MainPresenter.MyView.class,
 				MainView.class, MainPresenter.MyProxy.class);
+
+		// REST action handlers
+		install(new DispatchAsyncModule.Builder().clientActionHandlerRegistry(
+				LocationsHandlerRegistry.class).build());
 
 	}
 }

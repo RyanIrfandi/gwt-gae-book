@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.gwtgaebook.CultureShows.shared.model.Location;
 import org.gwtgaebook.CultureShows.shared.model.Performance;
+import org.gwtgaebook.CultureShows.shared.model.Show;
 import org.gwtgaebook.CultureShows.shared.model.Theater;
 
 import com.google.appengine.api.datastore.Key;
@@ -14,6 +15,8 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 public class LocationDAO extends DAO<Location> {
+	@Inject
+	Provider<TheaterDAO> theaterDAOProvider;
 	@Inject
 	Provider<PerformanceDAO> performanceDAOProvider;
 
@@ -36,11 +39,28 @@ public class LocationDAO extends DAO<Location> {
 		return datastore.store().instance(location).parent(theater).now();
 	}
 
-	public List<Location> read(Theater theater) {
+	public List<Location> readByTheater(String theaterKey) {
+		TheaterDAO theaterDAO = theaterDAOProvider.get();
+		Theater theater = theaterDAO.read(theaterKey);
+
 		List<Location> locations = datastore.find().type(Location.class)
 				.ancestor(theater).returnAll().now();
 
+		// set key
+		Location s;
+		for (int i = 0; i < locations.size(); i++) {
+			s = locations.get(i);
+			s.locationKey = KeyFactory.keyToString(getKey(s));
+			locations.set(i, s);
+		}
+
 		return locations;
+	}
+
+	// TODO remove?
+	public List<Location> readByTheater(Theater theater) {
+		TheaterDAO theaterDAO = theaterDAOProvider.get();
+		return readByTheater(KeyFactory.keyToString(theaterDAO.getKey(theater)));
 	}
 
 	public List<Location> readByName(Theater theater, String name) {

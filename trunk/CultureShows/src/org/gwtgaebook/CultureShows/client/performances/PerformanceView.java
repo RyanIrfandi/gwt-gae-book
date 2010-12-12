@@ -8,6 +8,7 @@ import org.gwtgaebook.CultureShows.shared.model.Performance;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
 
 import com.google.gwt.cell.client.AbstractCell;
+import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -43,7 +44,7 @@ public class PerformanceView extends ViewWithUiHandlers<PerformanceUiHandlers>
 	public class PerformanceCell extends AbstractCell<Performance> {
 
 		@Override
-		public void render(Performance performance, Object key,
+		public void render(Context context, Performance performance,
 				SafeHtmlBuilder sb) {
 
 			if (null == performance) {

@@ -76,8 +76,14 @@
 			<g:InlineHyperlink addStyleNames="{style.anchor}"
 				targetHistoryToken="{nameTokens.getPerformances}"><div><div class='{style.performancesIcon}'/> Performances</div></g:InlineHyperlink>
 			<br/>
+
 			<g:InlineHyperlink addStyleNames="{style.anchor}"
 				targetHistoryToken="{nameTokens.getShows}"><div><div class='{style.showsIcon}'/> Shows</div></g:InlineHyperlink>
+			<br/>
+
+			<g:InlineHyperlink addStyleNames="{style.anchor}"
+				targetHistoryToken="{nameTokens.getLocations}"><div><div class='{style.locationsIcon}'/> Locations</div></g:InlineHyperlink>
+			<br/>
 
     	</g:HTMLPanel>
 
