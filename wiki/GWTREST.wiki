@@ -37,6 +37,7 @@ class Show {
 
 
 = TODO =
+ * include [http://code.google.com/p/piriti/source/browse/trunk/restlet/src/main/java/name/pehl/piriti/restlet/client/UrlBuilder.java UrlBuilder] in gwtp
  * Automatically handle registering action handlers, somehow?
   * remove the need for !LocationsHandlerRegistry  
 
@@ -49,7 +50,6 @@ class Show {
 = References =
 http://code.google.com/p/google-web-toolkit/wiki/AutoBean
 
-http://code.google.com/p/piriti/source/browse/trunk/restlet/src/main/java/name/pehl/piriti/restlet/client/UrlBuilder.java
 
 http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/client/RequestBuilder.html
 
