@@ -3,7 +3,7 @@
 = Goals =
  * support JSON-only APIs
  * support custom headers for each call (use cases: Authorization, pagination, XSRF...)
- * caching, batching, centralized failure handling, undo/redo and XSRF protection, similar to [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch gwtp dispatch]
+ * caching, batching, centralized failure handling, undo/redo and XSRF protection, get request status, cancel request, similar to [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch gwtp dispatch]
 
 
 To perform a call, client should do just
@@ -38,7 +38,7 @@ class Show {
 
 = Details =
 
-* how to login using openid?
+ * how to login using openid?
 
 = References =
 http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/client/RequestBuilder.html
