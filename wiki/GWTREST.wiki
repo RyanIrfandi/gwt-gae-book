@@ -2,38 +2,19 @@
 
 = Goals =
  * support JSON-only APIs
- * support custom headers for each call (use cases: Authorization, pagination, XSRF...), media type
  * caching, batching, centralized failure handling, undo/redo and XSRF protection, get request status, cancel request, similar to [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch gwtp dispatch]
+ * support custom headers for each call (use cases: Authorization, pagination, XSRF...), media type
  * support binary fields / multipart requests (e.g. [http://twitpic.com/api.do uploading a file])
 
+= Steps =
 
-To perform a call, client should do just
-
-{{{
-dispatcher.execute(method, URL, headers, mediatype, new GetShowsAction(inVar1, inVar2), new Callback(
-   onSuccess(GetShowsResult result) {
-      callMethod(result.outVar1, result.outVar2);
-   })
-);
-
-@GenRESTModel
-class GetShowsAction {
-   String inVar1;
-   Show inVar2;
-};
-
-@GenRESTModel
-class GetShowsResult {
-   String outVar1;
-   Show outVar2;
-};
-
-@GenRESTModel
-class Show {
-   String name;
-}
-
-}}}
+For each client-server call, client should 
+ * write a generator for Action and Result data 
+ * define JSON models for sending and receiving data
+ * write a handler ([http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/ReadLocationsHandler.java sample]), which
+ * sets `RequestBuilder` data
+ * extracts the result
+ * run regular gwtp dispatch.execute()
 
 
 = TODO =
@@ -42,14 +23,15 @@ class Show {
  * Automatically handle registering action handlers, somehow?
   * remove the need for !LocationsHandlerRegistry  
 
-= Details =
+ * use [http://code.google.com/p/gwt-platform/issues/detail?id=179 RequestBuilder] or [http://code.google.com/p/tire-d8/source/browse/trunk/app/src/main/java/name/pehl/tire/client/dispatch/AbstractRestletClientActionHandler.java Restlet] implementation? `Restlet` requires yet another library.
 
- * [http://code.google.com/p/gwt-platform/issues/detail?id=179 RequestBuilder] or [http://code.google.com/p/tire-d8/source/browse/trunk/app/src/main/java/name/pehl/tire/client/dispatch/AbstractRestletClientActionHandler.java Restlet] implementation?
+ * full sample including login using openid
 
- * how to login using openid?
+= Findings =
+
+[http://code.google.com/p/google-web-toolkit/wiki/AutoBean AutoBean] still requires lots of boilerplate code for each request ([http://code.google.com/p/gwt-gae-book/source/detail?r=829 incomplete sample, gave up])
 
 = References =
-http://code.google.com/p/google-web-toolkit/wiki/AutoBean
 
 
 http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/client/RequestBuilder.html
