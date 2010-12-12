@@ -18,6 +18,7 @@ For each client-server call, client should
 
 
 = TODO =
+ * use piriti instead of `AutoBean`
  * include [http://code.google.com/p/piriti/source/browse/trunk/restlet/src/main/java/name/pehl/piriti/restlet/client/UrlBuilder.java UrlBuilder] in guava ? 
  * include `AbstractRequestBuilderClientActionHandler`, `DispatchRequestRequestBuilderImpl`, `RequestRuntimeException` in gwtp
  * Automatically handle registering action handlers, somehow?
@@ -29,7 +30,7 @@ For each client-server call, client should
 
 = Findings =
 
-[http://code.google.com/p/google-web-toolkit/wiki/AutoBean AutoBean] still requires lots of boilerplate code for each request ([http://code.google.com/p/gwt-gae-book/source/detail?r=829 incomplete sample, gave up])
+[http://code.google.com/p/google-web-toolkit/wiki/AutoBean AutoBean] still requires lots of boilerplate code for each request ([http://code.google.com/p/gwt-gae-book/source/detail?r=829 incomplete sample, gave up]). Its data models (e.g. LocationModel.Location) are hard to use in the rest of GWT client, leading to duplicate data models (regular Location class).
 
 = References =
 
