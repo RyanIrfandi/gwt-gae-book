@@ -1,9 +1,9 @@
 #summary Building a REST GWT client
 
 = Goals =
-* support JSON-only APIs
-* support custom headers for each call (use cases: Authorization, pagination, XSRF...)
-* caching, batching, centralized failure handling, undo/redo and XSRF protection, similar to [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch gwtp dispatch]
+ * support JSON-only APIs
+ * support custom headers for each call (use cases: Authorization, pagination, XSRF...)
+ * caching, batching, centralized failure handling, undo/redo and XSRF protection, similar to [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch gwtp dispatch]
 
 
 To perform a call, client should do just
