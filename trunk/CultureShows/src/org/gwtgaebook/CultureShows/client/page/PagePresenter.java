@@ -3,10 +3,10 @@ package org.gwtgaebook.CultureShows.client.page;
 import org.gwtgaebook.CultureShows.client.ClientState;
 import org.gwtgaebook.CultureShows.client.MainPresenter;
 
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent.Type;
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.client.DispatchAsync;
-import com.gwtplatform.mvp.client.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;

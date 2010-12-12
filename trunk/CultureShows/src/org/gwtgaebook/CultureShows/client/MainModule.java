@@ -3,10 +3,10 @@ package org.gwtgaebook.CultureShows.client;
 import org.gwtgaebook.CultureShows.client.resources.Resources;
 import org.gwtgaebook.CultureShows.client.resources.Translations;
 
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Singleton;
-import com.gwtplatform.mvp.client.DefaultEventBus;
 import com.gwtplatform.mvp.client.DefaultProxyFailureHandler;
-import com.gwtplatform.mvp.client.EventBus;
 import com.gwtplatform.mvp.client.RootPresenter;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.proxy.ParameterTokenFormatter;
@@ -23,7 +23,7 @@ public class MainModule extends AbstractPresenterModule {
 		bind(ClientState.class).in(Singleton.class);
 		// bind(SignedInGatekeeper.class).in(Singleton.class);
 
-		bind(EventBus.class).to(DefaultEventBus.class).in(Singleton.class);
+		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 		bind(PlaceManager.class).to(MainPlaceManager.class).in(Singleton.class);
 		bind(TokenFormatter.class).to(ParameterTokenFormatter.class).in(
 				Singleton.class);

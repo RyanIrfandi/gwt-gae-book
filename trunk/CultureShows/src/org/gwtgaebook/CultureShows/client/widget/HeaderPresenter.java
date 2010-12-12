@@ -1,22 +1,16 @@
 package org.gwtgaebook.CultureShows.client.widget;
 
-import org.gwtgaebook.CultureShows.shared.model.UserInfo;
+import org.gwtgaebook.CultureShows.client.ClientState;
+import org.gwtgaebook.CultureShows.client.Main;
+import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent;
+import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent.UserInfoAvailableHandler;
 
+import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
-
-import com.gwtplatform.mvp.client.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
-import com.gwtplatform.mvp.client.proxy.PlaceRequest;
-
-import org.gwtgaebook.CultureShows.client.ClientState;
-import org.gwtgaebook.CultureShows.client.Main;
-import org.gwtgaebook.CultureShows.client.NameTokens;
-import org.gwtgaebook.CultureShows.client.event.SignInEvent;
-import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent;
-import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent.UserInfoAvailableHandler;
 
 public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView>
 		implements HeaderUiHandlers {
