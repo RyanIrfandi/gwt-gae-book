@@ -1,9 +1,24 @@
 package org.gwtgaebook.CultureShows.shared.model;
 
-import com.google.code.twig.annotation.Index;
-import com.google.gson.annotations.Expose;
+import java.io.Serializable;
 
-public class Location {
+import com.google.code.twig.annotation.Index;
+import com.google.code.twig.annotation.Store;
+import com.google.gson.annotations.Expose;
+import com.google.gwt.view.client.ProvidesKey;
+
+@SuppressWarnings("serial")
+public class Location implements Serializable {
+	public static final ProvidesKey<Location> KEY_PROVIDER = new ProvidesKey<Location>() {
+		public Object getKey(Location l) {
+			return (null == l) ? null : l.locationKey;
+		}
+	};
+
+	@Store(false)
+	@Expose
+	public String locationKey;
+
 	@Expose
 	private String name;
 

@@ -7,6 +7,7 @@ import org.gwtgaebook.CultureShows.shared.Misc;
 import org.gwtgaebook.CultureShows.shared.model.Show;
 
 import com.google.gwt.cell.client.AbstractCell;
+import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
@@ -38,7 +39,7 @@ public class ShowView extends ViewWithUiHandlers<ShowUiHandlers> implements
 	public class ShowCell extends AbstractCell<Show> {
 
 		@Override
-		public void render(Show show, Object key, SafeHtmlBuilder sb) {
+		public void render(Context context, Show show, SafeHtmlBuilder sb) {
 
 			if (null == show) {
 				return;

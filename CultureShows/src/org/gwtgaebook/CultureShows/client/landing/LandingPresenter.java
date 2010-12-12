@@ -6,6 +6,9 @@ import org.gwtgaebook.CultureShows.client.Main;
 import org.gwtgaebook.CultureShows.client.MainPresenter;
 import org.gwtgaebook.CultureShows.client.NameTokens;
 import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent;
+import org.gwtgaebook.CultureShows.client.locations.ReadLocationsAction;
+import org.gwtgaebook.CultureShows.client.locations.ReadLocationsResult;
+import org.gwtgaebook.CultureShows.shared.Constants;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetUserAction;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetUserResult;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
@@ -65,6 +68,15 @@ public class LandingPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
+
+		// dispatcher.execute(new ReadLocationsAction(
+		// "agxjdWx0dXJlc2hvd3NyDgsSB1RoZWF0ZXIY9AIM"),
+		// new DispatchCallback<ReadLocationsResult>() {
+		// @Override
+		// public void onSuccess(ReadLocationsResult result) {
+		// Main.logger.info(result.getLocations().toString());
+		// }
+		// });
 
 		dispatcher.execute(new GetUserAction(Window.Location.getHref()),
 				new DispatchCallback<GetUserResult>() {

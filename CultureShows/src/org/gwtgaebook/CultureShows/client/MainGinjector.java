@@ -4,6 +4,8 @@ import org.gwtgaebook.CultureShows.client.guide.GuideModule;
 import org.gwtgaebook.CultureShows.client.guide.GuidePresenter;
 import org.gwtgaebook.CultureShows.client.landing.LandingModule;
 import org.gwtgaebook.CultureShows.client.landing.LandingPresenter;
+import org.gwtgaebook.CultureShows.client.locations.LocationModule;
+import org.gwtgaebook.CultureShows.client.locations.LocationPresenter;
 import org.gwtgaebook.CultureShows.client.page.PageModule;
 import org.gwtgaebook.CultureShows.client.page.PagePresenter;
 import org.gwtgaebook.CultureShows.client.performances.PerformanceModule;
@@ -19,13 +21,13 @@ import com.google.gwt.inject.client.AsyncProvider;
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 import com.google.inject.Provider;
-import com.gwtplatform.dispatch.client.gin.DispatchAsyncModule;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyFailureHandler;
 
-@GinModules({ DispatchAsyncModule.class, MainModule.class, WidgetModule.class,
-		LandingModule.class, PageModule.class, PerformanceModule.class,
-		ShowModule.class, GuideModule.class })
+//DispatchAsyncModule.class,
+@GinModules({ MainModule.class, WidgetModule.class, LandingModule.class,
+		PageModule.class, PerformanceModule.class, ShowModule.class,
+		LocationModule.class, GuideModule.class })
 public interface MainGinjector extends Ginjector {
 	EventBus getEventBus();
 
@@ -50,5 +52,7 @@ public interface MainGinjector extends Ginjector {
 	AsyncProvider<GuidePresenter> getGuidePresenter();
 
 	AsyncProvider<ShowPresenter> getShowPresenter();
+
+	AsyncProvider<LocationPresenter> getLocationPresenter();
 
 }

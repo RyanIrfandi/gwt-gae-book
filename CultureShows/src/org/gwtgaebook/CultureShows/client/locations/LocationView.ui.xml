@@ -1,0 +1,49 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:gcell="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:gdp="urn:import:com.google.gwt.user.datepicker.client"
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
+	ui:generateLocales="default"
+	>
+
+	<ui:with type="org.gwtgaebook.CultureShows.client.NameTokens" field="nameTokens" />
+	<ui:with field='res' type='org.gwtgaebook.CultureShows.client.resources.Resources' />
+
+
+	<ui:style>
+
+
+
+	</ui:style>
+
+
+
+    <g:HTMLPanel ui:field="container" addStyleNames="{res.style.container}">
+		<h3>Shows</h3>
+		<p>
+		Manage the complete list of shows for your theater.
+		</p>
+
+		<label class="{res.style.label} {res.style.required}"><span>Name</span>
+		    <g:TextBox ui:field="name" title="Name"></g:TextBox>
+		</label>
+
+		<label class="{res.style.label} {res.style.required}"><span>Website URL</span>
+		    <g:TextBox ui:field="websiteURL" title="Website URL"></g:TextBox>
+		</label>
+
+
+	    <g:Button ui:field="create" addStyleNames="{res.style.button} {res.style.blue} {res.style.small} {res.style.formButton}">Create</g:Button>
+	    <g:Button ui:field="update" visible="false" addStyleNames="{res.style.button} {res.style.blue} {res.style.small}">Update</g:Button>
+	    <g:Button ui:field="delete" visible="false" addStyleNames="{res.style.button} {res.style.blue} {res.style.small}">Delete</g:Button>
+
+		<g:HTMLPanel addStyleNames="{res.style.listing}">
+			<h4>All locations</h4>
+	    	<gcell:CellList ui:field="locationsCL" />
+		</g:HTMLPanel>
+
+    </g:HTMLPanel>
+
+</ui:UiBinder>

@@ -25,6 +25,7 @@ public class APIModule extends AbstractModule {
 		// RandomSecurityTokenGenerator.class);
 		// bind(SecurityTokenReader.class).to(UrlSecurityTokenReader.class);
 
+		// TODO why shows isn't bound?
 		bind(PerformancesResource.class);
 
 	}
