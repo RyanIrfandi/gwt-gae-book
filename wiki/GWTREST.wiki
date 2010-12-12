@@ -9,13 +9,13 @@
 = Steps =
 
 For each client-server call, client should 
- * write a generator for Action and Result data 
- * define JSON models for sending and receiving data
- * write a handler ([http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/ReadLocationsHandler.java sample]), which
- * sets `RequestBuilder` data
- * extracts the result
- * register the handler
- * run regular gwtp dispatch.execute()
+ # write a generator for Action and Result data 
+ # define JSON models for sending and receiving data
+ # write a handler ([http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/ReadLocationsHandler.java sample]), which
+  # sets `RequestBuilder` data
+  # extracts the result
+ # register the handler
+ # run regular gwtp dispatch.execute()
 
 
 = TODO =
