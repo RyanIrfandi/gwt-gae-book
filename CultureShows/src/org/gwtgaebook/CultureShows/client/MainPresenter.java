@@ -1,12 +1,11 @@
 package org.gwtgaebook.CultureShows.client;
 
-import org.gwtgaebook.CultureShows.client.event.UserInfoAvailableEvent;
 import org.gwtgaebook.CultureShows.client.widget.HeaderPresenter;
 
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent.Type;
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.client.DispatchAsync;
-import com.gwtplatform.mvp.client.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -65,59 +64,5 @@ public class MainPresenter extends
 
 		setInSlot(TYPE_RevealHeaderContent, headerPresenter);
 	}
-
-	@Override
-	protected void onBind() {
-		super.onBind();
-
-		// dispatcher.execute(new GetUserAction(Window.Location.getHref()),
-		// new DispatchCallback<GetUserResult>() {
-		// @Override
-		// public void onSuccess(GetUserResult result) {
-		// if (!result.getErrorText().isEmpty()) {
-		// // TODO have a general handler for this
-		// Window.alert(result.getErrorText());
-		// return;
-		// }
-		// clientState.userInfo = result.getUserInfo();
-		// clientState.theaters = result.getTheaters();
-		//
-		// if (clientState.theaters.size() > 0) {
-		// clientState.currentTheaterKey = clientState.theaters
-		// .get(0).theaterKey;
-		// }
-		// // TODO testability broken if relying to global
-		// // ClientState
-		// onGetUserSuccess();
-		// }
-		// });
-		//
-		// addRegisteredHandler(SignInEvent.getType(), new SignInHandler() {
-		// @Override
-		// public void onHasSignIn(SignInEvent event) {
-		// showSignInDialog();
-		//
-		// }
-		// });
-
-	}
-
-	public void onGetUserSuccess() {
-		// this.userInfo = userInfo;
-		Main.logger.info("User isSignedIn "
-				+ clientState.userInfo.isSignedIn.toString() + " with email "
-				+ clientState.userInfo.email + " username "
-				+ clientState.userInfo.userId);
-		Main.logger.info("Sign In URLs "
-				+ clientState.userInfo.signInURLs.toString() + " Sign Out URL "
-				+ clientState.userInfo.signOutURL);
-		// , UserInfouserInfo
-		UserInfoAvailableEvent.fire(this, clientState);
-	}
-
-	// public void showSignInDialog() {
-	// signInPresenter.setUserInfo(clientState.userInfo);
-	// RevealRootPopupContentEvent.fire(this, signInPresenter);
-	// }
 
 }
