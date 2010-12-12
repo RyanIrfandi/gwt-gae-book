@@ -2,14 +2,14 @@
 
 = Goals =
  * support JSON-only APIs
- * support custom headers for each call (use cases: Authorization, pagination, XSRF...)
+ * support custom headers for each call (use cases: Authorization, pagination, XSRF...), media type
  * caching, batching, centralized failure handling, undo/redo and XSRF protection, get request status, cancel request, similar to [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch gwtp dispatch]
 
 
 To perform a call, client should do just
 
 {{{
-dispatcher.execute(method, URL, headers, new GetShowsAction(inVar1, inVar2), new Callback(
+dispatcher.execute(method, URL, headers, mediatype, new GetShowsAction(inVar1, inVar2), new Callback(
    onSuccess(GetShowsResult result) {
       callMethod(result.outVar1, result.outVar2);
    })
@@ -38,9 +38,15 @@ class Show {
 
 = Details =
 
+ * [http://code.google.com/p/gwt-platform/issues/detail?id=179 RequestBuilder] or [http://code.google.com/p/tire-d8/source/browse/trunk/app/src/main/java/name/pehl/tire/client/dispatch/AbstractRestletClientActionHandler.java Restlet] implementation?
+
  * how to login using openid?
 
 = References =
 http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/client/RequestBuilder.html
 
 http://code.google.com/p/piriti/
+
+http://code.google.com/p/gwt-platform/issues/detail?id=179
+
+
