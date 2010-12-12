@@ -54,6 +54,7 @@ http://code.google.com/p/google-web-toolkit/wiki/AutoBean
 
 http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/client/RequestBuilder.html
 
+http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/client/Response.html
 
 http://code.google.com/p/piriti/
 
