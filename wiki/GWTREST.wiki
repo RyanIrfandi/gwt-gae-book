@@ -4,6 +4,7 @@
  * support JSON-only APIs
  * support custom headers for each call (use cases: Authorization, pagination, XSRF...), media type
  * caching, batching, centralized failure handling, undo/redo and XSRF protection, get request status, cancel request, similar to [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch gwtp dispatch]
+ * support binary fields? (e.g. uploading a file)
 
 
 To perform a call, client should do just
@@ -48,5 +49,3 @@ http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/cli
 http://code.google.com/p/piriti/
 
 http://code.google.com/p/gwt-platform/issues/detail?id=179
-
-
