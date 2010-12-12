@@ -37,8 +37,8 @@ class Show {
 
 
 = TODO =
- * Automatically handle action handlers, somehow (gwtp rpc dispatch doesn't require registering each handlers)
-
+ * Automatically handle registering action handlers, somehow?
+  * remove the need for !LocationsHandlerRegistry  
 
 = Details =
 
