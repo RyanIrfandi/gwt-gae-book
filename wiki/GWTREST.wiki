@@ -24,7 +24,7 @@ For each client-server call, client should
  * include `AbstractRequestBuilderClientActionHandler`, `DispatchRequestRequestBuilderImpl`, `RequestRuntimeException` in gwtp
  * Automatically handle registering action handlers, somehow?
   * remove the need for !LocationsHandlerRegistry  
-
+ * any other ideas of reducing the 7 steps above? These would have to be performed for each client-server call :(
  * use [http://code.google.com/p/gwt-platform/issues/detail?id=179 RequestBuilder] or [http://code.google.com/p/tire-d8/source/browse/trunk/app/src/main/java/name/pehl/tire/client/dispatch/AbstractRestletClientActionHandler.java Restlet] implementation? `Restlet` requires yet another library.
 
  * full sample including login using openid
