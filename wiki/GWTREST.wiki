@@ -2,20 +2,37 @@
 
 = Goals =
  * support JSON-only APIs
- * caching, batching, centralized failure handling, undo/redo and XSRF protection, get request status, cancel request, similar to [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch gwtp dispatch]
- * support custom headers for each call (use cases: Authorization, pagination, XSRF...), media type
+ * support custom headers for each call (use cases: authentication token, pagination, XSRF...), media type
  * support binary fields / multipart requests (e.g. [http://twitpic.com/api.do uploading a file])
+ * get request status, cancel request (use case: loading indicator)
 
-= Steps =
+== Nice to have ==
+ * XSRF protection. Reason for being optional: for services requiring auth, use a HTTP header. Store the auth token value in GWT client, never in a cookie, so it can't be read by other sites.
+ * caching, batching, centralized failure handling, undo/redo,  similar to [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch gwtp dispatch]
+
+= Steps - alternative one =
+
+Use GWTP dispatch client handlers and piriti.
 
 For each client-server call, client should 
  # write a generator for Action and Result data 
  # define JSON models for sending and receiving data
- # write a handler ([http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/ReadLocationsHandler.java sample]), which
-  # sets `RequestBuilder` data
-  # extracts the result
+ # write a handler ([http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/ReadLocationsHandler.java sample])
+ # set `RequestBuilder` data
+ # extract the result
  # register the handler
  # run regular gwtp dispatch.execute()
+
+
+= Steps - alternative two =
+
+Use plain `RequestBuilder`, some helper classes and piriti.
+
+For each client-server call, client should 
+ # define JSON models for sending and receiving data
+ # set `RequestBuilder` data
+ # extract the result
+ # run a wrapper for executing `RequestBuilder`
 
 
 = TODO =
