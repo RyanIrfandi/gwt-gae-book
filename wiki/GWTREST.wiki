@@ -9,6 +9,9 @@
 == Nice to have ==
  * XSRF protection. Reason for being optional: for services requiring auth, use a HTTP header. Store the auth token value in GWT client, never in a cookie, so it can't be read by other sites.
  * caching, batching, centralized failure handling, undo/redo,  similar to [http://code.google.com/p/gwt-platform/wiki/GettingStartedDispatch gwtp dispatch]
+ * be able to demo the app offline, with easy to run mocked calls. One easy solution: have a local HTTP server with static JSON files in pre-determined places.
+ * offline support - be able to run the app offline, and sync when going online (might be a generic problem not related to REST)
+
 
 = Steps - alternative one =
 
