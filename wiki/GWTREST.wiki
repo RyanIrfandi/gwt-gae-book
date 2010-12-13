@@ -19,9 +19,9 @@ For each client-server call, client should
  # define JSON models for sending and receiving data
  # write a handler ([http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/ReadLocationsHandler.java sample])
  # set `RequestBuilder` data
- # extract the result
  # register the handler
  # run regular gwtp dispatch.execute()
+ # extract the result
 
 
 = Steps - alternative two =
@@ -31,8 +31,8 @@ Use plain `RequestBuilder`, some helper classes and piriti.
 For each client-server call, client should 
  # define JSON models for sending and receiving data
  # set `RequestBuilder` data
- # extract the result
  # run a wrapper for executing `RequestBuilder`
+ # extract the result
 
 
 = TODO =
