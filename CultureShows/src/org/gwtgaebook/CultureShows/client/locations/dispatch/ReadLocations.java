@@ -1,4 +1,6 @@
-package org.gwtgaebook.CultureShows.client.locations;
+package org.gwtgaebook.CultureShows.client.locations.dispatch;
+
+import org.gwtgaebook.CultureShows.client.locations.model.Locations;
 
 import com.gwtplatform.annotation.GenDispatch;
 import com.gwtplatform.annotation.In;
@@ -11,7 +13,5 @@ public class ReadLocations {
 	String theaterKey;
 
 	@Out(1)
-	LocationModel.Locations locations;
-	// List<Location> locations = new ArrayList<Location>();
-
+	Locations locations;
 }

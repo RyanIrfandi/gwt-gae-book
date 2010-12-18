@@ -1,6 +1,6 @@
 package org.gwtgaebook.CultureShows.client.locations;
 
-import org.gwtgaebook.CultureShows.shared.model.Location;
+import org.gwtgaebook.CultureShows.client.locations.model.Location;
 
 import com.gwtplatform.mvp.client.UiHandlers;
 
