@@ -1,6 +1,5 @@
-package org.gwtgaebook.CultureShows.client.locations;
+package org.gwtgaebook.CultureShows.client.locations.dispatch;
 
-import org.gwtgaebook.CultureShows.client.locations.dispatch.ReadLocationsHandler;
 
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.client.actionhandler.DefaultClientActionHandlerRegistry;
