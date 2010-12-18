@@ -23,9 +23,9 @@ For each client-server call, client should
  # define [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/#locations%2Fmodel JSON models] for sending and receiving data
  # write a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/dispatch/ReadLocations.java generator for Action and Result data]
  # write [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/dispatch/ReadLocationsHandler.java a handler] which
-  * sets `RequestBuilder` data (url, data)
-  * extracts the result by parsing the model (this is generic, might be implemented by `AbstractRequestBuilderClientActionHandler`)
- # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/dispatch/LocationsHandlerRegistry.java register the handler]
+  * sets `RequestBuilder` data (url, headers, body)
+  * extracts the result by parsing the response body according to given model (this is generic, might be implemented by `AbstractRequestBuilderClientActionHandler`)
+ # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/dispatch/LocationsHandlerRegistry.java register the handler] - could this be done automatically?
  # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/LocationPresenter.java run] regular gwtp dispatch.execute()
 
 
@@ -66,15 +66,15 @@ TBD
 
 
 = TODO =
- * include [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/#client%2Fdispatch AbstractRequestBuilderClientActionHandler, DispatchRequestRequestBuilderImpl, RequestRuntimeException in gwtp]
-
- * by default extract the JSON result in the generic handler by passing the model class when extending generic handler? Need to be able to overwrite this and access additional data from the result, such as HTTP headers
-
- * include [http://code.google.com/p/piriti/source/browse/trunk/restlet/src/main/java/name/pehl/piriti/restlet/client/UrlBuilder.java UrlBuilder] in guava ? 
+ * by default extract the JSON result in the generic handler by passing the model class when extending generic handler? Need to be able to overwrite this and access additional data from the response, such as HTTP headers
 
  * Automatically handle registering action handlers, somehow?
   * remove the need for !LocationsHandlerRegistry  
- * any other ideas of reducing the 6 steps above? These would have to be performed for each client-server call :(
+
+ * include final versions of [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/#client%2Fdispatch AbstractRequestBuilderClientActionHandler, DispatchRequestRequestBuilderImpl, RequestRuntimeException in gwtp]
+
+ * include [http://code.google.com/p/piriti/source/browse/trunk/restlet/src/main/java/name/pehl/piriti/restlet/client/UrlBuilder.java UrlBuilder] in guava ? 
+
  * use [http://code.google.com/p/gwt-platform/issues/detail?id=179 RequestBuilder] or [http://code.google.com/p/tire-d8/source/browse/trunk/app/src/main/java/name/pehl/tire/client/dispatch/AbstractRestletClientActionHandler.java Restlet] implementation? `Restlet` requires yet another library and doesn't bring any major advantages compared to a `RequestBuilder` wrapper. 
 
  * full sample including login using openid
