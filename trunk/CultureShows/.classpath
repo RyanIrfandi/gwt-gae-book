@@ -31,6 +31,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwtp-mockito-0.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/mockito-all-1.8.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwtp-0.5.jar"/>
-	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/gwt-2.1.1-rc1"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
