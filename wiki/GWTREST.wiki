@@ -13,19 +13,20 @@
  * offline support - be able to run the app offline, and sync when going online (might be a generic problem not related to REST)
 
 
-= Recommended alternative: GWTP dispatch, RequestBuilder and piriti =
+= Recommended alternative: GWTP dispatch, `RequestBuilder` and piriti =
 
 Generic helpers
 client/dispatch
 
+
 For each client-server call, client should 
  # write a generator for Action and Result data 
  # define JSON models for sending and receiving data
- # write a handler ([http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/ReadLocationsHandler.java sample])
- # set `RequestBuilder` data
+ # write a handler ([http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/ReadLocationsHandler.java sample]) which
+  * extracts the result by parsing the model (this is generic, might be implemnted by `AbstractRequestBuilderClientActionHandler`)
+  * sets `RequestBuilder` data (url, data)
  # register the handler
  # run regular gwtp dispatch.execute()
- # extract the result
 
 
 = Alternative: GWTP dispatch, GWT Restlet and piriti =
