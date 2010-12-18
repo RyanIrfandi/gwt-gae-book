@@ -2,8 +2,8 @@ package org.gwtgaebook.CultureShows.client.locations;
 
 import java.util.List;
 
+import org.gwtgaebook.CultureShows.client.locations.model.Location;
 import org.gwtgaebook.CultureShows.shared.Constants;
-import org.gwtgaebook.CultureShows.shared.model.Location;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.core.client.GWT;
@@ -55,12 +55,12 @@ public class LocationView extends ViewWithUiHandlers<LocationUiHandlers>
 			if (null == location.websiteURL || location.websiteURL.isEmpty()) {
 				sb.append(SafeHtmlUtils
 						.fromTrustedString("http://www.google.com/search?q="
-								+ location.getName()));
+								+ location.name));
 			} else {
 				sb.appendEscaped(location.websiteURL);
 			}
 			sb.append(SafeHtmlUtils.fromTrustedString("'>"));
-			sb.appendEscaped(location.getName());
+			sb.appendEscaped(location.name);
 			sb.append(SafeHtmlUtils.fromTrustedString("</a><br/>"));
 
 			sb.append(SafeHtmlUtils.fromTrustedString("</div>"));
@@ -177,13 +177,13 @@ public class LocationView extends ViewWithUiHandlers<LocationUiHandlers>
 				.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 					@Override
 					public void onSelectionChange(SelectionChangeEvent event) {
-						Location s = selectionModel.getSelectedObject();
-						setIsLocationSelected(null != s);
-						if (null != s) {
-							name.setValue(s.getName());
-							websiteURL.setValue(s.websiteURL);
+						Location l = selectionModel.getSelectedObject();
+						setIsLocationSelected(null != l);
+						if (null != l) {
+							name.setValue(l.name);
+							websiteURL.setValue(l.websiteURL);
 						}
-						getUiHandlers().onLocationSelected(s);
+						getUiHandlers().onLocationSelected(l);
 					}
 				});
 

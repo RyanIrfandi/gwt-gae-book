@@ -7,9 +7,11 @@ import org.gwtgaebook.CultureShows.client.DispatchCallback;
 import org.gwtgaebook.CultureShows.client.Main;
 import org.gwtgaebook.CultureShows.client.NameTokens;
 import org.gwtgaebook.CultureShows.client.SignedInGatekeeper;
+import org.gwtgaebook.CultureShows.client.locations.dispatch.ReadLocationsAction;
+import org.gwtgaebook.CultureShows.client.locations.dispatch.ReadLocationsResult;
+import org.gwtgaebook.CultureShows.client.locations.model.Location;
 import org.gwtgaebook.CultureShows.client.page.PagePresenter;
 import org.gwtgaebook.CultureShows.shared.Constants;
-import org.gwtgaebook.CultureShows.shared.model.Location;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
@@ -89,16 +91,13 @@ public class LocationPresenter extends
 						@Override
 						public void onSuccess(ReadLocationsResult result) {
 							Main.logger.info(result.toString());
-							// getView().loadLocationData(
-							// Constants.visibleRangeStart,
-							// result.getLocations().size(),
-							// result.getLocations());
-							// TODO
+							// TODO have just getLocations() instead of
+							// getLocations().locations, by using piriti-restlet
+							getView().loadLocationData(
+									Constants.visibleRangeStart,
+									result.getLocations().locations.size(),
+									result.getLocations().locations);
 
-							// getView().loadLocationData(
-							// Constants.visibleRangeStart,
-							// result.getLocations().getLocations().size(),
-							// result.getLocations().getLocations());
 						}
 					});
 		}
@@ -113,7 +112,7 @@ public class LocationPresenter extends
 
 	public void onLocationSelected(Location l) {
 		Main.logger.info("Selected location " + l.locationKey + " with name "
-				+ l.getName());
+				+ l.name);
 	}
 
 	@Override

@@ -32,5 +32,7 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/mockito-all-1.8.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwtp-0.5.jar"/>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/piriti-core-0.6.3.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/totoe-0.2.1.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
