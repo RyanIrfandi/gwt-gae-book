@@ -46,13 +46,13 @@ CONs
 
 
 
-= Alternative: RequestBuilder and piriti =
+= Alternative: `RequestBuilder` and piriti =
 
 
 For each client-server call, client should 
  # define JSON models for sending and receiving data
  # set `RequestBuilder` data
- # run a wrapper for executing `RequestBuilder`
+ # call a wrapper for executing `RequestBuilder`
  # extract the result
 
 TBD
