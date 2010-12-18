@@ -33,15 +33,15 @@ For each client-server call, client should
 Comparison with `RequestBuilder`alternative:
 
 PROs 
-* Support for content negotiation 
-* Better error / exception handling 
-* Better support for HTTP methods 
-* Piriti supports Restlet 
-* no need to declare `public static final LocationReader JSON` in model, piriti-restlet handles this
-* easier to work with model from dispatch.execute(): `result.getLocations().locations` vs. `result.getLocations()`
+ * Support for content negotiation 
+ * Better error / exception handling 
+ * Better support for HTTP methods 
+ * Piriti supports Restlet 
+ * no need to declare `public static final LocationReader JSON` in model, piriti-restlet handles this
+ * easier to work with model from dispatch.execute(): `result.getLocations().locations` vs. `result.getLocations()`
 
 CONs
-* yet another library to depend on (Restlet, with piriti-restlet)
+ * yet another library to depend on (Restlet, with piriti-restlet)
 
 
 
