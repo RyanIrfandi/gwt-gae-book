@@ -61,7 +61,7 @@ TBD
 
 [http://code.google.com/p/gwt-gae-book/source/detail?r=829 Sample]
 
- * Model requires lots of boilerplate code (compare [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/LocationModel.java?spec=svn829&r=829 AutoBean] with [x Piriti] version])
+ * Model requires lots of boilerplate code (compare [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/LocationModel.java?spec=svn829&r=829 AutoBean] with [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/model/Location.java Piriti] version])
  * `AutoBean` entities aren't easy to use in the rest of the app, besides java/json conversion.
 
 
