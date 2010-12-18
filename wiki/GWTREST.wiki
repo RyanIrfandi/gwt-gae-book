@@ -13,30 +13,37 @@
  * offline support - be able to run the app offline, and sync when going online (might be a generic problem not related to REST)
 
 
-= Recommended alternative: GWTP dispatch, `RequestBuilder` and piriti =
+= Good alternative: GWTP dispatch, `RequestBuilder` and piriti =
 
-Generic helpers
-client/dispatch
+[http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/#client%2Fdispatch Generic helpers]
+
 
 
 For each client-server call, client should 
- # write a generator for Action and Result data 
- # define JSON models for sending and receiving data
- # write a handler ([http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/ReadLocationsHandler.java sample]) which
-  * extracts the result by parsing the model (this is generic, might be implemnted by `AbstractRequestBuilderClientActionHandler`)
+ # define [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/#locations%2Fmodel JSON models] for sending and receiving data
+ # write a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/dispatch/ReadLocations.java generator for Action and Result data]
+ # write [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/dispatch/ReadLocationsHandler.java a handler] which
+  * extracts the result by parsing the model (this is generic, might be implemented by `AbstractRequestBuilderClientActionHandler`)
   * sets `RequestBuilder` data (url, data)
- # register the handler
- # run regular gwtp dispatch.execute()
+ # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/dispatch/LocationsHandlerRegistry.java register the handler]
+ # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/LocationPresenter.java run] regular gwtp dispatch.execute()
 
 
-= Alternative: GWTP dispatch, GWT Restlet and piriti =
-Comparted to `RequestBuilder`, Restlet has
+= Good alternative: GWTP dispatch, GWT Restlet and piriti =
+Comparison with `RequestBuilder`alternative:
+
+PROs 
 * Support for content negotiation 
 * Better error / exception handling 
 * Better support for HTTP methods 
 * Piriti supports Restlet 
+* no need to declare `public static final LocationReader JSON` in model, piriti-restlet handles this
+* easier to work with model from dispatch.execute(): `result.getLocations().locations` vs. `result.getLocations()`
 
-TBD
+CONs
+* yet another library to depend on (Restlet, with piriti-restlet)
+
+
 
 
 = Alternative: RequestBuilder and piriti =
@@ -48,8 +55,9 @@ For each client-server call, client should
  # run a wrapper for executing `RequestBuilder`
  # extract the result
 
+TBD
 
-= Alternative: RequestBuilder and AutoBean =
+= Poor alternative: RequestBuilder and AutoBean =
 
 [http://code.google.com/p/gwt-gae-book/source/detail?r=829 Sample]
 * Model requires lots of boilerplate code (compare [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/LocationModel.java?spec=svn829&r=829 AutoBean] with [x Piriti] version])
@@ -57,11 +65,15 @@ For each client-server call, client should
 
 
 = TODO =
+ * include [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/#client%2Fdispatch AbstractRequestBuilderClientActionHandler, DispatchRequestRequestBuilderImpl, RequestRuntimeException in gwtp]
+
+ * by default extract the JSON result in the generic handler by passing the model class when extending generic handler? Need to be able to overwrite this and access additional data from the result, such as HTTP headers
+
  * include [http://code.google.com/p/piriti/source/browse/trunk/restlet/src/main/java/name/pehl/piriti/restlet/client/UrlBuilder.java UrlBuilder] in guava ? 
- * include `AbstractRequestBuilderClientActionHandler`, `DispatchRequestRequestBuilderImpl`, `RequestRuntimeException` in gwtp
+
  * Automatically handle registering action handlers, somehow?
   * remove the need for !LocationsHandlerRegistry  
- * any other ideas of reducing the 7 steps above? These would have to be performed for each client-server call :(
+ * any other ideas of reducing the 6 steps above? These would have to be performed for each client-server call :(
  * use [http://code.google.com/p/gwt-platform/issues/detail?id=179 RequestBuilder] or [http://code.google.com/p/tire-d8/source/browse/trunk/app/src/main/java/name/pehl/tire/client/dispatch/AbstractRestletClientActionHandler.java Restlet] implementation? `Restlet` requires yet another library and doesn't bring any major advantages compared to a `RequestBuilder` wrapper. 
 
  * full sample including login using openid
