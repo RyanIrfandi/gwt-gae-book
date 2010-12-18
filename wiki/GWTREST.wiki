@@ -13,9 +13,10 @@
  * offline support - be able to run the app offline, and sync when going online (might be a generic problem not related to REST)
 
 
-= Steps - alternative one =
+= Recommended alternative: GWTP dispatch, RequestBuilder and piriti =
 
-Use GWTP dispatch client handlers and piriti.
+Generic helpers
+client/dispatch
 
 For each client-server call, client should 
  # write a generator for Action and Result data 
@@ -27,9 +28,18 @@ For each client-server call, client should
  # extract the result
 
 
-= Steps - alternative two =
+= Alternative: GWTP dispatch, GWT Restlet and piriti =
+Comparted to `RequestBuilder`, Restlet has
+* Support for content negotiation 
+* Better error / exception handling 
+* Better support for HTTP methods 
+* Piriti supports Restlet 
 
-Use plain `RequestBuilder`, some helper classes and piriti.
+TBD
+
+
+= Alternative: RequestBuilder and piriti =
+
 
 For each client-server call, client should 
  # define JSON models for sending and receiving data
@@ -38,20 +48,23 @@ For each client-server call, client should
  # extract the result
 
 
+= Alternative: RequestBuilder and AutoBean =
+
+[http://code.google.com/p/gwt-gae-book/source/detail?r=829 Sample]
+* Model requires lots of boilerplate code (compare [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/LocationModel.java?spec=svn829&r=829 AutoBean] with [x Piriti] version])
+* AutoBean entities aren't easy to use in the rest of the app, besides java/json conversion.
+
+
 = TODO =
- * use piriti instead of `AutoBean`
  * include [http://code.google.com/p/piriti/source/browse/trunk/restlet/src/main/java/name/pehl/piriti/restlet/client/UrlBuilder.java UrlBuilder] in guava ? 
  * include `AbstractRequestBuilderClientActionHandler`, `DispatchRequestRequestBuilderImpl`, `RequestRuntimeException` in gwtp
  * Automatically handle registering action handlers, somehow?
   * remove the need for !LocationsHandlerRegistry  
  * any other ideas of reducing the 7 steps above? These would have to be performed for each client-server call :(
- * use [http://code.google.com/p/gwt-platform/issues/detail?id=179 RequestBuilder] or [http://code.google.com/p/tire-d8/source/browse/trunk/app/src/main/java/name/pehl/tire/client/dispatch/AbstractRestletClientActionHandler.java Restlet] implementation? `Restlet` requires yet another library and doesn't bring any advantages compared to a `RequestBuilder` wrapper. (?)
+ * use [http://code.google.com/p/gwt-platform/issues/detail?id=179 RequestBuilder] or [http://code.google.com/p/tire-d8/source/browse/trunk/app/src/main/java/name/pehl/tire/client/dispatch/AbstractRestletClientActionHandler.java Restlet] implementation? `Restlet` requires yet another library and doesn't bring any major advantages compared to a `RequestBuilder` wrapper. 
 
  * full sample including login using openid
 
-= Findings =
-
-[http://code.google.com/p/google-web-toolkit/wiki/AutoBean AutoBean] still requires lots of boilerplate code for each request ([http://code.google.com/p/gwt-gae-book/source/detail?r=829 incomplete sample, gave up]). Its data models (e.g. LocationModel.Location) are hard to use in the rest of GWT client, leading to duplicate data models (regular Location class).
 
 = References =
 
