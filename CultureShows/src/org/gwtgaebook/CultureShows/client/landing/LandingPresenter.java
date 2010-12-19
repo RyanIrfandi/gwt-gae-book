@@ -90,6 +90,11 @@ public class LandingPresenter extends
 						if (clientState.theaters.size() > 0) {
 							clientState.currentTheaterKey = clientState.theaters
 									.get(0).theaterKey;
+							// TODO set default timezone
+							// http://groups.google.com/group/google-web-toolkit/browse_thread/thread/772e5c9e935a6674/
+							// http://groups.google.com/group/google-web-toolkit/browse_thread/thread/bc293514826ce41b/1fad07b05d4f4df1
+							// http://code.google.com/p/google-web-toolkit/source/browse/trunk/user/test/com/google/gwt/i18n/client/TimeZoneTest.java?r=3655
+							// http://code.google.com/p/google-web-toolkit/issues/detail?id=3489
 						}
 						// TODO testability broken if relying to global
 						// ClientState

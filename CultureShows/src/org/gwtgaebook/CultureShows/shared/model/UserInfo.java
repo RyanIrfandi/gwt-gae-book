@@ -11,5 +11,4 @@ public class UserInfo implements Serializable {
 
 	public HashMap<String, String> signInURLs = new HashMap<String, String>();
 	public String signOutURL;
-
 }

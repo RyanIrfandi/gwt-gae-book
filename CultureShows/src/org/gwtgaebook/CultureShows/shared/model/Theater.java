@@ -23,6 +23,10 @@ public class Theater implements Serializable {
 	public String websiteURL;
 	public String photoURL;
 	public String phone;
+
+	// TODO set this in Manage theaters
+	public String timeZone = "GMT+2:00";
+
 	@Index
 	public String locality;
 	@Index

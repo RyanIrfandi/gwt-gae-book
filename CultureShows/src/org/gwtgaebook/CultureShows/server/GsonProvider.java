@@ -14,7 +14,7 @@ public class GsonProvider implements Provider<Gson> {
 		Gson gson = new GsonBuilder()
 				.excludeFieldsWithModifiers(Modifier.STATIC)
 				.excludeFieldsWithoutExposeAnnotation()
-				.setDateFormat(Constants.defaultDateFormat).create();
+				.setDateFormat(Constants.serverDateFormat).create();
 
 		return gson;
 	}

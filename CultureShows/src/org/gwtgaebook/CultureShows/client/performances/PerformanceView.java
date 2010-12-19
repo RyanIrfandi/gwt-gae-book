@@ -2,26 +2,22 @@ package org.gwtgaebook.CultureShows.client.performances;
 
 import java.util.List;
 
-import org.gwtgaebook.CultureShows.client.Main;
 import org.gwtgaebook.CultureShows.shared.Constants;
 import org.gwtgaebook.CultureShows.shared.model.Performance;
-import org.gwtgaebook.CultureShows.shared.model.UserInfo;
 
 import com.google.gwt.cell.client.AbstractCell;
-import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.i18n.client.TimeZone;
+import com.google.gwt.i18n.client.constants.TimeZoneConstants;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
