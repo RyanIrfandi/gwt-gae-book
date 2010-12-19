@@ -36,23 +36,19 @@ See you in a few days :)
 
 [http://code.google.com/p/gwt-gae-book/source/checkout Checkout the latest source code] for the application developed along the book, or [http://code.google.com/p/gwt-gae-book/downloads/list download an archive]. We'll go along building the whole app together, so it's ok if not all the code makes sense now :)
 
-Known issue: Eclipse shows an error on `HeaderView.ui.xml`, [http://code.google.com/p/google-web-toolkit/issues/detail?id=5453 this is a known GWT bug]. The project compiles and runs fine though.
-
-<wiki:comment>
-
-Here's  [http://code.google.com/p/gwt-gae-book/downloads/detail?name=CultureShows-allow-anonymous-scheduling.tgz&can=2&q= an archive] with an intermediary application source code, for your convenience. Please ignore this for now, we will develop it as we progress through book chapters.
-
-</wiki:comment>
+Requirements: GWT 2.1.1, !AppEngine 1.4.0
 
 = Useful libraries =
 We'll use a few libraries in our project:
  * [http://code.google.com/p/guava-libraries/ guava]
+ * [http://code.google.com/p/twig-persist/ twig-persist]
+ * [http://code.google.com/p/google-gson/ gson]
  * [http://code.google.com/p/google-guice/ guice] 
  * [http://code.google.com/p/google-gin/ gin]
  * [http://code.google.com/p/gwt-platform/ gwt-platform]
+ * [http://code.google.com/p/piriti/ piriti]
  * [http://code.google.com/p/gwt-dnd/ gwt-dnd]
  * [http://code.google.com/p/gwtquery/ gwtquery]
- * [http://code.google.com/p/twig-persist/ twig-persist]
  * [http://mockito.org/ mockito]
 
 Visit these project sites to find out more about them. Come back to their documentation whenever needed as we progress with our application.
