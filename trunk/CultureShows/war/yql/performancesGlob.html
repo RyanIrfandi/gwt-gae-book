@@ -54,14 +54,17 @@
 
 
 	var yqlUrl = 'http://query.yahooapis.com/v1/public/yql?q=USE%20%22http%3A%2F%2Fcultureshows.appspot.com%2Fyql%2Fperformances.xml%22%3B%0ASELECT%20*%20FROM%20performances%20WHERE%20theaterKey%3D%22' + theaterKey + '%22%3B%0A&format=json&_maxage=' + secondsCacheDuration + '';
-	var serverDateFormat = 'yyyy-MM-dd HH:mm zz';
-	var timezoneOffset = '+0';
-
+	var serverDateFormat = 'yyyy-MM-dd HH:mm z';
+	var timezoneOffset = '+3';
+	
+	//TODO why +3 for RO? https://github.com/nje/jquery-glob
 	$.getJSON(yqlUrl, function(data) {
+		$( "#performances" ).html("");
 		//format date for display
 		for (i=0; i<data.query.results.performances.length; i++) {
-			date = $.parseDate(data.query.results.performances[i].date + ' ' + timezoneOffset, serverDateFormat);
-			
+			dateStr = data.query.results.performances[i].date.replace("GMT", timezoneOffset);
+			date = $.parseDate(dateStr, serverDateFormat);
+			//alert(dateStr + " /// " + date);
 			data.query.results.performances[i].date = $.format(date, displayDateFormat);
 		}
 
@@ -88,7 +91,7 @@
 
 </head>
 <body>
-	<ul id='performances'></ul>
+	<ul id='performances'>Please wait, loading...</ul>
 </body>
 </html>
 
