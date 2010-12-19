@@ -201,7 +201,7 @@ and bring it to life with [http://code.google.com/p/gwt-gae-book/source/browse/t
 	public class PerformanceCell extends AbstractCell<Performance> {
 
 		@Override
-		public void render(Performance performance, Object key,
+		public void render(Context context, Performance performance,
 				SafeHtmlBuilder sb) {
 
 			if (null == performance) {
