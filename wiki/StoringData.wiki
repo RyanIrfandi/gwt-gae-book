@@ -1,4 +1,4 @@
-#summary Stories entities in App Engine datastore
+#summary Storing entities in App Engine datastore
 
 We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. Having built  [BuildingLandingPage a landing page] which [ClientServer interacts with the server back-end] and [Authentication authenticates members], let's see how to save performances schedule in App Engine datastore.
 
