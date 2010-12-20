@@ -18,7 +18,7 @@
 
 [Authentication Authentication with OpenID]
 
-[StoringData Stories entities in App Engine datastore]
+[StoringData Storing entities in App Engine datastore]
 
 [ListingSchedule Listing saved performances]
 
@@ -30,7 +30,7 @@
 
 [ExposingData Exposing read-only data to 3rd parties]
 
-[AdditionalResources Additional  resources]
+[AdditionalResources Additional resources]
 
 [TODO Possible upcoming chapters]
 

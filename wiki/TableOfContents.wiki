@@ -90,8 +90,8 @@
  * [Authentication#Getting_user_info_in_server_handlers Getting user info in server handlers] <br/>
  * [Authentication#Custom_widgets_&_events Custom widgets & events] <br/>
 
-=== [StoringData Stories entities in App Engine datastore] ===
- * [StoringData#Exercise:_build_manage_performances_client_side Exercise: build manage performances client side] <br/>
+=== [StoringData Storing entities in App Engine datastore] ===
+ * [StoringData#Exercise:_build_Manage_Performances_client_side Exercise: build Manage Performances client side] <br/>
   * [StoringData#Exercise_solution Exercise solution] <br/>
  * [StoringData#Coding_our_data_model Coding our data model] <br/>
  * [StoringData#Datastore_setup Datastore setup] <br/>
@@ -157,7 +157,7 @@
   * [ExposingData#Displaying_data_on_a_test_website Displaying data on a test website] <br/>
   * [ExposingData#Displaying_data_on_a_real_website Displaying data on a real website] <br/>
 
-=== [AdditionalResources Additional  resources] ===
+=== [AdditionalResources Additional resources] ===
  * [AdditionalResources#Discussion_groups Discussion groups] <br/>
  * [AdditionalResources#Blogs Blogs] <br/>
  * [AdditionalResources#Open_source_applications_using_GWT/GAE Open source applications using GWT/GAE] <br/>

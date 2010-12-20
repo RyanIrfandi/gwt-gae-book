@@ -116,6 +116,12 @@ for ($i = 0; $i<count($chapters); $i++) {
 
 }
 
+echo "\n\n";
+foreach ($docs as $doc) {
+	echo $doc . " ";
+}
+echo "\n";
+
 
 
 ?>
