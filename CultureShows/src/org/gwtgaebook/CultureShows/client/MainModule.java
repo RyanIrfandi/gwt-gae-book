@@ -1,9 +1,7 @@
 package org.gwtgaebook.CultureShows.client;
 
-import org.gwtgaebook.CultureShows.client.locations.dispatch.LocationsHandlerRegistry;
 import org.gwtgaebook.CultureShows.client.resources.Resources;
 import org.gwtgaebook.CultureShows.client.resources.Translations;
-import org.gwtgaebook.CultureShows.client.shows.dispatch.ShowsHandlerRegistry;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
