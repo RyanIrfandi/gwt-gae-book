@@ -69,7 +69,6 @@ According to their actions, present the corresponding screen print. If they want
 
 *Additional resources*
  * <a href="http://www.amazon.com/gp/product/0321344758?ie=UTF8&tag=gwtgaebook-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0321344758">Don't Make Me Think: A Common Sense Approach to Web Usability</a><img src="http://www.assoc-amazon.com/e/ir?t=gwtgaebook-20&l=as2&o=1&a=0321344758" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> (great book)
- * <a href="http://www.amazon.com/gp/product/0672326140?ie=UTF8&tag=gwtgaebook-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0672326140">The Inmates Are Running the Asylum: Why High Tech Products Drive Us Crazy and How to Restore the Sanity</a><img src="http://www.assoc-amazon.com/e/ir?t=gwtgaebook-20&l=as2&o=1&a=0672326140" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 = Functional specifications =
 [http://en.wikipedia.org/wiki/Functional_specification Functional specifications] detail the application from users point of view. It helps making sure all stakeholders (from customers to engineers) have the same understanding of the expected behavior.
