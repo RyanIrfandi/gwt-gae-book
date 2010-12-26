@@ -17,9 +17,12 @@ public class APIRouter extends GuiceRouter {
 
 	@Override
 	protected void attachRoutes() {
+		// TODO remove dupe routes
+		// http://restlet.tigris.org/issues/show_bug.cgi?id=1220
+		// http://restlet.tigris.org/ds/viewMessage.do?dsForumId=4447&dsMessageId=2689280
 		attach("/theaters/{id}/shows", ShowsResource.class);
+		attach("/theaters/{id}/shows/", ShowsResource.class);
 		attach("/theaters/{id}/locations", LocationsResource.class);
-		// TODO
 		attach("/theaters/{id}/locations/", LocationsResource.class);
 		attach("/theaters/{id}/performances", PerformancesResource.class);
 	}

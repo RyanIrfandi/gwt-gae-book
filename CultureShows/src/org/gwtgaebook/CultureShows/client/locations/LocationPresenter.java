@@ -80,27 +80,21 @@ public class LocationPresenter extends
 	}
 
 	public void requestLocations() {
-		// Strings.isNullOrEmpty(clientState.currentTheaterKey)
-		// TODO move this check to gatekeeper
-		if (!(null == clientState.currentTheaterKey || clientState.currentTheaterKey
-				.isEmpty())) {
 
-			dispatcher.execute(new ReadLocationsAction(
-					clientState.currentTheaterKey),
-					new DispatchCallback<ReadLocationsResult>() {
-						@Override
-						public void onSuccess(ReadLocationsResult result) {
-							Main.logger.info(result.toString());
-							// TODO have just getLocations() instead of
-							// getLocations().locations, by using piriti-restlet
-							getView().loadLocationData(
-									Constants.visibleRangeStart,
-									result.getLocations().locations.size(),
-									result.getLocations().locations);
+		dispatcher.execute(new ReadLocationsAction(
+				clientState.currentTheaterKey),
+				new DispatchCallback<ReadLocationsResult>() {
+					@Override
+					public void onSuccess(ReadLocationsResult result) {
+						Main.logger.info(result.toString());
+						// TODO have just getLocations() instead of
+						// getLocations().locations, by using piriti-restlet
+						getView().loadLocationData(Constants.visibleRangeStart,
+								result.getLocations().locations.size(),
+								result.getLocations().locations);
 
-						}
-					});
-		}
+					}
+				});
 
 	}
 
