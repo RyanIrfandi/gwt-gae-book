@@ -3,6 +3,7 @@ package org.gwtgaebook.CultureShows.client;
 import org.gwtgaebook.CultureShows.client.locations.dispatch.LocationsHandlerRegistry;
 import org.gwtgaebook.CultureShows.client.resources.Resources;
 import org.gwtgaebook.CultureShows.client.resources.Translations;
+import org.gwtgaebook.CultureShows.client.shows.dispatch.ShowsHandlerRegistry;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -36,9 +37,9 @@ public class MainModule extends AbstractPresenterModule {
 		bindPresenter(MainPresenter.class, MainPresenter.MyView.class,
 				MainView.class, MainPresenter.MyProxy.class);
 
-		// REST action handlers
+		// TODO enhance gwtp to remove the need for manual handler registration
 		install(new DispatchAsyncModule.Builder().clientActionHandlerRegistry(
-				LocationsHandlerRegistry.class).build());
+				RESTHandlerRegistry.class).build());
 
 	}
 }

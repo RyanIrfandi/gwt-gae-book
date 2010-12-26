@@ -2,6 +2,8 @@ package org.gwtgaebook.CultureShows.client.performances;
 
 import java.util.List;
 
+import org.gwtgaebook.CultureShows.client.locations.model.Location;
+import org.gwtgaebook.CultureShows.client.shows.model.Show;
 import org.gwtgaebook.CultureShows.shared.Constants;
 import org.gwtgaebook.CultureShows.shared.model.Performance;
 
@@ -9,8 +11,6 @@ import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.TimeZone;
-import com.google.gwt.i18n.client.constants.TimeZoneConstants;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
@@ -18,6 +18,8 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
+import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -84,10 +86,16 @@ public class PerformanceView extends ViewWithUiHandlers<PerformanceUiHandlers>
 
 	@UiField
 	DateBox date;
-	@UiField
-	TextBox show;
-	@UiField
-	TextBox location;
+
+	// @UiField
+	// TextBox show;
+	@UiField(provided = true)
+	SuggestBox show;
+
+	// @UiField
+	// TextBox location;
+	@UiField(provided = true)
+	SuggestBox location;
 
 	@UiField
 	Button updatePerformance;
@@ -97,7 +105,14 @@ public class PerformanceView extends ViewWithUiHandlers<PerformanceUiHandlers>
 	@UiField
 	CellList<Performance> performancesCL;
 
+	MultiWordSuggestOracle showSO, locationSO;
+
 	public PerformanceView() {
+		showSO = new MultiWordSuggestOracle();
+		show = new SuggestBox(showSO);
+		locationSO = new MultiWordSuggestOracle();
+		location = new SuggestBox(locationSO);
+
 		widget = uiBinder.createAndBindUi(this);
 
 		// fallback for browsers which don't support placeholder attribute
@@ -239,4 +254,21 @@ public class PerformanceView extends ViewWithUiHandlers<PerformanceUiHandlers>
 		getUiHandlers().deletePerformance(
 				selectionModel.getSelectedObject().performanceKey);
 	}
+
+	@Override
+	public void setLocationData(List<Location> locations) {
+		locationSO.clear();
+		for (Location l : locations) {
+			locationSO.add(l.name);
+		}
+	}
+
+	@Override
+	public void setShowData(List<Show> shows) {
+		showSO.clear();
+		for (Show s : shows) {
+			showSO.add(s.name);
+		}
+	}
+
 }

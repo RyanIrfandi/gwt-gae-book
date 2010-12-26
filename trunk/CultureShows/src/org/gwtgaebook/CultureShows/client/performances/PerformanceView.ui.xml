@@ -32,11 +32,13 @@
 		</label>
 
 		<label class="{res.style.label} {res.style.required}"><span>Show name</span>
-	    	<g:TextBox ui:field="show" title="Show name"></g:TextBox>
+			<g:SuggestBox ui:field="show" title="Show name" />
+	    	<!-- <g:TextBox ui:field="show" title="Show name"></g:TextBox> -->
 		</label>
 
 		<label class="{res.style.label} {res.style.required}"><span>Location</span>
-	    	<g:TextBox ui:field="location" title="Location"></g:TextBox>
+			<g:SuggestBox ui:field="location" title="Location" />
+	    	<!-- <g:TextBox ui:field="location" title="Location"></g:TextBox> -->
 		</label>
 
 	    <g:Button ui:field="createPerformance" addStyleNames="{res.style.button} {res.style.green} {res.style.small} {res.style.formButton}">Schedule performance</g:Button>

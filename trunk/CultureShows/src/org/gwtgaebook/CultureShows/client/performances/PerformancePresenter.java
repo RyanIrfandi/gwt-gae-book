@@ -8,7 +8,13 @@ import org.gwtgaebook.CultureShows.client.DispatchCallback;
 import org.gwtgaebook.CultureShows.client.Main;
 import org.gwtgaebook.CultureShows.client.NameTokens;
 import org.gwtgaebook.CultureShows.client.SignedInGatekeeper;
+import org.gwtgaebook.CultureShows.client.locations.dispatch.ReadLocationsAction;
+import org.gwtgaebook.CultureShows.client.locations.dispatch.ReadLocationsResult;
+import org.gwtgaebook.CultureShows.client.locations.model.Location;
 import org.gwtgaebook.CultureShows.client.page.PagePresenter;
+import org.gwtgaebook.CultureShows.client.shows.dispatch.ReadShowsAction;
+import org.gwtgaebook.CultureShows.client.shows.dispatch.ReadShowsResult;
+import org.gwtgaebook.CultureShows.client.shows.model.Show;
 import org.gwtgaebook.CultureShows.shared.Constants;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetPerformancesAction;
 import org.gwtgaebook.CultureShows.shared.dispatch.GetPerformancesResult;
@@ -50,6 +56,10 @@ public class PerformancePresenter extends
 
 		public void refreshPerformances();
 
+		public void setLocationData(List<Location> locations);
+
+		public void setShowData(List<Show> shows);
+
 	}
 
 	private final PlaceManager placeManager;
@@ -81,6 +91,33 @@ public class PerformancePresenter extends
 		RevealContentEvent.fire(this, PagePresenter.TYPE_RevealSpecificContent,
 				this);
 		requestPerformances();
+
+		dispatcher.execute(new ReadShowsAction(clientState.currentTheaterKey),
+				new DispatchCallback<ReadShowsResult>() {
+					@Override
+					public void onSuccess(ReadShowsResult result) {
+						Main.logger.info(result.toString());
+						// TODO have just getLocations() instead of
+						// getLocations().locations, by using piriti-restlet
+						getView().setShowData(result.getShows().shows);
+
+					}
+				});
+
+		dispatcher.execute(new ReadLocationsAction(
+				clientState.currentTheaterKey),
+				new DispatchCallback<ReadLocationsResult>() {
+					@Override
+					public void onSuccess(ReadLocationsResult result) {
+						Main.logger.info(result.toString());
+						// TODO have just getLocations() instead of
+						// getLocations().locations, by using piriti-restlet
+						getView().setLocationData(
+								result.getLocations().locations);
+
+					}
+				});
+
 	}
 
 	public void requestPerformances() {
