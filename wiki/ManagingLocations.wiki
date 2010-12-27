@@ -20,7 +20,7 @@ Web services have several [http://en.wikipedia.org/wiki/Web_service#Styles_of_us
 
 
 = Consuming REST services with GWT =
-
+Besides [http://code.google.com/p/gwt-platform/ GWTP], we'll use [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/client/RequestBuilder.html RequestBuilder] and [http://code.google.com/p/piriti/ piriti] to work with REST services from GWT.
 
 = RPC or REST? =
 
