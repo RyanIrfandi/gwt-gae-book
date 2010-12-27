@@ -2,6 +2,7 @@ package org.gwtgaebook.CultureShows.server;
 
 import name.pehl.taoki.GuiceRouter;
 
+import org.gwtgaebook.CultureShows.server.api.LocationResource;
 import org.gwtgaebook.CultureShows.server.api.LocationsResource;
 import org.gwtgaebook.CultureShows.server.api.PerformancesResource;
 import org.gwtgaebook.CultureShows.server.api.ShowsResource;
@@ -20,10 +21,15 @@ public class APIRouter extends GuiceRouter {
 		// TODO remove dupe routes
 		// http://restlet.tigris.org/issues/show_bug.cgi?id=1220
 		// http://restlet.tigris.org/ds/viewMessage.do?dsForumId=4447&dsMessageId=2689280
-		attach("/theaters/{id}/shows", ShowsResource.class);
-		attach("/theaters/{id}/shows/", ShowsResource.class);
-		attach("/theaters/{id}/locations", LocationsResource.class);
-		attach("/theaters/{id}/locations/", LocationsResource.class);
-		attach("/theaters/{id}/performances", PerformancesResource.class);
+		attach("/theaters/{theaterKey}/shows", ShowsResource.class);
+		attach("/theaters/{theaterKey}/shows/", ShowsResource.class);
+		attach("/theaters/{theaterKey}/locations", LocationsResource.class);
+		attach("/theaters/{theaterKey}/locations/", LocationsResource.class);
+		attach("/theaters/{theaterKey}/locations/{locationKey}",
+				LocationResource.class);
+		attach("/theaters/{theaterKey}/locations/{locationKey}/",
+				LocationResource.class);
+		attach("/theaters/{theaterKey}/performances",
+				PerformancesResource.class);
 	}
 }

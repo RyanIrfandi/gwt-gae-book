@@ -35,7 +35,8 @@ public class PerformancesResource extends ServerResource {
 	@Get("json")
 	public Representation get() {
 		List<Performance> performances = performanceDAO
-				.readByTheater((String) getRequestAttributes().get("id"));
+				.readByTheater((String) getRequestAttributes()
+						.get("theaterKey"));
 
 		Performance p;
 		for (int i = 0; i < performances.size(); i++) {

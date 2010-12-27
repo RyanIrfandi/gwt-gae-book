@@ -21,9 +21,9 @@
 
 
     <g:HTMLPanel ui:field="container" addStyleNames="{res.style.container}">
-		<h3>Shows</h3>
+		<h3>Locations</h3>
 		<p>
-		Manage the complete list of shows for your theater.
+		Manage the complete list of locations for your theater.
 		</p>
 
 		<label class="{res.style.label} {res.style.required}"><span>Name</span>
