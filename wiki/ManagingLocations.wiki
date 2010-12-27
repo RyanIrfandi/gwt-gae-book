@@ -1,0 +1,37 @@
+#summary Managing locations with REST APIs
+
+We discussed about [SoYouHaveAnIdea clarifying your ideas before writing code] and [GettingStarted setting up the development environment]. We built [BuildingLandingPage a landing page] which [ClientServer communicates with App Engine back-end] and [Authentication authenticates members], and implemented [ManagingPerformances managing performances schedule], resulting in [http://cultureshows.appspot.com/ a sample application] with [QualityAssurance reasonable quality]. We've also added [ManagingShows theater show management] and enabled theater owners to [ExposingData display performances on their own websites] with the help of an YQL mashup.
+
+Next, we'll cover REST web services.
+ 
+<wiki:toc max_depth="2" />
+
+= Introduction =
+
+Web services have several [http://en.wikipedia.org/wiki/Web_service#Styles_of_use styles of use]. So far we used [http://en.wikipedia.org/wiki/Remote_procedure_call remote procedure calls] to manage shows and other client-server interaction. 
+
+[http://en.wikipedia.org/wiki/Representational_State_Transfer REST], with [http://en.wikipedia.org/wiki/JSON JSON] data format, is now the de facto architecture of web services. We will implement managing locations using a REST architecture.
+
+= Exposing REST web services with App Engine = 
+[ExposingData We already saw] how to implement reading the performances list with REST. Following the same pattern, locations APIs are built by
+ * implementing a [x LocationsResource]
+ * [x attaching routes]
+
+
+
+= Consuming REST services with GWT =
+
+
+= RPC or REST? =
+
+
+by implementing your required functionality, you have APIs for 3rd parties
+firebug debug
+automated API testing
+jMeter perf testing
+API monitoring
+
+
+= Additional resources =
+* [http://stackoverflow.com/questions/76595?tab=votes#tab-top SOAP vs. REST]
+* [GWTREST Alternatives on consuming REST services with GWT]
