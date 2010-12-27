@@ -32,6 +32,9 @@ jMeter perf testing
 API monitoring
 
 
+Pledge  to make REST services simpler to expose from App Engine and consume from GWT
+
+
 = Additional resources =
 * [http://stackoverflow.com/questions/76595?tab=votes#tab-top SOAP vs. REST]
 * [GWTREST Alternatives on consuming REST services with GWT]
