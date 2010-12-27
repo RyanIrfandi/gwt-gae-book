@@ -64,5 +64,5 @@ Other practices include versioning, working with API keys, supporting partial op
 
 
 = Additional resources =
-* [http://stackoverflow.com/questions/76595?tab=votes#tab-top SOAP vs. REST]
-* [GWTREST Alternatives on consuming REST services with GWT]
+ * [http://stackoverflow.com/questions/76595?tab=votes#tab-top SOAP vs. REST]
+ * [GWTREST Alternatives on consuming REST services with GWT]
