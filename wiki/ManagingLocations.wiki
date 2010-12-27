@@ -14,15 +14,24 @@ Web services have several [http://en.wikipedia.org/wiki/Web_service#Styles_of_us
 
 = Exposing REST web services with App Engine = 
 [ExposingData We already saw] how to implement reading the performances list with REST. Following the same pattern, locations APIs are built by
- * implementing a [x LocationsResource]
- * [x attaching routes]
-
+ * implementing  [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/api/LocationsResource.java Locations] and [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/api/LocationResource.java Location] resources
+ * [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/server/APIRouter.java attaching routes] from URLs to resources
 
 
 = Consuming REST services with GWT =
-Besides [http://code.google.com/p/gwt-platform/ GWTP], we'll use [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/client/RequestBuilder.html RequestBuilder] and [http://code.google.com/p/piriti/ piriti] to work with REST services from GWT.
+Besides [http://code.google.com/p/gwt-platform/ GWTP dispatch], we'll use [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/client/RequestBuilder.html RequestBuilder] and [http://code.google.com/p/piriti/ piriti] to work with REST services from GWT. 
 
-= RPC or REST? =
+After implementing some [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/#client%2Fdispatch generic helper classes], in order to handle each client-server call, we should 
+ # define [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/#locations%2Fmodel JSON models] for sending and receiving data (see [http://code.google.com/p/piriti/issues/detail?id=22 proposed enhancement])
+ # write a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/dispatch/ReadLocations.java generator for Action and Result data]
+ # write [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/dispatch/ a handler] which
+  * sets `RequestBuilder` data (url, headers, body)
+  * extracts the result by parsing the response body according to given model (this is generic, might be implemented by `AbstractRequestBuilderClientActionHandler`)
+ # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/RESTHandlerRegistry.java register the handler] (see [http://groups.google.com/group/gwt-platform/browse_thread/thread/df016bb90190f9af# discussion])
+ # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/LocationPresenter.java run] regular gwtp dispatch.execute()
+
+
+= RPC vs REST =
 
 
 by implementing your required functionality, you have APIs for 3rd parties
@@ -36,7 +45,11 @@ API monitoring
 Building a new GWT/GAE app - 2 separate projects.
 
 
-Pledge  to make REST services simpler to expose from App Engine and consume from GWT
+Let me conclude this section with a wish: Dear GAE and GWT developers, please make REST services simpler to expose from App Engine and consume from GWT. Some specific requests:
+ * (GAE) have support for restlet-like functionality out of the box (or something like the internal tool shown at [http://www.youtube.com/watch?v=nyu5ZxGUfgs How Google builds APIs])
+ * (GWT) support piriti-like functionality for working with JSON ([GWTREST piriti is easier to use than AutoBean]
+ * (GWT) have a framework built around RequestBuilder and JSON for easily communicating with REST services (see the 5 steps above required now)
+
 
 = Web services best practices =
 
