@@ -32,7 +32,22 @@ jMeter perf testing
 API monitoring
 
 
+
+Building a new GWT/GAE app - 2 separate projects.
+
+
 Pledge  to make REST services simpler to expose from App Engine and consume from GWT
+
+= Web services best practices =
+
+Good web services are explorable (maybe through a discovery API), predictable, consistent. Here are some best practices on building web services:
+
+ * [http://www.youtube.com/watch?v=nyu5ZxGUfgs How Google builds APIs]
+ * [http://www.youtube.com/watch?v=VVovVjT_H8A The interaction design of APIs]
+ * [http://www.readwriteweb.com/hack/2010/11/clay-loveless-understanding-ap.php Understanding API Usage] 
+ * [http://www.infoq.com/presentations/SOA-Business-Autonomous-Components Avoid a Failed SOA: Business & Autonomous Components to the Rescue]
+
+Other practices include versioning, working with API keys, supporting partial operations and custom verbs.
 
 
 = Additional resources =
