@@ -29,7 +29,7 @@ public class ShowsResource extends ServerResource {
 	public Representation get() {
 		ShowsGET get = new ShowsGET();
 		get.shows = showDAO.readByTheater((String) getRequestAttributes().get(
-				"id"));
+				"theaterKey"));
 		JsonRepresentation representation = new JsonRepresentation(
 				gson.toJson(get));
 

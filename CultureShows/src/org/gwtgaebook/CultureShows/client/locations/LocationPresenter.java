@@ -7,6 +7,10 @@ import org.gwtgaebook.CultureShows.client.DispatchCallback;
 import org.gwtgaebook.CultureShows.client.Main;
 import org.gwtgaebook.CultureShows.client.NameTokens;
 import org.gwtgaebook.CultureShows.client.SignedInGatekeeper;
+import org.gwtgaebook.CultureShows.client.locations.dispatch.CreateLocationAction;
+import org.gwtgaebook.CultureShows.client.locations.dispatch.CreateLocationResult;
+import org.gwtgaebook.CultureShows.client.locations.dispatch.DeleteLocationAction;
+import org.gwtgaebook.CultureShows.client.locations.dispatch.DeleteLocationResult;
 import org.gwtgaebook.CultureShows.client.locations.dispatch.ReadLocationsAction;
 import org.gwtgaebook.CultureShows.client.locations.dispatch.ReadLocationsResult;
 import org.gwtgaebook.CultureShows.client.locations.model.Location;
@@ -109,80 +113,43 @@ public class LocationPresenter extends
 				+ l.name);
 	}
 
+	// TODO pass directly a Location model
 	@Override
 	public void create(String name, String websiteURL) {
-		// Show s = new Show();
-		// s.setName(name);
-		// s.websiteURL = websiteURL;
-		// s.minuteDuration = minuteDuration;
-		// s.posterURL = posterURL;
-		//
-		// dispatcher.execute(new
-		// ManageShowAction(clientState.currentTheaterKey,
-		// Constants.ManageActionType.CREATE, s),
-		// new DispatchCallback<ManageShowResult>() {
-		// @Override
-		// public void onSuccess(ManageShowResult result) {
-		// if (!result.getErrorText().isEmpty()) {
-		// // TODO have a general handler for this
-		// Window.alert(result.getErrorText());
-		// return;
-		// }
-		// getView().setDefaultValues();
-		// getView().refreshLocations();
-		// }
-		// });
+		Location l = new Location();
+		l.name = name;
+		l.websiteURL = websiteURL;
+		dispatcher.execute(new CreateLocationAction(
+				clientState.currentTheaterKey, l),
+				new DispatchCallback<CreateLocationResult>() {
+					@Override
+					public void onSuccess(CreateLocationResult result) {
+						getView().setDefaultValues();
+						getView().refreshLocations();
+
+					}
+				});
 
 	}
 
 	@Override
 	public void update(String locationKey, String name, String websiteURL) {
-
-		// Show s = new Show();
-		// s.showKey = showKey;
-		// s.setName(name);
-		// s.websiteURL = websiteURL;
-		// s.minuteDuration = minuteDuration;
-		// s.posterURL = posterURL;
-		//
-		// dispatcher.execute(new
-		// ManageShowAction(clientState.currentTheaterKey,
-		// Constants.ManageActionType.UPDATE, s),
-		// new DispatchCallback<ManageShowResult>() {
-		// @Override
-		// public void onSuccess(ManageShowResult result) {
-		// if (!result.getErrorText().isEmpty()) {
-		// // TODO have a general handler for this
-		// Window.alert(result.getErrorText());
-		// return;
-		// }
-		// getView().setDefaultValues();
-		// getView().refreshLocations();
-		// }
-		// });
+		// TODO
 
 	}
 
 	@Override
 	public void delete(String locationKey) {
-		// Show s = new Show();
-		// s.showKey = showKey;
-		//
-		// dispatcher.execute(new
-		// ManageShowAction(clientState.currentTheaterKey,
-		// Constants.ManageActionType.DELETE, s),
-		// new DispatchCallback<ManageShowResult>() {
-		// @Override
-		// public void onSuccess(ManageShowResult result) {
-		// if (!result.getErrorText().isEmpty()) {
-		// // TODO have a general handler for this
-		// Window.alert(result.getErrorText());
-		// return;
-		// }
-		// getView().setDefaultValues();
-		// getView().refreshLocations();
-		// }
-		// });
+		dispatcher.execute(new DeleteLocationAction(
+				clientState.currentTheaterKey, locationKey),
+				new DispatchCallback<DeleteLocationResult>() {
+					@Override
+					public void onSuccess(DeleteLocationResult result) {
+						getView().setDefaultValues();
+						getView().refreshLocations();
+
+					}
+				});
 
 	}
 

@@ -8,12 +8,14 @@ import org.gwtgaebook.CultureShows.server.dao.MemberDAO;
 import org.gwtgaebook.CultureShows.server.dao.TheaterDAO;
 import org.gwtgaebook.CultureShows.server.dao.TheaterMemberJoinDAO;
 import org.gwtgaebook.CultureShows.server.util.Validation;
+import org.gwtgaebook.CultureShows.shared.dispatch.ManageShowResult;
 import org.gwtgaebook.CultureShows.shared.model.Location;
 import org.gwtgaebook.CultureShows.shared.model.Member;
 import org.gwtgaebook.CultureShows.shared.model.Theater;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
+import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
@@ -26,7 +28,7 @@ import com.google.gson.annotations.Expose;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
-public class LocationsResource extends ServerResource {
+public class LocationResource extends ServerResource {
 
 	@Inject
 	Gson gson;
@@ -41,26 +43,28 @@ public class LocationsResource extends ServerResource {
 	@Inject
 	Provider<UserInfo> userInfoProvider;
 
-	public class Locations {
+	public class LocationGET {
 		@Expose
-		List<Location> locations;
+		Location location;
 	}
 
 	@Get("json")
 	public Representation get() {
+		LocationGET get = new LocationGET();
 		// TODO check if user has right to...
-		Locations get = new Locations();
-		get.locations = locationDAO
-				.readByTheater((String) getRequestAttributes()
-						.get("theaterKey"));
+		get.location = locationDAO.read((String) getRequestAttributes().get(
+				"locationId"));
+		JsonRepresentation representation = new JsonRepresentation(
+				gson.toJson(get));
 
-		return new JsonRepresentation(gson.toJson(get));
+		return representation;
 	}
 
-	@Post
-	public Representation post(Representation entity) {
+	@Delete
+	public Representation delete() {
 		// TODO have a kind of ActionValidator/Gatekeeper instead of manual
 		// checks
+		// http://wiki.restlet.org/docs_2.1/13-restlet/27-restlet/46-restlet.html
 		UserInfo userInfo = userInfoProvider.get();
 		if (!userInfo.isSignedIn) {
 			// TODO 401
@@ -78,22 +82,17 @@ public class LocationsResource extends ServerResource {
 			return null;
 		}
 
-		Location location = null;
+		Key locationKey = Validation
+				.getValidDSKey((String) getRequestAttributes().get(
+						"locationKey"));
 
-		try {
-			location = gson.fromJson(entity.getText(), Location.class);
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// check location belongs to given theaterKey
+		if (!KeyFactory.keyToString(locationKey.getParent()).equals(
+				KeyFactory.keyToString(theaterKey))) {
+			// TODO 401
+			return null;
 		}
-
-		Theater theater = theaterDAO.read(theaterKey);
-		Key locationKey = locationDAO.create(theater, location);
-
-		// TODO return location
+		locationDAO.delete(locationKey);
 
 		return null;
 	}

@@ -23,4 +23,10 @@ public class Show {
 	@Json
 	public String websiteURL;
 
+	@Json
+	public int minuteDuration;
+
+	@Json
+	public String posterURL;
+
 }

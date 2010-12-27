@@ -1,5 +1,7 @@
 package org.gwtgaebook.CultureShows.client;
 
+import org.gwtgaebook.CultureShows.client.locations.dispatch.CreateLocationHandler;
+import org.gwtgaebook.CultureShows.client.locations.dispatch.DeleteLocationHandler;
 import org.gwtgaebook.CultureShows.client.locations.dispatch.ReadLocationsHandler;
 import org.gwtgaebook.CultureShows.client.shows.dispatch.ReadShowsHandler;
 
@@ -10,9 +12,13 @@ public class RESTHandlerRegistry extends DefaultClientActionHandlerRegistry {
 
 	@Inject
 	public RESTHandlerRegistry(final ReadLocationsHandler readLocationsHandler,
-			final ReadShowsHandler readShowsHandler) {
+			final ReadShowsHandler readShowsHandler,
+			final CreateLocationHandler createLocationHandler,
+			final DeleteLocationHandler deleteLocationHandler) {
 
 		register(readShowsHandler);
 		register(readLocationsHandler);
+		register(createLocationHandler);
+		register(deleteLocationHandler);
 	}
 }
