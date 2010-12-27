@@ -42,7 +42,7 @@ firebug debug
 automated API testing
 jMeter perf testing
 API monitoring
-
+tweetpic client
 
 
 Building a new GWT/GAE app - 2 separate projects.
