@@ -35,7 +35,7 @@ After implementing some [http://code.google.com/p/gwt-gae-book/source/browse/tru
 
 
 = RPC vs REST =
-
+IN PROGRESS
 
 by implementing your required functionality, you have APIs for 3rd parties
 firebug debug
