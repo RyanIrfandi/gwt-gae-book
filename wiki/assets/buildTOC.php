@@ -16,6 +16,7 @@ $docs = array(
 	"QualityAssurance",
 	"ManagingShows",
 	"ExposingData",
+	"ManagingLocations",
 	"AdditionalResources",
 	"TODO"
 );
