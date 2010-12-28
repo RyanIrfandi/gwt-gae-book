@@ -50,8 +50,8 @@ Building a new GWT/GAE app - 2 separate projects.
 
 Let me conclude this section with a wish: Dear GAE and GWT developers, please make REST services simpler to expose from App Engine and consume from GWT. Some specific requests:
  * (GAE) have support for restlet-like functionality out of the box (or something like the internal tool shown at [http://www.youtube.com/watch?v=nyu5ZxGUfgs How Google builds APIs])
- * (GWT) support piriti-like functionality for working with JSON ([GWTREST piriti is easier to use than AutoBean]
- * (GWT) have a framework built around RequestBuilder and JSON for easily communicating with REST services (see the 5 steps above required now)
+ * (GWT) support piriti-like functionality for working with JSON ([GWTREST piriti is easier to use than AutoBean])
+ * (GWT) have a framework built around `RequestBuilder` and JSON for easily communicating with REST services (see the 5 steps above required now)
 
 
 = Web services best practices =
