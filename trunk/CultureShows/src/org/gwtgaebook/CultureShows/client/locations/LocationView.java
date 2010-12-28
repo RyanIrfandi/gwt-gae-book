@@ -190,26 +190,31 @@ public class LocationView extends ViewWithUiHandlers<LocationUiHandlers>
 		cl.setSelectionModel(selectionModel);
 	}
 
+	Location viewToModel() {
+		final SingleSelectionModel<Location> selectionModel = (SingleSelectionModel<Location>) locationsCL
+				.getSelectionModel();
+		// TODO how to solve Unchecked cast?
+		// TODO int validation
+
+		Location l = new Location();
+		l.locationKey = selectionModel.getSelectedObject().locationKey;
+		l.name = name.getValue();
+		l.websiteURL = websiteURL.getValue();
+		return l;
+	}
+
 	@UiHandler("create")
 	void onCreateLocationClicked(ClickEvent event) {
-		getUiHandlers().create(name.getValue(), websiteURL.getValue());
+		getUiHandlers().create(viewToModel());
 	}
 
 	@UiHandler("update")
 	void onUpdateLocationClicked(ClickEvent event) {
-		// TODO how to solve Unchecked cast?
-		final SingleSelectionModel<Location> selectionModel = (SingleSelectionModel<Location>) locationsCL
-				.getSelectionModel();
-		// TODO int validation
-		getUiHandlers().update(selectionModel.getSelectedObject().locationKey,
-				name.getValue(), websiteURL.getValue());
+		getUiHandlers().update(viewToModel());
 	}
 
 	@UiHandler("delete")
 	void onDeleteLocationClicked(ClickEvent event) {
-		// TODO how to solve Unchecked cast?
-		final SingleSelectionModel<Location> selectionModel = (SingleSelectionModel<Location>) locationsCL
-				.getSelectionModel();
-		getUiHandlers().delete(selectionModel.getSelectedObject().locationKey);
+		getUiHandlers().delete(viewToModel().locationKey);
 	}
 }
