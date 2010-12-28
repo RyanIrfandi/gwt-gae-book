@@ -157,6 +157,14 @@
   * [ExposingData#Displaying_data_on_a_test_website Displaying data on a test website] <br/>
   * [ExposingData#Displaying_data_on_a_real_website Displaying data on a real website] <br/>
 
+=== [ManagingLocations Managing locations with REST APIs] ===
+ * [ManagingLocations#About_REST About REST] <br/>
+ * [ManagingLocations#Exposing_REST_web_services_with_App_Engine Exposing REST web services with App Engine] <br/>
+ * [ManagingLocations#Consuming_REST_services_with_GWT Consuming REST services with GWT] <br/>
+ * [ManagingLocations#RPC_vs_REST RPC vs REST] <br/>
+ * [ManagingLocations#Web_services_best_practices Web services best practices] <br/>
+ * [ManagingLocations#Additional_resources Additional resources] <br/>
+
 === [AdditionalResources Additional resources] ===
  * [AdditionalResources#Discussion_groups Discussion groups] <br/>
  * [AdditionalResources#Blogs Blogs] <br/>

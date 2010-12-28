@@ -30,6 +30,8 @@
 
 [ExposingData Exposing read-only data to 3rd parties]
 
+[ManagingLocations Managing locations with REST APIs]
+
 [AdditionalResources Additional resources]
 
 [TODO Possible upcoming chapters]

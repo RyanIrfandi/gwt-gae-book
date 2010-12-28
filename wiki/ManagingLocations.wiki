@@ -72,4 +72,10 @@ Other practices include versioning, working with API keys, supporting partial op
 = Additional resources =
  * [http://stackoverflow.com/questions/76595?tab=votes#tab-top SOAP vs. REST]
  * [GWTREST Alternatives on consuming REST services with GWT]
- * [http://code.google.com/p/tire-d8/ tire-d8], open source GWT/GAE project using a REST architecture
+ * [http://code.google.com/p/tire-d8/ tire-d8], open source GWT/GAE project using a REST architecture<wiki:comment>NAV_START</wiki:comment>
+<a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
+<img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />
+<a href='http://code.google.com/p/gwt-gae-book/wiki/ExposingData'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' title='Previous chapter: Exposing read-only data to 3rd parties' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/wiki/TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' title='Table Of Contents' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/wiki/AdditionalResources'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: Additional resources' /></a>
+<wiki:comment>NAV_END</wiki:comment>

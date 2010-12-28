@@ -272,5 +272,5 @@ Starting from the HTML page above, we can add [http://jquery-howto.blogspot.com/
 <img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/spacer.png' border='0' />
 <a href='http://code.google.com/p/gwt-gae-book/wiki/ManagingShows'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/prev.png' border='0' title='Previous chapter: Managing shows' /></a>
 <a href='http://code.google.com/p/gwt-gae-book/wiki/TableOfContents'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/contents.png' border='0' title='Table Of Contents' /></a>
-<a href='http://code.google.com/p/gwt-gae-book/wiki/AdditionalResources'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: Additional resources' /></a>
+<a href='http://code.google.com/p/gwt-gae-book/wiki/ManagingLocations'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/next.png' border='0' title='Next chapter: Managing locations with REST APIs' /></a>
 <wiki:comment>NAV_END</wiki:comment>
