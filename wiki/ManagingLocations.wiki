@@ -33,6 +33,7 @@ After implementing some [http://code.google.com/p/gwt-gae-book/source/browse/tru
 
 This approach needs to be [http://groups.google.com/group/gwt-platform/browse_thread/thread/df016bb90190f9af/306d24f851e7c56a#306d24f851e7c56a enhanced] with a specific REST dispatcher, e.g. the current one still goes through `com.google.gwt.user.client.rpc.*`
 
+Question: how about using just a `RequestBuilder` wrapper, without gwtp-dispatch?
 
 = RPC vs REST =
 
