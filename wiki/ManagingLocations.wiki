@@ -31,7 +31,7 @@ After implementing some [http://code.google.com/p/gwt-gae-book/source/browse/tru
   * sets `RequestBuilder` data (url, headers, body)
   * extracts the result by parsing the response body according to given model (this is generic, might be implemented by `AbstractRequestBuilderClientActionHandler`)
  # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/RESTHandlerRegistry.java register the handler] (see [http://groups.google.com/group/gwt-platform/browse_thread/thread/df016bb90190f9af# discussion])
- # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/LocationPresenter.java run] gwtp `dispatch.execute()`
+ # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/LocationPresenter.java run] gwtp `dispatch.execute()` (easy to re-use, e.g. by [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/performances/PerformancePresenter.java locations auto-suggest])
 
 
 = RPC vs REST =
