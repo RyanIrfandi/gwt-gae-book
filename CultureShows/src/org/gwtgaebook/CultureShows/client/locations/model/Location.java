@@ -6,10 +6,12 @@ import com.google.gwt.view.client.ProvidesKey;
 import name.pehl.piriti.client.json.Json;
 
 public class Location {
-	public static final LocationReader jsonr = GWT.create(LocationReader.class);
-	public static final LocationWriter jsonw = GWT.create(LocationWriter.class);
+	public transient static final LocationReader jsonr = GWT
+			.create(LocationReader.class);
+	public transient static final LocationWriter jsonw = GWT
+			.create(LocationWriter.class);
 
-	public static final ProvidesKey<Location> KEY_PROVIDER = new ProvidesKey<Location>() {
+	public transient static final ProvidesKey<Location> KEY_PROVIDER = new ProvidesKey<Location>() {
 		public Object getKey(Location l) {
 			return (null == l) ? null : l.locationKey;
 		}

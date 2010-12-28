@@ -10,10 +10,10 @@ public interface LocationUiHandlers extends UiHandlers {
 
 	void onLocationSelected(Location l);
 
-	public void create(String name, String websiteURL);
+	public void create(Location l);
 
-	public void update(String showKey, String name, String websiteURL);
+	public void update(Location l);
 
-	public void delete(String showKey);
+	public void delete(String locationKey);
 
 }

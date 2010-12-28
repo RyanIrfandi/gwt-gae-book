@@ -13,6 +13,8 @@ import org.gwtgaebook.CultureShows.client.locations.dispatch.DeleteLocationActio
 import org.gwtgaebook.CultureShows.client.locations.dispatch.DeleteLocationResult;
 import org.gwtgaebook.CultureShows.client.locations.dispatch.ReadLocationsAction;
 import org.gwtgaebook.CultureShows.client.locations.dispatch.ReadLocationsResult;
+import org.gwtgaebook.CultureShows.client.locations.dispatch.UpdateLocationAction;
+import org.gwtgaebook.CultureShows.client.locations.dispatch.UpdateLocationResult;
 import org.gwtgaebook.CultureShows.client.locations.model.Location;
 import org.gwtgaebook.CultureShows.client.page.PagePresenter;
 import org.gwtgaebook.CultureShows.shared.Constants;
@@ -113,12 +115,8 @@ public class LocationPresenter extends
 				+ l.name);
 	}
 
-	// TODO pass directly a Location model
 	@Override
-	public void create(String name, String websiteURL) {
-		Location l = new Location();
-		l.name = name;
-		l.websiteURL = websiteURL;
+	public void create(Location l) {
 		dispatcher.execute(new CreateLocationAction(
 				clientState.currentTheaterKey, l),
 				new DispatchCallback<CreateLocationResult>() {
@@ -133,8 +131,17 @@ public class LocationPresenter extends
 	}
 
 	@Override
-	public void update(String locationKey, String name, String websiteURL) {
-		// TODO
+	public void update(Location l) {
+		dispatcher.execute(new UpdateLocationAction(
+				clientState.currentTheaterKey, l),
+				new DispatchCallback<UpdateLocationResult>() {
+					@Override
+					public void onSuccess(UpdateLocationResult result) {
+						getView().setDefaultValues();
+						getView().refreshLocations();
+
+					}
+				});
 
 	}
 

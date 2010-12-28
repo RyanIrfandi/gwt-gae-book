@@ -1,23 +1,20 @@
 package org.gwtgaebook.CultureShows.server.api;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.gwtgaebook.CultureShows.server.dao.LocationDAO;
 import org.gwtgaebook.CultureShows.server.dao.MemberDAO;
 import org.gwtgaebook.CultureShows.server.dao.TheaterDAO;
 import org.gwtgaebook.CultureShows.server.dao.TheaterMemberJoinDAO;
 import org.gwtgaebook.CultureShows.server.util.Validation;
-import org.gwtgaebook.CultureShows.shared.dispatch.ManageShowResult;
 import org.gwtgaebook.CultureShows.shared.model.Location;
 import org.gwtgaebook.CultureShows.shared.model.Member;
-import org.gwtgaebook.CultureShows.shared.model.Theater;
 import org.gwtgaebook.CultureShows.shared.model.UserInfo;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
-import org.restlet.resource.Post;
+import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
 import com.google.appengine.api.datastore.Key;
@@ -94,6 +91,61 @@ public class LocationResource extends ServerResource {
 		}
 		locationDAO.delete(locationKey);
 
+		return null;
+	}
+
+	@Put
+	public Representation put(Representation entity) {
+		// TODO have a kind of ActionValidator/Gatekeeper instead of manual
+		// checks
+		// http://wiki.restlet.org/docs_2.1/13-restlet/27-restlet/46-restlet.html
+		UserInfo userInfo = userInfoProvider.get();
+		if (!userInfo.isSignedIn) {
+			// TODO 401
+			return null;
+		}
+		Member member = memberDAO.readByUserId(userInfo.userId);
+		Key theaterKey = Validation
+				.getValidDSKey((String) getRequestAttributes()
+						.get("theaterKey"));
+
+		if (!tmjDAO.memberHasAccessToTheater(
+				KeyFactory.keyToString(memberDAO.getKey(member)),
+				KeyFactory.keyToString(theaterKey))) {
+			// TODO 401
+			return null;
+		}
+
+		Key locationKey = Validation
+				.getValidDSKey((String) getRequestAttributes().get(
+						"locationKey"));
+
+		// check location belongs to given theaterKey
+		if (!KeyFactory.keyToString(locationKey.getParent()).equals(
+				KeyFactory.keyToString(theaterKey))) {
+			// TODO 401
+			return null;
+		}
+
+		// Location locationOld = locationDAO.read(locationKey);
+
+		Location locationNew = null;
+
+		try {
+			locationNew = gson.fromJson(entity.getText(), Location.class);
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// TODO support partial operations
+
+		locationDAO.update(locationNew, locationKey);
+
+		// TODO return locationNew with key info
 		return null;
 	}
 
