@@ -2,14 +2,8 @@
 
 Here are some sections I'd like to add, as time allows:
 
- * Exposing functionality to 3rd parties via REST APIs 
-  * requiring OpenID authentication, API keys...
-  * API bestpractices (presentations; versioning, paging, filtering, DOS attacks)
-  * microformats
- * Working with REST APIs from GWT 
- * Managing locations (with REST APIs)
- * Minimizing code duplication for entities CRUD
- * [LandingEnhancements autocompletion, i18n]
+ * Minimizing GWT code duplication for entities CRUD
+ * [LandingEnhancements auto-suggest, i18n]
  * [CommunicationEnhancements Client-server communication enhancements]
 
 Nice to haves
