@@ -37,13 +37,13 @@ After implementing some [http://code.google.com/p/gwt-gae-book/source/browse/tru
 = RPC vs REST =
 When implementing GWT/GAE apps, should one use RPC or REST?
 
-The RPC advantage is 1st class support in GWT/GAE, requiring now less code and dependencies to write than implementing a similar REST functionality.
+The RPC advantage is 1st class support in GWT/GAE, requiring now less dependencies and code to write than implementing a similar functionality using REST.
 
-REST has many advantages:
+REST has many advantages though:
 
  * When you are done implementing your required app functionality, you also end up with APIs usable by 3rd parties. Others could integrate with your back-end through these APIs. You and others will be able to build more front-ends if desired (e.g. native Android/iPhone apps, Flex etc). Thanks to APIs, [http://wordpress.chanezon.com/?p=158 innovation can happen elsewhere].
  * You can easily implement automated APIs functional and performance testing and monitoring with tools such as JMeter.
- * Easy to debug: with tools like Firebug, you can inspect directly in browser what happened on a call and identify the problem cause: client or server.
+ * Easy to debug: with tools like Firebug, you can inspect directly in browser what happened on a call and identify the area with having the issue: client or server.
  * Being independent of specific technologies, you can easily completely replace the back-end or front-end implementation any time, as long as new ones support same APIs. You can also build just the back-end, or just the front-end, for your customers. (e.g. build a [http://twitpic.com/ twitpic] GWT client hosted anywhere, since they [http://en.wikipedia.org/wiki/List_of_Web_services_allowing_access_from_any_origin allow access from any origin])
  * Finally, as REST with JSON is standard on the web today, you can use the knowledge you gain for various other technologies.
 
