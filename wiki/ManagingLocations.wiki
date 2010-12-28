@@ -77,6 +77,7 @@ Other practices include versioning, paging, filtering, working with API keys, pr
  * [http://stackoverflow.com/questions/76595?tab=votes#tab-top SOAP vs. REST]
  * [GWTREST Alternatives on consuming REST services with GWT]
  * [http://code.google.com/p/tire-d8/ tire-d8], open source GWT/GAE project using a REST architecture
+ * [http://www.crummy.com/writing/speaking/2008-QCon/act3.html What makes a REST service]. The implementation above is at level two, missing hyperlinks.
 
 
 <wiki:comment>NAV_START</wiki:comment>
