@@ -24,28 +24,31 @@ Web services have several [http://en.wikipedia.org/wiki/Web_service#Styles_of_us
 = Consuming REST services with GWT =
 Besides [http://code.google.com/p/gwt-platform/ GWTP dispatch], we'll use [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/http/client/RequestBuilder.html RequestBuilder] and [http://code.google.com/p/piriti/ piriti] to work with REST services from GWT. 
 
-After implementing some [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/#client%2Fdispatch generic helper classes], in order to handle each client-server call, we should 
+After implementing some [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/#client%2Fdispatch generic helper classes], in order to handle each client-server call we should 
  # define [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/#locations%2Fmodel JSON models] for sending and receiving data (see [http://code.google.com/p/piriti/issues/detail?id=22 proposed enhancement])
  # write a [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/dispatch/ReadLocations.java generator for Action and Result data]
  # write [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/dispatch/ a handler] which
   * sets `RequestBuilder` data (url, headers, body)
   * extracts the result by parsing the response body according to given model (this is generic, might be implemented by `AbstractRequestBuilderClientActionHandler`)
  # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/RESTHandlerRegistry.java register the handler] (see [http://groups.google.com/group/gwt-platform/browse_thread/thread/df016bb90190f9af# discussion])
- # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/LocationPresenter.java run] regular gwtp dispatch.execute()
+ # [http://code.google.com/p/gwt-gae-book/source/browse/trunk/CultureShows/src/org/gwtgaebook/CultureShows/client/locations/LocationPresenter.java run] gwtp `dispatch.execute()`
 
 
 = RPC vs REST =
-IN PROGRESS
+When implementing GWT/GAE apps, should one use RPC or REST?
 
-by implementing your required functionality, you have APIs for 3rd parties
-firebug debug
-automated API testing
-jMeter perf testing
-API monitoring
-tweetpic client
+The RPC advantage is 1st class support in GWT/GAE, requiring now less code and dependencies to write than implementing a similar REST functionality.
+
+REST has many advantages:
+
+ * When you are done implementing your required app functionality, you also end up with APIs usable by 3rd parties. Others could integrate with your back-end through these APIs. You and others will be able to build more front-ends if desired (e.g. native Android/iPhone apps, Flex etc). Thanks to APIs, [http://wordpress.chanezon.com/?p=158 innovation can happen elsewhere].
+ * You can easily implement automated APIs functional and performance testing and monitoring with tools such as JMeter.
+ * Easy to debug: with tools like Firebug, you can inspect directly in browser what happened on a call and identify the problem cause: client or server.
+ * Being independent of specific technologies, you can easily completely replace the back-end or front-end implementation any time, as long as new ones support same APIs. You can also build just the back-end, or just the front-end, for your customers. (e.g. build a [http://twitpic.com/ twitpic] GWT client hosted anywhere, since they [http://en.wikipedia.org/wiki/List_of_Web_services_allowing_access_from_any_origin allow access from any origin])
+ * Finally, as REST with JSON is standard on the web today, you can use the knowledge you gain for various other technologies.
 
 
-Building a new GWT/GAE app - 2 separate projects.
+Therefore, when building new GWT/GAE apps, I'd recommend to consider having two completely separate projects for back-end and front-end and use REST.
 
 
 Let me conclude this section with a wish: Dear GAE and GWT developers, please make REST services simpler to expose from App Engine and consume from GWT. Some specific requests:
@@ -56,7 +59,7 @@ Let me conclude this section with a wish: Dear GAE and GWT developers, please ma
 
 = Web services best practices =
 
-Good web services are explorable (maybe through a discovery API), predictable, consistent. Here are some best practices on building web services:
+Good web services are explorable ( maybe through a discovery API), predictable, consistent. Here are some best practices on building web services:
 
  * [http://www.youtube.com/watch?v=nyu5ZxGUfgs How Google builds APIs]
  * [http://www.youtube.com/watch?v=VVovVjT_H8A The interaction design of APIs]
@@ -69,3 +72,4 @@ Other practices include versioning, working with API keys, supporting partial op
 = Additional resources =
  * [http://stackoverflow.com/questions/76595?tab=votes#tab-top SOAP vs. REST]
  * [GWTREST Alternatives on consuming REST services with GWT]
+ * [http://code.google.com/p/tire-d8/ tire-d8], open source GWT/GAE project using a REST architecture
