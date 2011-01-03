@@ -78,7 +78,7 @@ Other practices include versioning, paging, filtering, working with API keys, pr
  * [GWTREST Alternatives on consuming REST services with GWT]
  * [http://code.google.com/p/tire-d8/ tire-d8], open source GWT/GAE project using a REST architecture
  * [http://www.crummy.com/writing/speaking/2008-QCon/act3.html What makes a REST service]. The implementation above is at level two, missing hyperlinks.
-
+ * [http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven REST APIs must be hypertext-driven]
 
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
