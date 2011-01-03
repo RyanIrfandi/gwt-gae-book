@@ -79,7 +79,6 @@ Other practices include versioning, paging, filtering, working with API keys, pr
  * [http://code.google.com/p/tire-d8/ tire-d8], open source GWT/GAE project using a REST architecture
  * [http://www.crummy.com/writing/speaking/2008-QCon/act3.html What makes a REST service]. The implementation above is at level two, missing hyperlinks.
  * [http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven REST APIs must be hypertext-driven]
- * [http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven REST APIs must be hypertext-driven]
 
 
 
