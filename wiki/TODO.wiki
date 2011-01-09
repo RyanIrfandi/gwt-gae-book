@@ -5,6 +5,7 @@ Here are some sections I'd like to add, as time allows:
  * Minimizing GWT code duplication for entities CRUD
  * [LandingEnhancements auto-suggest, i18n]
  * [CommunicationEnhancements Client-server communication enhancements]
+ * Developing Facebook Apps with App Engine and GWT
 
 Nice to haves
  * Managing theaters and preferences 
@@ -20,7 +21,7 @@ Nice to haves
  * Allowing public to browse our data
  * Making reservations
  * Charging money
-  * Google checkout ([http://aralbalkan.com/1504 not supported on AppEngine by default]), Paypal?
+  * Google checkout ([http://aralbalkan.com/1504 not supported on App Engine by default]), Paypal?
  * Enhanced multi-device support
   * native vs web app
  * Developing Flex clients with Spring Roo (depends on [https://jira.springsource.org/browse/ROOFLEX-19 bug])
