@@ -74,6 +74,8 @@ foreach ($docs as $doc) {
 
 }
 
+$tocShort .= "\n[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZYVQ36QASGH2W&lc=RO&item_name=GWT%20GAE%20online%20book&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted Donate]\n";
+
 $tocShort .= "\n<wiki:gadget url='http://gwt-gae-book.googlecode.com/svn/wiki/assets/gadget_like.xml' width='250' height='35' frameborder='0'/>\n";
 echo $tocShort;
 $f = fopen("TableOfContentsShort.wiki", "w");
