@@ -1,13 +1,18 @@
 package org.gwtgaebook.template.client;
 
-import com.google.inject.*;
-import com.gwtplatform.mvp.client.*;
-import com.gwtplatform.mvp.client.gin.*;
-import com.gwtplatform.mvp.client.annotations.*;
-import com.gwtplatform.mvp.client.proxy.*;
+import org.gwtgaebook.template.client.resources.Resources;
+import org.gwtgaebook.template.client.resources.Translations;
 
-import org.gwtgaebook.template.client.resources.*;
-import org.gwtgaebook.template.client.landing.*;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.inject.Singleton;
+import com.gwtplatform.mvp.client.DefaultProxyFailureHandler;
+import com.gwtplatform.mvp.client.RootPresenter;
+import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+import com.gwtplatform.mvp.client.proxy.ParameterTokenFormatter;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.gwtplatform.mvp.client.proxy.ProxyFailureHandler;
+import com.gwtplatform.mvp.client.proxy.TokenFormatter;
 
 public class MainModule extends AbstractPresenterModule {
 
@@ -16,7 +21,7 @@ public class MainModule extends AbstractPresenterModule {
 		bind(Resources.class).in(Singleton.class);
 		bind(Translations.class).in(Singleton.class);
 
-		bind(EventBus.class).to(DefaultEventBus.class).in(Singleton.class);
+		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 		bind(PlaceManager.class).to(MainPlaceManager.class).in(Singleton.class);
 		bind(TokenFormatter.class).to(ParameterTokenFormatter.class).in(
 				Singleton.class);
