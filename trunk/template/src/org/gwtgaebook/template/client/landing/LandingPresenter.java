@@ -1,11 +1,18 @@
 package org.gwtgaebook.template.client.landing;
 
-import com.google.inject.*;
-import com.gwtplatform.mvp.client.*;
-import com.gwtplatform.mvp.client.annotations.*;
-import com.gwtplatform.mvp.client.proxy.*;
+import org.gwtgaebook.template.client.NameTokens;
 
-import org.gwtgaebook.template.client.*;
+import com.google.gwt.event.shared.EventBus;
+import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.HasUiHandlers;
+import com.gwtplatform.mvp.client.Presenter;
+import com.gwtplatform.mvp.client.View;
+import com.gwtplatform.mvp.client.annotations.NameToken;
+import com.gwtplatform.mvp.client.annotations.ProxyStandard;
+import com.gwtplatform.mvp.client.proxy.Place;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.gwtplatform.mvp.client.proxy.Proxy;
+import com.gwtplatform.mvp.client.proxy.RevealRootContentEvent;
 
 public class LandingPresenter extends
 		Presenter<LandingPresenter.MyView, LandingPresenter.MyProxy> implements
