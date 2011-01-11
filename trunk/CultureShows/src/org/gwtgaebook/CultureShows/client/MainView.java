@@ -9,11 +9,11 @@ import com.gwtplatform.mvp.client.*;
 public class MainView extends ViewWithUiHandlers<MainUiHandlers> implements
 		MainPresenter.MyView {
 
-	interface LandingViewUiBinder extends UiBinder<Widget, MainView> {
+	interface MainViewUiBinder extends UiBinder<Widget, MainView> {
 	}
 
-	private static LandingViewUiBinder uiBinder = GWT
-			.create(LandingViewUiBinder.class);
+	private static MainViewUiBinder uiBinder = GWT
+			.create(MainViewUiBinder.class);
 
 	public final Widget widget;
 
