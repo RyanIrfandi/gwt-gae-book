@@ -1,7 +1,8 @@
 package org.gwtgaebook.template.server;
 
-import com.google.inject.*;
-import com.google.inject.servlet.*;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.servlet.GuiceServletContextListener;
 
 public class MainGuiceServletContextListener extends
 		GuiceServletContextListener {

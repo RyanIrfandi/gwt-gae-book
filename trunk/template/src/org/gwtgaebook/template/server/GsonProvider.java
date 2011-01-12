@@ -2,8 +2,6 @@ package org.gwtgaebook.template.server;
 
 import java.lang.reflect.Modifier;
 
-import org.gwtgaebook.template.shared.Constants;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.inject.Provider;
