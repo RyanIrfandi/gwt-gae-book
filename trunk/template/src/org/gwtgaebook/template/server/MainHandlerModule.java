@@ -1,8 +1,6 @@
 package org.gwtgaebook.template.server;
 
-import com.gwtplatform.dispatch.server.guice.*;
-import org.gwtgaebook.template.shared.dispatch.*;
-import org.gwtgaebook.template.server.dispatch.*;
+import com.gwtplatform.dispatch.server.guice.HandlerModule;
 
 public class MainHandlerModule extends HandlerModule {
 
