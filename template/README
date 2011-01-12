@@ -15,7 +15,8 @@ Various code samples/functionality were taken from libraries, blogs, discussion 
 
 
 
-
+Useful stuff
+svn propset svn:ignore -F .svnignore .
 
 
 

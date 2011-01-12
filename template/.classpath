@@ -22,12 +22,10 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.restlet.ext.servlet.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.restlet.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/piriti-core-0.6.3.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/piriti-restlet-0.6.3.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/taoki-0.3.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/totoe-0.2.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gson-1.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/json.jar"/>
-	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-testing.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-stubs.jar"/>
 	<classpathentry kind="src" path=".apt_generated">
@@ -35,4 +33,5 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
