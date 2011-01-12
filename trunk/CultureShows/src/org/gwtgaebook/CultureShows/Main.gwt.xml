@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module rename-to='main'>
-	<inherits name='org.gwtgaebook.CultureShows.Common'/>
+<module rename-to="main">
+	<inherits name="org.gwtgaebook.CultureShows.Common"/>
 
 	<define-configuration-property name="gin.ginjector" is-multi-valued="false" />
 	<set-configuration-property name="gin.ginjector"
 	     value="org.gwtgaebook.CultureShows.client.MainGinjector" />
 
-	<entry-point class='org.gwtgaebook.CultureShows.client.Main'/>
+	<entry-point class="org.gwtgaebook.CultureShows.client.Main"/>
 
 </module>
