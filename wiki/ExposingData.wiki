@@ -170,7 +170,7 @@ How do we get performances to be displayed on a theater website? We can parse th
 We need to consider making the data available in a [http://en.wikipedia.org/wiki/JSON#JSONP JSON with padding format], [http://blog.listry.com/2010/10/app-engine-warm-up-requests-death-of.html performance] and [http://code.google.com/appengine/docs/billing.html cost], since each 3rd party website request translates to CPU and bandwidth usage on App Engine.
 To reduce the impact of all these, let's use [http://developer.yahoo.com/yql/ Yahoo! Query Language (YQL)] to fetch and cache the data for us. See [http://developer.yahoo.com/yql/guide YQL  Guide] to understand how it works.
 
-*UPDATE* : YQL is way to unreliable. We stopped using it on the real site and implemented another caching mechanism instead. The code below is left for educational purposes, but don't use YQL on your projects.
+*UPDATE* : YQL is way too unreliable. We stopped using it on the real site and implemented another caching mechanism instead. Please use the code below for educational purposes only.
 
 == Setting up YQL ==
 
