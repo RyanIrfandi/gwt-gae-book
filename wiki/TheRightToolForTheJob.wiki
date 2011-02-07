@@ -16,178 +16,10 @@ Before settling on GWT and GAE, ask yourself if they are the best fit for your p
  * What are your needs? 
  * What are the alternatives you have? 
  * How do they compare?
+ * What was the experience of similar projects & teams trying out these tools?
 
 
-= Analysis of using GWT for a large application =
-
-This is an analysis done in September 2010 for a project. It was mapped to our specific  project needs and environment.
-
-= Project background =
-This is a large project which has a .NET back-end, with REST APIs (transport: XML and JSON). We control the back-end. We're looking for a framework to replace the current UI. 
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/journey.jpg" border="0"  align="right" />
-
-= Framework evaluation criteria =
-
- * Clean architecture by separation of presentation from logic
- * Automatically testable not only with Selenium-like tools, but also with unit tests
- * Ease of developing new features and changing existing ones
- * Ease of adoption by all engineering team (consider programming language, documentation / learning materials, development environment setup, support)
- * Ease of integration with other frameworks & components like jQuery
- * Multi-screen/multi-device/touch support, either out of the box or easy to add
- * Ease of integration with 3rd party web services 
- * Widgets available, ease of skinning
- * I18N support
-
-
-= Web applications paradigm alternatives =
-
-
-When developing web applications, one can choose to implement the front end functionality heavily coupled with back-end, e.g. Java/PHP/ASP back-end will generate the required HTML/JS/CSS. In this case it’s strongly recommended to use architectures such as MVC and templating mechanisms, in order to better separate presentation from logic.
-
-An alternative is to have the front-end completely separated from back-end, communicating via web services API (REST or RPC). This approach has a few interesting advantages, shown below.
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/father_and_child.jpg" border="0"  align="right" />
-
-First, it enforces a clean architecture by completely separating the font-end client from back-end. One can design the back-end having in mind just [http://www.infoq.com/presentations/SOA-Business-Autonomous-Components SOA and EDA]. The front-end might have it's own architecture, such as MVP. Note that front-end Model is different than back-end Model, e.g. one might have fields stored in multiple tables and expose all of them under a single entity in API.
-
-Testing automation is easier. One can have unit and integration testing for back-end; functional & performance testing over APIs; unit testing and automated browser testing for front-end.
-
-Black Box QEs are able to debug issues in more detail by monitoring client-server communication. By using a tool like Firebug, they can tell if the cause is on back-end business logic or front-end, resulting in better bug reports.
-
-By decoupling front-end from back-end, the release deployment is also decoupled. One can now have simultaneous multiple front-end versions in production. Combined with versioned APIs, one lowers the risk of affecting all customers with bugs introduced with the new release. After deploying a new back-end and front-end release, one can test first the back-end and then switch on the new front-end version separately by flipping a switch. One can also do gradual roll-out for frond-end features by activating it for only 10% of the customers first, getting feedback and then making it available for all users. Roll-backs are seamlessly done in the same way. One also gets easy A-B testing possibilities.
-
-For large projects, overall project maintenance gets simpler. Developers can work separately on back-end and front-end if desired. We sometimes had the back-end broken due to changing database configurations, which impeded all team. A part of the team could have continued working on front-end during this time, using mock APIs or other functioning back-end deployments.
-
-Technology constraints are no longer imposed on front-end clients. With web service APIs, use the right front-end tool for the specific job one needs.
-
-APIs will also be available for other clients, making you ready for scalable growth. You can have web apps, native mobile clients, native desktop clients and 3rd party services integration, all on top of the same tested APIs.
-
-One is no longer the only kid on the block, and one size doesn't fit all. Current web apps need to consider integrating with other services (think social, or a photo editor/print service). When integrating with these, one will use the same patterns that were used to develop the initial app. Sometimes the back-end server doesn't even need to interact with the 3rd party service at all, having just the front-end client knowing how to work with them. Example: if users can upload photos to an app having an API for this, the client can latter be enhanced to allow users to upload photos from Picasa/Flickr/Facebook rather than just their hard-drive. Unless the app wants to save Picasa user account information, the back-end doesn't need to be touched to implement this functionality.
-
-A disadvantage of this approach is the need of APIs for almost every feature exposed to front-end, which might be perceived as more work. One would have to build that functionality anyway, and using APIs forces one to think about separation of UI from back-end. Having an API layer which takes care of all common functionality (e.g. authentication, logging) rather than doing this individually for each API is strongly recommended. 
-
-One also needs to be careful on backwards compatibility when having multiple front-end clients. Use API versioning and run automated tests for all API versions on each release.
-
-The notes above are applicable for any technologies having front-end using back-end via web service APIs. Next, we'll go into more details regarding GWT.
-
-= Google Web Toolkit (GWT) =
-
-
-GWT has quite a few good points, and some areas where it could do better. Let’s look at it from several perspectives.
-
-== Engineering ==
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/alone.jpg" border="0"  align="right" />
-
-Good:
- * [http://code.google.com/webtoolkit/makinggwtbetter.html#introduction Has Google behind it], and Google knows how to build web apps
- * Mature (1st release on May 2006), has many libraries available (e.g. [http://code.google.com/hosting/search?q=gwt&projectsearch=Search+projects code.google.com], [http://sourceforge.net/search/?type_of_search=soft&words=gwt sourceforge]) 
- * Generates optimized, cross-browser JS from Java code
- * Automatically manages compressing JS, CSS, [http://code.google.com/webtoolkit/doc/latest/DevGuideClientBundle.html building image sprites] => reduced # of HTTP requests
- * Rich ecosystem of powerful Java tools and libraries, compared to JS (debugging in browser code written in Java, IDEs, auto-completion, static code analysis tools, design patterns, unit testing and code coverage, most of these open source) => increased productivity
- * Front-end is completely static
-  * Requires significantly less bandwitdth/CPU/memory requirements for servers
-  * Enables front-end caching and deployment to a CDN
-  * Reduces network usage only to specific data transfer via JSON  (vs. fully loading each page on a request) => better user experience
- * [http://code.google.com/webtoolkit/articles/testing_methodologies_using_gwt.html Built-in unit testing support] (including asynchronous calls)
- * Built-in support for automated browser testing (flag to include field ids or not in generated HTML markup)
- * Powerful i18n support (including automatic extraction of strings)
- * Native HTML5 support in progress (e.g. [http://code.google.com/p/gwt-mobile-webkit/ storage, offline web apps])
- * Mobile & touch friendly (e.g. [http://clay.lenharts.net/blog/2009/05/25/gwt-is-flexible-iphone-demo/ iPhone], [http://development.lombardi.com/?p=1346 multi-touch demo], [http://m.geotako.com/ sample app])
- * Can be easily integrated with AJAX frameworks such as jQuery, YUI (there’s even a [http://code.google.com/events/io/2009/sessions/ProgressivelyEnhanceAjaxApps.html jQuery port to GWT])
- * Easy to develop new custom, reusable widgets
- * !UiBinder model (separate display from behavior)
- * Native MVP support 
- * [http://code.google.com/webtoolkit/doc/latest/DevGuideA11y.html Accessibility support]
- * Growing set of functionality (Data Presentation Widgets, GWT Designer, Roo)
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/lemon.jpg" border="0"  align="right" />
-A particular advantage over ASP.NET is availability of many mature tools & libraries which are free and open source (from unit testing and mocks builder frameworks, to static code analysis). Even if cost is not an issue, for engineering this translates to
- * Immediate availability (specific example - we needed a memory profiler during a sprint, had to involve a program manager to find a license).
- * Support (community vs paid). For larger open source projects, there is free support provided by users and developers for that tool/library. This is offered by community for pleasure of learning and helping others, and is much better compared to many commercial products. [http://groups.google.com/group/gwt-platform/browse_thread/thread/6eee2e443cd408c9# Here’s one support example while learning GWT], [http://groups.google.com/group/piriti/browse_thread/thread/7d0c276e8cfcfcf8 one more example].
- * Public design discussions - how should things work in the next versions? This allows many opportunities to contribute with feedback according to specific project needs. Senior engineers on your team can continue to grow their architecture skills by learning and contributing to these discussions, while happily working to the same project. [https://wave.google.com/wave/#restored:wave:googlewave.com%252Fw%252Beva-sERfA.1 An example], [https://wave.google.com/wave/#restored:wave:googlewave.com%252Fw%252BEI8yh67GA another example], [http://groups.google.com/group/gwt-platform/browse_thread/thread/1cf3efb5780e5b80/a5596a47a9be07d7 one more example].
-
-
-Not so good:
- * Introduces a new technology (Java) to the team, a new IDE. That’s why it's best to hire good software engineers, not just good developers at technology X. The team might need to learn to work with new paradigms and use new tools anyway  (e.g. building and using image sprites to minimize number of HTTP calls, profiling tools, unit testing frameworks)
- *  Build system changes (one-time setup). If not using GWT, we need additional tools anyway for JS compiling and image bundles building.
- * [http://jeoftp.blogspot.com/2010/01/why-i-left-gwt-and-came-crawling-back.html Generated markup] is bloated, making it harder to style among others. See [http://groups.google.com/group/google-web-toolkit/tree/browse_frm/thread/c8cfc4d2dba16862/e12745a14290fffb explanation] about why some of that markup is needed.
- * Sometimes you need to write boilerplate code to achieve a functionality (e.g. make a REST call)
- * Missing powerful widgets (e.g. [http://www.smartclient.com/smartgwt/showcase/#tiling_filter_sort SmartGWT’s TileGrid]). Reason: GWT is a toolkit, enabling others to write libraries for it, not a full all-in-one solution for web apps development. There are 3rd party widget libraries.
-
-
-== Cross-functional team collaboration ==
-
-A large web app is built by a large cross-functional team. We have Black Box and White Box QEs, user experience designers, graphic designers, product managers and support. How does GWT benefit them?
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/horse-drawn.jpg" border="0"  align="right" />
-
-=== Scrum teams ===
-We use Scrum with 4 week sprints and apply Scrum best practices such as splitting large stories in small ones. While we try to work on stories in order of priority, we still reach the last sprint week with most stories not done as we cannot fully parallelize effort to work on one story at a time.
-
-With GWT, multiple developers will be able to work on the same story (one or two back-end, one front-end using mock data models, which have to be built anyway for unit testing). 
-
-We can have early development of functional front-end with mock data models. Black Box QEs will be able to do early QA on user workflows and usability, rather then at the sprint end when it’s usually too late to do major changes. Specific example: we had a large feature developed and released, which is working mostly ok from functionality point of view, but had large usability issues raised by customers.
-
-White Box QAs can write API tests as soon as the data model is agreed, and then can review and contribute to front-end unit testing.
-
-If we already fully developed two separate workflows, to integrate them we need to change only the client. Example: If you have a front-end to post a Wordpress blog entry which includes images, and you also have a separate photo gallery management section in the same application, you only need to update the client to enable drag and dropping photos from your photo galleries into a blog post.
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/stone_tower.jpg" border="0"  align="left" />
-
-=== User experience designers and graphic designers ===
-
-With the current process, UX designers develop wireframes and some high resolution mockups for larger features. Then they don’t interact at all with the end result until it’s completed by the team. Feedback from UX is sometimes integrated in the next sprint, sometimes not considered as the story it’s done and we need to continue working on other features.
-
-Using GWT will allow the team to rapidly develop early UIs, with mock data models. UX team will be able to see their proposed workflows in action during the actual feature development. As GWT separates not only logic from presentation with MVP, but also [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html HTML/CSS markup from Java code], designers would be able to make changes themselves to markup, CSS and widgets, and submit their final changes directly into the version control system, again during the feature development (we are using Continuous Integration). 
-
-=== Product managers and support === 
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/against_light.jpg" border="0"  align="right" />
-Product managers and support get to see the features developed by the team late in the sprint, sometimes even at the sprint demo for the first time. These groups always have valuable feedback from the customer and integration with larger system point of views. By *enabling them to deliver the feedback early during the sprint*, we enable the team to integrate it until the story is done.
-
-On several releases we also had important issues raised by customers right after release, forcing us sometimes to do painful rollbacks while affecting users. Using GWT for front-end allows us to have multiple, simultaneous front-end versions in production. After doing a back-end release with newer versioned APIs added, we can *roll out front-end gradually to users* and get feedback before enabling the updated functionality for all. In case of issues (and nobody is perfect), this lowers the support costs and keeps up the company brand image. If there are issues with new back-end API versions, we keep them again under control by fast switching to an earlier front-end release, which uses older APIs.
-
-An interesting benefit of having multiple, simultaneous front-end versions in production is that we can *easily do A/B testing on various features*. With proper metrics in place, product managers and UX designers can get valuable data about how customers actually use features and what alternatives are better than others.
-
-=== Operations ===
-A GWT front-end is just a set of cachable HTML/JS/CSS/images static files, which transfer data using JSON REST requests. Compared to ASP.NET, this results in *significantly reduced datacenter costs (bandwidth, CPU, memory)*. 
-*Deployment is easier*, and rolling back to a different front-end release is just flipping a switch.
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/leaves.jpg" border="0"  align="right" />
-
-= More info on GWT =
-
-[http://fredsa.allen-sauer.com/2009/10/sf-jug-gwt-can-help-you-create-amazing.html GWT Can Help You Create Amazing Web Apps]
-
-[http://www.scribd.com/doc/44602/Google-Web-Toolkit GWT Intro]
-
-[http://code.google.com/events/io/2010/sessions/architecting-production-gwt.html Architecting GWT applications for production at Google]
-
-[http://code.google.com/events/io/2010/sessions/gwt-continuous-build-testing.html GWT testing best practices]
-
-[http://code.google.com/events/io/2009/sessions/GoogleWebToolkitBestPractices.html Best Practices For Architecting Your GWT App]
-
-[http://code.google.com/webtoolkit/articles/mvp-architecture.html MVP architecture for GWT]
-
-
-= Next steps =
-
-GWT has many advantages and fits our needs. 
-Besides GWT, we looked at various other frameworks, including Sproutcore, Capuccino, ASP.NET with MVC and ASP.NET AJAX (documented these internally).
-
-GWT specific next steps: test deployment, research how easy is using CSS and external JS, research overwriting generated markup for some widgets or building more complex widgets from scratch if needed, review top open bugs to see how stable/maintained GWT is.
-
-<img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/learning_with_pencil.jpg" border="0"  align="left" />
-For feedback on this document, please contact Marius.Andreiana @ gmail.com. Thanks to the GWT discussion group and other folks, who already provided valuable feedback.
-
-
-= Appendix: Evaluating GWT 3rd party libraries =
-
-GWT has many 3rd party libraries, covering areas such as widgets, validation, logging, charts and even equation editors. A few of the widget libraries chose to heavily use !JavaScript and their own widget model to implement various widgets (e.g. SmartGWT), leading to various issues: [http://forums.smartclient.com/showthread.php?p=15141 layout], performance, some incompatibility with native GWT widgets. I recommend not using this kind of libraries and stick to widgets built on the GWT model and [http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinder.html UiBinder].
-
-
-= Appendix: GWT apps at Google =
+= GWT apps at Google =
 http://adwords.google.com/
 
 http://www.google.com/adsense ([http://www.youtube.com/watch?v=WMjra3sIhDM video])
@@ -209,7 +41,7 @@ Mobile Maps and Latitude for iPhone
 
 
 
-= Appendix: Cool GWT apps =
+= Other GWT apps =
 <img src="http://gwt-gae-book.googlecode.com/svn/wiki/images/old_boat.jpg" border="0"  align="right" />
 
 [http://www.contactoffice.com/virtual-office/en/product/versions/personal.jsp?tab=demo#demo ContactOffice]
@@ -238,34 +70,6 @@ Mobile Maps and Latitude for iPhone
 [http://james.apache.org/hupa/screenshots.html Apache Hupa IMAP mail client]
 
 
-
-= Appendix: Deployment setup =
-
-We have api.backend.com, which offers REST APIs over SSL such as:
-{{{
-POST /login
-Body: data username, password
-Response: authToken
-
-GET /tweets
-Authorization: authToken (Custom HTTP Header)
-Body: none
-Response: tweets
-}}}
-
-*Production*
-
-Deploy app.html on api.backend.com which loads compiled assets from CDN. app.html is loaded in an iframe from wherever is needed to avoid SOP restrictions on all browsers.
-
-*Development environment for folks doing client-only development*
-
-api.internal.backend.com will return on all requests the header
-{{{
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Headers: Authorization
-}}}
-
-This setup should be fully secure for production too, but we cannot use it as Internet Explorer doesn’t support [https://developer.mozilla.org/En/HTTP_Access_Control Access-Control-Allow-Origin] with XHR (has a separate proprietary object, XDomainRequest, for this use case).
 
 <wiki:comment>NAV_START</wiki:comment>
 <a href='http://code.google.com/p/gwt-gae-book/issues/entry'><img src='http://gwt-gae-book.googlecode.com/svn/wiki/assets/envelope.png' border='0' title='Send feedback' /></a>
