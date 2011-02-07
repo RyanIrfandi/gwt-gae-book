@@ -32,23 +32,8 @@
  * [TheRightToolForTheJob#Google_Web_Toolkit_(GWT) Google Web Toolkit (GWT)] <br/>
  * [TheRightToolForTheJob#Google_App_Engine_(GAE) Google App Engine (GAE)] <br/>
  * [TheRightToolForTheJob#Evaluating_alternatives Evaluating alternatives] <br/>
- * [TheRightToolForTheJob#Analysis_of_using_GWT_for_a_large_application Analysis of using GWT for a large application] <br/>
- * [TheRightToolForTheJob#Project_background Project background] <br/>
- * [TheRightToolForTheJob#Framework_evaluation_criteria Framework evaluation criteria] <br/>
- * [TheRightToolForTheJob#Web_applications_paradigm_alternatives Web applications paradigm alternatives] <br/>
- * [TheRightToolForTheJob#Google_Web_Toolkit_(GWT) Google Web Toolkit (GWT)] <br/>
-  * [TheRightToolForTheJob#Engineering Engineering] <br/>
-  * [TheRightToolForTheJob#Cross-functional_team_collaboration Cross-functional team collaboration] <br/>
-   * [TheRightToolForTheJob#Scrum_teams Scrum teams] <br/>
-   * [TheRightToolForTheJob#User_experience_designers_and_graphic_designers User experience designers and graphic designers] <br/>
-   * [TheRightToolForTheJob#Product_managers_and_support Product managers and support] <br/>
-   * [TheRightToolForTheJob#Operations Operations] <br/>
- * [TheRightToolForTheJob#More_info_on_GWT More info on GWT] <br/>
- * [TheRightToolForTheJob#Next_steps Next steps] <br/>
- * [TheRightToolForTheJob#Appendix:_Evaluating_GWT_3rd_party_libraries Appendix: Evaluating GWT 3rd party libraries] <br/>
- * [TheRightToolForTheJob#Appendix:_GWT_apps_at_Google Appendix: GWT apps at Google] <br/>
- * [TheRightToolForTheJob#Appendix:_Cool_GWT_apps Appendix: Cool GWT apps] <br/>
- * [TheRightToolForTheJob#Appendix:_Deployment_setup Appendix: Deployment setup] <br/>
+ * [TheRightToolForTheJob#GWT_apps_at_Google GWT apps at Google] <br/>
+ * [TheRightToolForTheJob#Other_GWT_apps Other GWT apps] <br/>
 
 === [GettingStarted Getting started] ===
  * [GettingStarted#Environment_Setup Environment Setup] <br/>
