@@ -17,6 +17,7 @@ import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
@@ -49,11 +50,14 @@ public class PerformanceView extends ViewWithUiHandlers<PerformanceUiHandlers>
 				return;
 			}
 
-			DateTimeFormat dateFormat = DateTimeFormat
-					.getFormat(Constants.defaultDateFormat);
+			// DateTimeFormat dateFormat = DateTimeFormat
+			// .getFormat(Constants.defaultDateFormat);
 
 			sb.appendHtmlConstant("<span class='performanceDate'>");
-			sb.appendEscaped(dateFormat.format(performance.date));
+			// sb.appendEscaped(dateFormat.format(performance.date));
+			sb.appendEscaped(performance.date);
+			sb.appendHtmlConstant(" ");
+			sb.appendEscaped(performance.timeHourMinute);
 			sb.appendHtmlConstant("</span>");
 			sb.appendHtmlConstant("<span class='showName'>");
 			sb.appendEscaped(performance.showName);
@@ -86,6 +90,8 @@ public class PerformanceView extends ViewWithUiHandlers<PerformanceUiHandlers>
 
 	@UiField
 	DateBox date;
+	@UiField
+	TextBox timeHourMinute;
 
 	// @UiField
 	// TextBox show;
@@ -159,9 +165,36 @@ public class PerformanceView extends ViewWithUiHandlers<PerformanceUiHandlers>
 
 	@Override
 	public void setDefaultValues() {
-		date.setValue(null);
+		DateTimeFormat dateFormat = DateTimeFormat
+				.getFormat(Constants.defaultDateFormat);
+		if (null != Cookies.getCookie(Constants.PerformanceDateCookieName)) {
+			try {
+				date.setValue(dateFormat.parse(Cookies
+						.getCookie(Constants.PerformanceDateCookieName)));
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			date.setValue(null);
+		}
+
+		if (null != Cookies.getCookie(Constants.PerformanceTimeCookieName)) {
+			timeHourMinute.setValue(Cookies
+					.getCookie(Constants.PerformanceTimeCookieName));
+		} else {
+			timeHourMinute.setValue("");
+		}
+
 		show.setValue("");
-		location.setValue("");
+
+		if (null != Cookies
+				.getCookie(Constants.PerformanceLocationNameCookieName)) {
+			location.setValue(Cookies
+					.getCookie(Constants.PerformanceLocationNameCookieName));
+		} else {
+			location.setValue("");
+		}
 	}
 
 	public void resetAndFocus() {
@@ -219,7 +252,16 @@ public class PerformanceView extends ViewWithUiHandlers<PerformanceUiHandlers>
 						Performance p = selectionModel.getSelectedObject();
 						setIsPerformanceSelected(null != p);
 						if (null != p) {
-							date.setValue(p.date);
+							DateTimeFormat dateFormat = DateTimeFormat
+									.getFormat(Constants.defaultDateFormat);
+							try {
+								date.setValue(dateFormat.parse(p.date));
+							} catch (IllegalArgumentException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+							timeHourMinute.setValue(p.timeHourMinute);
 							show.setValue(p.showName);
 							location.setValue(p.locationName);
 						}
@@ -232,18 +274,27 @@ public class PerformanceView extends ViewWithUiHandlers<PerformanceUiHandlers>
 
 	@UiHandler("createPerformance")
 	void onCreatePerformanceClicked(ClickEvent event) {
-		getUiHandlers().createPerformance(date.getValue(), show.getValue(),
-				location.getValue());
+		DateTimeFormat dateFormat = DateTimeFormat
+				.getFormat(Constants.defaultDateFormat);
+
+		getUiHandlers()
+				.createPerformance(dateFormat.format(date.getValue()),
+						timeHourMinute.getValue(), show.getValue(),
+						location.getValue());
 	}
 
 	@UiHandler("updatePerformance")
 	void onUpdatePerformanceClicked(ClickEvent event) {
 		// TODO how to solve Unchecked cast?
+		DateTimeFormat dateFormat = DateTimeFormat
+				.getFormat(Constants.defaultDateFormat);
+
 		final SingleSelectionModel<Performance> selectionModel = (SingleSelectionModel<Performance>) performancesCL
 				.getSelectionModel();
 		getUiHandlers().updatePerformance(
 				selectionModel.getSelectedObject().performanceKey,
-				date.getValue(), show.getValue(), location.getValue());
+				dateFormat.format(date.getValue()), timeHourMinute.getValue(),
+				show.getValue(), location.getValue());
 	}
 
 	@UiHandler("deletePerformance")

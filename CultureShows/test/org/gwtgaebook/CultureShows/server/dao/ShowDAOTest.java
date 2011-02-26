@@ -105,7 +105,7 @@ public class ShowDAOTest extends LocalDatastoreTestCase {
 				+ Constants.oneDayMiliseconds);
 
 		Performance p = new Performance();
-		p.date = date;
+		p.date = "2016-01-04";
 		p.showKey = KeyFactory.keyToString(s1Key);
 		p.locationKey = KeyFactory.keyToString(l1Key);
 		performanceDAO.create(t1, p);
@@ -133,7 +133,7 @@ public class ShowDAOTest extends LocalDatastoreTestCase {
 				+ Constants.oneDayMiliseconds);
 
 		p1 = new Performance();
-		p1.date = date;
+		p1.date = "2016-01-04";
 		p1.showKey = KeyFactory.keyToString(s1Key);
 		p1.locationKey = KeyFactory.keyToString(l1Key);
 

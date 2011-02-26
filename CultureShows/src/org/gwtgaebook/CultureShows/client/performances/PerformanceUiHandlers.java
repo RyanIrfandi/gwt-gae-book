@@ -13,11 +13,11 @@ public interface PerformanceUiHandlers extends UiHandlers {
 
 	void onPerformanceSelected(Performance p);
 
-	public void createPerformance(Date date, String showName,
-			String locationName);
-
-	public void updatePerformance(String performanceKey, Date date,
+	public void createPerformance(String date, String timeHourMinute,
 			String showName, String locationName);
+
+	public void updatePerformance(String performanceKey, String date,
+			String timeHourMinute, String showName, String locationName);
 
 	public void deletePerformance(String performanceKey);
 

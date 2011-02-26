@@ -23,6 +23,8 @@ import org.gwtgaebook.CultureShows.shared.dispatch.ManagePerformanceResult;
 import org.gwtgaebook.CultureShows.shared.model.Performance;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.client.DispatchAsync;
@@ -161,14 +163,15 @@ public class PerformancePresenter extends
 	}
 
 	@Override
-	public void createPerformance(Date date, String showName,
-			String locationName) {
-		Main.logger.info("Requested performance scheduling on "
-				+ date.toString() + ": show " + showName + " at location "
+	public void createPerformance(String date, String timeHourMinute,
+			String showName, String locationName) {
+		Main.logger.info("Requested performance scheduling on " + date + " "
+				+ timeHourMinute + " : show " + showName + " at location "
 				+ locationName + " for theater "
 				+ clientState.currentTheaterKey);
 		Performance p = new Performance();
 		p.date = date;
+		p.timeHourMinute = timeHourMinute;
 		p.showName = showName;
 		p.locationName = locationName;
 
@@ -183,6 +186,18 @@ public class PerformancePresenter extends
 							Window.alert(result.getErrorText());
 							return;
 						}
+						// remember last used values
+						// DateTimeFormat dateFormat = DateTimeFormat
+						// .getFormat(Constants.defaultDateFormat);
+						// dateFormat.format(result.getPerformanceOut().date)
+						Cookies.setCookie(Constants.PerformanceDateCookieName,
+								result.getPerformanceOut().date);
+						Cookies.setCookie(Constants.PerformanceTimeCookieName,
+								result.getPerformanceOut().timeHourMinute);
+						Cookies.setCookie(
+								Constants.PerformanceLocationNameCookieName,
+								result.getPerformanceOut().locationName);
+
 						getView().setDefaultValues();
 						getView().refreshPerformances();
 					}
@@ -191,16 +206,17 @@ public class PerformancePresenter extends
 	}
 
 	@Override
-	public void updatePerformance(String performanceKey, Date date,
-			String showName, String locationName) {
+	public void updatePerformance(String performanceKey, String date,
+			String timeHourMinute, String showName, String locationName) {
 		Main.logger.info("Requested performance update for " + performanceKey
-				+ " with date " + date.toString() + " the show " + showName
-				+ " at location " + locationName + " for theater "
-				+ clientState.currentTheaterKey);
+				+ " with date " + date.toString() + " " + timeHourMinute
+				+ " the show " + showName + " at location " + locationName
+				+ " for theater " + clientState.currentTheaterKey);
 
 		Performance p = new Performance();
 		p.performanceKey = performanceKey;
 		p.date = date;
+		p.timeHourMinute = timeHourMinute;
 		p.showName = showName;
 		p.locationName = locationName;
 

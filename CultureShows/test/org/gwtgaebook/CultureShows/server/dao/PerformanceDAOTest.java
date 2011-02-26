@@ -92,11 +92,11 @@ public class PerformanceDAOTest extends LocalDatastoreTestCase {
 	@Test
 	public final void testCreateUpdate() {
 
-		Date date = new Date(new java.util.Date().getTime()
-				+ Constants.oneDayMiliseconds);
+		// Date date = new Date(new java.util.Date().getTime()
+		// + Constants.oneDayMiliseconds);
 
 		p1 = new Performance();
-		p1.date = date;
+		p1.date = "2016-01-04";
 		p1.showKey = KeyFactory.keyToString(s1Key);
 		p1.locationKey = KeyFactory.keyToString(l1Key);
 
