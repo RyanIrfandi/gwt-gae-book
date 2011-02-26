@@ -23,7 +23,10 @@ public class Performance implements Serializable {
 
 	@Index
 	@Expose
-	public Date date;
+	public String date;
+
+	@Expose
+	public String timeHourMinute;
 
 	@Index
 	public String showKey;

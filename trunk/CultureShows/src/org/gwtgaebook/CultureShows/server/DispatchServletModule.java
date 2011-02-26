@@ -26,7 +26,7 @@ public class DispatchServletModule extends ServletModule {
 		// for anonymous clients, return GMT + TZ info
 		// OR always work with GMT server side, client should handle translation
 		// before sending/after receiving
-		TimeZone.setDefault(TimeZone.getTimeZone(Constants.serverTimeZone));
+		// TimeZone.setDefault(TimeZone.getTimeZone(Constants.serverTimeZone));
 	}
 
 }
