@@ -1,8 +1,11 @@
 package org.gwtgaebook.CultureShows.server.dao;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.gwtgaebook.CultureShows.shared.Constants;
 import org.gwtgaebook.CultureShows.shared.model.Location;
 import org.gwtgaebook.CultureShows.shared.model.Performance;
 import org.gwtgaebook.CultureShows.shared.model.Show;
@@ -67,9 +70,11 @@ public class PerformanceDAO extends DAO<Performance> {
 
 		// by default, get only future performances
 		Date date = new java.util.Date();
+		DateFormat df = new SimpleDateFormat(Constants.serverDateFormat);
+
 		List<Performance> performances = datastore.find()
 				.type(Performance.class).ancestor(theater)
-				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, date)
+				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, df.format(date))
 				.addSort("date").returnAll().now();
 
 		// add key to model, so it can be sent to client
@@ -98,10 +103,11 @@ public class PerformanceDAO extends DAO<Performance> {
 	public List<Performance> readByShow(String showKey) {
 		// by default, get only future performances
 		Date date = new java.util.Date();
+		DateFormat df = new SimpleDateFormat(Constants.serverDateFormat);
 		List<Performance> performances = datastore.find()
 				.type(Performance.class)
 				.addFilter("showKey", FilterOperator.EQUAL, showKey)
-				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, date)
+				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, df.format(date))
 				.addSort("date").returnAll().now();
 
 		return performances;
@@ -110,10 +116,11 @@ public class PerformanceDAO extends DAO<Performance> {
 	public List<Performance> readByLocation(String locationKey) {
 		// by default, get only future performances
 		Date date = new java.util.Date();
+		DateFormat df = new SimpleDateFormat(Constants.serverDateFormat);
 		List<Performance> performances = datastore.find()
 				.type(Performance.class)
 				.addFilter("locationKey", FilterOperator.EQUAL, locationKey)
-				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, date)
+				.addFilter("date", FilterOperator.GREATER_THAN_OR_EQUAL, df.format(date))
 				.addSort("date").returnAll().now();
 
 		return performances;
