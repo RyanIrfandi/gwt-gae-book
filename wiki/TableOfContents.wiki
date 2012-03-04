@@ -1,3 +1,8 @@
+= 2012 UPDATE =
+Instead of GWT/GAE, I highly recommend developing with backbone.js, node.js and mongodb. These fully take advantage of web standards and latest browser advancements, while bringing a higher productivity. 
+
+Try out [http://owndj.com/ ownDJ], an app for playing and mixing music online, which is more complex than the sample app presented in this book, but takes less time to develop and maintain.
+
 = Table of contents =
 
 
